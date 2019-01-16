@@ -12,6 +12,14 @@ Screen::Screen()
 	this->_window->setFramerateLimit(60);
 }
 
+Screen::Screen(const Screen &other)
+{
+	this->_window = new sf::RenderWindow(
+		sf::VideoMode(other._window->getSize().x, other._window->getSize().y),
+		"TH Fan Game"
+	);
+}
+
 Screen::~Screen()
 {
 	logger.info("Destroying game window");
@@ -40,4 +48,17 @@ void	Screen::clear(const sf::Color &color) const
 void	Screen::refresh() const
 {
 	this->_window->display();
+}
+
+
+void	Screen::displayElement(sf::IntRect rect)
+{
+	this->_rect.setPosition(sf::Vector2f(rect.left, rect.width));
+	this->_rect.setSize(sf::Vector2f(rect.width, rect.height));
+	this->_window->draw(this->_rect);
+}
+
+void    Screen::fillColor(sf::Color color)
+{
+	this->_rect.setFillColor(color);
 }

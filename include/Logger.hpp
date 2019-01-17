@@ -20,6 +20,7 @@ public:
 	void	info(const std::string &content) noexcept;
 	void	warn(const std::string &content) noexcept;
 	void	error(const std::string &content) noexcept;
+	void	fatal(const std::string &content) noexcept;
 };
 
 extern Logger	logger;

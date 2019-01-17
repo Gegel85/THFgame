@@ -5,25 +5,38 @@
 #include "Logger.hpp"
 #include "Screen.hpp"
 
-Screen::Screen()
+Screen::Screen(const std::string &title) : _title(title)
 {
-	logger.info("Opening game window");
-	this->_window = new sf::RenderWindow(sf::VideoMode(640, 480), "TH Fan Game");
+	logger.info("Opening game window \"" + title + "\"");
+	this->_window = new sf::RenderWindow(sf::VideoMode(640, 480), title);
 	this->_window->setFramerateLimit(60);
 }
 
 Screen::Screen(const Screen &other)
 {
+	logger.info("Opening game window \"" + other.getTitle() + "\"");
+	this->_title = other.getTitle();
 	this->_window = new sf::RenderWindow(
 		sf::VideoMode(other._window->getSize().x, other._window->getSize().y),
-		"TH Fan Game"
+		other.getTitle()
 	);
 }
 
 Screen::~Screen()
 {
-	logger.info("Destroying game window");
+	logger.info("Destroying game window \"" + this->_title + "\"");
 	delete this->_window;
+}
+
+const std::string& Screen::getTitle() const
+{
+	return this->_title;
+}
+
+void Screen::setTitle(const std::string &title)
+{
+	this->_title = title;
+	this->_window->setTitle(title);
 }
 
 void	Screen::handleEvents()

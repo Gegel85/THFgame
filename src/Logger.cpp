@@ -23,7 +23,7 @@ void Logger::msg(const std::string &content, const std::string &prepend) noexcep
 	time_t			timestamp = std::time(nullptr);
 	struct tm		*tm = std::localtime(&timestamp);
 
-	logged_str << prepend << "[" << std::put_time(tm, "%d-%m-%Y %H-%M-%S") << "]: " << content << std::endl;
+	logged_str << std::put_time(tm, "[%d-%m-%Y][%H:%M:%S]") << prepend << ": " << content << std::endl;
 	this->file << logged_str.str();
 	std::cout << logged_str.str();
 }
@@ -41,4 +41,9 @@ void Logger::info(const std::string &content) noexcept
 void Logger::error(const std::string &content) noexcept
 {
 	this->msg(content, "[ERROR]");
+}
+
+void Logger::fatal(const std::string &content) noexcept
+{
+	this->msg(content, "[FATAL]");
 }

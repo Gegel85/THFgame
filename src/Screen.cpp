@@ -5,27 +5,26 @@
 #include "Logger.hpp"
 #include "Screen.hpp"
 
-Screen::Screen(const std::string &title) : _title(title)
+Screen::Screen(const std::string &title) :
+	sf::RenderWindow(sf::VideoMode(640, 480), title), _title(title)
 {
 	logger.info("Opening game window \"" + title + "\"");
-	this->_window = new sf::RenderWindow(sf::VideoMode(640, 480), title);
-	this->_window->setFramerateLimit(60);
+	this->setFramerateLimit(60);
 }
 
-Screen::Screen(const Screen &other)
+Screen::Screen(const Screen &other) :
+	sf::RenderWindow(sf::VideoMode(other.getSize().x, other.getSize().y), other.getTitle())
 {
 	logger.info("Opening game window \"" + other.getTitle() + "\"");
 	this->_title = other.getTitle();
-	this->_window = new sf::RenderWindow(
-		sf::VideoMode(other._window->getSize().x, other._window->getSize().y),
-		other.getTitle()
-	);
+	this->setFramerateLimit(60);
+	this->setSize(other.getSize());
+	this->setPosition(other.getPosition());
 }
 
 Screen::~Screen()
 {
 	logger.info("Destroying game window \"" + this->_title + "\"");
-	delete this->_window;
 }
 
 const std::string& Screen::getTitle() const
@@ -36,42 +35,50 @@ const std::string& Screen::getTitle() const
 void Screen::setTitle(const std::string &title)
 {
 	this->_title = title;
-	this->_window->setTitle(title);
+	this->setTitle(title);
 }
 
 void	Screen::handleEvents()
 {
 	sf::Event	event;
 
-	while (this->_window->pollEvent(event))
+	while (this->pollEvent(event))
 		if (event.type == sf::Event::Closed)
-			this->_window->close();
+			this->close();
 }
-
-bool	Screen::isOpen() const
-{
-	return this->_window->isOpen();
-}
-
-void	Screen::clear(const sf::Color &color) const
-{
-	this->_window->clear(color);
-}
-
-void	Screen::refresh() const
-{
-	this->_window->display();
-}
-
 
 void	Screen::displayElement(sf::IntRect rect)
 {
 	this->_rect.setPosition(sf::Vector2f(rect.left, rect.width));
 	this->_rect.setSize(sf::Vector2f(rect.width, rect.height));
-	this->_window->draw(this->_rect);
+	this->draw(this->_rect);
 }
 
-void    Screen::fillColor(sf::Color color)
+void    Screen::fillColor(const sf::Color &color)
 {
 	this->_rect.setFillColor(color);
+	this->_text.setFillColor(color);
+}
+
+void	Screen::setFont(const sf::Font &font)
+{
+	this->_text.setFont(font);
+}
+
+void	Screen::textSize(const size_t &size)
+{
+	this->_text.setCharacterSize(size);
+}
+
+void	Screen::displayElement(const std::string &str, sf::Vector2f pos)
+{
+	this->_text.setPosition(pos);
+	this->_text.setString(str);
+	this->draw(this->_text);
+}
+
+void	Screen::displayElement(sf::Sprite &sprite, sf::Vector2f pos)
+{
+	sprite.setPosition(pos);
+	this->draw(sprite);
 }

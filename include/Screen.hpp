@@ -8,25 +8,30 @@
 
 #include <SFML/Graphics.hpp>
 
-class Screen {
+class Screen : public sf::RenderWindow {
 private:
-	sf::RenderWindow	*_window;
 	sf::RectangleShape	_rect;
+	sf::Text		_text;
+	sf::Clock		_clock;
+	sf::Sprite		_sprite;
 	std::string		_title;
 
 public:
+	double	fps;
+
 	explicit Screen(const std::string &title = "TH Fan Game");
 	Screen(const Screen &);
 	~Screen();
 
 	void			handleEvents();
-	bool			isOpen() const;
 	const std::string	&getTitle() const;
 	void			setTitle(const std::string &);
-	void			clear(const sf::Color &color = sf::Color(0, 0, 0, 255)) const;
-	void			refresh() const;
+	void    		fillColor(const sf::Color &color = sf::Color(255, 255, 255, 255));
+	void			setFont(const sf::Font &font);
+	void			textSize(const size_t &size);
 	void			displayElement(sf::IntRect rect);
-	void    		fillColor(sf::Color color = sf::Color(255, 255, 255, 255));
+	void			displayElement(const std::string &str, sf::Vector2f);
+	void			displayElement(sf::Sprite &sprite, sf::Vector2f);
 };
 
 

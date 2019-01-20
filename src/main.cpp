@@ -12,7 +12,7 @@ void	game()
 	while (screen.isOpen()) {
 		screen.clear();
 		screen.handleEvents();
-		screen.refresh();
+		screen.display();
 	}
 }
 

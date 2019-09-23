@@ -9,10 +9,10 @@ add_executable(
 	THFgame
 	src/main.cpp
 	src/Logger.cpp
-	include/Logger.hpp
+	src/Logger.hpp
 	src/Screen.cpp
-	include/Screen.hpp
-)
+	src/Screen.hpp
+	src/Resources.hpp src/Game.hpp)
 
 target_link_libraries(
 	THFgame

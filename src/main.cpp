@@ -1,25 +1,31 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Game.hpp"
 #include "Logger.hpp"
-#include "Screen.hpp"
 
-Logger	logger("./latest.log");
+namespace Game
+{
+	Logger logger{"./latest.log", Logger::INFO};
+	Game game{
+		{
+			Screen{"THFgame"}
+		},
+	};
+}
 
 void	game()
 {
-	Screen	screen;
-
-	while (screen.isOpen()) {
-		screen.clear();
-		screen.handleEvents();
-		screen.display();
+	while (Game::game.resources.screen.isOpen()) {
+		Game::game.resources.screen.clear();
+		Game::game.resources.screen.handleEvents();
+		Game::game.resources.screen.display();
 	}
 }
 
 int	main()
 {
-	logger.info("Starting game.");
+	Game::logger.info("Starting game.");
 	game();
-	logger.info("Goodbye !");
+	Game::logger.info("Goodbye !");
 	return EXIT_SUCCESS;
 }

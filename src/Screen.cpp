@@ -2,20 +2,20 @@
 // Created by Gegel85 on 15/01/2019.
 //
 
-#include "Logger.hpp"
+#include "Game.hpp"
 #include "Screen.hpp"
 
-Screen::Screen(const std::string &title) :
-	sf::RenderWindow(sf::VideoMode(640, 480), title), _title(title)
+Screen::Screen(const std::string &title, unsigned int width, unsigned int height) :
+	sf::RenderWindow(sf::VideoMode(width, height), title), _title(title)
 {
-	logger.info("Opening game window \"" + title + "\"");
+	Game::logger.info("Opening window \"" + title + "\"");
 	this->setFramerateLimit(60);
 }
 
 Screen::Screen(const Screen &other) :
 	sf::RenderWindow(sf::VideoMode(other.getSize().x, other.getSize().y), other.getTitle())
 {
-	logger.info("Opening game window \"" + other.getTitle() + "\"");
+	Game::logger.info("Opening window \"" + other.getTitle() + "\"");
 	this->_title = other.getTitle();
 	this->setFramerateLimit(60);
 	this->setSize(other.getSize());
@@ -24,7 +24,7 @@ Screen::Screen(const Screen &other) :
 
 Screen::~Screen()
 {
-	logger.info("Destroying game window \"" + this->_title + "\"");
+	Game::logger.info("Destroying window \"" + this->_title + "\"");
 }
 
 const std::string& Screen::getTitle() const
@@ -35,7 +35,7 @@ const std::string& Screen::getTitle() const
 void Screen::setTitle(const std::string &title)
 {
 	this->_title = title;
-	this->setTitle(title);
+	sf::RenderWindow::setTitle(title);
 }
 
 void	Screen::handleEvents()
@@ -81,4 +81,11 @@ void	Screen::displayElement(sf::Sprite &sprite, sf::Vector2f pos)
 {
 	sprite.setPosition(pos);
 	this->draw(sprite);
+}
+
+void	Screen::displayElement(sf::Texture &texture, sf::Vector2f pos)
+{
+	this->_sprite.setPosition(pos);
+	this->_sprite.setTexture(texture, true);
+	this->draw(this->_sprite);
 }

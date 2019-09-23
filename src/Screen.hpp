@@ -2,8 +2,8 @@
 // Created by Gegel85 on 15/01/2019.
 //
 
-#ifndef THFGAME_RESSOURCES_HPP
-#define THFGAME_RESSOURCES_HPP
+#ifndef THFGAME_SCREEN_HPP
+#define THFGAME_SCREEN_HPP
 
 
 #include <SFML/Graphics.hpp>
@@ -19,9 +19,9 @@ private:
 public:
 	double	fps;
 
-	explicit Screen(const std::string &title = "TH Fan Game");
+	explicit Screen(const std::string &title, unsigned int width = 640, unsigned int height = 480);
 	Screen(const Screen &);
-	~Screen();
+	~Screen() override;
 
 	void			handleEvents();
 	const std::string	&getTitle() const;
@@ -32,7 +32,8 @@ public:
 	void			displayElement(sf::IntRect rect);
 	void			displayElement(const std::string &str, sf::Vector2f);
 	void			displayElement(sf::Sprite &sprite, sf::Vector2f);
+	void			displayElement(sf::Texture &texture, sf::Vector2f);
 };
 
 
-#endif //THFGAME_RESSOURCES_HPP
+#endif //THFGAME_RESOURCES_HPP

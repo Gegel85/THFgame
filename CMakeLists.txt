@@ -12,11 +12,12 @@ add_executable(
 	src/Logger.hpp
 	src/Screen.cpp
 	src/Screen.hpp
-	src/Resources.hpp src/Game.hpp)
+	src/Resources.hpp src/Game.hpp src/Resources.cpp src/Loader.cpp src/Loader.hpp src/Menu.cpp src/Menu.hpp)
 
 target_link_libraries(
 	THFgame
 	sfml-window
 	sfml-system
 	sfml-graphics
+	sfml-audio
 )

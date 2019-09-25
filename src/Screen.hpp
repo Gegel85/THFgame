@@ -23,7 +23,6 @@ public:
 	Screen(const Screen &);
 	~Screen() override;
 
-	void			handleEvents();
 	const std::string	&getTitle() const;
 	void			setTitle(const std::string &);
 	void    		fillColor(const sf::Color &color = sf::Color(255, 255, 255, 255));

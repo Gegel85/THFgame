@@ -7,11 +7,17 @@
 
 #include "Logger.hpp"
 #include "Resources.hpp"
+#include "Menu.hpp"
 
 namespace Game
 {
+	struct GameState {
+		MenuMgr::Menu currentMenu;
+	};
+
 	struct Game {
 		Resources resources;
+		GameState state;
 	};
 
 	extern Game game;

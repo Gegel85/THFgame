@@ -38,15 +38,6 @@ void Screen::setTitle(const std::string &title)
 	sf::RenderWindow::setTitle(title);
 }
 
-void	Screen::handleEvents()
-{
-	sf::Event	event;
-
-	while (this->pollEvent(event))
-		if (event.type == sf::Event::Closed)
-			this->close();
-}
-
 void	Screen::displayElement(sf::IntRect rect)
 {
 	this->_rect.setPosition(sf::Vector2f(rect.left, rect.width));

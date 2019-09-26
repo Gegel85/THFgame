@@ -12,7 +12,18 @@ add_executable(
 	src/Logger.hpp
 	src/Screen.cpp
 	src/Screen.hpp
-	src/Resources.hpp src/Game.hpp src/Resources.cpp src/Loader.cpp src/Loader.hpp src/Menu.cpp src/Menu.hpp)
+	src/Resources.hpp
+	src/Game.hpp
+	src/Resources.cpp
+	src/Loader.cpp
+	src/Loader.hpp
+	src/Menu.cpp
+	src/Menu.hpp
+	src/Map.cpp
+	src/Map.hpp
+	src/ECS/Entity.cpp
+	src/ECS/Entity.hpp
+	src/Exceptions.hpp src/ECS/Core.cpp src/ECS/Core.hpp src/ECS/Component.cpp src/ECS/Component.hpp)
 
 target_link_libraries(
 	THFgame

@@ -3,6 +3,7 @@
 //
 
 #include "Loader.hpp"
+#include "Exceptions.hpp"
 
 namespace TouhouFanGame
 {
@@ -28,38 +29,44 @@ namespace TouhouFanGame
 
 	void Loader::loadAssets()
 	{
-		std::ifstream stream;
+		std::ifstream stream{"assets/list.json"};
 		json data;
 
-		stream.exceptions(stream.exceptions() | std::ios::failbit);
 		logger.debug("Opening file assets/list.json");
-		stream.open("assets/list.json");
+		if (stream.fail())
+			throw CorruptedAssetsListException("Cannot open assets list from assets/list.json");
 
 		logger.debug("Opening main window");
 		game.resources.screen.reset(new Screen{"THFgame"});
 
-		logger.debug("Parsing json");
-		stream >> data;
+		try {
+			logger.debug("Parsing json");
+			stream >> data;
 
-		logger.debug("Loading icon");
-		if (data["icon"].is_null())
-			logger.warn("No Icon is marked for loading");
-		else if (!game.resources.icon.loadFromFile("assets/" + static_cast<std::string>(data["icon"])))
-			logger.error("Cannot load file assets/" + static_cast<std::string>(data["icon"]));
-		else
-			game.resources.screen->setIcon(
-				game.resources.icon.getSize().x,
-				game.resources.icon.getSize().y,
-				game.resources.icon.getPixelsPtr()
-			);
+			logger.debug("Loading icon");
+			if (data["icon"].is_null())
+				logger.warn("No Icon is marked for loading");
+			else if (!game.resources.icon.loadFromFile("assets/" + static_cast<std::string>(data["icon"])))
+				logger.error("Cannot load file assets/" + static_cast<std::string>(data["icon"]));
+			else
+				game.resources.screen->setIcon(
+					game.resources.icon.getSize().x,
+					game.resources.icon.getSize().y,
+					game.resources.icon.getPixelsPtr()
+				);
 
-		logger.debug("Loading musics");
-		loadAssetsFromJson("Musics", data["musics"], game.resources.musics);
+			logger.debug("Loading musics");
+			loadAssetsFromJson("Musics", data["musics"], game.resources.musics);
 
-		logger.debug("Loading sfx");
-		loadAssetsFromJson("Sound effects", data["sfx"], game.resources.soundBuffers);
+			logger.debug("Loading sfx");
+			loadAssetsFromJson("Sound effects", data["sfx"], game.resources.soundBuffers);
 
-		logger.debug("Loading sprites");
-		loadAssetsFromJson("Sprites", data["sprites"], game.resources.textures);
+			logger.debug("Loading sprites");
+			loadAssetsFromJson("Sprites", data["sprites"], game.resources.textures);
+		} catch (nlohmann::detail::parse_error &e) {
+			throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
+		} catch (nlohmann::detail::type_error &e) {
+			throw CorruptedAssetsListException("The JSON values are invalid: " + std::string(e.what()));
+		}
 	}
 }

@@ -41,6 +41,18 @@ namespace TouhouFanGame
 		logger.debug("Parsing json");
 		stream >> data;
 
+		logger.debug("Loading icon");
+		if (data["icon"].is_null())
+			logger.warn("No Icon is marked for loading");
+		else if (!game.resources.icon.loadFromFile("assets/" + static_cast<std::string>(data["icon"])))
+			logger.error("Cannot load file assets/" + static_cast<std::string>(data["icon"]));
+		else
+			game.resources.screen->setIcon(
+				game.resources.icon.getSize().x,
+				game.resources.icon.getSize().y,
+				game.resources.icon.getPixelsPtr()
+			);
+
 		logger.debug("Loading musics");
 		loadAssetsFromJson("Musics", data["musics"], game.resources.musics);
 

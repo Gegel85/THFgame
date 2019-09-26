@@ -3,16 +3,38 @@
 //
 
 #include "Resources.hpp"
+#include "Game.hpp"
 
-unsigned char TouhouFanGame::Resources::playSound(const std::string &id)
+namespace TouhouFanGame
 {
-	static char lastSound = 127;
+	unsigned char Resources::playSound(const std::string &id)
+	{
+		static unsigned char lastSound = 127;
 
-	lastSound++;
-	if (lastSound < 0)
-		lastSound = 0;
+		lastSound = (lastSound + 1) % 128;
 
-	this->sounds[lastSound].setBuffer(this->soundBuffers.at(id));
-	this->sounds[lastSound].play();
-	return lastSound;
+		try {
+			this->sounds[lastSound].setBuffer(this->soundBuffers.at(id));
+			this->sounds[lastSound].play();
+		} catch (std::out_of_range &e) {
+			logger.error("Cannot play sound " + id);
+		}
+		return lastSound;
+	}
+
+	void Resources::playMusic(const std::string &id)
+	{
+		this->stopMusic();
+		try {
+			this->musics.at(id).play();
+		} catch (std::out_of_range &e) {
+			logger.error("Cannot play sound " + id);
+		}
+	}
+
+	void Resources::stopMusic()
+	{
+		for (auto &music : this->musics)
+			music.second.stop();
+	}
 }

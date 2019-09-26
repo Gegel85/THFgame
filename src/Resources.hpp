@@ -11,6 +11,7 @@
 namespace TouhouFanGame
 {
 	struct Resources {
+		sf::Image icon;
 		std::unique_ptr<Screen> screen;
 		std::map<std::string, sf::Music> musics;
 		std::map<std::string, sf::Texture> textures;
@@ -18,6 +19,8 @@ namespace TouhouFanGame
 		sf::Sound sounds[128];
 
 		unsigned char playSound(const std::string &id);
+		void playMusic(const std::string &id);
+		void stopMusic();
 	};
 }
 

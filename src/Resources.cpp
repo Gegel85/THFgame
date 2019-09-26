@@ -4,7 +4,7 @@
 
 #include "Resources.hpp"
 
-unsigned char Game::Resources::playSound(const std::string &id)
+unsigned char TouhouFanGame::Resources::playSound(const std::string &id)
 {
 	static char lastSound = 127;
 

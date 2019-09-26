@@ -9,7 +9,7 @@
 #include "Resources.hpp"
 #include "Menu.hpp"
 
-namespace Game
+namespace TouhouFanGame
 {
 	struct GameState {
 		MenuMgr::Menu currentMenu;

@@ -4,7 +4,7 @@
 
 #include "Loader.hpp"
 
-namespace Game
+namespace TouhouFanGame
 {
 	bool Loader::loadFile(sf::SoundBuffer &buffer, const std::string &path)
 	{

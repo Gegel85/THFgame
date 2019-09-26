@@ -8,7 +8,7 @@
 #include <SFML/Audio.hpp>
 #include "Screen.hpp"
 
-namespace Game
+namespace TouhouFanGame
 {
 	struct Resources {
 		std::unique_ptr<Screen> screen;

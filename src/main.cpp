@@ -30,7 +30,7 @@ std::string getLastExceptionName()
 }
 
 
-namespace Game
+namespace TouhouFanGame
 {
 	Logger logger{"./latest.log", Logger::DEBUG};
 	Game game;
@@ -55,13 +55,13 @@ namespace Game
 int	main()
 {
 	try {
-		Game::logger.info("Loading assets...");
-		Game::Loader::loadAssets();
-		Game::logger.info("Starting game.");
-		Game::gameLoop();
-		Game::logger.info("Goodbye !");
+		TouhouFanGame::logger.info("Loading assets...");
+		TouhouFanGame::Loader::loadAssets();
+		TouhouFanGame::logger.info("Starting game.");
+		TouhouFanGame::gameLoop();
+		TouhouFanGame::logger.info("Goodbye !");
 	} catch (std::exception &e) {
-		Game::logger.fatal(getLastExceptionName() + ": " + e.what());
+		TouhouFanGame::logger.fatal(getLastExceptionName() + ": " + e.what());
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;

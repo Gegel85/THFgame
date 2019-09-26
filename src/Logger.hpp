@@ -9,7 +9,7 @@
 #include <fstream>
 #include <string>
 
-namespace Game
+namespace TouhouFanGame
 {
 	class Logger {
 	public:

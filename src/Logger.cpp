@@ -8,7 +8,7 @@
 #include <cstring>
 #include "Logger.hpp"
 
-namespace Game
+namespace TouhouFanGame
 {
 	Logger::Logger(const std::string &filepath, LogLevel level) noexcept :
 		_file(filepath, std::ios::out),

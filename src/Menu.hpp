@@ -8,7 +8,7 @@
 
 #include <SFML/Window/Event.hpp>
 
-namespace Game
+namespace TouhouFanGame
 {
 	class MenuMgr {
 	private:

@@ -11,7 +11,7 @@ using nlohmann::json;
 
 #include "Game.hpp"
 
-namespace Game
+namespace TouhouFanGame
 {
 	class Loader {
 	public:

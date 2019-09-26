@@ -6,7 +6,7 @@
 #include "Menu.hpp"
 #include "Game.hpp"
 
-namespace Game
+namespace TouhouFanGame
 {
 	void MenuMgr::_renderGame()
 	{}

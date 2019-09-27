@@ -1,9 +1,6 @@
-/*
-** EPITECH PROJECT, 2019
-** THFgame
-** File description:
-** Exception.hpp
-*/
+//
+// Created by Gegel85 on 27/09/2019.
+//
 
 #ifndef THFGAME_EXCEPTION_HPP
 #define THFGAME_EXCEPTION_HPP

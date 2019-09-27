@@ -5,13 +5,16 @@
 #include "EntityFactory.hpp"
 #include "../Exceptions.hpp"
 #include "../Components/PositionComponent.hpp"
+#include "../Components/DisplayableComponent.hpp"
+#include "../../Map.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
-	std::map<std::string, std::function<ECS::Entity *(unsigned int)>> EntityFactory::_builders = {
+	const std::map<std::string, std::function<ECS::Entity *(unsigned int)>> EntityFactory::_builders = {
 		{"Player", [](unsigned int id){
 			return new Entity(id, "Player", {
-				new Components::PositionComponent()
+				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
+				new Components::DisplayableComponent("assets/entities/test.json")
 			});
 		}}
 	};

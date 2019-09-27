@@ -12,6 +12,24 @@ namespace TouhouFanGame::Rendering
 {
 	class Screen;
 
+	enum Animation {
+		IDLE,
+		WALK,
+		RUN,
+		HIT,
+		ATTACKING,
+		IDLEANIM1,
+		IDLEANIM2,
+		DEAD
+	};
+
+	enum Direction {
+		NORTH,
+		EAST,
+		SOUTH,
+		WEST
+	};
+
 	class Entity {
 	private:
 		struct Config {
@@ -23,19 +41,22 @@ namespace TouhouFanGame::Rendering
 			std::vector<unsigned>	animations;
 		};
 
-		mutable sf::Sprite	_sprite;
-		sf::Vector2f		_pos{0, 0};
-		sf::Vector2u		_size{0, 0};
-		unsigned int		_animation{0};
-		unsigned int		_animationState{0};
-		Config			_configs;
+		sf::Sprite	_sprite;
+		sf::Vector2f	_pos{0, 0};
+		sf::Vector2u	_size{0, 0};
+		Animation	_animation{IDLE};
+		Direction 	_dir{NORTH};
+		unsigned int	_delay{0};
+		unsigned int	_animationState{0};
+		Config		_configs;
 
 	public:
 		explicit Entity(const std::string &configPath);
-		void setAnimation(unsigned newAnimation, bool forceReset = true);
+		void setAnimation(Animation newAnimation, bool forceReset = true);
 		void setPosition(sf::Vector2f newPos);
 		void setSize(sf::Vector2u newSize);
-		void render(Screen &screen) const;
+		void setDirection(Direction newDir);
+		void render(Screen &screen);
 	};
 }
 

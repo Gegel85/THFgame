@@ -15,7 +15,7 @@ namespace TouhouFanGame::ECS::Factory
 {
 	class EntityFactory {
 	private:
-		static std::map<std::string, std::function<ECS::Entity *(unsigned int)>> _builders;
+		const static std::map<std::string, std::function<ECS::Entity *(unsigned int)>> _builders;
 
 	public:
 		static Entity *build(const std::string &name, unsigned int id);

@@ -35,7 +35,7 @@ add_executable(
 	src/Rendering/Exceptions.hpp
 	src/Rendering/Entity.hpp
 	src/Rendering/Entity.cpp
-	src/ECS/Factories/EntityFactory.cpp src/ECS/Factories/EntityFactory.hpp src/ECS/Components/PositionComponent.hpp src/ECS/Components/PositionComponent.cpp)
+	src/ECS/Factories/EntityFactory.cpp src/ECS/Factories/EntityFactory.hpp src/ECS/Components/PositionComponent.hpp src/ECS/Components/PositionComponent.cpp src/ECS/Components/DisplayableComponent.cpp src/ECS/Components/DisplayableComponent.hpp src/ECS/Systems/DisplayableSystem.cpp src/ECS/Systems/DisplayableSystem.hpp src/ECS/Factories/SystemFactory.cpp src/ECS/Factories/SystemFactory.hpp)
 
 target_link_libraries(
 	THFgame

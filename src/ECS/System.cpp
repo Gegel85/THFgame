@@ -19,7 +19,7 @@ namespace TouhouFanGame::ECS
 		return this->_name;
 	}
 
-	void System::checkDependencies(const TouhouFanGame::ECS::Entity &entity)
+	void System::checkDependencies(const TouhouFanGame::ECS::Entity &entity) const
 	{
 		for (auto &dep : this->_deps)
 			if (!entity.hasComponent(dep))

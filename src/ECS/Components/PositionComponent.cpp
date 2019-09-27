@@ -6,8 +6,9 @@
 
 namespace TouhouFanGame::ECS::Components
 {
-	PositionComponent::PositionComponent() :
-		Component("Position")
+	PositionComponent::PositionComponent(sf::Vector2u size) :
+		Component("Position"),
+		size(size)
 	{
 	}
 

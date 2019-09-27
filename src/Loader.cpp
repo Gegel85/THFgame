@@ -32,6 +32,9 @@ namespace TouhouFanGame
 		std::ifstream stream{"assets/list.json"};
 		json data;
 
+		//We do this because on MinGW std::random_device always produce the same output
+		game.resources.random.seed(time(nullptr));
+
 		logger.debug("Opening file assets/list.json");
 		if (stream.fail())
 			throw CorruptedAssetsListException("Cannot open assets list from assets/list.json");

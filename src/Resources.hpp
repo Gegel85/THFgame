@@ -6,12 +6,14 @@
 #define THFGAME_RESOURCES_HPP
 
 #include <SFML/Audio.hpp>
+#include <random>
 #include "Rendering/Screen.hpp"
 
 namespace TouhouFanGame
 {
 	struct Resources {
 		sf::Image icon;
+		std::mt19937 random;
 		std::unique_ptr<Rendering::Screen> screen;
 		std::map<std::string, sf::Music> musics;
 		std::map<std::string, sf::Texture> textures;

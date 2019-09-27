@@ -4,7 +4,8 @@
 	},
 	"sfx": {},
 	"sprites": {
-		"tilemap1": "tilemaps/tilemap1.png"
+		"tilemap1": "tilemaps/tilemap1.png",
+		"testEntity": "entities/test.png"
 	},
 	"icon": "icon.png"
 }

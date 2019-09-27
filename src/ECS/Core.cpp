@@ -5,11 +5,13 @@
 #include "Core.hpp"
 #include "Exceptions.hpp"
 #include "Factories/EntityFactory.hpp"
+#include "Factories/SystemFactory.hpp"
 
 namespace TouhouFanGame::ECS
 {
 	Core::Core()
 	{
+		Factory::SystemFactory::buildAll(*this, this->_systems);
 	}
 
 	Entity &Core::makeEntity(const std::string &typeName)

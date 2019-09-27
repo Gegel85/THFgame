@@ -25,7 +25,7 @@ namespace TouhouFanGame::ECS
 
 	public:
 		System(Core &_parent, const std::string &&name, const std::vector<std::string> &&dependencies);
-		void		checkDependencies(const Entity &);
+		void		checkDependencies(const Entity &) const;
 		std::string	getName() const;
 		virtual void	updateEntity(Entity &) = 0;
 	};

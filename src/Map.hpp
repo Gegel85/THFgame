@@ -9,7 +9,6 @@
 #include <SFML/Audio.hpp>
 #include "ECS/Core.hpp"
 
-#define TILE_SIZE 16
 #define PLAYER_SIZE 32
 
 namespace TouhouFanGame
@@ -19,6 +18,7 @@ namespace TouhouFanGame
 		bool _cameraUpdated = false;
 		unsigned short links[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
 		sf::Vector2u _size;
+		unsigned _tileSize;
 		std::string _tileMap;
 		std::vector<unsigned char> _objects;
 		std::map<sf::Vector2u, std::pair<unsigned short, sf::Vector2u>> _tpTriggers;
@@ -29,13 +29,6 @@ namespace TouhouFanGame
 		sf::Vector2f _getPlayerPosition();
 	public:
 		ECS::Entity &_getPlayer();
-
-		enum Direction {
-			NORTH,
-			EAST,
-			SOUTH,
-			WEST
-		};
 
 		Map() = default;
 		void serialize(std::ostream &stream);

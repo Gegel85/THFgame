@@ -91,13 +91,14 @@ namespace TouhouFanGame::Rendering
 
 	Entity &Screen::addEntity(const std::string &configFile)
 	{
+		logger.debug("Making new rendering entity " + configFile);
 		this->_entities.emplace_back(configFile);
 		return this->_entities.back();
 	}
 
 	void Screen::renderEntities()
 	{
-		for (const auto &entity : this->_entities)
+		for (auto &entity : this->_entities)
 			entity.render(*this);
 	}
 

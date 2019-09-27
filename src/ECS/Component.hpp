@@ -20,6 +20,12 @@ namespace TouhouFanGame::ECS
 		std::string getName() const;
 		virtual void serialize(std::ostream &) const = 0;
 		virtual void unserialize(std::istream &) = 0;
+
+		template<typename type>
+		type &to()
+		{
+			return reinterpret_cast<type &>(*this);
+		}
 	};
 }
 

@@ -6,12 +6,24 @@
 #define THFGAME_COMPONENT_HPP
 
 
+#include <string>
+
 namespace TouhouFanGame::ECS
 {
 	class Component {
+	private:
+		std::string _name;
 
+	public:
+		Component(const std::string &name);
+		virtual ~Component() = default;
+		std::string getName() const;
+		virtual void serialize(std::ostream &) const = 0;
+		virtual void unserialize(std::istream &) = 0;
 	};
 }
 
+std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
+std::istream	&operator>>(std::istream &stream, TouhouFanGame::ECS::Component &component);
 
 #endif //THFGAME_COMPONENT_HPP

@@ -15,17 +15,28 @@ namespace TouhouFanGame::ECS
 {
 	class Entity {
 	private:
-		unsigned _id;
+		bool _toDel = false;
+		unsigned _id = 0;
 		std::string _name;
 		std::vector<std::unique_ptr<Component>> _components;
 
 	public:
+		Entity() = default;
 		Entity(unsigned id, const std::string &name, const std::vector<Component *> &&components);
-		unsigned getID();
-		std::string getName();
-		void update();
+		unsigned getID() const;
+		std::string getName() const;
+		bool toBeDestroyed() const;
+		void destroy();
+		bool hasComponent(const std::string &name) const;
+		Component &getComponent(const std::string &name) const;
+		std::vector<std::string> getComponentsNames() const;
+		void serialize(std::ostream &) const;
+		void unserialize(std::istream &);
 	};
 }
+
+std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Entity &entity);
+std::istream	&operator>>(std::istream &stream, TouhouFanGame::ECS::Entity &entity);
 
 
 #endif //THFGAME_ENTITY_HPP

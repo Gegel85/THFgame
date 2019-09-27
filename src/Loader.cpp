@@ -37,7 +37,7 @@ namespace TouhouFanGame
 			throw CorruptedAssetsListException("Cannot open assets list from assets/list.json");
 
 		logger.debug("Opening main window");
-		game.resources.screen.reset(new Screen{"THFgame"});
+		game.resources.screen.reset(new Rendering::Screen{"THFgame"});
 
 		try {
 			logger.debug("Parsing json");

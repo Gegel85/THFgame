@@ -37,4 +37,6 @@ namespace TouhouFanGame
 	};
 }
 
+std::string getLastExceptionName();
+
 #endif //THFGAME_EXCEPTIONS_HPP

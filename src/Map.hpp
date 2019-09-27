@@ -33,6 +33,7 @@ namespace TouhouFanGame
 		void loadFromFile(const std::string &path);
 		void clear();
 		void update();
+		void render();
 	};
 }
 

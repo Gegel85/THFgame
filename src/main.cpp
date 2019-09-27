@@ -1,34 +1,9 @@
-#ifdef __GNUG__
-#include <cxxabi.h>
-#endif
 #include <iostream>
 #include "Game.hpp"
 #include "Logger.hpp"
 #include "Loader.hpp"
 #include "Menu.hpp"
-
-std::string getLastExceptionName()
-{
-#ifdef __GNUG__
-	int status;
-	char *value;
-	std::string name;
-
-	if (!abi::__cxa_current_exception_type())
-		return "No exception";
-	auto val = abi::__cxa_current_exception_type();
-
-	if (!val)
-		return "No exception";
-	value = abi::__cxa_demangle(val->name(), nullptr, nullptr, &status);
-	name = value;
-	free(value);
-	return name;
-#else
-	return "Unknown exception";
-#endif
-}
-
+#include "Exceptions.hpp"
 
 namespace TouhouFanGame
 {

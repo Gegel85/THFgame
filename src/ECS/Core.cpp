@@ -4,17 +4,18 @@
 
 #include "Core.hpp"
 #include "Exceptions.hpp"
+#include "Factories/EntityFactory.hpp"
 
 namespace TouhouFanGame::ECS
 {
 	Core::Core()
 	{
-		this->_buildSystems();
 	}
 
-	void Core::_buildSystems()
+	Entity &Core::makeEntity(const std::string &typeName)
 	{
-
+		this->_entities.emplace_back(Factory::EntityFactory::build(typeName, this->_lastGivenID++));
+		return *this->_entities.back();
 	}
 
 	void Core::update()
@@ -26,6 +27,7 @@ namespace TouhouFanGame::ECS
 
 					system.checkDependencies(*entity);
 					system.updateEntity(*entity);
+				} catch (NoSuchSystemException &) {
 				} catch (std::exception &e) {
 					throw UpdateErrorException(
 						"Error while updating entity n°" + std::to_string(entity->getID()) +

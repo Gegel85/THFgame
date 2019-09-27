@@ -5,12 +5,13 @@
 #include "../Game.hpp"
 #include "Screen.hpp"
 
-namespace Rendering
+namespace TouhouFanGame::Rendering
 {
 	Screen::Screen(const std::string &title, unsigned int width, unsigned int height) :
 		sf::RenderWindow(sf::VideoMode(width, height), title),
 		_title(title),
-		_fps(60)
+		_fps(60),
+		_size(width, height)
 	{
 		TouhouFanGame::logger.info("Opening window \"" + title + "\"");
 		this->setFramerateLimit(60);
@@ -86,5 +87,54 @@ namespace Rendering
 		this->_sprite.setTexture(texture, true);
 		this->_sprite.setTextureRect(rect);
 		this->draw(this->_sprite, pos);
+	}
+
+	Entity &Screen::addEntity(const std::string &configFile)
+	{
+		this->_entities.emplace_back(configFile);
+		return this->_entities.back();
+	}
+
+	void Screen::renderEntities()
+	{
+		for (const auto &entity : this->_entities)
+			entity.render(*this);
+	}
+
+	void Screen::deleteEntities()
+	{
+		this->_entities.clear();
+	}
+
+	void Screen::removeEntity(Entity &entity)
+	{
+		for (auto it = this->_entities.begin(); it < this->_entities.end(); it++)
+			if (&*it == &entity)
+				this->_entities.erase(it);
+	}
+
+	void Screen::display()
+	{
+		if (this->getSize() != this->_size) {
+			this->_view.setCenter(this->getSize().x / 2. + this->_camera.x, this->getSize().y / 2. + this->_camera.y);
+			this->_view.setSize(this->getSize().x, this->getSize().y);
+			this->setView(this->_view);
+		}
+		this->_fps = 1 / this->_clock.getElapsedTime().asSeconds();
+		this->_clock.restart();
+		sf::RenderWindow::display();
+	}
+
+	void Screen::setCamera(sf::Vector2f newCamera)
+	{
+		this->_camera = newCamera;
+		this->_view.setCenter(this->getSize().x / 2. + this->_camera.x, this->getSize().y / 2. + this->_camera.y);
+		this->_view.setSize(this->getSize().x, this->getSize().y);
+		this->setView(this->_view);
+	}
+
+	double Screen::getFPS()
+	{
+		return this->_fps;
 	}
 }

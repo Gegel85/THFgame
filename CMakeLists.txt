@@ -23,7 +23,19 @@ add_executable(
 	src/Map.hpp
 	src/ECS/Entity.cpp
 	src/ECS/Entity.hpp
-	src/Exceptions.hpp src/ECS/Core.cpp src/ECS/Core.hpp src/ECS/Component.cpp src/ECS/Component.hpp src/ECS/System.cpp src/ECS/System.hpp src/Exceptions.cpp src/ECS/Exceptions.hpp)
+	src/Exceptions.hpp
+	src/ECS/Core.cpp
+	src/ECS/Core.hpp
+	src/ECS/Component.cpp
+	src/ECS/Component.hpp
+	src/ECS/System.cpp
+	src/ECS/System.hpp
+	src/Exceptions.cpp
+	src/ECS/Exceptions.hpp
+	src/Rendering/Exceptions.hpp
+	src/Rendering/Entity.hpp
+	src/Rendering/Entity.cpp
+	src/ECS/Factories/EntityFactory.cpp src/ECS/Factories/EntityFactory.hpp src/ECS/Components/PositionComponent.hpp src/ECS/Components/PositionComponent.cpp)
 
 target_link_libraries(
 	THFgame

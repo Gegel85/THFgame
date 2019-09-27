@@ -17,11 +17,9 @@ namespace TouhouFanGame::ECS
 {
 	class Core {
 	private:
-		unsigned lastGivenID = 0;
+		unsigned _lastGivenID = 0;
 		std::vector<std::unique_ptr<System>> _systems;
 		std::vector<std::unique_ptr<Entity>> _entities;
-
-		void _buildSystems();
 
 	public:
 		Core();

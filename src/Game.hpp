@@ -8,11 +8,13 @@
 #include "Logger.hpp"
 #include "Resources.hpp"
 #include "Menu.hpp"
+#include "Map.hpp"
 
 namespace TouhouFanGame
 {
 	struct GameState {
 		MenuMgr::Menu currentMenu;
+		Map map;
 	};
 
 	struct Game {

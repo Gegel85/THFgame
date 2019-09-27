@@ -3,6 +3,8 @@
 		"menu": "musics/main_menu.ogg"
 	},
 	"sfx": {},
-	"sprites": {},
+	"sprites": {
+		"tilemap1": "tilemaps/tilemap1.png"
+	},
 	"icon": "icon.png"
 }

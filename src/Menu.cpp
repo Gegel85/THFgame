@@ -5,20 +5,47 @@
 #include <iostream>
 #include "Menu.hpp"
 #include "Game.hpp"
+#include "ECS/Components/PositionComponent.hpp"
 
 namespace TouhouFanGame
 {
 	void MenuMgr::_renderGame()
-	{}
+	{
+		game.state.map.update();
+		game.state.map.render();
+	}
 
 	void MenuMgr::_renderMainMenu()
 	{}
 
-	void MenuMgr::_handleGameEvents(const sf::Event &)
-	{}
+	void MenuMgr::_handleGameEvents(const sf::Event &event)
+	{
+		if (event.type == sf::Event::KeyPressed) {
+			auto &pos = reinterpret_cast<ECS::Components::PositionComponent &>(game.state.map._getPlayer().getComponent("Position")).position;
+			switch (event.key.code) {
+			case sf::Keyboard::Left:
+				pos.x -= 4;
+				break;
+			case sf::Keyboard::Right:
+				pos.x += 4;
+				break;
+			case sf::Keyboard::Up:
+				pos.y -= 4;
+				break;
+			case sf::Keyboard::Down:
+				pos.y += 4;
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
-	void MenuMgr::_handleMainMenuEvents(const sf::Event &)
-	{}
+	void MenuMgr::_handleMainMenuEvents(const sf::Event &event)
+	{
+		if (event.type == sf::Event::KeyPressed)
+			changeMenu(IN_GAME);
+	}
 
 	void MenuMgr::handleEvent(const sf::Event &event)
 	{
@@ -49,12 +76,16 @@ namespace TouhouFanGame
 
 	void MenuMgr::changeMenu(Menu newMenu)
 	{
+		game.resources.screen->setCamera({0, 0});
+		game.resources.stopMusic();
 		game.state.currentMenu = newMenu;
 		switch (newMenu) {
 		case MAIN_MENU:
-			game.resources.musics.at("menu").play();
+			game.resources.playMusic("menu");
 			break;
 		case IN_GAME:
+			game.state.map.clear();
+			game.state.map.loadFromFile("assets/maps/map_0.map");
 			game.resources.musics.at("menu").stop();
 			break;
 		}

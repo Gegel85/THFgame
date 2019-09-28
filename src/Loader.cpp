@@ -4,6 +4,7 @@
 
 #include "Loader.hpp"
 #include "Exceptions.hpp"
+#include "Input/Keyboard.hpp"
 
 namespace TouhouFanGame
 {
@@ -17,7 +18,7 @@ namespace TouhouFanGame
 		bool result = music.openFromFile(path);
 
 		music.setLoop(true);
-		music.setVolume(100);
+		music.setVolume(game.state.musicVolume);
 		music.play();
 		return result;
 	}
@@ -27,10 +28,22 @@ namespace TouhouFanGame
 		return texture.loadFromFile(path);
 	}
 
+	void Loader::loadSettings()
+	{
+		logger.info("Loading settings");
+		game.state.input.reset(new Inputs::Keyboard());
+		game.state.musicVolume = 100;
+		game.state.sfxVolume = 100;
+		for (auto &sound : game.resources.sounds)
+			sound.setVolume(100);
+	}
+
 	void Loader::loadAssets()
 	{
 		std::ifstream stream{"assets/list.json"};
 		json data;
+
+		loadSettings();
 
 		//We do this because on MinGW std::random_device always produce the same output
 		game.resources.random.seed(time(nullptr));

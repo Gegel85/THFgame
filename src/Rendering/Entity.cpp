@@ -58,6 +58,8 @@ namespace TouhouFanGame::Rendering
 		if ((this->_animation == IDLEANIM2 || this->_animation == IDLEANIM1) && newAnimation == IDLE && !forceReset)
 			return;
 
+		this->_delay = 300 * (newAnimation == IDLE);
+
 		this->_animation = newAnimation;
 		this->_animationState = 0;
 	}
@@ -111,21 +113,21 @@ namespace TouhouFanGame::Rendering
 			case WALK:
 			case RUN:
 			case ATTACKING:
-				this->_delay = 5;
+				this->_delay = 2;
 				break;
 			case IDLEANIM1:
 			case IDLEANIM2:
-				this->_delay = 5;
+				this->_delay = 2;
 				if (this->_animationState + 1 == this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)])
 					this->_animation = IDLE;
 				break;
 			case HIT:
-				this->_delay = 5 - (this->_animationState + 2 == this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)]) * 3;
+				this->_delay = 2 + (this->_animationState + 2 == this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)]) * 58;
 				if (this->_animationState + 1 == this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)])
 					this->_animation = IDLE;
 				break;
 			case DEAD:
-				this->_delay = 5 - (this->_animationState + 2 == this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)]) * 3;
+				this->_delay = 2 - (this->_animationState + 2 == this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)]) * 3;
 				break;
 			}
 			this->_animationState = (this->_animationState + 1) % this->_configs.animations[this->_animation * 4 + ((this->_animation != DEAD) * this->_dir)];

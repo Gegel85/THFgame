@@ -9,12 +9,16 @@
 #include "Resources.hpp"
 #include "Menu.hpp"
 #include "Map.hpp"
+#include "Input.hpp"
 
 namespace TouhouFanGame
 {
 	struct GameState {
 		MenuMgr::Menu currentMenu;
 		Map map;
+		float musicVolume;
+		float sfxVolume;
+		std::unique_ptr<Input> input;
 	};
 
 	struct Game {

@@ -18,6 +18,7 @@ namespace TouhouFanGame
 		static bool loadFile(sf::SoundBuffer &buffer, const std::string &path);
 		static bool loadFile(sf::Music &music, const std::string &path);
 		static bool loadFile(sf::Texture &texture, const std::string &path);
+		static void loadSettings();
 		static void loadAssets();
 
 		template<typename dataType>

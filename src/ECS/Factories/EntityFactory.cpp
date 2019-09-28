@@ -6,7 +6,10 @@
 #include "../Exceptions.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/DisplayableComponent.hpp"
+#include "../Components/MovableComponent.hpp"
+#include "../Components/ControllableComponent.hpp"
 #include "../../Map.hpp"
+#include "../../Game.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -14,6 +17,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"Player", [](unsigned int id){
 			return new Entity(id, "Player", {
 				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
+				new Components::ControllableComponent(*game.state.input, 2, 4),
+				new Components::MovableComponent(),
 				new Components::DisplayableComponent("assets/entities/test.json")
 			});
 		}}

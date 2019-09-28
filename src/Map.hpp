@@ -25,10 +25,10 @@ namespace TouhouFanGame
 		ECS::Core _core;
 		sf::Vector2f _cameraCenter;
 
-		float _updateCameraCenter(float size, float screenSize, float focusPoint);
+		static float _updateCameraCenter(float size, float screenSize, float focusPoint);
 		sf::Vector2f _getPlayerPosition();
-	public:
 		ECS::Entity &_getPlayer();
+	public:
 
 		Map() = default;
 		void serialize(std::ostream &stream);

@@ -21,20 +21,7 @@ namespace TouhouFanGame
 	void MenuMgr::_handleGameEvents(const sf::Event &event)
 	{
 		if (event.type == sf::Event::KeyPressed) {
-			auto &pos = reinterpret_cast<ECS::Components::PositionComponent &>(game.state.map._getPlayer().getComponent("Position")).position;
 			switch (event.key.code) {
-			case sf::Keyboard::Left:
-				pos.x -= 4;
-				break;
-			case sf::Keyboard::Right:
-				pos.x += 4;
-				break;
-			case sf::Keyboard::Up:
-				pos.y -= 4;
-				break;
-			case sf::Keyboard::Down:
-				pos.y += 4;
-				break;
 			default:
 				break;
 			}

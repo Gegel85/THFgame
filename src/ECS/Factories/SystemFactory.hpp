@@ -9,7 +9,6 @@
 #include <vector>
 #include <functional>
 #include "../System.hpp"
-#include "../Systems/DisplayableSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {

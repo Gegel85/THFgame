@@ -46,6 +46,11 @@ namespace TouhouFanGame::ECS::Systems
 			}
 		}
 
+		if (dir & 0b1000U && dir & 0b0010U)
+			dir &= 0b0101U;
+		if (dir & 0b0100U && dir & 0b0001U)
+			dir &= 0b1010U;
+
 		if (dir) {
 			mov.dir = dir;
 			mov.speed = sprinting ? co.sprintSpeed : co.regularSpeed;

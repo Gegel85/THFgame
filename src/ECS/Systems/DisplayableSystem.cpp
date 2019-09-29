@@ -25,7 +25,15 @@ namespace TouhouFanGame::ECS::Systems
 		if (entity.hasComponent("Movable")) {
 			unsigned dir = entity.getComponent("Movable").to<Components::MovableComponent>().dir;
 
-			if (dir & 0b1000U)
+			if (dir & 0b1000U && dir & 0b0001U)
+				disp.renderEntity.setDirection(Rendering::NORTH_WEST);
+			else if (dir & 0b0010U && dir & 0b0001U)
+				disp.renderEntity.setDirection(Rendering::NORTH_EAST);
+			else if (dir & 0b1000U && dir & 0b0100U)
+				disp.renderEntity.setDirection(Rendering::SOUTH_WEST);
+			else if (dir & 0b0010U && dir & 0b0100U)
+				disp.renderEntity.setDirection(Rendering::SOUTH_EAST);
+			else if (dir & 0b1000U)
 				disp.renderEntity.setDirection(Rendering::WEST);
 			else if (dir & 0b0100U)
 				disp.renderEntity.setDirection(Rendering::SOUTH);
@@ -34,5 +42,6 @@ namespace TouhouFanGame::ECS::Systems
 			else
 				disp.renderEntity.setDirection(Rendering::NORTH);
 		}
+		disp.renderEntity.update();
 	}
 }

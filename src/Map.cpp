@@ -22,7 +22,7 @@ namespace TouhouFanGame
 
 		for (unsigned y = 0; y < this->_size.y; y++)
 			for (unsigned x = 0; x < this->_size.x; x++)
-				this->_objects.push_back(y % 4 + 0x80 * x % 2);
+				this->_objects.push_back(game.resources.random() % 256);
 
 		if (this->_core.getEntityByName("Player").empty())
 			this->_core.makeEntity("Player");

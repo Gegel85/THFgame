@@ -25,9 +25,13 @@ namespace TouhouFanGame::Rendering
 
 	enum Direction {
 		NORTH,
+		NORTH_EAST,
 		EAST,
+		SOUTH_EAST,
 		SOUTH,
-		WEST
+		SOUTH_WEST,
+		WEST,
+		NORTH_WEST,
 	};
 
 	class Entity {
@@ -35,10 +39,14 @@ namespace TouhouFanGame::Rendering
 		struct Config {
 			Config(const std::string &path);
 			Config(const std::string &texture, const sf::Vector2f &tileSize, const std::vector<unsigned> &animation);
+			sf::Vector2u getPositionFromAnimationIndex(unsigned index);
 
 			std::string		texture;
-			sf::Vector2f		tileSize;
+			sf::Vector2u		textureSize;
+			sf::Vector2u		tileSize;
 			std::vector<unsigned>	animations;
+			std::vector<unsigned>	animationStart;
+			std::vector<unsigned>	delays;
 		};
 
 		sf::Sprite	_sprite;
@@ -46,6 +54,7 @@ namespace TouhouFanGame::Rendering
 		sf::Vector2u	_size{0, 0};
 		Animation	_animation{IDLE};
 		Direction 	_dir{NORTH};
+		unsigned int	_idleDelay{0};
 		unsigned int	_delay{0};
 		unsigned int	_animationState{0};
 		Config		_configs;
@@ -57,6 +66,7 @@ namespace TouhouFanGame::Rendering
 		void setSize(sf::Vector2u newSize);
 		void setDirection(Direction newDir);
 		void render(Screen &screen);
+		void update();
 	};
 }
 

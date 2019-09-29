@@ -16,12 +16,12 @@ namespace TouhouFanGame
 	class Map {
 	private:
 		bool _cameraUpdated = false;
-		unsigned short links[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
+		unsigned short _links[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
 		sf::Vector2u _size;
 		unsigned _tileSize;
 		std::string _tileMap;
 		std::vector<unsigned char> _objects;
-		std::map<sf::Vector2u, std::pair<unsigned short, sf::Vector2u>> _tpTriggers;
+		std::map<sf::Vector2f, std::pair<unsigned short, sf::Vector2u>> _tpTriggers;
 		ECS::Core _core;
 		sf::Vector2f _cameraCenter;
 

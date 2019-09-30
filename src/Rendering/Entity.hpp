@@ -38,7 +38,6 @@ namespace TouhouFanGame::Rendering
 	private:
 		struct Config {
 			Config(const std::string &path);
-			Config(const std::string &texture, const sf::Vector2f &tileSize, const std::vector<unsigned> &animation);
 			sf::Vector2u getPositionFromAnimationIndex(unsigned index);
 
 			std::string		texture;

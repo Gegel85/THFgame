@@ -11,12 +11,6 @@
 
 namespace TouhouFanGame::Rendering
 {
-	Entity::Config::Config(const std::string &texture, const sf::Vector2f &tileSize, const std::vector<unsigned> &animation) :
-		texture(texture),
-		tileSize(tileSize),
-		animations(animation)
-	{}
-
 	Entity::Config::Config(const std::string &path)
 	{
 		std::ifstream stream{path};

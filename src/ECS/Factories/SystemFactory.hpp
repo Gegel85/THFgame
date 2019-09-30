@@ -13,9 +13,6 @@
 namespace TouhouFanGame::ECS::Factory
 {
 	class SystemFactory {
-	private:
-		const static std::vector<std::function<System *(Core &)>> _builders;
-
 	public:
 		static void buildAll(Core &core, std::vector<std::unique_ptr<System>> &buffer);
 	};

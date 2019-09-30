@@ -3,8 +3,8 @@ project(THFgame)
 
 set(CMAKE_CXX_STANDARD 17)
 
-if ("${CMAKE_BUILD_TYPE}" EQUAL "Debug")
-	add_compile_options(-Wall -Wextra -W)
+if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
+	add_compile_options(-Wall -Wextra -W -g)
 endif()
 
 include_directories(include)

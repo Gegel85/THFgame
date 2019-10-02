@@ -16,13 +16,28 @@ namespace TouhouFanGame
 
 	void Map::unserialize(std::istream &stream)
 	{
-		this->_tileMap = "tilemap1";
-		this->_tileSize = 16;
-		this->_size = {64, 64};
+		char byte;
+
+		do {
+			stream.read(&byte, 1);
+			if (byte)
+				this->_tileMap.push_back(byte);
+		} while (byte);
+
+		stream.read(&byte, 1);
+		this->_tileSize = byte;
+
+		stream.read(&byte, 1);
+		this->_size.x = byte;
+
+		stream.read(&byte, 1);
+		this->_size.y = byte;
 
 		for (unsigned y = 0; y < this->_size.y; y++)
-			for (unsigned x = 0; x < this->_size.x; x++)
-				this->_objects.push_back(game.resources.random() % 256);
+			for (unsigned x = 0; x < this->_size.x; x++) {
+				stream.read(&byte, 1);
+				this->_objects.push_back(byte);
+			}
 
 		if (this->_core.getEntityByName("Player").empty())
 			this->_core.makeEntity("Player");

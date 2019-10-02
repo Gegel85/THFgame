@@ -1,11 +1,19 @@
 import pygame
 import json
 
+def tranform_int(value):
+	return [
+		(value << 24) % 256,
+		(value << 16) % 256,
+		(value << 8) % 256,
+		(value) % 256,
+	]
+
 def save_map(map):
 	with open(map["path"], "wb") as fd:
 		fd.write(map["tilemap"].encode("ASCII"))
 		fd.write(bytes(1))
-		fd.write(bytes([map["tilesize"], map["size"]["x"], map["size"]["y"]]))
+		fd.write(bytes(map["tilesize"], map["size"]["x"], map["size"]["y"]))
 		for i in map["data"]:
 			fd.write(bytes(i))
 

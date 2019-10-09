@@ -17,8 +17,8 @@ namespace TouhouFanGame
 	private:
 		bool _cameraUpdated = false;
 		unsigned short _links[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
-		sf::Vector2u _size;
-		unsigned _tileSize;
+		sf::Vector2<unsigned char> _size;
+		unsigned char _tileSize;
 		std::string _tileMap;
 		std::vector<unsigned char> _objects;
 		std::map<sf::Vector2f, std::pair<unsigned short, sf::Vector2u>> _tpTriggers;
@@ -26,7 +26,8 @@ namespace TouhouFanGame
 		sf::Vector2f _cameraCenter;
 
 		static float _updateCameraCenter(float size, float screenSize, float focusPoint);
-		sf::Vector2f _getPlayerPosition();
+		sf::Vector2f &_getPlayerPosition();
+		sf::Vector2u &_getPlayerSize();
 		ECS::Entity &_getPlayer();
 	public:
 

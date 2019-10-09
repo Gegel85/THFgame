@@ -13,8 +13,8 @@ namespace TouhouFanGame::ECS::Components
 {
 	class MovableComponent : public Component {
 	public:
-		unsigned char	dir;
-		float		speed; //I AM SPEEEEEEEEEEEED
+		unsigned char	dir = 0;
+		float		speed = 0; //I AM SPEEEEEEEEEEEED
 
 		explicit MovableComponent();
 		~MovableComponent() override = default;

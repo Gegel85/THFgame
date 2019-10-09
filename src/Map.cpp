@@ -3,7 +3,7 @@
 //
 
 #include <cmath>
-#include <iostream>
+#include <cstring>
 #include "Map.hpp"
 #include "Game.hpp"
 #include "Exceptions.hpp"
@@ -18,6 +18,7 @@ namespace TouhouFanGame
 	{
 		char byte;
 
+		this->_tileMap.clear();
 		do {
 			stream.read(&byte, 1);
 			if (byte)
@@ -33,6 +34,14 @@ namespace TouhouFanGame
 		stream.read(&byte, 1);
 		this->_size.y = byte;
 
+		std::memset(this->_links, 0, sizeof(this->_links));
+		for (auto &link : this->_links)
+			for (int j = 0; j < 2; j++) {
+				stream.read(&byte, 1);
+				link <<= 8;
+				link |= byte;
+			}
+
 		for (unsigned y = 0; y < this->_size.y; y++)
 			for (unsigned x = 0; x < this->_size.x; x++) {
 				stream.read(&byte, 1);
@@ -46,6 +55,23 @@ namespace TouhouFanGame
 	void Map::update()
 	{
 		this->_core.update();
+
+		auto &pos = this->_getPlayerPosition();
+		auto size = this->_getPlayerSize();
+
+		if (pos.x < size.x / -2.) {
+			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::LEFT]) + ".map");
+			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
+		} else if (pos.y < size.y / -2.) {
+			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::UP]) + ".map");
+			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
+		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
+			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::RIGHT]) + ".map");
+			pos.x = size.x / -2.;
+		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
+			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::DOWN]) + ".map");
+			pos.y = size.y / -2.;
+		}
 	}
 
 	void Map::clear()
@@ -111,8 +137,8 @@ namespace TouhouFanGame
 	void Map::updateCameraPosition(sf::Vector2f focusPoint)
 	{
 		this->_cameraUpdated = true;
-		this->_cameraCenter.x = this->_updateCameraCenter(this->_size.x * this->_tileSize, game.resources.screen->getSize().x, focusPoint.x);
-		this->_cameraCenter.y = this->_updateCameraCenter(this->_size.y * this->_tileSize, game.resources.screen->getSize().y, focusPoint.y);
+		this->_cameraCenter.x = Map::_updateCameraCenter(this->_size.x * this->_tileSize, game.resources.screen->getSize().x, focusPoint.x);
+		this->_cameraCenter.y = Map::_updateCameraCenter(this->_size.y * this->_tileSize, game.resources.screen->getSize().y, focusPoint.y);
 	}
 
 	float Map::_updateCameraCenter(float size, float screenSize, float focusPoint)
@@ -129,7 +155,7 @@ namespace TouhouFanGame
 		return focusPoint;
 	}
 
-	ECS::Entity& Map::_getPlayer()
+	ECS::Entity &Map::_getPlayer()
 	{
 		std::vector<std::reference_wrapper<ECS::Entity>> players = this->_core.getEntityByName("Player");
 
@@ -142,7 +168,12 @@ namespace TouhouFanGame
 		return players.back().get();
 	}
 
-	sf::Vector2f Map::_getPlayerPosition()
+	sf::Vector2u &Map::_getPlayerSize()
+	{
+		return this->_getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().size;
+	}
+
+	sf::Vector2f &Map::_getPlayerPosition()
 	{
 		return this->_getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().position;
 	}

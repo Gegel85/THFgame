@@ -31,7 +31,7 @@ namespace TouhouFanGame
 	void Loader::loadSettings()
 	{
 		logger.info("Loading settings");
-		game.state.input.reset(new Inputs::Keyboard());
+		game.state.input.reset(new Inputs::Keyboard(&*game.resources.screen));
 		game.state.musicVolume = 100;
 		game.state.sfxVolume = 100;
 		for (auto &sound : game.resources.sounds)
@@ -43,17 +43,18 @@ namespace TouhouFanGame
 		std::ifstream stream{"assets/list.json"};
 		json data;
 
+		logger.debug("Opening main window");
+		game.resources.screen.reset(new Rendering::Screen{"THFgame"});
+
 		loadSettings();
 
 		//We do this because on MinGW std::random_device always produce the same output
+		//(also we don't need the most unpredictable seed)
 		game.resources.random.seed(time(nullptr));
 
 		logger.debug("Opening file assets/list.json");
 		if (stream.fail())
 			throw CorruptedAssetsListException("Cannot open assets list from assets/list.json");
-
-		logger.debug("Opening main window");
-		game.resources.screen.reset(new Rendering::Screen{"THFgame"});
 
 		try {
 			logger.debug("Parsing json");

@@ -19,10 +19,11 @@ namespace TouhouFanGame::Inputs
 		bool				_keyChanged = false;
 		std::optional<Action>		_keyChanging;
 		std::vector<sf::Keyboard::Key>	_keys;
+		sf::RenderWindow		*_window;
 
 		static const std::map<sf::Keyboard::Key, std::string>	_keysToString;
 	public:
-		Keyboard();
+		Keyboard(sf::RenderWindow *window);
 		bool changeKeyFor(Action) override;
 		bool actionPressed(Action) override;
 		void handleEvent(sf::Event) override;

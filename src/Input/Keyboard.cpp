@@ -2,6 +2,7 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "Keyboard.hpp"
 
 namespace TouhouFanGame::Inputs
@@ -111,7 +112,7 @@ namespace TouhouFanGame::Inputs
 		{sf::Keyboard::Pause,     "Pause"},
 	};
 
-	Keyboard::Keyboard() :
+	Keyboard::Keyboard(sf::RenderWindow *window) :
 		_keys{
 			sf::Keyboard::Z,
 			sf::Keyboard::D,
@@ -122,7 +123,8 @@ namespace TouhouFanGame::Inputs
 			sf::Keyboard::F,
 			sf::Keyboard::E,
 			sf::Keyboard::Escape
-		}
+		},
+		_window(window)
 	{}
 
 	void Keyboard::handleEvent(sf::Event event)
@@ -153,6 +155,9 @@ namespace TouhouFanGame::Inputs
 	std::vector<TouhouFanGame::Input::Action> Keyboard::getActions()
 	{
 		std::vector<Action> actions;
+
+		if (this->_window && !this->_window->hasFocus())
+			return {};
 
 		for (Action i = UP; i < NB_OF_ACTION; i = static_cast<Action>(i + 1))
 			if (this->actionPressed(i))

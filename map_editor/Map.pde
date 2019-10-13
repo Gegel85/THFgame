@@ -14,15 +14,18 @@ class Vector2f {
 }
 
 class Map {
+        private String  _path;
         private byte[]  _objects;
         private char    _tileSize;
         private String  _tileMap = "";
         private short[] _links = new short[4];
+        private float   _zoomLevel;
         private Vector2 _size = new Vector2();
         private Vector2i _camPos = new Vector2i();
 
         Map(String path)
         {
+                this._path = path;
                 try {
                         InputStream fileReader = new FileInputStream(new File(path));
                         int b = 0;
@@ -89,6 +92,13 @@ class Map {
 
                         error("Cannot load file " + path + ":\n" + writer.toString());
                 }
+                this._camPos.x = -20;
+                this._camPos.y = -20;
+        }
+        
+        public void save()
+        {
+                
         }
 
         private float _updateCameraCenter(float size, float screenSize, float focusPoint)
@@ -109,8 +119,8 @@ class Map {
         {
                 Vector2f pos = new Vector2f();
                 
-                pos.x = this._updateCameraCenter(this._size.x * this._tileSize, width, this._camPos.x);
-                pos.y = this._updateCameraCenter(this._size.y * this._tileSize, height, this._camPos.y);
+                pos.x = this._updateCameraCenter(this._size.x * this._tileSize + 50, width, this._camPos.x);
+                pos.y = this._updateCameraCenter(this._size.y * this._tileSize + 50, height, this._camPos.y);
                 return pos;
         }
 
@@ -127,6 +137,14 @@ class Map {
                 pos.y /= this._tileSize;
                 size.x = ceil(width / (float)this._tileSize);
                 size.y = ceil(height / (float)this._tileSize);
+                textSize(15);
+                fill(255);
+                textAlign(CENTER, CENTER);
+                textLeading(15);
+                text("To map " + Integer.toHexString(this._links[0])            , ((pos.x < 0 ? 0 : (int)pos.x) - pos.x) * this._tileSize + 25, ((pos.y < 0 ? 0 : (int)pos.y) - pos.y) * this._tileSize     ,  this._size.x * this._tileSize, 20);
+                text("To map " + Integer.toHexString(this._links[2])            , ((pos.x < 0 ? 0 : (int)pos.x) - pos.x) * this._tileSize + 25, (this._size.y - pos.y) * this._tileSize + 25                ,  this._size.x * this._tileSize, 20);
+                text("T\no\n\nm\na\np\n\n" + Integer.toHexString(this._links[1]), (this._size.x - pos.x) * this._tileSize + 25,                 ((pos.y < 0 ? 0 : (int)pos.y) - pos.y) * this._tileSize + 25, 20, this._size.y * this._tileSize);
+                text("T\no\n\nm\na\np\n\n" + Integer.toHexString(this._links[3]), ((pos.x < 0 ? 0 : (int)pos.x) - pos.x) * this._tileSize + 5,  ((pos.y < 0 ? 0 : (int)pos.y) - pos.y) * this._tileSize + 25, 20, this._size.y * this._tileSize);
 
                 for (int y = pos.y < 0 ? 0 : (int)pos.y; y < pos.y + size.y && y < this._size.y; y++) {
                         for (int x = pos.x < 0 ? 0 : (int)pos.x; x < pos.x + size.x && x < this._size.x; x++) {
@@ -141,8 +159,8 @@ class Map {
                                                 this._tileSize,
                                                 this._tileSize
                                         ),
-                                        (x - pos.x) * this._tileSize,
-                                        (y - pos.y) * this._tileSize
+                                        (x - pos.x) * this._tileSize + 25,
+                                        (y - pos.y) * this._tileSize + 25
                                 );
                         }
                 }

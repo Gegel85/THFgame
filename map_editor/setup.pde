@@ -18,11 +18,20 @@ class MyFilter extends FileFilter
         }
 }
 
-String askPath(String basePath, FileFilter filter)
+String askPath(String basePath, String title, FileFilter filter)
 {
-        JFileChooser fileChooser = new JFileChooser(basePath);
+        JFileChooser fileChooser = new JFileChooser(new File(basePath)) {
+            @Override
+            protected JDialog createDialog(Component parent) throws HeadlessException {
+                JDialog dialog = super.createDialog(parent);
+
+                dialog.setIconImage(new ImageIcon(gamePath + "/assets/" + json.getString("icon")).getImage());
+                return dialog;
+            }
+        };
         
         fileChooser.setFileFilter(filter);
+        fileChooser.setDialogTitle(title);
 
         int response = fileChooser.showOpenDialog(null);
         
@@ -48,6 +57,7 @@ String getGamePath()
         JFileChooser fileChooser = new JFileChooser(path);
         FileFilter filter = new MyFilter("list.json");
         
+        fileChooser.setDialogTitle("Locate game assets");
         fileChooser.setFileFilter(filter);
 
         int response = fileChooser.showOpenDialog(null);
@@ -101,6 +111,6 @@ void setup()
         loadSprites(json.getJSONObject("sprites"));
         if (icon != null)
                 surface.setIcon(icon);
-        map = new Map(askPath(gamePath + "/assets/maps", new FileNameExtensionFilter("THFGame map file", "map")));
+        map = new Map(askPath(gamePath + "/assets/maps", "Open map file", new FileNameExtensionFilter("THFGame map file", "map")));
         surface.setVisible(true);
 }

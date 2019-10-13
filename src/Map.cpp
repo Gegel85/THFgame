@@ -11,7 +11,7 @@
 
 namespace TouhouFanGame
 {
-	void Map::serialize(std::ostream &stream)
+	void Map::serialize(std::ostream &stream) const
 	{}
 
 	void Map::unserialize(std::istream &stream)
@@ -80,6 +80,29 @@ namespace TouhouFanGame
 		this->_objects.clear();
 	}
 
+	unsigned char Map::getObjectAt(int x, int y) const
+	{
+		if (x < 0)
+			return 0x00;
+		if (y < 0)
+			return 0x00;
+		if (x / this->_tileSize >= this->_size.x)
+			return 0x00;
+		if (y / this->_tileSize >= this->_size.y)
+			return 0x00;
+		return this->_objects.at(this->_size.x * (y / this->_tileSize) + (x / this->_tileSize));
+	}
+
+	unsigned char Map::getTileSize() const
+	{
+		return this->_tileSize;
+	}
+
+	unsigned char Map::getObjectAt(sf::Vector2f pos) const
+	{
+		return this->getObjectAt(pos.x, pos.y);
+	}
+
 	void Map::loadFromFile(const std::string &path)
 	{
 		std::ifstream stream{path};
@@ -121,7 +144,7 @@ namespace TouhouFanGame
 						static_cast<float>(y * this->_tileSize)
 					},
 					{
-						static_cast<int>((this->_objects[x + y * this->_size.x] & 0x7F) * this->_tileSize),
+						static_cast<int>((this->_objects.at(x + y * this->_size.x) & 0x7F) * this->_tileSize),
 						0,
 						static_cast<int>(this->_tileSize),
 						static_cast<int>(this->_tileSize)

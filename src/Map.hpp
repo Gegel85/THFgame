@@ -32,7 +32,10 @@ namespace TouhouFanGame
 	public:
 
 		Map() = default;
-		void serialize(std::ostream &stream);
+		unsigned char getTileSize() const;
+		unsigned char getObjectAt(int x, int y) const;
+		unsigned char getObjectAt(sf::Vector2f pos) const;
+		void serialize(std::ostream &stream) const;
 		void unserialize(std::istream &stream);
 		void loadFromFile(const std::string &path);
 		void updateCameraPosition(sf::Vector2f center);

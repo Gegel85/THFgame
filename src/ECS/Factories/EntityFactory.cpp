@@ -8,7 +8,7 @@
 #include "../Components/DisplayableComponent.hpp"
 #include "../Components/MovableComponent.hpp"
 #include "../Components/ControllableComponent.hpp"
-#include "../../Map.hpp"
+#include "../Components/BlockedByTerrainComponent.hpp"
 #include "../../Game.hpp"
 
 namespace TouhouFanGame::ECS::Factory
@@ -16,10 +16,11 @@ namespace TouhouFanGame::ECS::Factory
 	const std::map<std::string, std::function<ECS::Entity *(unsigned int)>> EntityFactory::_builders = {
 		{"Player", [](unsigned int id){
 			return new Entity(id, "Player", {
-				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
 				new Components::ControllableComponent(*game.state.input, 2, 4),
+				new Components::BlockedByTerrainComponent(game.state.map),
 				new Components::MovableComponent(),
-				new Components::DisplayableComponent("assets/entities/test.json")
+				new Components::DisplayableComponent("assets/entities/test.json"),
+				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
 			});
 		}}
 	};

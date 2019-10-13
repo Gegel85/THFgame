@@ -9,6 +9,8 @@
 #include "../Component.hpp"
 #include "../../Rendering/Entity.hpp"
 
+#define TO_DIR(dir) (1U << dir)
+
 namespace TouhouFanGame::ECS::Components
 {
 	class MovableComponent : public Component {

@@ -29,10 +29,9 @@ namespace TouhouFanGame::ECS
 
 					system.checkDependencies(*entity);
 					system.updateEntity(*entity);
-				} catch (NoSuchSystemException &) {
 				} catch (std::exception &e) {
 					throw UpdateErrorException(
-						"Error while updating entity n°" + std::to_string(entity->getID()) +
+						"Error while updating entity #" + std::to_string(entity->getID()) +
 						"(" + entity->getName() + ")\n"+
 						component + "System :\n\t" +
 						getLastExceptionName() + ": " + e.what()

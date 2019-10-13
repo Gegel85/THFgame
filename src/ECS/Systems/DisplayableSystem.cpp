@@ -6,6 +6,7 @@
 #include "../Components/PositionComponent.hpp"
 #include "../Components/DisplayableComponent.hpp"
 #include "../Components/MovableComponent.hpp"
+#include "../../Input.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -25,19 +26,19 @@ namespace TouhouFanGame::ECS::Systems
 		if (entity.hasComponent("Movable")) {
 			unsigned dir = entity.getComponent("Movable").to<Components::MovableComponent>().dir;
 
-			if (dir & 0b1000U && dir & 0b0001U)
+			if (dir & TO_DIR(Input::LEFT) && dir & TO_DIR(Input::UP))
 				disp.renderEntity.setDirection(Rendering::NORTH_WEST);
-			else if (dir & 0b0010U && dir & 0b0001U)
+			else if (dir & TO_DIR(Input::RIGHT) && dir & TO_DIR(Input::UP))
 				disp.renderEntity.setDirection(Rendering::NORTH_EAST);
-			else if (dir & 0b1000U && dir & 0b0100U)
+			else if (dir & TO_DIR(Input::LEFT) && dir & TO_DIR(Input::DOWN))
 				disp.renderEntity.setDirection(Rendering::SOUTH_WEST);
-			else if (dir & 0b0010U && dir & 0b0100U)
+			else if (dir & TO_DIR(Input::RIGHT) && dir & TO_DIR(Input::DOWN))
 				disp.renderEntity.setDirection(Rendering::SOUTH_EAST);
-			else if (dir & 0b1000U)
+			else if (dir & TO_DIR(Input::LEFT))
 				disp.renderEntity.setDirection(Rendering::WEST);
-			else if (dir & 0b0100U)
+			else if (dir & TO_DIR(Input::DOWN))
 				disp.renderEntity.setDirection(Rendering::SOUTH);
-			else if (dir & 0b0010U)
+			else if (dir & TO_DIR(Input::RIGHT))
 				disp.renderEntity.setDirection(Rendering::EAST);
 			else
 				disp.renderEntity.setDirection(Rendering::NORTH);

@@ -6,6 +6,7 @@
 #include "MovableSystem.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/MovableComponent.hpp"
+#include "../../Input.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -18,7 +19,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto &pos = entity.getComponent("Position").to<Components::PositionComponent>();
 		auto &mov = entity.getComponent("Movable").to<Components::MovableComponent>();
 
-		pos.position.x += mov.speed * (((mov.dir & 0b0010U) != 0) - ((mov.dir & 0b1000U) != 0));
-		pos.position.y += mov.speed * (((mov.dir & 0b0100U) != 0) - ((mov.dir & 0b0001U) != 0));
+		pos.position.x += mov.speed * (((mov.dir & TO_DIR(Input::RIGHT)) != 0) - ((mov.dir & TO_DIR(Input::LEFT)) != 0));
+		pos.position.y += mov.speed * (((mov.dir & TO_DIR(Input::DOWN)) != 0) - ((mov.dir & TO_DIR(Input::UP)) != 0));
 	}
 }

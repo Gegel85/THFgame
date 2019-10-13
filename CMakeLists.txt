@@ -59,7 +59,7 @@ add_executable(
 	src/Rendering/Screen.hpp
 	src/Resources.cpp
 	src/Resources.hpp
-)
+	src/ECS/Components/BlockedByTerrainComponent.cpp src/ECS/Components/BlockedByTerrainComponent.hpp src/ECS/Systems/BlockedByTerrainSystem.cpp src/ECS/Systems/BlockedByTerrainSystem.hpp src/ECS/Systems/UselessSystem.cpp src/ECS/Systems/UselessSystem.hpp)
 
 target_link_libraries(
 	THFgame

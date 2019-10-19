@@ -11,6 +11,8 @@ add_executable(
 	THFgame
 	src/ECS/Component.cpp
 	src/ECS/Component.hpp
+	src/ECS/Components/BlockedByTerrainComponent.cpp
+	src/ECS/Components/BlockedByTerrainComponent.hpp
 	src/ECS/Components/ControllableComponent.cpp
 	src/ECS/Components/ControllableComponent.hpp
 	src/ECS/Components/DisplayableComponent.cpp
@@ -30,12 +32,16 @@ add_executable(
 	src/ECS/Factories/SystemFactory.hpp
 	src/ECS/System.cpp
 	src/ECS/System.hpp
+	src/ECS/Systems/BlockedByTerrainSystem.cpp
+	src/ECS/Systems/BlockedByTerrainSystem.hpp
 	src/ECS/Systems/ControllableSystem.cpp
 	src/ECS/Systems/ControllableSystem.hpp
 	src/ECS/Systems/DisplayableSystem.cpp
 	src/ECS/Systems/DisplayableSystem.hpp
 	src/ECS/Systems/MovableSystem.cpp
 	src/ECS/Systems/MovableSystem.hpp
+	src/ECS/Systems/UselessSystem.cpp
+	src/ECS/Systems/UselessSystem.hpp
 	src/Exceptions.cpp
 	src/Exceptions.hpp
 	src/Game.hpp
@@ -59,7 +65,8 @@ add_executable(
 	src/Rendering/Screen.hpp
 	src/Resources.cpp
 	src/Resources.hpp
-	src/ECS/Components/BlockedByTerrainComponent.cpp src/ECS/Components/BlockedByTerrainComponent.hpp src/ECS/Systems/BlockedByTerrainSystem.cpp src/ECS/Systems/BlockedByTerrainSystem.hpp src/ECS/Systems/UselessSystem.cpp src/ECS/Systems/UselessSystem.hpp)
+	src/Utils.hpp
+)
 
 target_link_libraries(
 	THFgame

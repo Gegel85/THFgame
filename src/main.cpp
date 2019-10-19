@@ -141,7 +141,7 @@ int	main()
 		TouhouFanGame::dispMsg(
 			"Fatal Error",
 			"An unrecoverable error occurred\n\n" +
-			getLastExceptionName() + ":\n\t" + e.what() + "\n\n"
+			getLastExceptionName() + ":\n" + e.what() + "\n\n"
 			"Click OK to close the application",
 			MB_ICONERROR
 		);

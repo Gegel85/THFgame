@@ -8,48 +8,25 @@
 #include "Game.hpp"
 #include "Exceptions.hpp"
 #include "ECS/Components/PositionComponent.hpp"
+#include "Utils.hpp"
 
 namespace TouhouFanGame
 {
+	Map::TpTrigger::TpTrigger(std::istream &stream) :
+		location(_readInteger<unsigned short>(stream), _readInteger<unsigned short>(stream)),
+		mapId(_readInteger<unsigned short>(stream)),
+		mapSpawn(_readInteger<unsigned short>(stream), _readInteger<unsigned short>(stream))
+	{
+	}
+
 	void Map::serialize(std::ostream &stream) const
-	{}
+	{
+		stream << this->_core;
+	}
 
 	void Map::unserialize(std::istream &stream)
 	{
-		char byte;
-
-		this->_tileMap.clear();
-		do {
-			stream.read(&byte, 1);
-			if (byte)
-				this->_tileMap.push_back(byte);
-		} while (byte);
-
-		stream.read(&byte, 1);
-		this->_tileSize = byte;
-
-		stream.read(&byte, 1);
-		this->_size.x = byte;
-
-		stream.read(&byte, 1);
-		this->_size.y = byte;
-
-		std::memset(this->_links, 0, sizeof(this->_links));
-		for (auto &link : this->_links)
-			for (int j = 0; j < 2; j++) {
-				stream.read(&byte, 1);
-				link <<= 8;
-				link |= byte;
-			}
-
-		for (unsigned y = 0; y < this->_size.y; y++)
-			for (unsigned x = 0; x < this->_size.x; x++) {
-				stream.read(&byte, 1);
-				this->_objects.push_back(byte);
-			}
-
-		if (this->_core.getEntityByName("Player").empty())
-			this->_core.makeEntity("Player");
+		stream >> this->_core;
 	}
 
 	void Map::update()
@@ -72,12 +49,23 @@ namespace TouhouFanGame
 			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::DOWN]) + ".map");
 			pos.y = size.y / -2.;
 		}
+
+		for (auto &trigger : this->_tpTriggers)
+			if (
+				-this->_tileSize < trigger.location.x && trigger.location.x < static_cast<int>(size.x + this->_tileSize) &&
+				-this->_tileSize < trigger.location.y && trigger.location.y < static_cast<int>(size.y + this->_tileSize)
+			) {
+				this->loadFromFile("assets/maps/map_" + std::to_string(trigger.mapId) + ".map");
+				pos = sf::Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
+			}
 	}
 
-	void Map::clear()
+	void Map::reset()
 	{
 		this->_core.clear();
 		this->_objects.clear();
+		this->_tileMap.clear();
+		this->_tpTriggers.clear();
 	}
 
 	unsigned char Map::getObjectAt(int x, int y) const
@@ -103,15 +91,72 @@ namespace TouhouFanGame
 		return this->getObjectAt(pos.x, pos.y);
 	}
 
-	void Map::loadFromFile(const std::string &path)
+	void Map::loadFromStream(std::istream &stream, bool loadEntities)
+	{
+		char byte;
+
+		logger.debug("Loading map");
+		do {
+			stream.read(&byte, 1);
+			if (byte)
+				this->_tileMap.push_back(byte);
+		} while (byte);
+		logger.debug("Tilemap file is '" + this->_tileMap + "'");
+
+		this->_tileSize = _readInteger<unsigned char>(stream);
+		logger.debug("Tilesize is " + std::to_string(this->_tileSize));
+
+		this->_size.x = _readInteger<unsigned short>(stream);
+		this->_size.y = _readInteger<unsigned short>(stream);
+		logger.debug("Map size is " + toString(this->_size) + " tiles");
+
+		for (auto len = _readInteger<unsigned>(stream); len != 0; len--) {
+			auto &result = this->_tpTriggers.emplace_back(stream);
+
+			logger.debug(
+				std::to_string(len) + " teleporters remaining ->"
+				"Position: " + toString(result.location) +
+				"Map: " + std::to_string(result.mapId) +
+				"Spawn: " + toString(result.mapSpawn)
+			);
+		}
+
+		std::memset(this->_links, 0, sizeof(this->_links));
+		for (unsigned i = 0; i < 4; i++) {
+			this->_links[i] = _readInteger<unsigned short>(stream);
+			logger.debug("Link " + Input::actionToString(static_cast<Input::Action>(i)) + " is to map " + std::to_string(this->_links[i]));
+		}
+
+		logger.debug("Fetching objects");
+		for (unsigned y = 0; y < this->_size.y; y++)
+			for (unsigned x = 0; x < this->_size.x; x++)
+				this->_objects.push_back(_readInteger<unsigned char>(stream));
+
+		if (loadEntities) {
+			logger.debug("Loading entities");
+			stream >> this->_core;
+
+			if (this->_core.getEntityByName("Player").empty())
+				this->_core.makeEntity("Player");
+		}
+		logger.debug("Operation completed");
+	}
+
+	void Map::loadFromFile(const std::string &path, bool loadEntities)
 	{
 		std::ifstream stream{path};
 
-		logger.debug("Loading map " + path);
+		logger.info("Loading map " + path);
 		if (stream.fail())
 			throw CorruptedMapException("Cannot open file " + path);
 
-		this->unserialize(stream);
+		this->reset();
+		stream.exceptions(stream.exceptions() | std::ifstream::eofbit);
+		try {
+			this->loadFromStream(stream, loadEntities);
+		} catch (std::ios_base::failure &) {
+			throw CorruptedMapException("Cannot load map " + path + ": EOF reached");
+		}
 	}
 
 	void Map::render()

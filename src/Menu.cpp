@@ -71,7 +71,7 @@ namespace TouhouFanGame
 			game.resources.playMusic("menu");
 			break;
 		case IN_GAME:
-			game.state.map.clear();
+			game.state.map.reset();
 			game.state.map.loadFromFile("assets/maps/map_0.map");
 			game.resources.musics.at("menu").stop();
 			break;

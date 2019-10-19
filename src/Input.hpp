@@ -26,6 +26,8 @@ namespace TouhouFanGame
 			NB_OF_ACTION
 		};
 
+		static std::string actionToString(Action action);
+
 		virtual bool changeKeyFor(Action) = 0;
 		virtual bool actionPressed(Action) = 0;
 		virtual void handleEvent(sf::Event) = 0;

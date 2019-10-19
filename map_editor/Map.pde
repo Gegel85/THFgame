@@ -3,6 +3,11 @@ class Vector2 {
         public char y;
 }
 
+class Vector2s {
+        public short x;
+        public short y;
+}
+
 class Vector2i {
         public int x;
         public int y;
@@ -13,85 +18,101 @@ class Vector2f {
         public float y;
 }
 
+class Trigger {
+        Vector2s location;
+        short targetMap;
+        Vector2s spawnPoint;
+        
+        Trigger(InputStream stream)
+        {
+                
+        }
+}
+
+static class Reader {
+        public static int readInt(InputStream stream) throws IOException
+        {
+                return (int)(readShort(stream) << 16 | readShort(stream));
+        }
+        
+        public static short readShort(InputStream stream) throws IOException
+        {
+                return (short)(readByte(stream) << 8 | readByte(stream));
+        }
+
+        public static char readChar(InputStream stream) throws IOException
+        {
+                return (char)readByte(stream);
+        }
+        
+        public static byte readByte(InputStream stream) throws IOException
+        {
+                int b = stream.read();
+
+                if (b == -1)
+                        throw new IOException("EOF reached");
+                return (byte)b;
+        }
+}
+
 class Map {
-        private String  _path;
-        private byte[]  _objects;
-        private char    _tileSize;
-        private String  _tileMap = "";
-        private short[] _links = new short[4];
-        private float   _zoomLevel;
-        private Vector2 _size = new Vector2();
+        private String    _path;
+        private byte[]    _objects;
+        private char      _tileSize;
+        private String    _tileMap = "";
+        private short[]   _links = new short[4];
+        private float     _zoomLevel;
+        private Trigger[] _triggers;
+        private Vector2s _size = new Vector2s();
         private Vector2i _camPos = new Vector2i();
 
-        Map(String path)
+        Map(String path) throws IOException
         {
+                InputStream fileReader = new FileInputStream(new File(path));
+
                 this._path = path;
+
                 try {
-                        InputStream fileReader = new FileInputStream(new File(path));
-                        int b = 0;
-
+                        char b = 0;
+                        
+                        println("Loading map file " + path);
                         do {
-                                b = fileReader.read();
+                                b = Reader.readChar(fileReader);
                                 if (b > 0)
-                                        this._tileMap += (char)b;
+                                        this._tileMap += b;
                         } while (b > 0);
+                        println("Tilemap is " + this._tileMap);
 
-                        if (b == -1) {
-                                fileReader.close();
-                                throw new IOException("EOF reached (Tilemap)");
-                        }
+                        this._tileSize = Reader.readChar(fileReader);
+                        println("Tilesize is " + (int)this._tileSize);
 
-                        b = fileReader.read();
-                        if (b == -1) {
-                                fileReader.close();
-                                throw new IOException("EOF reached (Tile size)");
-                        }
-                        this._tileSize = (char)b;
-
-                        b = fileReader.read();
-                        if (b == -1) {
-                                fileReader.close();
-                                throw new IOException("EOF reached (Size x)");
-                        }
-                        this._size.x = (char)b;
-
-                        b = fileReader.read();
-                        if (b == -1) {
-                                fileReader.close();
-                                throw new IOException("EOF reached (Size y)");
-                        }
-                        this._size.y = (char)b;
+                        this._size.x = Reader.readShort(fileReader);
+                        this._size.y = Reader.readShort(fileReader);
+                        println("Map size is " + this._size.x + "x" + _size.y + " tiles");
 
                         for (int i = 0; i < this._links.length; i++) {
-                                this._links[i] = 0;
-                                for (int j = 0; j < 2; j++) {
-                                        b = fileReader.read();
-                                        if (b == -1) {
-                                                fileReader.close();
-                                                throw new IOException("EOF reached (Link " + i + ")");
-                                        }
-                                        this._links[i] <<= 8;
-                                        this._links[i] |= (char)b;
-                                }
+                                this._links[i] = Reader.readShort(fileReader);
+                                println("Link " + (i < 2 ? (i == 0 ? "Up" : "Right") : (i == 2 ? "Down" : "Left")) + " points to map " + this._links[i]);
                         }
+                        
+                        int len = Reader.readInt(fileReader);
+                        
+                        println("Loading " + len + " triggers");
+                        this._triggers = new Trigger[len];
+                        for (int i = 0; i < len; i++)
+                                this._triggers[i] = new Trigger(fileReader);
 
                         this._objects = new byte[this._size.x * this._size.y];
-                        b = fileReader.read(this._objects);
-                        if (b == -1) {
-                                fileReader.close();
+                        println("Loading " + this._size.x * this._size.y + " objects");
+                        if (fileReader.read(this._objects) < this._size.x * this._size.y)
                                 throw new IOException("EOF reached (Objects)");
-                        }
 
                         fileReader.close();
-                } catch (Exception e) {
-                        StringWriter writer = new StringWriter();
-                        PrintWriter printWriter = new PrintWriter(writer);
-
-                        e.printStackTrace(printWriter);
-                        printWriter.flush();
-
-                        error("Cannot load file " + path + ":\n" + writer.toString());
+                } catch (IOException e) {
+                        fileReader.close();
+                        throw e;
                 }
+                        
                 this._camPos.x = -20;
                 this._camPos.y = -20;
         }

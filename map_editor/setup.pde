@@ -111,6 +111,22 @@ void setup()
         loadSprites(json.getJSONObject("sprites"));
         if (icon != null)
                 surface.setIcon(icon);
-        map = new Map(askPath(gamePath + "/assets/maps", "Open map file", new FileNameExtensionFilter("THFGame map file", "map")));
+                
+        String path = askPath(gamePath + "/assets/maps", "Open map file", new FileNameExtensionFilter("THFGame map file", "map"));
+
+        try {
+                map = new Map(path);
+        } catch (Exception e) {
+                StringWriter writer = new StringWriter();
+                PrintWriter printWriter = new PrintWriter(writer);
+
+                e.printStackTrace(printWriter);
+                printWriter.flush();
+
+                error("Cannot load file " + path + ":\n" + writer.toString());
+       
+                exit();
+        }
+
         surface.setVisible(true);
 }

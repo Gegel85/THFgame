@@ -10,6 +10,7 @@
 #else
 #include <SFML/Graphics.hpp>
 #define ICON_ERROR_PATH "data/icon/error.png"
+#define MB_ICONERROR 0
 #endif
 
 namespace TouhouFanGame
@@ -23,9 +24,9 @@ namespace TouhouFanGame
 		return (MessageBox(nullptr, content.c_str(), title.c_str(), variate));
 	}
 #else
-	int	dispMsg(char *title, char *content, int variate)
+	int	dispMsg(const std::string &title, const std::string &content, int variate)
 	{
-		char			**buttons = NULL;
+/*		char			**buttons = NULL;
 		int			clicked = -1;
 		sfRenderWindow		*win;
 		sfVideoMode		mode = {700, 220, 32};
@@ -107,7 +108,7 @@ namespace TouhouFanGame
 		sfFont_destroy(font);
 		sfText_destroy(text);
 		sfRectangleShape_destroy(rect);
-		return (clicked);
+		return (clicked);*/
 	}
 #endif
 

@@ -2,6 +2,14 @@
 // Created by Gegel85 on 26/10/2019.
 //
 
+
+#ifndef _WIN32
+#include <vector>
+#include <SFML/Graphics.hpp>
+#define ICON_ERROR_PATH "assets/box/error.png"
+#include "Game.hpp"
+#endif
+
 #include "Utils.hpp"
 
 namespace TouhouFanGame

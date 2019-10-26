@@ -31,7 +31,7 @@ namespace TouhouFanGame::ECS
 		void serialize(std::ostream &stream) const;
 		void unserialize(std::istream &stream);
 		void update();
-		void clear();
+		void clear(std::vector<unsigned int> whitelist = {});
 	};
 }
 

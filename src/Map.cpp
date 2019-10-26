@@ -62,7 +62,9 @@ namespace TouhouFanGame
 
 	void Map::reset()
 	{
-		this->_core.clear();
+		try {
+			this->_core.clear({this->_getPlayer().getID()});
+		} catch (CorruptedMapException &) {}
 		this->_objects.clear();
 		this->_tileMap.clear();
 		this->_tpTriggers.clear();

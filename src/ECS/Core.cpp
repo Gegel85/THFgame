@@ -39,9 +39,13 @@ namespace TouhouFanGame::ECS
 				}
 	}
 
-	void Core::clear()
+	void Core::clear(std::vector<unsigned int> whitelist)
 	{
-		this->_entities.clear();
+		if (whitelist.empty())
+			return this->_entities.clear();
+		for (int i = 0; i < this->_entities.size(); i++)
+			if (std::find(whitelist.begin(), whitelist.end(), this->_entities[i]->getID()) == whitelist.end())
+				this->_entities.erase(this->_entities.begin() + i--);
 	}
 
 	System &Core::getSystemByName(const std::string &name) const

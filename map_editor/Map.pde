@@ -23,9 +23,13 @@ class Trigger {
         short targetMap;
         Vector2s spawnPoint;
         
-        Trigger(InputStream stream)
+        Trigger(InputStream stream) throws IOException
         {
-                
+                this.location.x = Reader.readShort(stream);
+                this.location.y = Reader.readShort(stream);
+                this.targetMap = Reader.readShort(stream);
+                this.spawnPoint.x = Reader.readShort(stream);
+                this.spawnPoint.y = Reader.readShort(stream);
         }
 }
 
@@ -112,37 +116,30 @@ class Map {
                         fileReader.close();
                         throw e;
                 }
-                        
+                
                 this._camPos.x = -20;
                 this._camPos.y = -20;
+        }
+        
+        public void addTrigger(Trigger trigger)
+        {
+                for (int i = 0; i < this._triggers.length; i++) {
+                        if (
+                                trigger.location.x == this._triggers[i].location.x &&
+                                trigger.location.y == this._triggers[i].location.y
+                        ) {
+                                this._triggers[i] = trigger;
+                                return;
+                        }
+                }
+                
+                this._triggers = Arrays.copyOf(this._triggers, this._triggers.length + 1);
+                this._triggers[this._triggers.length - 1] = trigger;
         }
         
         public void save()
         {
                 
-        }
-
-        private float _updateCameraCenter(float size, float screenSize, float focusPoint)
-        {
-                if (size <= screenSize)
-                        return size / 2;
-
-                if (focusPoint < screenSize / 2)
-                        return screenSize / 2;
-
-                if (focusPoint > size - screenSize / 2)
-                        return size - screenSize / 2;
-
-                return focusPoint;
-        }
-
-        private Vector2f _updateCameraPosition()
-        {
-                Vector2f pos = new Vector2f();
-                
-                pos.x = this._updateCameraCenter(this._size.x * this._tileSize + 50, width, this._camPos.x);
-                pos.y = this._updateCameraCenter(this._size.y * this._tileSize + 50, height, this._camPos.y);
-                return pos;
         }
 
         public void render()
@@ -185,5 +182,28 @@ class Map {
                                 );
                         }
                 }
+        }
+
+        private float _updateCameraCenter(float size, float screenSize, float focusPoint)
+        {
+                if (size <= screenSize)
+                        return size / 2;
+
+                if (focusPoint < screenSize / 2)
+                        return screenSize / 2;
+
+                if (focusPoint > size - screenSize / 2)
+                        return size - screenSize / 2;
+
+                return focusPoint;
+        }
+
+        private Vector2f _updateCameraPosition()
+        {
+                Vector2f pos = new Vector2f();
+                
+                pos.x = this._updateCameraCenter(this._size.x * this._tileSize + 50, width, this._camPos.x);
+                pos.y = this._updateCameraCenter(this._size.y * this._tileSize + 50, height, this._camPos.y);
+                return pos;
         }
 }

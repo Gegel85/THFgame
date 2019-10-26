@@ -8,6 +8,13 @@
 #include <SFML/System/Vector2.hpp>
 #include <string>
 
+#ifndef _WIN32
+#define MB_ICONERROR 1
+#define MB_YESNO 2
+#else
+#include <windows.h>
+#endif
+
 namespace TouhouFanGame
 {
 	template<typename type>
@@ -15,6 +22,8 @@ namespace TouhouFanGame
 	{
 		return "(" + std::to_string(vec.x) + ", " + std::to_string(vec.y) + ")";
 	}
+
+	int	dispMsg(const std::string &title, const std::string &content, int variate);
 }
 
 #endif //THFGAME_UTILS_HPP

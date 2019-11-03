@@ -6,7 +6,7 @@
 #define THFGAME_LOADER_HPP
 
 
-#include "nlohmann/json.hpp"
+#include "json.hpp"
 using nlohmann::json;
 
 #include "Game.hpp"

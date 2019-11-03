@@ -7,6 +7,8 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	add_compile_options(-Wall -Wextra -W -g)
 endif ()
 
+include_directories(nlohmann)
+
 add_executable(
 	THFgame
 	src/ECS/Component.cpp

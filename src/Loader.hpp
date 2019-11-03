@@ -13,15 +13,40 @@ using nlohmann::json;
 
 namespace TouhouFanGame
 {
+	//! @brief Resources loading and initializations routine
 	class Loader {
 	public:
+		//! @brief Load a sound effect file
+		//! @param buffer Buffer to load the file in
+		//! @param path Path to the file
+		//! @return Whether the file could be loaded or not
 		static bool loadFile(sf::SoundBuffer &buffer, const std::string &path);
+
+		//! @brief Load a music file
+		//! @param music Buffer to load the file in
+		//! @param path Path to the file
+		//! @return Whether the file could be loaded or not
 		static bool loadFile(sf::Music &music, const std::string &path);
+
+		//! @brief Load a texture file
+		//! @param texture Buffer to load the file in
+		//! @param path Path to the file
+		//! @return Whether the file could be loaded or not
 		static bool loadFile(sf::Texture &texture, const std::string &path);
-		static void loadSettings();
-		static void loadAssets();
+
+		//! @brief Load settings
+		//! @param game Game state and resources
+		static void loadSettings(Game &game);
+
+		//! @brief Load all game assets
+		//! @param game Game state and resources
+		static void loadAssets(Game &game);
 
 		template<typename dataType>
+		//! @brief Load assets from a json array
+		//! @param dataName The name of the data that are currently loaded
+		//! @param paths Array of json paths
+		//! @param data Map of buffers to load the files in
 		static void loadAssetsFromJson(const std::string &dataName, json &paths, std::map<std::string, dataType> &data)
 		{
 			if (paths.is_null())

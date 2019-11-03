@@ -11,17 +11,39 @@
 
 namespace TouhouFanGame
 {
+	//! @brief The main Resources needed by the game
 	struct Resources {
+		//! @brief The icon of the screen
 		sf::Image icon;
+
+		//! @brief A random generator
 		std::mt19937 random;
+
+		//! @brief The main window
 		std::unique_ptr<Rendering::Screen> screen;
+
+		//! @brief The loaded musics
 		std::map<std::string, sf::Music> musics;
+
+		//! @brief The loaded sprites
 		std::map<std::string, sf::Texture> textures;
+
+		//! @brief The loaded sfx
 		std::map<std::string, sf::SoundBuffer> soundBuffers;
+
+		//! @brief The sound objects used to play sfx
 		sf::Sound sounds[128];
 
+		//! @brief Plays a sound effect
+		//! @param id The id of the sound effect to play
+		//! @return The sound index assigned to this sfx
 		unsigned char playSound(const std::string &id);
+
+		//! @brief Plays a music
+		//! @param id The id of the music to play
 		void playMusic(const std::string &id);
+
+		//! @brief Stops any music currently playing
 		void stopMusic();
 	};
 }

@@ -66,7 +66,7 @@ add_executable(
 	src/Resources.cpp
 	src/Resources.hpp
 	src/Utils.hpp
-	src/Utils.cpp)
+	src/Utils.cpp src/NotCopyable.hpp)
 
 target_link_libraries(
 	THFgame

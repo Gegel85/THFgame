@@ -13,20 +13,34 @@
 
 namespace TouhouFanGame
 {
+	//! @brief Describe the current game state
 	struct GameState {
+		//! @brief The current menu
 		MenuMgr::Menu currentMenu;
+
+		//! @brief The currently loaded map
 		Map map;
+
+		//! @brief The current music volume
 		float musicVolume;
+
+		//! @brief The current sound effect volume
 		float sfxVolume;
+
+		//! @brief The current input
 		std::unique_ptr<Input> input;
 	};
 
+	//! @brief The game state and resources
 	struct Game {
+		//! @brief The loaded resources
 		Resources resources;
+
+		//! @brief The current game state
 		GameState state;
 	};
 
-	extern Game game;
+	extern Game _game;
 	extern Logger logger;
 }
 #endif //THFGAME_GAME_HPP

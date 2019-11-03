@@ -10,23 +10,36 @@
 
 namespace TouhouFanGame
 {
+	struct Game;
+
+	//! @brief Manages the menus
 	class MenuMgr {
 	private:
-		static void _renderMainMenu();
-		static void _renderGame();
+		static void _renderMainMenu(Game &game);
+		static void _renderGame(Game &game);
 
-		static void _handleMainMenuEvents(const sf::Event &);
-		static void _handleGameEvents(const sf::Event &);
+		static void _handleMainMenuEvents(Game &game, const sf::Event &);
+		static void _handleGameEvents(Game &game, const sf::Event &);
 
 	public:
+		//! @brief All the menus
 		enum Menu {
 			MAIN_MENU,
 			IN_GAME
 		};
 
-		static void renderMenu();
-		static void handleEvent(const sf::Event &);
-		static void changeMenu(Menu newMenu);
+		//! @brief Renders the current Menu on the screen
+		//! @param game Game resources
+		static void renderMenu(Game &game);
+
+		//! @brief Consumes an sf::Event
+		//! @param game Game resources
+		static void handleEvent(Game &game, const sf::Event &);
+
+		//! @brief Changes the current Menu
+		//! @param game Game resources
+		//! @param newMenu The new menu
+		static void changeMenu(Game &game, Menu newMenu);
 	};
 }
 

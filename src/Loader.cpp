@@ -18,7 +18,7 @@ namespace TouhouFanGame
 		bool result = music.openFromFile(path);
 
 		music.setLoop(true);
-		music.setVolume(game.state.musicVolume);
+		music.setVolume(_game.state.musicVolume);
 		music.play();
 		return result;
 	}
@@ -28,7 +28,7 @@ namespace TouhouFanGame
 		return texture.loadFromFile(path);
 	}
 
-	void Loader::loadSettings()
+	void Loader::loadSettings(Game &game)
 	{
 		logger.info("Loading settings");
 		game.state.input.reset(new Inputs::Keyboard(&*game.resources.screen));
@@ -38,7 +38,7 @@ namespace TouhouFanGame
 			sound.setVolume(100);
 	}
 
-	void Loader::loadAssets()
+	void Loader::loadAssets(Game &game)
 	{
 		std::ifstream stream{"assets/list.json"};
 		json data;
@@ -46,7 +46,7 @@ namespace TouhouFanGame
 		logger.debug("Opening main window");
 		game.resources.screen.reset(new Rendering::Screen{"THFgame"});
 
-		loadSettings();
+		loadSettings(game);
 
 		//We do this because on MinGW std::random_device always produce the same output
 		//(also we don't need the most unpredictable seed)

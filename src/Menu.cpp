@@ -9,16 +9,16 @@
 
 namespace TouhouFanGame
 {
-	void MenuMgr::_renderGame()
+	void MenuMgr::_renderGame(Game &game)
 	{
 		game.state.map.update();
 		game.state.map.render();
 	}
 
-	void MenuMgr::_renderMainMenu()
+	void MenuMgr::_renderMainMenu(Game &)
 	{}
 
-	void MenuMgr::_handleGameEvents(const sf::Event &event)
+	void MenuMgr::_handleGameEvents(Game &, const sf::Event &event)
 	{
 		if (event.type == sf::Event::KeyPressed) {
 			switch (event.key.code) {
@@ -28,40 +28,40 @@ namespace TouhouFanGame
 		}
 	}
 
-	void MenuMgr::_handleMainMenuEvents(const sf::Event &event)
+	void MenuMgr::_handleMainMenuEvents(Game &game, const sf::Event &event)
 	{
 		if (event.type == sf::Event::KeyPressed)
-			changeMenu(IN_GAME);
+			changeMenu(game, IN_GAME);
 	}
 
-	void MenuMgr::handleEvent(const sf::Event &event)
+	void MenuMgr::handleEvent(Game &game, const sf::Event &event)
 	{
 		if (event.type == event.Closed)
 			game.resources.screen->close();
 
 		switch (game.state.currentMenu) {
 		case MAIN_MENU:
-			_handleMainMenuEvents(event);
+			_handleMainMenuEvents(game, event);
 			break;
 		case IN_GAME:
-			_handleGameEvents(event);
+			_handleGameEvents(game, event);
 			break;
 		}
 	}
 
-	void MenuMgr::renderMenu()
+	void MenuMgr::renderMenu(Game &game)
 	{
 		switch (game.state.currentMenu) {
 		case MAIN_MENU:
-			_renderMainMenu();
+			_renderMainMenu(game);
 			break;
 		case IN_GAME:
-			_renderGame();
+			_renderGame(game);
 			break;
 		}
 	}
 
-	void MenuMgr::changeMenu(Menu newMenu)
+	void MenuMgr::changeMenu(Game &game, Menu newMenu)
 	{
 		game.resources.screen->setCamera({0, 0});
 		game.resources.stopMusic();

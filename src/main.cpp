@@ -14,22 +14,27 @@
 
 namespace TouhouFanGame
 {
+	//! @brief The global logger
 	Logger logger{"./latest.log", Logger::DEBUG};
-	Game game;
 
+	//! @brief Global game resources and state
+	//! @note This is global because some Lua functions needs to access it
+	Game _game;
+
+	//! @brief The game loop
 	void	gameLoop()
 	{
 		sf::Event event;
 
-		MenuMgr::changeMenu(MenuMgr::MAIN_MENU);
-		while (game.resources.screen->isOpen()) {
-			game.resources.screen->clear();
+		MenuMgr::changeMenu(_game, MenuMgr::MAIN_MENU);
+		while (_game.resources.screen->isOpen()) {
+			_game.resources.screen->clear();
 
-			while (game.resources.screen->pollEvent(event))
-				MenuMgr::handleEvent(event);
-			MenuMgr::renderMenu();
+			while (_game.resources.screen->pollEvent(event))
+				MenuMgr::handleEvent(_game, event);
+			MenuMgr::renderMenu(_game);
 
-			game.resources.screen->display();
+			_game.resources.screen->display();
 		}
 	}
 }
@@ -38,7 +43,7 @@ int	main()
 {
 	try {
 		TouhouFanGame::logger.info("Loading assets...");
-		TouhouFanGame::Loader::loadAssets();
+		TouhouFanGame::Loader::loadAssets(TouhouFanGame::_game);
 		TouhouFanGame::logger.info("Starting game.");
 		TouhouFanGame::gameLoop();
 		TouhouFanGame::logger.info("Goodbye !");

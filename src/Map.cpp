@@ -21,11 +21,16 @@ namespace TouhouFanGame
 
 	void Map::serialize(std::ostream &stream) const
 	{
+		if (this->_path.empty())
+			throw MapNotLoadedException();
+		stream << this->_path << '\0';
 		stream << this->_core;
 	}
 
 	void Map::unserialize(std::istream &stream)
 	{
+		std::getline(stream, this->_path, '\0');
+		this->loadFromFile(this->_path, false);
 		stream >> this->_core;
 	}
 
@@ -68,6 +73,7 @@ namespace TouhouFanGame
 		this->_objects.clear();
 		this->_tileMap.clear();
 		this->_tpTriggers.clear();
+		this->_path.clear();
 	}
 
 	unsigned char Map::getObjectAt(int x, int y) const
@@ -80,7 +86,7 @@ namespace TouhouFanGame
 			return 0x00;
 		if (y / this->_tileSize >= this->_size.y)
 			return 0x00;
-		return this->_objects.at(this->_size.x * (y / this->_tileSize) + (x / this->_tileSize));
+		return this->_objects[this->_size.x * (y / this->_tileSize) + (x / this->_tileSize)];
 	}
 
 	unsigned char Map::getTileSize() const
@@ -93,7 +99,7 @@ namespace TouhouFanGame
 		return this->getObjectAt(pos.x, pos.y);
 	}
 
-	void Map::loadFromStream(std::istream &stream, bool loadEntities)
+	void Map::_loadFromStream(std::istream &stream, bool loadEntities)
 	{
 		char byte;
 
@@ -155,10 +161,11 @@ namespace TouhouFanGame
 		this->reset();
 		stream.exceptions(stream.exceptions() | std::ifstream::eofbit);
 		try {
-			this->loadFromStream(stream, loadEntities);
+			this->_loadFromStream(stream, loadEntities);
 		} catch (std::ios_base::failure &) {
 			throw CorruptedMapException("Cannot load map " + path + ": EOF reached");
 		}
+		this->_path = path;
 	}
 
 	void Map::render()
@@ -171,12 +178,12 @@ namespace TouhouFanGame
 			this->updateCameraPosition(pos);
 		}
 
-		sf::Vector2u size = game.resources.screen->getSize();
+		sf::Vector2u size = _game.resources.screen->getSize();
 		sf::Vector2f pos = this->_cameraCenter;
 
 		pos.x -= size.x / 2.;
 		pos.y -= size.y / 2.;
-		game.resources.screen->setCamera(pos);
+		_game.resources.screen->setCamera(pos);
 		pos.x /= this->_tileSize;
 		pos.y /= this->_tileSize;
 		size.x = ceil(size.x / static_cast<float>(this->_tileSize));
@@ -184,8 +191,8 @@ namespace TouhouFanGame
 
 		for (unsigned y = pos.y < 0 ? 0 : pos.y; y < pos.y + size.y && y < this->_size.y; y++) {
 			for (unsigned x = pos.x < 0 ? 0 : pos.x; x < pos.x + size.x && x < this->_size.x; x++) {
-				game.resources.screen->draw(
-					game.resources.textures.at(this->_tileMap),
+				_game.resources.screen->draw(
+					_game.resources.textures.at(this->_tileMap),
 					{
 						static_cast<float>(x * this->_tileSize),
 						static_cast<float>(y * this->_tileSize)
@@ -201,17 +208,19 @@ namespace TouhouFanGame
 		}
 
 		this->_cameraUpdated = false;
-		game.resources.screen->renderEntities();
+		_game.resources.screen->renderEntities();
 	}
 
 	void Map::updateCameraPosition(sf::Vector2f focusPoint)
 	{
 		this->_cameraUpdated = true;
-		this->_cameraCenter.x = Map::_updateCameraCenter(this->_size.x * this->_tileSize, game.resources.screen->getSize().x, focusPoint.x);
-		this->_cameraCenter.y = Map::_updateCameraCenter(this->_size.y * this->_tileSize, game.resources.screen->getSize().y, focusPoint.y);
+		this->_cameraCenter.x = Map::_getCameraCenter(this->_size.x * this->_tileSize,
+							      _game.resources.screen->getSize().x, focusPoint.x);
+		this->_cameraCenter.y = Map::_getCameraCenter(this->_size.y * this->_tileSize,
+							      _game.resources.screen->getSize().y, focusPoint.y);
 	}
 
-	float Map::_updateCameraCenter(float size, float screenSize, float focusPoint)
+	float Map::_getCameraCenter(float size, float screenSize, float focusPoint)
 	{
 		if (size <= screenSize)
 			return size / 2;

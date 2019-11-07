@@ -43,7 +43,7 @@ namespace TouhouFanGame::ECS
 	{
 		if (whitelist.empty())
 			return this->_entities.clear();
-		for (int i = 0; i < this->_entities.size(); i++)
+		for (size_t i = 0; i < this->_entities.size(); i++)
 			if (std::find(whitelist.begin(), whitelist.end(), this->_entities[i]->getID()) == whitelist.end())
 				this->_entities.erase(this->_entities.begin() + i--);
 	}

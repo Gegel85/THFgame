@@ -41,7 +41,7 @@ namespace TouhouFanGame
 	void Loader::loadAssets(Game &game)
 	{
 		std::ifstream stream{"assets/list.json"};
-		json data;
+		nlohmann::json data;
 
 		logger.debug("Opening main window");
 		game.resources.screen.reset(new Rendering::Screen{"THFgame"});

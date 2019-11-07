@@ -122,6 +122,7 @@ namespace TouhouFanGame::Rendering
 			static_cast<int>(this->_configs.tileSize.x),
 			static_cast<int>(this->_configs.tileSize.y)
 		});
+		screen.fillColor();
 		screen.draw(
 			this->_sprite,
 			this->_pos
@@ -148,11 +149,11 @@ namespace TouhouFanGame::Rendering
 			switch (this->_animation) {
 				case IDLEANIM1:
 				case IDLEANIM2:
-				case HIT:
 					if (this->_animationState + 1 == this->_configs.animations[this->_animation])
 						this->_animation = IDLE;
 					break;
 				case DEAD:
+				case HIT:
 					if (this->_animationState + 2 == this->_configs.animations[this->_animation])
 						this->_delay = -1;
 					break;

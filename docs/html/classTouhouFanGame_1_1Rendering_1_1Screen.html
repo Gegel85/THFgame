@@ -75,6 +75,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the screen.  
+ <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Screen_8hpp_source.html">Screen.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TouhouFanGame::Rendering::Screen:</div>
@@ -86,50 +89,67 @@ Inheritance diagram for TouhouFanGame::Rendering::Screen:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7eef4292cfa5d1ff2a6605ce42a8adf3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a7eef4292cfa5d1ff2a6605ce42a8adf3">Screen</a> (const std::string &amp;title, unsigned int width=640, unsigned int height=480)</td></tr>
+<tr class="memdesc:a7eef4292cfa5d1ff2a6605ce42a8adf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a7eef4292cfa5d1ff2a6605ce42a8adf3">More...</a><br /></td></tr>
 <tr class="separator:a7eef4292cfa5d1ff2a6605ce42a8adf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7b2ab7d994d3d548075bf47b6c66f0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#aa7b2ab7d994d3d548075bf47b6c66f0a">Screen</a> (const <a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html">Screen</a> &amp;)</td></tr>
-<tr class="separator:aa7b2ab7d994d3d548075bf47b6c66f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a381bc912fd1c0942607df36e00dfad9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a381bc912fd1c0942607df36e00dfad9c">~Screen</a> () override</td></tr>
+<tr class="memdesc:a381bc912fd1c0942607df36e00dfad9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Only log that the windows has been destroyed.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a381bc912fd1c0942607df36e00dfad9c">More...</a><br /></td></tr>
 <tr class="separator:a381bc912fd1c0942607df36e00dfad9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab258537840cbd66e0578d1557938f99f"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ab258537840cbd66e0578d1557938f99f">getTitle</a> () const</td></tr>
+<tr class="memdesc:ab258537840cbd66e0578d1557938f99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current title of the window.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ab258537840cbd66e0578d1557938f99f">More...</a><br /></td></tr>
 <tr class="separator:ab258537840cbd66e0578d1557938f99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad337eb36c37e5749141c3258078ae317"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ad337eb36c37e5749141c3258078ae317">setTitle</a> (const std::string &amp;)</td></tr>
+<tr class="memdesc:ad337eb36c37e5749141c3258078ae317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current title of the window.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ad337eb36c37e5749141c3258078ae317">More...</a><br /></td></tr>
 <tr class="separator:ad337eb36c37e5749141c3258078ae317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0703b5e9f88f57444743ec31439b710b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a0703b5e9f88f57444743ec31439b710b">fillColor</a> (const sf::Color &amp;color=sf::Color(255, 255, 255, 255))</td></tr>
+<tr class="memdesc:a0703b5e9f88f57444743ec31439b710b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the global fill color of everything rendered.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a0703b5e9f88f57444743ec31439b710b">More...</a><br /></td></tr>
 <tr class="separator:a0703b5e9f88f57444743ec31439b710b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47fcfd686dde7d8b058210f1d7f0993f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a47fcfd686dde7d8b058210f1d7f0993f">setFont</a> (const sf::Font &amp;font)</td></tr>
+<tr class="memdesc:a47fcfd686dde7d8b058210f1d7f0993f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the font.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a47fcfd686dde7d8b058210f1d7f0993f">More...</a><br /></td></tr>
 <tr class="separator:a47fcfd686dde7d8b058210f1d7f0993f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73591577f92e350247ee175c8e62d214"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a73591577f92e350247ee175c8e62d214">textSize</a> (const size_t &amp;size)</td></tr>
+<tr class="memdesc:a73591577f92e350247ee175c8e62d214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the text size.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a73591577f92e350247ee175c8e62d214">More...</a><br /></td></tr>
 <tr class="separator:a73591577f92e350247ee175c8e62d214"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a566d434840cb8098189cda52e6488dce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Entity.html">Entity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a566d434840cb8098189cda52e6488dce">addEntity</a> (const std::string &amp;configFile)</td></tr>
+<tr class="memdesc:a566d434840cb8098189cda52e6488dce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an entity on the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a566d434840cb8098189cda52e6488dce">More...</a><br /></td></tr>
 <tr class="separator:a566d434840cb8098189cda52e6488dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af19e07c7c3d757a006ed4cb70d49a7db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#af19e07c7c3d757a006ed4cb70d49a7db">deleteEntities</a> ()</td></tr>
+<tr class="memdesc:af19e07c7c3d757a006ed4cb70d49a7db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all entities.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#af19e07c7c3d757a006ed4cb70d49a7db">More...</a><br /></td></tr>
 <tr class="separator:af19e07c7c3d757a006ed4cb70d49a7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3f767c4eecdce3f3ec3b15abab1b12e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ac3f767c4eecdce3f3ec3b15abab1b12e">removeEntity</a> (<a class="el" href="classTouhouFanGame_1_1Rendering_1_1Entity.html">Entity</a> &amp;)</td></tr>
+<tr class="memdesc:ac3f767c4eecdce3f3ec3b15abab1b12e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an entity from the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ac3f767c4eecdce3f3ec3b15abab1b12e">More...</a><br /></td></tr>
 <tr class="separator:ac3f767c4eecdce3f3ec3b15abab1b12e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67d734d05e26d4ff871eb0e33fd897b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a67d734d05e26d4ff871eb0e33fd897b3">renderEntities</a> ()</td></tr>
+<tr class="memdesc:a67d734d05e26d4ff871eb0e33fd897b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render all the entities on the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a67d734d05e26d4ff871eb0e33fd897b3">More...</a><br /></td></tr>
 <tr class="separator:a67d734d05e26d4ff871eb0e33fd897b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fd8d1fca29ac9dcb49b9e0e6afa95ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a4fd8d1fca29ac9dcb49b9e0e6afa95ca">setCamera</a> (sf::Vector2f)</td></tr>
+<tr class="memdesc:a4fd8d1fca29ac9dcb49b9e0e6afa95ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the current camera center.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a4fd8d1fca29ac9dcb49b9e0e6afa95ca">More...</a><br /></td></tr>
 <tr class="separator:a4fd8d1fca29ac9dcb49b9e0e6afa95ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76c442025d28fb74e8bd1f97592b0b00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a76c442025d28fb74e8bd1f97592b0b00">draw</a> (sf::IntRect rect)</td></tr>
+<tr class="memdesc:a76c442025d28fb74e8bd1f97592b0b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a rectangle on the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a76c442025d28fb74e8bd1f97592b0b00">More...</a><br /></td></tr>
 <tr class="separator:a76c442025d28fb74e8bd1f97592b0b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a9f86cc91d3b9c6c351575e708c90fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a3a9f86cc91d3b9c6c351575e708c90fa">draw</a> (const std::string &amp;str, sf::Vector2f)</td></tr>
-<tr class="separator:a3a9f86cc91d3b9c6c351575e708c90fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a642537f7933f10ce1a94e830369e01cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a642537f7933f10ce1a94e830369e01cb">draw</a> (sf::Sprite &amp;sprite, sf::Vector2f)</td></tr>
-<tr class="separator:a642537f7933f10ce1a94e830369e01cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9e753518a9670968eb3de657c7622b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#aa9e753518a9670968eb3de657c7622b0">draw</a> (sf::Texture &amp;texture, sf::Vector2f, sf::IntRect rect={0, 0, 0, 0})</td></tr>
-<tr class="separator:aa9e753518a9670968eb3de657c7622b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e2f608fa0e1e37acb807b4a8c65690"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ae7e2f608fa0e1e37acb807b4a8c65690">draw</a> (const std::string &amp;str, sf::Vector2f pos)</td></tr>
+<tr class="memdesc:ae7e2f608fa0e1e37acb807b4a8c65690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw some text on the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ae7e2f608fa0e1e37acb807b4a8c65690">More...</a><br /></td></tr>
+<tr class="separator:ae7e2f608fa0e1e37acb807b4a8c65690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9142ba4728e5ec8073194b7fc03cc5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ab9142ba4728e5ec8073194b7fc03cc5a">draw</a> (sf::Sprite &amp;sprite, sf::Vector2f pos)</td></tr>
+<tr class="memdesc:ab9142ba4728e5ec8073194b7fc03cc5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a sprite on the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#ab9142ba4728e5ec8073194b7fc03cc5a">More...</a><br /></td></tr>
+<tr class="separator:ab9142ba4728e5ec8073194b7fc03cc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db3d6d24031b8ffb9d99d4653209950"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a9db3d6d24031b8ffb9d99d4653209950">draw</a> (sf::Texture &amp;texture, sf::Vector2f pos, sf::IntRect rect={0, 0, 0, 0})</td></tr>
+<tr class="memdesc:a9db3d6d24031b8ffb9d99d4653209950"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a texture on the screen.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a9db3d6d24031b8ffb9d99d4653209950">More...</a><br /></td></tr>
+<tr class="separator:a9db3d6d24031b8ffb9d99d4653209950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd7ba47a4206ffff7fa689eac63fb073"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#abd7ba47a4206ffff7fa689eac63fb073">getFPS</a> ()</td></tr>
+<tr class="memdesc:abd7ba47a4206ffff7fa689eac63fb073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current FPS.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#abd7ba47a4206ffff7fa689eac63fb073">More...</a><br /></td></tr>
 <tr class="separator:abd7ba47a4206ffff7fa689eac63fb073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86a2d6198fab28b15163211b04ac9aa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a86a2d6198fab28b15163211b04ac9aa0">display</a> ()</td></tr>
+<tr class="memdesc:a86a2d6198fab28b15163211b04ac9aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refresh the window.  <a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a86a2d6198fab28b15163211b04ac9aa0">More...</a><br /></td></tr>
 <tr class="separator:a86a2d6198fab28b15163211b04ac9aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Screen_8hpp_source.html#l00014">14</a> of file <a class="el" href="Screen_8hpp_source.html">Screen.hpp</a>.</p>
+<div class="textblock"><p>Represents the screen. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8hpp_source.html#l00015">15</a> of file <a class="el" href="Screen_8hpp_source.html">Screen.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7eef4292cfa5d1ff2a6605ce42a8adf3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7eef4292cfa5d1ff2a6605ce42a8adf3">&#9670;&nbsp;</a></span>Screen() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eef4292cfa5d1ff2a6605ce42a8adf3">&#9670;&nbsp;</a></span>Screen()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -168,6 +188,16 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>The title for the window. </td></tr>
+    <tr><td class="paramname">width</td><td>The width of the window. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the window. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00010">10</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                                                                                  :</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        sf::RenderWindow(sf::VideoMode(width, height), title),</div>
@@ -180,30 +210,6 @@ Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        this-&gt;_text.setOutlineThickness(0);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        this-&gt;_rect.setOutlineThickness(0);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="aa7b2ab7d994d3d548075bf47b6c66f0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7b2ab7d994d3d548075bf47b6c66f0a">&#9670;&nbsp;</a></span>Screen() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TouhouFanGame::Rendering::Screen::Screen </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classTouhouFanGame_1_1Rendering_1_1Screen.html">Screen</a> &amp;&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00022">22</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                                      :</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a7eef4292cfa5d1ff2a6605ce42a8adf3">Screen</a>(other.getTitle(), other.getSize().x, other.getSize().y)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -230,10 +236,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00027">27</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">TouhouFanGame::logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a6cb34b2d52b74b6a2f664f940561d5eb">info</a>(<span class="stringliteral">&quot;Destroying window \&quot;&quot;</span> + this-&gt;_title + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<p>Destructor. Only log that the windows has been destroyed. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00022">22</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">TouhouFanGame::logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a6cb34b2d52b74b6a2f664f940561d5eb">info</a>(<span class="stringliteral">&quot;Destroying window \&quot;&quot;</span> + this-&gt;_title + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -254,12 +262,28 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00092">92</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Making new rendering entity &quot;</span> + configFile);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        this-&gt;_entities.emplace_back(configFile);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> this-&gt;_entities.back();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<p>Adds an entity on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">configFile</td><td>The path the a JSON file describing the entity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly created entity </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The returned reference is no longer valid if it is destroyed using removeEntity or deleteEntities </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classTouhouFanGame_1_1Rendering_1_1InvalidAnimationConfigException.html" title="The config file given to create an entity is invalid.">InvalidAnimationConfigException</a></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00088">88</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Making new rendering entity &quot;</span> + configFile);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        this-&gt;_entities.emplace_back(configFile);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> this-&gt;_entities.back();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -278,10 +302,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00105">105</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        this-&gt;_entities.clear();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<p>Delete all entities. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00101">101</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        this-&gt;_entities.clear();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -300,22 +326,25 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00117">117</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">if</span> (this-&gt;getSize() != this-&gt;_size) {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            this-&gt;_view.setCenter(this-&gt;getSize().x / 2. + this-&gt;_camera.x, this-&gt;getSize().y / 2. + this-&gt;_camera.y);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            this-&gt;_view.setSize(this-&gt;getSize().x, this-&gt;getSize().y);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            this-&gt;setView(this-&gt;_view);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        this-&gt;_fps = 1 / this-&gt;_clock.getElapsedTime().asSeconds();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        this-&gt;_clock.restart();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        sf::RenderWindow::display();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<p>Refresh the window. </p>
+<p>This will draw all object buffered before this call. It will also update the FPS counter and change the camera according to the new window size if it has changed. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00113">113</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">if</span> (this-&gt;getSize() != this-&gt;_size) {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            this-&gt;_view.setCenter(this-&gt;getSize().x / 2. + this-&gt;_camera.x, this-&gt;getSize().y / 2. + this-&gt;_camera.y);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            this-&gt;_view.setSize(this-&gt;getSize().x, this-&gt;getSize().y);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            this-&gt;setView(this-&gt;_view);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        this-&gt;_fps = 1 / this-&gt;_clock.getElapsedTime().asSeconds();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        this-&gt;_clock.restart();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        sf::RenderWindow::display();</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a3a9f86cc91d3b9c6c351575e708c90fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a9f86cc91d3b9c6c351575e708c90fa">&#9670;&nbsp;</a></span>draw() <span class="overload">[1/4]</span></h2>
+<a id="ae7e2f608fa0e1e37acb807b4a8c65690"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e2f608fa0e1e37acb807b4a8c65690">&#9670;&nbsp;</a></span>draw() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -340,12 +369,21 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00066">66</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        this-&gt;_text.setPosition(pos);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        this-&gt;_text.setString(str);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        sf::RenderWindow::draw(this-&gt;_text);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<p>Draw some text on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string to draw </td></tr>
+    <tr><td class="paramname">pos</td><td>The position on the screen (relative to the camera) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00062">62</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        this-&gt;_text.setPosition(pos);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        this-&gt;_text.setString(str);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        sf::RenderWindow::draw(this-&gt;_text);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -365,17 +403,25 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00059">59</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        this-&gt;_rect.setPosition(sf::Vector2f(rect.left, rect.width));</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        this-&gt;_rect.setSize(sf::Vector2f(rect.width, rect.height));</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        sf::RenderWindow::draw(this-&gt;_rect);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<p>Draw a rectangle on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>The position and size of the rectangle (relative to the camera) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00055">55</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        this-&gt;_rect.setPosition(sf::Vector2f(rect.left, rect.width));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        this-&gt;_rect.setSize(sf::Vector2f(rect.width, rect.height));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        sf::RenderWindow::draw(this-&gt;_rect);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a642537f7933f10ce1a94e830369e01cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a642537f7933f10ce1a94e830369e01cb">&#9670;&nbsp;</a></span>draw() <span class="overload">[3/4]</span></h2>
+<a id="ab9142ba4728e5ec8073194b7fc03cc5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9142ba4728e5ec8073194b7fc03cc5a">&#9670;&nbsp;</a></span>draw() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -400,16 +446,25 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00073">73</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        sprite.setPosition(pos);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        sf::RenderWindow::draw(sprite);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<p>Draw a sprite on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sprite</td><td>The sprite to use </td></tr>
+    <tr><td class="paramname">pos</td><td>The position on the screen (relative to the camera) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00069">69</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        sprite.setPosition(pos);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        sf::RenderWindow::draw(sprite);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aa9e753518a9670968eb3de657c7622b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9e753518a9670968eb3de657c7622b0">&#9670;&nbsp;</a></span>draw() <span class="overload">[4/4]</span></h2>
+<a id="a9db3d6d24031b8ffb9d99d4653209950"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db3d6d24031b8ffb9d99d4653209950">&#9670;&nbsp;</a></span>draw() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -440,18 +495,28 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00079">79</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> (!rect.width)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            rect.width = texture.getSize().x - rect.left;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> (!rect.height)</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            rect.height = texture.getSize().y - rect.top;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        this-&gt;_sprite.setTexture(texture, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        this-&gt;_sprite.setTextureRect(rect);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        this-&gt;<a class="code" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a76c442025d28fb74e8bd1f97592b0b00">draw</a>(this-&gt;_sprite, pos);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<p>Draw a texture on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texture</td><td>The texture to use </td></tr>
+    <tr><td class="paramname">pos</td><td>The position on the screen (relative to the camera) </td></tr>
+    <tr><td class="paramname">rect</td><td>The transformation rect to apply on the texture </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00075">75</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span> (!rect.width)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            rect.width = texture.getSize().x - rect.left;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span> (!rect.height)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            rect.height = texture.getSize().y - rect.top;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        this-&gt;_sprite.setTexture(texture, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        this-&gt;_sprite.setTextureRect(rect);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        this-&gt;<a class="code" href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a76c442025d28fb74e8bd1f97592b0b00">draw</a>(this-&gt;_sprite, pos);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -471,11 +536,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00043">43</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        this-&gt;_rect.setFillColor(color);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        this-&gt;_text.setFillColor(color);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<p>Change the global fill color of everything rendered. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00038">38</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        this-&gt;_rect.setFillColor(color);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        this-&gt;_text.setFillColor(color);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        this-&gt;_sprite.setColor(color);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -494,10 +562,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00137">137</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    {</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">return</span> this-&gt;_fps;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    }</div>
+<p>Get the current FPS. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00133">133</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordflow">return</span> this-&gt;_fps;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -516,10 +586,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00032">32</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">return</span> this-&gt;_title;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<p>Get the current title of the window. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00027">27</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> this-&gt;_title;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -539,12 +611,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00110">110</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = this-&gt;_entities.begin(); it &lt; this-&gt;_entities.end(); it++)</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="keywordflow">if</span> (&amp;*it == &amp;entity)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                this-&gt;_entities.erase(it);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    }</div>
+<p>Removes an entity from the screen. </p>
+<dl class="section note"><dt>Note</dt><dd>The reference to the entity will not be valid if it is found on the screen </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00106">106</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = this-&gt;_entities.begin(); it &lt; this-&gt;_entities.end(); it++)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">if</span> (&amp;*it == &amp;entity)</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                this-&gt;_entities.erase(it);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -563,11 +638,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00099">99</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;_entities)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            entity.render(*<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<p>Render all the entities on the screen. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00095">95</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;_entities)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            entity.render(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -587,13 +664,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00129">129</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        this-&gt;_camera = newCamera;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        this-&gt;_view.setCenter(this-&gt;getSize().x / 2. + this-&gt;_camera.x, this-&gt;getSize().y / 2. + this-&gt;_camera.y);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        this-&gt;_view.setSize(this-&gt;getSize().x, this-&gt;getSize().y);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        this-&gt;setView(this-&gt;_view);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
+<p>Change the current camera center. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00125">125</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        this-&gt;_camera = newCamera;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        this-&gt;_view.setCenter(this-&gt;getSize().x / 2. + this-&gt;_camera.x, this-&gt;getSize().y / 2. + this-&gt;_camera.y);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        this-&gt;_view.setSize(this-&gt;getSize().x, this-&gt;getSize().y);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        this-&gt;setView(this-&gt;_view);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -613,10 +692,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00049">49</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        this-&gt;_text.setFont(font);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<p>Change the font. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00045">45</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        this-&gt;_text.setFont(font);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -636,11 +717,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00037">37</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        this-&gt;_title = title;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        sf::RenderWindow::setTitle(title);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<p>Set the current title of the window. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00032">32</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        this-&gt;_title = title;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        sf::RenderWindow::setTitle(title);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -660,10 +743,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00054">54</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        this-&gt;_text.setCharacterSize(size);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<p>Change the text size. </p>
+
+<p class="definition">Definition at line <a class="el" href="Screen_8cpp_source.html#l00050">50</a> of file <a class="el" href="Screen_8cpp_source.html">Screen.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        this-&gt;_text.setCharacterSize(size);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -673,10 +758,9 @@ Public Member Functions</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="anamespaceTouhouFanGame_html_a44b30770d8f1a108d14f1807548ca077"><div class="ttname"><a href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">TouhouFanGame::logger</a></div><div class="ttdeci">Logger logger</div><div class="ttdoc">The global logger.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00018">main.cpp:18</a></div></div>
-<div class="ttc" id="aclassTouhouFanGame_1_1Rendering_1_1Screen_html_a76c442025d28fb74e8bd1f97592b0b00"><div class="ttname"><a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a76c442025d28fb74e8bd1f97592b0b00">TouhouFanGame::Rendering::Screen::draw</a></div><div class="ttdeci">void draw(sf::IntRect rect)</div><div class="ttdef"><b>Definition:</b> <a href="Screen_8cpp_source.html#l00059">Screen.cpp:59</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1Rendering_1_1Screen_html_a76c442025d28fb74e8bd1f97592b0b00"><div class="ttname"><a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a76c442025d28fb74e8bd1f97592b0b00">TouhouFanGame::Rendering::Screen::draw</a></div><div class="ttdeci">void draw(sf::IntRect rect)</div><div class="ttdoc">Draw a rectangle on the screen.</div><div class="ttdef"><b>Definition:</b> <a href="Screen_8cpp_source.html#l00055">Screen.cpp:55</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Logger_html_a6cb34b2d52b74b6a2f664f940561d5eb"><div class="ttname"><a href="classTouhouFanGame_1_1Logger.html#a6cb34b2d52b74b6a2f664f940561d5eb">TouhouFanGame::Logger::info</a></div><div class="ttdeci">void info(const std::string &amp;content) noexcept</div><div class="ttdoc">Logs a message as log level INFO.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00047">Logger.cpp:47</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Logger_html_acd42dd8fc629cbfe9fdbda945599dbe1"><div class="ttname"><a href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">TouhouFanGame::Logger::debug</a></div><div class="ttdeci">void debug(const std::string &amp;content) noexcept</div><div class="ttdoc">Logs a message as log level DEBUG.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00035">Logger.cpp:35</a></div></div>
-<div class="ttc" id="aclassTouhouFanGame_1_1Rendering_1_1Screen_html_a7eef4292cfa5d1ff2a6605ce42a8adf3"><div class="ttname"><a href="classTouhouFanGame_1_1Rendering_1_1Screen.html#a7eef4292cfa5d1ff2a6605ce42a8adf3">TouhouFanGame::Rendering::Screen::Screen</a></div><div class="ttdeci">Screen(const std::string &amp;title, unsigned int width=640, unsigned int height=480)</div><div class="ttdef"><b>Definition:</b> <a href="Screen_8cpp_source.html#l00010">Screen.cpp:10</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

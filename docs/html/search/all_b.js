@@ -2,7 +2,7 @@ var searchData=
 [
   ['left_105',['LEFT',['../classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcfa0c19e29cf08e52f9884f438ea67c8f8a',1,'TouhouFanGame::Input']]],
   ['loadassets_106',['loadAssets',['../classTouhouFanGame_1_1Loader.html#a01dd8aec9508d76a2a805ddde22b2ae0',1,'TouhouFanGame::Loader']]],
-  ['loadassetsfromjson_107',['loadAssetsFromJson',['../classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b',1,'TouhouFanGame::Loader']]],
+  ['loadassetsfromjson_107',['loadAssetsFromJson',['../classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b',1,'TouhouFanGame::Loader']]],
   ['loader_108',['Loader',['../classTouhouFanGame_1_1Loader.html',1,'TouhouFanGame']]],
   ['loader_2ecpp_109',['Loader.cpp',['../Loader_8cpp.html',1,'']]],
   ['loader_2ehpp_110',['Loader.hpp',['../Loader_8hpp.html',1,'']]],

@@ -147,7 +147,7 @@ Public Member Functions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span> (whitelist.empty())</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">return</span> this-&gt;_entities.clear();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; this-&gt;_entities.size(); i++)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; this-&gt;_entities.size(); i++)</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span> (std::find(whitelist.begin(), whitelist.end(), this-&gt;_entities[i]-&gt;getID()) == whitelist.end())</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                this-&gt;_entities.erase(this-&gt;_entities.begin() + i--);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>

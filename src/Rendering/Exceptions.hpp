@@ -10,6 +10,7 @@
 
 namespace TouhouFanGame::Rendering
 {
+	//! @brief The config file given to create an entity is invalid
 	class InvalidAnimationConfigException : public BaseException {
 	public:
 		explicit InvalidAnimationConfigException(const std::string &&msg) :

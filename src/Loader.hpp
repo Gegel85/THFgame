@@ -7,7 +7,6 @@
 
 
 #include "json.hpp"
-using nlohmann::json;
 
 #include "Game.hpp"
 
@@ -47,7 +46,7 @@ namespace TouhouFanGame
 		//! @param dataName The name of the data that are currently loaded
 		//! @param paths Array of json paths
 		//! @param data Map of buffers to load the files in
-		static void loadAssetsFromJson(const std::string &dataName, json &paths, std::map<std::string, dataType> &data)
+		static void loadAssetsFromJson(const std::string &dataName, nlohmann::json &paths, std::map<std::string, dataType> &data)
 		{
 			if (paths.is_null())
 				logger.warn("No " + dataName + " is marked for loading");

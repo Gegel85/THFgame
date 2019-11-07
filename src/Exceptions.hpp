@@ -9,7 +9,7 @@
 
 namespace TouhouFanGame
 {
-	//! @brief The map is not loaded
+	//! @brief The base exception
 	class BaseException : public std::exception {
 	private:
 		std::string _msg;
@@ -23,7 +23,7 @@ namespace TouhouFanGame
 		};
 	};
 
-	//! @brief The map is not loaded
+	//! @brief The assets list is corrupted or invalid
 	class CorruptedAssetsListException : public BaseException {
 	public:
 		explicit CorruptedAssetsListException(const std::string &&msg) :

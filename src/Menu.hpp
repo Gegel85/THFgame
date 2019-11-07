@@ -34,7 +34,8 @@ namespace TouhouFanGame
 
 		//! @brief Consumes an sf::Event
 		//! @param game Game resources
-		static void handleEvent(Game &game, const sf::Event &);
+		//! @param event The event to consume
+		static void handleEvent(Game &game, const sf::Event &event);
 
 		//! @brief Changes the current Menu
 		//! @param game Game resources

@@ -19,11 +19,6 @@ namespace TouhouFanGame::Rendering
 		this->_rect.setOutlineThickness(0);
 	}
 
-	Screen::Screen(const Screen &other) :
-		Screen(other.getTitle(), other.getSize().x, other.getSize().y)
-	{
-	}
-
 	Screen::~Screen()
 	{
 		TouhouFanGame::logger.info("Destroying window \"" + this->_title + "\"");
@@ -44,6 +39,7 @@ namespace TouhouFanGame::Rendering
 	{
 		this->_rect.setFillColor(color);
 		this->_text.setFillColor(color);
+		this->_sprite.setColor(color);
 	}
 
 	void	Screen::setFont(const sf::Font &font)

@@ -97,15 +97,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a01dd8aec9508d76a2a805ddde22b2ae0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Loader.html#a01dd8aec9508d76a2a805ddde22b2ae0">loadAssets</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game)</td></tr>
 <tr class="memdesc:a01dd8aec9508d76a2a805ddde22b2ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all game assets.  <a href="classTouhouFanGame_1_1Loader.html#a01dd8aec9508d76a2a805ddde22b2ae0">More...</a><br /></td></tr>
 <tr class="separator:a01dd8aec9508d76a2a805ddde22b2ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8aac6572e92d272702becf66399eb38b"><td class="memTemplParams" colspan="2">template&lt;typename dataType &gt; </td></tr>
-<tr class="memitem:a8aac6572e92d272702becf66399eb38b"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b">loadAssetsFromJson</a> (const std::string &amp;dataName, json &amp;paths, std::map&lt; std::string, dataType &gt; &amp;data)</td></tr>
-<tr class="memdesc:a8aac6572e92d272702becf66399eb38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load assets from a json array.  <a href="classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b">More...</a><br /></td></tr>
-<tr class="separator:a8aac6572e92d272702becf66399eb38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c7c4e76447d351ba7b7e15cd9dd0f0b"><td class="memTemplParams" colspan="2">template&lt;typename dataType &gt; </td></tr>
+<tr class="memitem:a2c7c4e76447d351ba7b7e15cd9dd0f0b"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b">loadAssetsFromJson</a> (const std::string &amp;dataName, nlohmann::json &amp;paths, std::map&lt; std::string, dataType &gt; &amp;data)</td></tr>
+<tr class="memdesc:a2c7c4e76447d351ba7b7e15cd9dd0f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load assets from a json array.  <a href="classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b">More...</a><br /></td></tr>
+<tr class="separator:a2c7c4e76447d351ba7b7e15cd9dd0f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structTouhouFanGame_1_1Resources.html" title="The main Resources needed by the game.">Resources</a> loading and initializations routine. </p>
 
-<p class="definition">Definition at line <a class="el" href="Loader_8hpp_source.html#l00017">17</a> of file <a class="el" href="Loader_8hpp_source.html">Loader.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Loader_8hpp_source.html#l00016">16</a> of file <a class="el" href="Loader_8hpp_source.html">Loader.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a01dd8aec9508d76a2a805ddde22b2ae0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01dd8aec9508d76a2a805ddde22b2ae0">&#9670;&nbsp;</a></span>loadAssets()</h2>
@@ -142,7 +142,7 @@ Static Public Member Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="Loader_8cpp_source.html#l00041">41</a> of file <a class="el" href="Loader_8cpp_source.html">Loader.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        std::ifstream stream{<span class="stringliteral">&quot;assets/list.json&quot;</span>};</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        json data;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        nlohmann::json data;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Opening main window&quot;</span>);</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        game.resources.screen.reset(<span class="keyword">new</span> Rendering::Screen{<span class="stringliteral">&quot;THFgame&quot;</span>});</div>
@@ -174,13 +174,13 @@ Static Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                );</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading musics&quot;</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <a class="code" href="classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b">loadAssetsFromJson</a>(<span class="stringliteral">&quot;Musics&quot;</span>, data[<span class="stringliteral">&quot;musics&quot;</span>], game.resources.musics);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <a class="code" href="classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b">loadAssetsFromJson</a>(<span class="stringliteral">&quot;Musics&quot;</span>, data[<span class="stringliteral">&quot;musics&quot;</span>], game.resources.musics);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading sfx&quot;</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <a class="code" href="classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b">loadAssetsFromJson</a>(<span class="stringliteral">&quot;Sound effects&quot;</span>, data[<span class="stringliteral">&quot;sfx&quot;</span>], game.resources.soundBuffers);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <a class="code" href="classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b">loadAssetsFromJson</a>(<span class="stringliteral">&quot;Sound effects&quot;</span>, data[<span class="stringliteral">&quot;sfx&quot;</span>], game.resources.soundBuffers);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading sprites&quot;</span>);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <a class="code" href="classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b">loadAssetsFromJson</a>(<span class="stringliteral">&quot;Sprites&quot;</span>, data[<span class="stringliteral">&quot;sprites&quot;</span>], game.resources.textures);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <a class="code" href="classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b">loadAssetsFromJson</a>(<span class="stringliteral">&quot;Sprites&quot;</span>, data[<span class="stringliteral">&quot;sprites&quot;</span>], game.resources.textures);</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        } <span class="keywordflow">catch</span> (nlohmann::detail::parse_error &amp;e) {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">throw</span> CorruptedAssetsListException(<span class="stringliteral">&quot;The JSON file has an invalid format: &quot;</span> + std::string(e.what()));</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        } <span class="keywordflow">catch</span> (nlohmann::detail::type_error &amp;e) {</div>
@@ -190,8 +190,8 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a8aac6572e92d272702becf66399eb38b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8aac6572e92d272702becf66399eb38b">&#9670;&nbsp;</a></span>loadAssetsFromJson()</h2>
+<a id="a2c7c4e76447d351ba7b7e15cd9dd0f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c7c4e76447d351ba7b7e15cd9dd0f0b">&#9670;&nbsp;</a></span>loadAssetsFromJson()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,7 +210,7 @@ template&lt;typename dataType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">json &amp;&#160;</td>
+          <td class="paramtype">nlohmann::json &amp;&#160;</td>
           <td class="paramname"><em>paths</em>, </td>
         </tr>
         <tr>
@@ -242,27 +242,27 @@ template&lt;typename dataType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Loader_8hpp_source.html#l00050">50</a> of file <a class="el" href="Loader_8hpp_source.html">Loader.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">if</span> (paths.is_null())</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a4200282bb9545fcceaa3f54c2917d4ce">warn</a>(<span class="stringliteral">&quot;No &quot;</span> + dataName + <span class="stringliteral">&quot; is marked for loading&quot;</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading &quot;</span> + std::to_string(paths.size()) + <span class="stringliteral">&quot; &quot;</span> + dataName);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;value : paths.items())</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading file &quot;</span> + static_cast&lt;std::string&gt;(value.value()) + <span class="stringliteral">&quot; at key &quot;</span> + value.key());</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        data.at(value.key());</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a4200282bb9545fcceaa3f54c2917d4ce">warn</a>(<span class="stringliteral">&quot;A sound is already loaded with key &quot;</span> + value.key());</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                    } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                    <span class="keywordflow">if</span> (!<a class="code" href="classTouhouFanGame_1_1Loader.html#ad00d4011609fd6cc4c5dd03b59ca24cc">loadFile</a>(data[value.key()], <span class="stringliteral">&quot;assets/&quot;</span> + static_cast&lt;std::string&gt;(value.value())))</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a1178ec7b40dcc92634eb85b57f25774d">error</a>(<span class="stringliteral">&quot;Cannot load file &quot;</span> + static_cast&lt;std::string&gt;(value.value()));</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                } <span class="keywordflow">catch</span> (std::exception &amp;e) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                    <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a1178ec7b40dcc92634eb85b57f25774d">error</a>(e.what());</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
+<p class="definition">Definition at line <a class="el" href="Loader_8hpp_source.html#l00049">49</a> of file <a class="el" href="Loader_8hpp_source.html">Loader.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">if</span> (paths.is_null())</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a4200282bb9545fcceaa3f54c2917d4ce">warn</a>(<span class="stringliteral">&quot;No &quot;</span> + dataName + <span class="stringliteral">&quot; is marked for loading&quot;</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading &quot;</span> + std::to_string(paths.size()) + <span class="stringliteral">&quot; &quot;</span> + dataName);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;value : paths.items())</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                    <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">debug</a>(<span class="stringliteral">&quot;Loading file &quot;</span> + static_cast&lt;std::string&gt;(value.value()) + <span class="stringliteral">&quot; at key &quot;</span> + value.key());</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        data.at(value.key());</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a4200282bb9545fcceaa3f54c2917d4ce">warn</a>(<span class="stringliteral">&quot;A sound is already loaded with key &quot;</span> + value.key());</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                    } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                    <span class="keywordflow">if</span> (!<a class="code" href="classTouhouFanGame_1_1Loader.html#ad00d4011609fd6cc4c5dd03b59ca24cc">loadFile</a>(data[value.key()], <span class="stringliteral">&quot;assets/&quot;</span> + static_cast&lt;std::string&gt;(value.value())))</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a1178ec7b40dcc92634eb85b57f25774d">error</a>(<span class="stringliteral">&quot;Cannot load file &quot;</span> + static_cast&lt;std::string&gt;(value.value()));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                } <span class="keywordflow">catch</span> (std::exception &amp;e) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                    <a class="code" href="namespaceTouhouFanGame.html#a44b30770d8f1a108d14f1807548ca077">logger</a>.<a class="code" href="classTouhouFanGame_1_1Logger.html#a1178ec7b40dcc92634eb85b57f25774d">error</a>(e.what());</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -473,7 +473,6 @@ template&lt;typename dataType &gt; </div>
 <li>src/<a class="el" href="Loader_8cpp_source.html">Loader.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="aclassTouhouFanGame_1_1Loader_html_a8aac6572e92d272702becf66399eb38b"><div class="ttname"><a href="classTouhouFanGame_1_1Loader.html#a8aac6572e92d272702becf66399eb38b">TouhouFanGame::Loader::loadAssetsFromJson</a></div><div class="ttdeci">static void loadAssetsFromJson(const std::string &amp;dataName, json &amp;paths, std::map&lt; std::string, dataType &gt; &amp;data)</div><div class="ttdoc">Load assets from a json array.</div><div class="ttdef"><b>Definition:</b> <a href="Loader_8hpp_source.html#l00050">Loader.hpp:50</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Loader_html_a5d25a59ab0f4b1c147e72a6321e77961"><div class="ttname"><a href="classTouhouFanGame_1_1Loader.html#a5d25a59ab0f4b1c147e72a6321e77961">TouhouFanGame::Loader::loadSettings</a></div><div class="ttdeci">static void loadSettings(Game &amp;game)</div><div class="ttdoc">Load settings.</div><div class="ttdef"><b>Definition:</b> <a href="Loader_8cpp_source.html#l00031">Loader.cpp:31</a></div></div>
 <div class="ttc" id="astructTouhouFanGame_1_1GameState_html_a0bd7c134169cda2f086063a7997f6d34"><div class="ttname"><a href="structTouhouFanGame_1_1GameState.html#a0bd7c134169cda2f086063a7997f6d34">TouhouFanGame::GameState::musicVolume</a></div><div class="ttdeci">float musicVolume</div><div class="ttdoc">The current music volume.</div><div class="ttdef"><b>Definition:</b> <a href="Game_8hpp_source.html#l00025">Game.hpp:25</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Loader_html_ad00d4011609fd6cc4c5dd03b59ca24cc"><div class="ttname"><a href="classTouhouFanGame_1_1Loader.html#ad00d4011609fd6cc4c5dd03b59ca24cc">TouhouFanGame::Loader::loadFile</a></div><div class="ttdeci">static bool loadFile(sf::SoundBuffer &amp;buffer, const std::string &amp;path)</div><div class="ttdoc">Load a sound effect file.</div><div class="ttdef"><b>Definition:</b> <a href="Loader_8cpp_source.html#l00011">Loader.cpp:11</a></div></div>
@@ -482,6 +481,7 @@ template&lt;typename dataType &gt; </div>
 <div class="ttc" id="anamespaceTouhouFanGame_html_adf67c85d493b517ee1551262bad4e20f"><div class="ttname"><a href="namespaceTouhouFanGame.html#adf67c85d493b517ee1551262bad4e20f">TouhouFanGame::_game</a></div><div class="ttdeci">Game _game</div><div class="ttdoc">Global game resources and state.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00022">main.cpp:22</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Logger_html_a6cb34b2d52b74b6a2f664f940561d5eb"><div class="ttname"><a href="classTouhouFanGame_1_1Logger.html#a6cb34b2d52b74b6a2f664f940561d5eb">TouhouFanGame::Logger::info</a></div><div class="ttdeci">void info(const std::string &amp;content) noexcept</div><div class="ttdoc">Logs a message as log level INFO.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00047">Logger.cpp:47</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Logger_html_acd42dd8fc629cbfe9fdbda945599dbe1"><div class="ttname"><a href="classTouhouFanGame_1_1Logger.html#acd42dd8fc629cbfe9fdbda945599dbe1">TouhouFanGame::Logger::debug</a></div><div class="ttdeci">void debug(const std::string &amp;content) noexcept</div><div class="ttdoc">Logs a message as log level DEBUG.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00035">Logger.cpp:35</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1Loader_html_a2c7c4e76447d351ba7b7e15cd9dd0f0b"><div class="ttname"><a href="classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b">TouhouFanGame::Loader::loadAssetsFromJson</a></div><div class="ttdeci">static void loadAssetsFromJson(const std::string &amp;dataName, nlohmann::json &amp;paths, std::map&lt; std::string, dataType &gt; &amp;data)</div><div class="ttdoc">Load assets from a json array.</div><div class="ttdef"><b>Definition:</b> <a href="Loader_8hpp_source.html#l00049">Loader.hpp:49</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Logger_html_a4200282bb9545fcceaa3f54c2917d4ce"><div class="ttname"><a href="classTouhouFanGame_1_1Logger.html#a4200282bb9545fcceaa3f54c2917d4ce">TouhouFanGame::Logger::warn</a></div><div class="ttdeci">void warn(const std::string &amp;content) noexcept</div><div class="ttdoc">Logs a message as log level WARNING.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00041">Logger.cpp:41</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Logger_html_a1178ec7b40dcc92634eb85b57f25774d"><div class="ttname"><a href="classTouhouFanGame_1_1Logger.html#a1178ec7b40dcc92634eb85b57f25774d">TouhouFanGame::Logger::error</a></div><div class="ttdeci">void error(const std::string &amp;content) noexcept</div><div class="ttdoc">Logs a message as log level ERROR.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00053">Logger.cpp:53</a></div></div>
 <!-- start footer part -->

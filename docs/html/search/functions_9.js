@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keyboard_392',['Keyboard',['../classTouhouFanGame_1_1Inputs_1_1Keyboard.html#ad8372943f905158f4a09e89073e64c90',1,'TouhouFanGame::Inputs::Keyboard']]]
+  ['info_471',['info',['../classTouhouFanGame_1_1Logger.html#a6cb34b2d52b74b6a2f664f940561d5eb',1,'TouhouFanGame::Logger']]],
+  ['invalidanimationconfigexception_472',['InvalidAnimationConfigException',['../classTouhouFanGame_1_1Rendering_1_1InvalidAnimationConfigException.html#a2609e90f60a788e5e0c12f8ef7d8ffba',1,'TouhouFanGame::Rendering::InvalidAnimationConfigException']]]
 ];

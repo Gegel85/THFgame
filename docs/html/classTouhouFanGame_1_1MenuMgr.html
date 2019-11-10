@@ -70,6 +70,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="classTouhouFanGame_1_1MenuMgr-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TouhouFanGame::MenuMgr Class Reference</div>  </div>
@@ -100,6 +101,17 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa00e4f24a1c2ba1cb6150de22c9f3555"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1MenuMgr.html#aa00e4f24a1c2ba1cb6150de22c9f3555">changeMenu</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game, <a class="el" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835">Menu</a> newMenu)</td></tr>
 <tr class="memdesc:aa00e4f24a1c2ba1cb6150de22c9f3555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current Menu.  <a href="classTouhouFanGame_1_1MenuMgr.html#aa00e4f24a1c2ba1cb6150de22c9f3555">More...</a><br /></td></tr>
 <tr class="separator:aa00e4f24a1c2ba1cb6150de22c9f3555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:ab88c479d33a3aa61cc65c39a61fb9ab1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1MenuMgr.html#ab88c479d33a3aa61cc65c39a61fb9ab1">_renderMainMenu</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game)</td></tr>
+<tr class="separator:ab88c479d33a3aa61cc65c39a61fb9ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8ee069489d959be5dc5e4e575c493b7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1MenuMgr.html#ad8ee069489d959be5dc5e4e575c493b7">_renderGame</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game)</td></tr>
+<tr class="separator:ad8ee069489d959be5dc5e4e575c493b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3acd06dcdb26bf2ba0db23bb92ca294b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1MenuMgr.html#a3acd06dcdb26bf2ba0db23bb92ca294b">_handleMainMenuEvents</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game, const sf::Event &amp;)</td></tr>
+<tr class="separator:a3acd06dcdb26bf2ba0db23bb92ca294b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3908f4d76929ba112ec93971c9cb2657"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1MenuMgr.html#a3908f4d76929ba112ec93971c9cb2657">_handleGameEvents</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game, const sf::Event &amp;)</td></tr>
+<tr class="separator:a3908f4d76929ba112ec93971c9cb2657"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages the menus. </p>
@@ -125,14 +137,163 @@ Static Public Member Functions</h2></td></tr>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="Menu_8hpp_source.html#l00026">26</a> of file <a class="el" href="Menu_8hpp_source.html">Menu.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                  {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        };</div>
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                          {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                };</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3908f4d76929ba112ec93971c9cb2657"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3908f4d76929ba112ec93971c9cb2657">&#9670;&nbsp;</a></span>_handleGameEvents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TouhouFanGame::MenuMgr::_handleGameEvents </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00021">21</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">if</span> (event.type == sf::Event::KeyPressed) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        <span class="keywordflow">switch</span> (event.key.code) {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                        }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3acd06dcdb26bf2ba0db23bb92ca294b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3acd06dcdb26bf2ba0db23bb92ca294b">&#9670;&nbsp;</a></span>_handleMainMenuEvents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TouhouFanGame::MenuMgr::_handleMainMenuEvents </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Event &amp;&#160;</td>
+          <td class="paramname"><em>event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00031">31</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordflow">if</span> (event.type == sf::Event::KeyPressed)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#aa00e4f24a1c2ba1cb6150de22c9f3555">changeMenu</a>(game, <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad8ee069489d959be5dc5e4e575c493b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8ee069489d959be5dc5e4e575c493b7">&#9670;&nbsp;</a></span>_renderGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TouhouFanGame::MenuMgr::_renderGame </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00012">12</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                game.state.map.update();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                game.state.map.render();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab88c479d33a3aa61cc65c39a61fb9ab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab88c479d33a3aa61cc65c39a61fb9ab1">&#9670;&nbsp;</a></span>_renderMainMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TouhouFanGame::MenuMgr::_renderMainMenu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00018">18</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="aa00e4f24a1c2ba1cb6150de22c9f3555"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa00e4f24a1c2ba1cb6150de22c9f3555">&#9670;&nbsp;</a></span>changeMenu()</h2>
 
@@ -177,21 +338,21 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00064">64</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        game.resources.screen-&gt;setCamera({0, 0});</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        game.resources.stopMusic();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        game.state.currentMenu = newMenu;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">switch</span> (newMenu) {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            game.resources.playMusic(<span class="stringliteral">&quot;menu&quot;</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            game.state.map.reset();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            game.state.map.loadFromFile(<span class="stringliteral">&quot;assets/maps/map_0.map&quot;</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            game.resources.musics.at(<span class="stringliteral">&quot;menu&quot;</span>).stop();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                game.resources.screen-&gt;setCamera({0, 0});</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                game.resources.stopMusic();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                game.state.currentMenu = newMenu;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordflow">switch</span> (newMenu) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>:</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                        game.resources.playMusic(<span class="stringliteral">&quot;menu&quot;</span>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>:</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        game.state.map.reset();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        game.state.map.loadFromFile(<span class="stringliteral">&quot;assets/maps/map_0.map&quot;</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                        game.resources.musics.at(<span class="stringliteral">&quot;menu&quot;</span>).stop();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -239,19 +400,19 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00037">37</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span> (event.type == event.Closed)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            game.resources.screen-&gt;close();</div>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">if</span> (event.type == event.Closed)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        game.resources.screen-&gt;close();</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">switch</span> (game.state.currentMenu) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            _handleMainMenuEvents(game, event);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            _handleGameEvents(game, event);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordflow">switch</span> (game.state.currentMenu) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#a3acd06dcdb26bf2ba0db23bb92ca294b">_handleMainMenuEvents</a>(game, event);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#a3908f4d76929ba112ec93971c9cb2657">_handleGameEvents</a>(game, event);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -288,16 +449,16 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="Menu_8cpp_source.html#l00052">52</a> of file <a class="el" href="Menu_8cpp_source.html">Menu.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">switch</span> (game.state.currentMenu) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            _renderMainMenu(game);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            _renderGame(game);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="keywordflow">switch</span> (game.state.currentMenu) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">MAIN_MENU</a>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ab88c479d33a3aa61cc65c39a61fb9ab1">_renderMainMenu</a>(game);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">case</span> <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">IN_GAME</a>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1MenuMgr.html#ad8ee069489d959be5dc5e4e575c493b7">_renderGame</a>(game);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -306,8 +467,13 @@ Static Public Member Functions</h2></td></tr>
 <li>src/<a class="el" href="Menu_8cpp_source.html">Menu.cpp</a></li>
 </ul>
 </div><!-- contents -->
+<div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_ad8ee069489d959be5dc5e4e575c493b7"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#ad8ee069489d959be5dc5e4e575c493b7">TouhouFanGame::MenuMgr::_renderGame</a></div><div class="ttdeci">static void _renderGame(Game &amp;game)</div><div class="ttdef"><b>Definition:</b> <a href="Menu_8cpp_source.html#l00012">Menu.cpp:12</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_a3acd06dcdb26bf2ba0db23bb92ca294b"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#a3acd06dcdb26bf2ba0db23bb92ca294b">TouhouFanGame::MenuMgr::_handleMainMenuEvents</a></div><div class="ttdeci">static void _handleMainMenuEvents(Game &amp;game, const sf::Event &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="Menu_8cpp_source.html#l00031">Menu.cpp:31</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_ab88c479d33a3aa61cc65c39a61fb9ab1"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#ab88c479d33a3aa61cc65c39a61fb9ab1">TouhouFanGame::MenuMgr::_renderMainMenu</a></div><div class="ttdeci">static void _renderMainMenu(Game &amp;game)</div><div class="ttdef"><b>Definition:</b> <a href="Menu_8cpp_source.html#l00018">Menu.cpp:18</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_a3908f4d76929ba112ec93971c9cb2657"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#a3908f4d76929ba112ec93971c9cb2657">TouhouFanGame::MenuMgr::_handleGameEvents</a></div><div class="ttdeci">static void _handleGameEvents(Game &amp;game, const sf::Event &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="Menu_8cpp_source.html#l00021">Menu.cpp:21</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a0de0ed3df3c8acdacc8be3b93c181d22">TouhouFanGame::MenuMgr::IN_GAME</a></div><div class="ttdef"><b>Definition:</b> <a href="Menu_8hpp_source.html#l00028">Menu.hpp:28</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835a4cabc56bde0a4492d29cdc58fc25cac7">TouhouFanGame::MenuMgr::MAIN_MENU</a></div><div class="ttdef"><b>Definition:</b> <a href="Menu_8hpp_source.html#l00027">Menu.hpp:27</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1MenuMgr_html_aa00e4f24a1c2ba1cb6150de22c9f3555"><div class="ttname"><a href="classTouhouFanGame_1_1MenuMgr.html#aa00e4f24a1c2ba1cb6150de22c9f3555">TouhouFanGame::MenuMgr::changeMenu</a></div><div class="ttdeci">static void changeMenu(Game &amp;game, Menu newMenu)</div><div class="ttdoc">Changes the current Menu.</div><div class="ttdef"><b>Definition:</b> <a href="Menu_8cpp_source.html#l00064">Menu.cpp:64</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

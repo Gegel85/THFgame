@@ -35,26 +35,30 @@ namespace TouhouFanGame
 
 		//! @brief Put the Input into the "change key" mode if it wasn't already.
 		//! @param action The action to change.
-		//! @return True if still in "change key" mode. False otherwise.
+		//! @return False if the key has not been changed yet. True otherwise.
+		//! @note If you need to cancel the change key mode, call cancelChangeKey.
 		virtual bool changeKeyFor(Action action) = 0;
+
+		//! @brief No longer tries to change the key.
+		virtual void cancelChangeKey() = 0;
 
 		//! @brief Tell if the action is currently triggered.
 		//! @param action The action to check.
 		//! @return Whether the action is triggered or not.
 		virtual bool actionPressed(Action action) = 0;
 
-		//! @brief Consumes an event.
+		//! @brief Consumes an event. Will try to change the key if in change key mode.
 		virtual void handleEvent(sf::Event) = 0;
 
 		//! @brief Tell all the actions currently triggered.
 		//! @return All the action currently triggered.
 		virtual std::vector<Action> getActions() = 0;
 
-		//! @brief Unserialize a string.
+		//! @brief Unserialize from a stream.
 		//! @param stream to load from.
 		virtual void unserialize(std::istream &stream) = 0;
 
-		//! @brief Serialize a string.
+		//! @brief Serialize to a stream.
 		//! @param stream to load to.
 		virtual void serialize(std::ostream &stream) const = 0;
 

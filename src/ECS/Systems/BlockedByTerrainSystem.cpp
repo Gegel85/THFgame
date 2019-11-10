@@ -16,7 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 		System(core, "BlockedByTerrain", {"Movable", "Position"})
 	{}
 
-	void BlockedByTerrainSystem::pushEntity(TouhouFanGame::ECS::Components::PositionComponent &pos, float x, float y, unsigned char tileSize, unsigned char &dir, float speed)
+	void BlockedByTerrainSystem::_pushEntity(TouhouFanGame::ECS::Components::PositionComponent &pos, float x, float y, unsigned char tileSize, unsigned char &dir, float speed)
 	{
 		sf::Vector2<double> wallPos{
 			pos.position.x + x - std::fmod(pos.position.x + x, tileSize),
@@ -58,7 +58,7 @@ namespace TouhouFanGame::ECS::Systems
 		for (float x = -end; x < pos.size.x + end; x += tileSize)
 			for (float y = -end; y < pos.size.y + end; y += tileSize)
 				if (block.map.getObjectAt({pos.position.x + x, pos.position.y + y}) & 0x80U)
-					BlockedByTerrainSystem::pushEntity(pos, x, y, tileSize, newDir, mov.speed);
+					BlockedByTerrainSystem::_pushEntity(pos, x, y, tileSize, newDir, mov.speed);
 
 		if (newDir)
 			mov.dir = newDir;

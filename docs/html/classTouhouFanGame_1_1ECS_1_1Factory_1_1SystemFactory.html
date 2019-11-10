@@ -75,16 +75,21 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Builds <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>.  
+ <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="SystemFactory_8hpp_source.html">SystemFactory.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa9c35db49a9cd9d2e0289da9a71d1e51"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#aa9c35db49a9cd9d2e0289da9a71d1e51">buildAll</a> (<a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html">Core</a> &amp;core, std::vector&lt; std::unique_ptr&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html">System</a> &gt;&gt; &amp;buffer)</td></tr>
+<tr class="memdesc:aa9c35db49a9cd9d2e0289da9a71d1e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds one instance of each <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#aa9c35db49a9cd9d2e0289da9a71d1e51">More...</a><br /></td></tr>
 <tr class="separator:aa9c35db49a9cd9d2e0289da9a71d1e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="SystemFactory_8hpp_source.html#l00015">15</a> of file <a class="el" href="SystemFactory_8hpp_source.html">SystemFactory.hpp</a>.</p>
+<div class="textblock"><p>Builds <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="SystemFactory_8hpp_source.html#l00016">16</a> of file <a class="el" href="SystemFactory_8hpp_source.html">SystemFactory.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa9c35db49a9cd9d2e0289da9a71d1e51"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9c35db49a9cd9d2e0289da9a71d1e51">&#9670;&nbsp;</a></span>buildAll()</h2>
@@ -120,19 +125,21 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Builds one instance of each <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>. </p>
+
 <p class="definition">Definition at line <a class="el" href="SystemFactory_8cpp_source.html#l00014">14</a> of file <a class="el" href="SystemFactory_8cpp_source.html">SystemFactory.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        std::vector&lt;std::function&lt;System *(Core &amp;)&gt;&gt; _builders{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::DisplayableSystem(core); },</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::ControllableSystem(core); },</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::MovableSystem(core); },</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::BlockedByTerrainSystem(core); },</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::UselessSystem(core, <span class="stringliteral">&quot;Position&quot;</span>); },</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        };</div>
+<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                std::vector&lt;std::function&lt;System *(Core &amp;)&gt;&gt; _builders{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                        [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::DisplayableSystem(core); },</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                        [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::ControllableSystem(core); },</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                        [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::MovableSystem(core); },</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                        [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::BlockedByTerrainSystem(core); },</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                        [](Core &amp;core){ <span class="keywordflow">return</span> <span class="keyword">new</span> Systems::UselessSystem(core, <span class="stringliteral">&quot;Position&quot;</span>); },</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                };</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;fc : _builders)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            buffer.emplace_back(fc(core));</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;fc : _builders)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        buffer.emplace_back(fc(core));</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -10,18 +10,34 @@
 
 namespace TouhouFanGame::ECS
 {
+	//! @brief A Component linked to a System
 	class Component {
 	private:
+		//! @brief The name of this Component
 		std::string _name;
 
 	public:
+		//! @param name The name of the Component
 		Component(const std::string &name);
+
 		virtual ~Component() = default;
+
+		//! @brief Fetch the name of the Entity.
+		//! @return The name of this Entity.
 		std::string getName() const;
-		virtual void serialize(std::ostream &) const = 0;
-		virtual void unserialize(std::istream &) = 0;
+
+		//! @brief Serialize to a stream.
+		//! @param stream to load to.
+		virtual void serialize(std::ostream &stream) const = 0;
+
+		//! @brief Unserialize from a stream.
+		//! @param stream to load from.
+		virtual void unserialize(std::istream &stream) = 0;
 
 		template<typename type>
+		//! @brief Transforms this Component to the type.
+		//! @warning When calling this, be SURE that this Component is the type given.
+		//! If it isn't, it will cast it anyway and won't report any error.
 		type &to()
 		{
 			return reinterpret_cast<type &>(*this);

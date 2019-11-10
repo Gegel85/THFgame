@@ -11,8 +11,10 @@
 
 namespace TouhouFanGame::ECS::Systems
 {
+	//! @brief Updates Entity having a ControllableComponent
 	class ControllableSystem : public System {
 	public:
+		//! @param core The Core the System is in.
 		ControllableSystem(Core &core);
 		void updateEntity(Entity &entity) override;
 	};

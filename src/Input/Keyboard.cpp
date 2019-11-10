@@ -152,6 +152,12 @@ namespace TouhouFanGame::Inputs
 		return false;
 	}
 
+	void Keyboard::cancelChangeKey()
+	{
+		this->_keyChanged = false;
+		this->_keyChanging.reset();
+	}
+
 	std::vector<TouhouFanGame::Input::Action> Keyboard::getActions()
 	{
 		std::vector<Action> actions;

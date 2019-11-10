@@ -10,8 +10,10 @@
 
 namespace TouhouFanGame::ECS::Systems
 {
+	//! @brief Updates Entity having a DisplayableComponent
 	class DisplayableSystem : public System {
 	public:
+		//! @param _parent The Core the System is in.
 		explicit DisplayableSystem(Core &_parent);
 		void updateEntity(Entity &) override;
 	};

@@ -10,6 +10,7 @@
 
 namespace TouhouFanGame::ECS
 {
+	//! @brief An error occurred when updating an entity
 	class UpdateErrorException : public BaseException {
 	public:
 		explicit UpdateErrorException(const std::string &&msg) :
@@ -17,6 +18,7 @@ namespace TouhouFanGame::ECS
 		{};
 	};
 
+	//! @brief The System requested couldn't be found
 	class NoSuchSystemException : public BaseException {
 	public:
 		explicit NoSuchSystemException(const std::string &&msg) :
@@ -24,6 +26,7 @@ namespace TouhouFanGame::ECS
 		{};
 	};
 
+	//! @brief A dependency required by a System was not satisfied
 	class MissingDependencyException : public BaseException {
 	public:
 		explicit MissingDependencyException(const std::string &&msg) :
@@ -31,6 +34,7 @@ namespace TouhouFanGame::ECS
 		{};
 	};
 
+	//! @brief The Component requested couldn't be found on this Entity
 	class NoSuchComponentException : public BaseException {
 	public:
 		explicit NoSuchComponentException(const std::string &&msg) :
@@ -38,6 +42,7 @@ namespace TouhouFanGame::ECS
 		{};
 	};
 
+	//! @brief The Entity requested couldn't be found
 	class NoSuchEntityException : public BaseException {
 	public:
 		explicit NoSuchEntityException(const std::string &&msg) :

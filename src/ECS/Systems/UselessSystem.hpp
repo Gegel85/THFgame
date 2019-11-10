@@ -11,8 +11,11 @@
 
 namespace TouhouFanGame::ECS::Systems
 {
+	//! @brief A useless System meant for Component that don't need one.
 	class UselessSystem : public System {
 	public:
+		//! @param core The Core the System is in.
+		//! @param fakeName The name this System should have.
 		UselessSystem(Core &core, const std::string &fakeName);
 		void updateEntity(Entity &) override;
 	};

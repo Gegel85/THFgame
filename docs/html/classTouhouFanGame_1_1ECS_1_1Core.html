@@ -69,11 +69,15 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classTouhouFanGame_1_1ECS_1_1Core-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TouhouFanGame::ECS::Core Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The core of an <a class="el" href="namespaceTouhouFanGame_1_1ECS.html">ECS</a>. It holds the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> and make them interact with each other.  
+ <a href="classTouhouFanGame_1_1ECS_1_1Core.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Core_8hpp_source.html">Core.hpp</a>&gt;</code></p>
 <table class="memberdecls">
@@ -82,27 +86,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a285477c53918b53aa42cd26ebed9ab81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a285477c53918b53aa42cd26ebed9ab81">Core</a> ()</td></tr>
 <tr class="separator:a285477c53918b53aa42cd26ebed9ab81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af516027cb0604fd6aa3ba194307247d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#af516027cb0604fd6aa3ba194307247d5">makeEntity</a> (const std::string &amp;typeName)</td></tr>
+<tr class="memdesc:af516027cb0604fd6aa3ba194307247d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds an <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> using the EntityFactory and keep it to be updated.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#af516027cb0604fd6aa3ba194307247d5">More...</a><br /></td></tr>
 <tr class="separator:af516027cb0604fd6aa3ba194307247d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24c2e7ccec0048dddddd748f968b740e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a24c2e7ccec0048dddddd748f968b740e">getEntityByID</a> (unsigned id) const</td></tr>
+<tr class="memdesc:a24c2e7ccec0048dddddd748f968b740e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> using it's ID.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a24c2e7ccec0048dddddd748f968b740e">More...</a><br /></td></tr>
 <tr class="separator:a24c2e7ccec0048dddddd748f968b740e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae13c949641e80ae85bb69d7a65b72dfc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::reference_wrapper&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#ae13c949641e80ae85bb69d7a65b72dfc">getEntityByName</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:ae13c949641e80ae85bb69d7a65b72dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> with this name.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#ae13c949641e80ae85bb69d7a65b72dfc">More...</a><br /></td></tr>
 <tr class="separator:ae13c949641e80ae85bb69d7a65b72dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d378e0c284cda782cc415c54bfd8700"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::reference_wrapper&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a6d378e0c284cda782cc415c54bfd8700">getEntityByComponent</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a6d378e0c284cda782cc415c54bfd8700"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> containing this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a>.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a6d378e0c284cda782cc415c54bfd8700">More...</a><br /></td></tr>
 <tr class="separator:a6d378e0c284cda782cc415c54bfd8700"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e3ba8b46a49f63370b93dedb36f27ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html">System</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a5e3ba8b46a49f63370b93dedb36f27ef">getSystemByName</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:a5e3ba8b46a49f63370b93dedb36f27ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> by it's name.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a5e3ba8b46a49f63370b93dedb36f27ef">More...</a><br /></td></tr>
 <tr class="separator:a5e3ba8b46a49f63370b93dedb36f27ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4669b5b690a214f8c5b1ab077bfbc31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#af4669b5b690a214f8c5b1ab077bfbc31">serialize</a> (std::ostream &amp;stream) const</td></tr>
+<tr class="memdesc:af4669b5b690a214f8c5b1ab077bfbc31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize to a stream.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#af4669b5b690a214f8c5b1ab077bfbc31">More...</a><br /></td></tr>
 <tr class="separator:af4669b5b690a214f8c5b1ab077bfbc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9891dafabf4c7fd3bc11df420257d76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#ac9891dafabf4c7fd3bc11df420257d76">unserialize</a> (std::istream &amp;stream)</td></tr>
+<tr class="memdesc:ac9891dafabf4c7fd3bc11df420257d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unserialize from a stream.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#ac9891dafabf4c7fd3bc11df420257d76">More...</a><br /></td></tr>
 <tr class="separator:ac9891dafabf4c7fd3bc11df420257d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5898f2016a9939c818da663f7ed6b947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a5898f2016a9939c818da663f7ed6b947">update</a> ()</td></tr>
+<tr class="memdesc:a5898f2016a9939c818da663f7ed6b947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> in the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a>.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a5898f2016a9939c818da663f7ed6b947">More...</a><br /></td></tr>
 <tr class="separator:a5898f2016a9939c818da663f7ed6b947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b0b913d7bf619560e417f7293b082b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a1b0b913d7bf619560e417f7293b082b8">clear</a> (std::vector&lt; unsigned int &gt; whitelist={})</td></tr>
+<tr class="memdesc:a1b0b913d7bf619560e417f7293b082b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> in the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a> besides the the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> with an ID contained in the whitelist.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a1b0b913d7bf619560e417f7293b082b8">More...</a><br /></td></tr>
 <tr class="separator:a1b0b913d7bf619560e417f7293b082b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a074921d8be54b2eaaf09d6658fe28c5c"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a074921d8be54b2eaaf09d6658fe28c5c">_lastGivenID</a> = 0</td></tr>
+<tr class="memdesc:a074921d8be54b2eaaf09d6658fe28c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last ID given to an <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> created.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a074921d8be54b2eaaf09d6658fe28c5c">More...</a><br /></td></tr>
+<tr class="separator:a074921d8be54b2eaaf09d6658fe28c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d83d17489bc1bd083d45188f6b23587"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html">System</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#a8d83d17489bc1bd083d45188f6b23587">_systems</a></td></tr>
+<tr class="memdesc:a8d83d17489bc1bd083d45188f6b23587"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> loaded by the SystemFactory.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#a8d83d17489bc1bd083d45188f6b23587">More...</a><br /></td></tr>
+<tr class="separator:a8d83d17489bc1bd083d45188f6b23587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74d8bdab957526d6d2684b1f9695864"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a></td></tr>
+<tr class="memdesc:ad74d8bdab957526d6d2684b1f9695864"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to be updated.  <a href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">More...</a><br /></td></tr>
+<tr class="separator:ad74d8bdab957526d6d2684b1f9695864"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Core_8hpp_source.html#l00018">18</a> of file <a class="el" href="Core_8hpp_source.html">Core.hpp</a>.</p>
+<div class="textblock"><p>The core of an <a class="el" href="namespaceTouhouFanGame_1_1ECS.html">ECS</a>. It holds the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> and make them interact with each other. </p>
+
+<p class="definition">Definition at line <a class="el" href="Core_8hpp_source.html#l00019">19</a> of file <a class="el" href="Core_8hpp_source.html">Core.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a285477c53918b53aa42cd26ebed9ab81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a285477c53918b53aa42cd26ebed9ab81">&#9670;&nbsp;</a></span>Core()</h2>
@@ -120,9 +146,9 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00012">12</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#aa9c35db49a9cd9d2e0289da9a71d1e51">Factory::SystemFactory::buildAll</a>(*<span class="keyword">this</span>, this-&gt;_systems);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#aa9c35db49a9cd9d2e0289da9a71d1e51">Factory::SystemFactory::buildAll</a>(*<span class="keyword">this</span>, this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#a8d83d17489bc1bd083d45188f6b23587">_systems</a>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -143,14 +169,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Deletes all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> in the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a> besides the the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> with an ID contained in the whitelist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">whitelist</td><td>A list of <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a>'s ID to leave in the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00042">42</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">if</span> (whitelist.empty())</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">return</span> this-&gt;_entities.clear();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; this-&gt;_entities.size(); i++)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordflow">if</span> (std::find(whitelist.begin(), whitelist.end(), this-&gt;_entities[i]-&gt;getID()) == whitelist.end())</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                this-&gt;_entities.erase(this-&gt;_entities.begin() + i--);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                <span class="keywordflow">if</span> (whitelist.empty())</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                        <span class="keywordflow">return</span> this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>.clear();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>.size(); i++)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                        <span class="keywordflow">if</span> (std::find(whitelist.begin(), whitelist.end(), this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>[i]-&gt;getID()) == whitelist.end())</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>.erase(this-&gt;_entities.begin() + i--);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -170,15 +204,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get all <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> containing this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> requested. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> matching this name. </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00069">69</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        std::vector&lt;std::reference_wrapper&lt;Entity&gt;&gt; found;</div>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                std::vector&lt;std::reference_wrapper&lt;Entity&gt;&gt; found;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;_entities)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">if</span> (entity-&gt;hasComponent(name))</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                found.emplace_back(*entity);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> found;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                        <span class="keywordflow">if</span> (entity-&gt;hasComponent(name))</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                found.emplace_back(*entity);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keywordflow">return</span> found;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -198,13 +241,28 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> using it's ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to fetch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> requested. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classTouhouFanGame_1_1ECS_1_1NoSuchEntityException.html" title="The Entity requested couldn&#39;t be found.">NoSuchEntityException</a></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00079">79</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;_entities)</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">if</span> (entity-&gt;getID() == id)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordflow">return</span> *entity;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">throw</span> NoSuchEntityException(<span class="stringliteral">&quot;Cannot find any entity with ID &quot;</span> + std::to_string(<span class="keywordtype">id</span>));</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        <span class="keywordflow">if</span> (entity-&gt;getID() == id)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                <span class="keywordflow">return</span> *entity;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordflow">throw</span> NoSuchEntityException(<span class="stringliteral">&quot;Cannot find any entity with ID &quot;</span> + std::to_string(<span class="keywordtype">id</span>));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -224,15 +282,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get all <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> with this name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the entities to return. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> matching this name. </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00059">59</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        std::vector&lt;std::reference_wrapper&lt;Entity&gt;&gt; found;</div>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                std::vector&lt;std::reference_wrapper&lt;Entity&gt;&gt; found;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;_entities)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">if</span> (entity-&gt;getName() == name)</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                found.emplace_back(*entity);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> found;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        <span class="keywordflow">if</span> (entity-&gt;getName() == name)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                found.emplace_back(*entity);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordflow">return</span> found;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -252,13 +319,28 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get a <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> by it's name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to fetch. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> requested. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classTouhouFanGame_1_1ECS_1_1NoSuchEntityException.html" title="The Entity requested couldn&#39;t be found.">NoSuchEntityException</a></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00051">51</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;system : this-&gt;_systems)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">if</span> (system-&gt;getName() == name)</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">return</span> *system;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">throw</span> NoSuchSystemException(<span class="stringliteral">&quot;Cannot find any System called \&quot;&quot;</span> + name + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;system : this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#a8d83d17489bc1bd083d45188f6b23587">_systems</a>)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        <span class="keywordflow">if</span> (system-&gt;getName() == name)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                <span class="keywordflow">return</span> *system;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <span class="keywordflow">throw</span> NoSuchSystemException(<span class="stringliteral">&quot;Cannot find any System called \&quot;&quot;</span> + name + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -278,11 +360,26 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Builds an <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> using the EntityFactory and keep it to be updated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">typeName</td><td>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to build. This will be given to the EntityFactory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The newly created <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classTouhouFanGame_1_1ECS_1_1NoSuchEntityException.html" title="The Entity requested couldn&#39;t be found.">NoSuchEntityException</a></td><td>If the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> cannot be built. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00017">17</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        this-&gt;_entities.emplace_back(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a4a159c4ae2ba6cfa4241d721a9b9f8c4">Factory::EntityFactory::build</a>(typeName, this-&gt;_lastGivenID++));</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">return</span> *this-&gt;_entities.back();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>.emplace_back(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a4a159c4ae2ba6cfa4241d721a9b9f8c4">Factory::EntityFactory::build</a>(typeName, this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#a074921d8be54b2eaaf09d6658fe28c5c">_lastGivenID</a>++));</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="keywordflow">return</span> *this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>.back();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -302,8 +399,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Serialize to a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>to load to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00087">87</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {}</div>
+<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -323,8 +428,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Unserialize from a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>to load from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00090">90</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {}</div>
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -343,25 +456,106 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> in the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a>. </p>
+
 <p class="definition">Definition at line <a class="el" href="Core_8cpp_source.html#l00023">23</a> of file <a class="el" href="Core_8cpp_source.html">Core.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;_entities)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;component : entity-&gt;getComponentsNames())</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    System &amp;system = this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#a5e3ba8b46a49f63370b93dedb36f27ef">getSystemByName</a>(component);</div>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entity : this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">_entities</a>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;component : entity-&gt;getComponentsNames())</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                        System &amp;system = this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1Core.html#a5e3ba8b46a49f63370b93dedb36f27ef">getSystemByName</a>(component);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    system.checkDependencies(*entity);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    system.updateEntity(*entity);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                } <span class="keywordflow">catch</span> (std::exception &amp;e) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    <span class="keywordflow">throw</span> UpdateErrorException(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                        <span class="stringliteral">&quot;Error while updating entity #&quot;</span> + std::to_string(entity-&gt;getID()) +</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                        <span class="stringliteral">&quot;(&quot;</span> + entity-&gt;getName() + <span class="stringliteral">&quot;)\n&quot;</span>+</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                        component + <span class="stringliteral">&quot;System :\n\t&quot;</span> +</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                        <a class="code" href="Exceptions_8cpp.html#a36444f2b61f20487cc92aad1ede5145f">getLastExceptionName</a>() + <span class="stringliteral">&quot;: &quot;</span> + e.what()</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    );</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                                        system.checkDependencies(*entity);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                                        system.updateEntity(*entity);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                                } <span class="keywordflow">catch</span> (std::exception &amp;e) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                                        <span class="keywordflow">throw</span> UpdateErrorException(</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                                <span class="stringliteral">&quot;Error while updating entity #&quot;</span> + std::to_string(entity-&gt;getID()) +</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                                                <span class="stringliteral">&quot;(&quot;</span> + entity-&gt;getName() + <span class="stringliteral">&quot;)\n&quot;</span>+</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                                                component + <span class="stringliteral">&quot;System :\n\t&quot;</span> +</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                                                <a class="code" href="Exceptions_8cpp.html#a36444f2b61f20487cc92aad1ede5145f">getLastExceptionName</a>() + <span class="stringliteral">&quot;: &quot;</span> + e.what()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                                        );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
 </div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad74d8bdab957526d6d2684b1f9695864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74d8bdab957526d6d2684b1f9695864">&#9670;&nbsp;</a></span>_entities</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a>&gt; &gt; TouhouFanGame::ECS::Core::_entities</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to be updated. </p>
+
+<p class="definition">Definition at line <a class="el" href="Core_8hpp_source.html#l00028">28</a> of file <a class="el" href="Core_8hpp_source.html">Core.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a074921d8be54b2eaaf09d6658fe28c5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a074921d8be54b2eaaf09d6658fe28c5c">&#9670;&nbsp;</a></span>_lastGivenID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned TouhouFanGame::ECS::Core::_lastGivenID = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The last ID given to an <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> created. </p>
+
+<p class="definition">Definition at line <a class="el" href="Core_8hpp_source.html#l00022">22</a> of file <a class="el" href="Core_8hpp_source.html">Core.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a8d83d17489bc1bd083d45188f6b23587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d83d17489bc1bd083d45188f6b23587">&#9670;&nbsp;</a></span>_systems</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html">System</a>&gt; &gt; TouhouFanGame::ECS::Core::_systems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> loaded by the SystemFactory. </p>
+
+<p class="definition">Definition at line <a class="el" href="Core_8hpp_source.html#l00025">25</a> of file <a class="el" href="Core_8hpp_source.html">Core.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -369,10 +563,13 @@ Public Member Functions</h2></td></tr>
 <li>src/ECS/<a class="el" href="Core_8cpp_source.html">Core.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Core_html_a5e3ba8b46a49f63370b93dedb36f27ef"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Core.html#a5e3ba8b46a49f63370b93dedb36f27ef">TouhouFanGame::ECS::Core::getSystemByName</a></div><div class="ttdeci">System &amp; getSystemByName(const std::string &amp;name) const</div><div class="ttdef"><b>Definition:</b> <a href="Core_8cpp_source.html#l00051">Core.cpp:51</a></div></div>
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory_html_a4a159c4ae2ba6cfa4241d721a9b9f8c4"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a4a159c4ae2ba6cfa4241d721a9b9f8c4">TouhouFanGame::ECS::Factory::EntityFactory::build</a></div><div class="ttdeci">static Entity * build(const std::string &amp;name, unsigned int id)</div><div class="ttdef"><b>Definition:</b> <a href="EntityFactory_8cpp_source.html#l00028">EntityFactory.cpp:28</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Core_html_a8d83d17489bc1bd083d45188f6b23587"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Core.html#a8d83d17489bc1bd083d45188f6b23587">TouhouFanGame::ECS::Core::_systems</a></div><div class="ttdeci">std::vector&lt; std::unique_ptr&lt; System &gt; &gt; _systems</div><div class="ttdoc">All the System loaded by the SystemFactory.</div><div class="ttdef"><b>Definition:</b> <a href="Core_8hpp_source.html#l00025">Core.hpp:25</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Core_html_a5e3ba8b46a49f63370b93dedb36f27ef"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Core.html#a5e3ba8b46a49f63370b93dedb36f27ef">TouhouFanGame::ECS::Core::getSystemByName</a></div><div class="ttdeci">System &amp; getSystemByName(const std::string &amp;name) const</div><div class="ttdoc">Get a System by it's name.</div><div class="ttdef"><b>Definition:</b> <a href="Core_8cpp_source.html#l00051">Core.cpp:51</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory_html_a4a159c4ae2ba6cfa4241d721a9b9f8c4"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a4a159c4ae2ba6cfa4241d721a9b9f8c4">TouhouFanGame::ECS::Factory::EntityFactory::build</a></div><div class="ttdeci">static Entity * build(const std::string &amp;name, unsigned int id)</div><div class="ttdoc">Builds an Entity and assign it an ID.</div><div class="ttdef"><b>Definition:</b> <a href="EntityFactory_8cpp_source.html#l00028">EntityFactory.cpp:28</a></div></div>
 <div class="ttc" id="aExceptions_8cpp_html_a36444f2b61f20487cc92aad1ede5145f"><div class="ttname"><a href="Exceptions_8cpp.html#a36444f2b61f20487cc92aad1ede5145f">getLastExceptionName</a></div><div class="ttdeci">std::string getLastExceptionName()</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8cpp_source.html#l00007">Exceptions.cpp:7</a></div></div>
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory_html_aa9c35db49a9cd9d2e0289da9a71d1e51"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#aa9c35db49a9cd9d2e0289da9a71d1e51">TouhouFanGame::ECS::Factory::SystemFactory::buildAll</a></div><div class="ttdeci">static void buildAll(Core &amp;core, std::vector&lt; std::unique_ptr&lt; System &gt;&gt; &amp;buffer)</div><div class="ttdef"><b>Definition:</b> <a href="SystemFactory_8cpp_source.html#l00014">SystemFactory.cpp:14</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Core_html_ad74d8bdab957526d6d2684b1f9695864"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Core.html#ad74d8bdab957526d6d2684b1f9695864">TouhouFanGame::ECS::Core::_entities</a></div><div class="ttdeci">std::vector&lt; std::unique_ptr&lt; Entity &gt; &gt; _entities</div><div class="ttdoc">All the Entity to be updated.</div><div class="ttdef"><b>Definition:</b> <a href="Core_8hpp_source.html#l00028">Core.hpp:28</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory_html_aa9c35db49a9cd9d2e0289da9a71d1e51"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1SystemFactory.html#aa9c35db49a9cd9d2e0289da9a71d1e51">TouhouFanGame::ECS::Factory::SystemFactory::buildAll</a></div><div class="ttdeci">static void buildAll(Core &amp;core, std::vector&lt; std::unique_ptr&lt; System &gt;&gt; &amp;buffer)</div><div class="ttdoc">Builds one instance of each System.</div><div class="ttdef"><b>Definition:</b> <a href="SystemFactory_8cpp_source.html#l00014">SystemFactory.cpp:14</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Core_html_a074921d8be54b2eaaf09d6658fe28c5c"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Core.html#a074921d8be54b2eaaf09d6658fe28c5c">TouhouFanGame::ECS::Core::_lastGivenID</a></div><div class="ttdeci">unsigned _lastGivenID</div><div class="ttdoc">The last ID given to an Entity created.</div><div class="ttdef"><b>Definition:</b> <a href="Core_8hpp_source.html#l00022">Core.hpp:22</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

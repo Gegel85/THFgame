@@ -70,11 +70,15 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classTouhouFanGame_1_1ECS_1_1System-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">TouhouFanGame::ECS::System Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>, affecting Entities. The updateEntity method is called only if this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> has the corresponding <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> (a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> that has the same name as the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>)  
+ <a href="classTouhouFanGame_1_1ECS_1_1System.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="System_8hpp_source.html">System.hpp</a>&gt;</code></p>
 <div class="dynheader">
@@ -83,11 +87,11 @@ Inheritance diagram for TouhouFanGame::ECS::System:</div>
  <div class="center">
   <img src="classTouhouFanGame_1_1ECS_1_1System.png" usemap="#TouhouFanGame::ECS::System_map" alt=""/>
   <map id="TouhouFanGame::ECS::System_map" name="TouhouFanGame::ECS::System_map">
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html" alt="TouhouFanGame::ECS::Systems::BlockedByTerrainSystem" shape="rect" coords="0,56,338,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html" alt="TouhouFanGame::ECS::Systems::ControllableSystem" shape="rect" coords="348,56,686,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html" alt="TouhouFanGame::ECS::Systems::DisplayableSystem" shape="rect" coords="696,56,1034,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html" alt="TouhouFanGame::ECS::Systems::MovableSystem" shape="rect" coords="1044,56,1382,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html" alt="TouhouFanGame::ECS::Systems::UselessSystem" shape="rect" coords="1392,56,1730,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html" title="Updates Entity having a BlockedByTerrainComponent." alt="TouhouFanGame::ECS::Systems::BlockedByTerrainSystem" shape="rect" coords="0,56,338,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html" title="Updates Entity having a ControllableComponent." alt="TouhouFanGame::ECS::Systems::ControllableSystem" shape="rect" coords="348,56,686,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html" title="Updates Entity having a DisplayableComponent." alt="TouhouFanGame::ECS::Systems::DisplayableSystem" shape="rect" coords="696,56,1034,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html" title="Updates Entity having a MovableComponent." alt="TouhouFanGame::ECS::Systems::MovableSystem" shape="rect" coords="1044,56,1382,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html" title="A useless System meant for Component that don&#39;t need one." alt="TouhouFanGame::ECS::Systems::UselessSystem" shape="rect" coords="1392,56,1730,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -95,21 +99,35 @@ Inheritance diagram for TouhouFanGame::ECS::System:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ca7dec82521f29a735bf8e188a4e40a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a0ca7dec82521f29a735bf8e188a4e40a">System</a> (<a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html">Core</a> &amp;_parent, const std::string &amp;&amp;name, const std::vector&lt; std::string &gt; &amp;&amp;dependencies)</td></tr>
 <tr class="separator:a0ca7dec82521f29a735bf8e188a4e40a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add34d7ab58dae39ce751fbf44966b3b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#add34d7ab58dae39ce751fbf44966b3b5">checkDependencies</a> (const <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;) const</td></tr>
-<tr class="separator:add34d7ab58dae39ce751fbf44966b3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac976cce8fd91edf21ae9059a03d07bfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#ac976cce8fd91edf21ae9059a03d07bfd">checkDependencies</a> (const <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;entity) const</td></tr>
+<tr class="memdesc:ac976cce8fd91edf21ae9059a03d07bfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the entity match the dependencies.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#ac976cce8fd91edf21ae9059a03d07bfd">More...</a><br /></td></tr>
+<tr class="separator:ac976cce8fd91edf21ae9059a03d07bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd0b0884ebffab87f0e2cd2ac48b9d3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">getName</a> () const</td></tr>
+<tr class="memdesc:a7dd0b0884ebffab87f0e2cd2ac48b9d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">More...</a><br /></td></tr>
 <tr class="separator:a7dd0b0884ebffab87f0e2cd2ac48b9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa64010b2d8ff50b90efd735bdc78511"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#aaa64010b2d8ff50b90efd735bdc78511">updateEntity</a> (<a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;)=0</td></tr>
-<tr class="separator:aaa64010b2d8ff50b90efd735bdc78511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989156207ca899a2a99fed2c67f19ca1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a989156207ca899a2a99fed2c67f19ca1">updateEntity</a> (<a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;entity)=0</td></tr>
+<tr class="memdesc:a989156207ca899a2a99fed2c67f19ca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> logic to the entity.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#a989156207ca899a2a99fed2c67f19ca1">More...</a><br /></td></tr>
+<tr class="separator:a989156207ca899a2a99fed2c67f19ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a1e7986aedcfb6f4f066a734b3651461f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html">Core</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a1e7986aedcfb6f4f066a734b3651461f">_core</a></td></tr>
+<tr class="memdesc:a1e7986aedcfb6f4f066a734b3651461f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a> the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> is in.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#a1e7986aedcfb6f4f066a734b3651461f">More...</a><br /></td></tr>
 <tr class="separator:a1e7986aedcfb6f4f066a734b3651461f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1567fd7cc803704c4b607743350f99cc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">_name</a></td></tr>
+<tr class="memdesc:a1567fd7cc803704c4b607743350f99cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">More...</a><br /></td></tr>
+<tr class="separator:a1567fd7cc803704c4b607743350f99cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77424816eb786c8d9422ef6322b831c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#aa77424816eb786c8d9422ef6322b831c">_deps</a></td></tr>
+<tr class="memdesc:aa77424816eb786c8d9422ef6322b831c"><td class="mdescLeft">&#160;</td><td class="mdescRight">All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> required for this <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> to work.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#aa77424816eb786c8d9422ef6322b831c">More...</a><br /></td></tr>
+<tr class="separator:aa77424816eb786c8d9422ef6322b831c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="System_8hpp_source.html#l00018">18</a> of file <a class="el" href="System_8hpp_source.html">System.hpp</a>.</p>
+<div class="textblock"><p>A <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>, affecting Entities. The updateEntity method is called only if this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> has the corresponding <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> (a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> that has the same name as the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>) </p>
+
+<p class="definition">Definition at line <a class="el" href="System_8hpp_source.html#l00021">21</a> of file <a class="el" href="System_8hpp_source.html">System.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0ca7dec82521f29a735bf8e188a4e40a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ca7dec82521f29a735bf8e188a4e40a">&#9670;&nbsp;</a></span>System()</h2>
@@ -142,20 +160,28 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_parent</td><td>The <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a> the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> is in </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> </td></tr>
+    <tr><td class="paramname">dependencies</td><td>All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> required for this <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> to work </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="System_8cpp_source.html#l00010">10</a> of file <a class="el" href="System_8cpp_source.html">System.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                                                                                                :</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        _name(name),</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        _deps(dependencies),</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a1e7986aedcfb6f4f066a734b3651461f">_core</a>(core)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                                                                                                    :</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">_name</a>(name),</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#aa77424816eb786c8d9422ef6322b831c">_deps</a>(dependencies),</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a1e7986aedcfb6f4f066a734b3651461f">_core</a>(core)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="add34d7ab58dae39ce751fbf44966b3b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add34d7ab58dae39ce751fbf44966b3b5">&#9670;&nbsp;</a></span>checkDependencies()</h2>
+<a id="ac976cce8fd91edf21ae9059a03d07bfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac976cce8fd91edf21ae9059a03d07bfd">&#9670;&nbsp;</a></span>checkDependencies()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,16 +196,30 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Check if the entity match the dependencies. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to verify </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classTouhouFanGame_1_1ECS_1_1MissingDependencyException.html" title="A dependency required by a System was not satisfied.">MissingDependencyException</a></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="System_8cpp_source.html#l00022">22</a> of file <a class="el" href="System_8cpp_source.html">System.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;dep : this-&gt;_deps)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span> (!entity.hasComponent(dep))</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">throw</span> MissingDependencyException(</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    <span class="stringliteral">&quot;Entity n°&quot;</span> + std::to_string(entity.getID()) +</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <span class="stringliteral">&quot; is missing a &quot;</span> + dep + <span class="stringliteral">&quot;Component required by &quot;</span> +</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    this-&gt;_name + <span class="stringliteral">&quot;System&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                );</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;dep : this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#aa77424816eb786c8d9422ef6322b831c">_deps</a>)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                        <span class="keywordflow">if</span> (!entity.hasComponent(dep))</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                <span class="keywordflow">throw</span> MissingDependencyException(</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                        <span class="stringliteral">&quot;Entity n°&quot;</span> + std::to_string(entity.getID()) +</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                        <span class="stringliteral">&quot; is missing a &quot;</span> + dep + <span class="stringliteral">&quot;Component required by &quot;</span> +</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                        this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">_name</a> + <span class="stringliteral">&quot;System&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                                );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -198,15 +238,18 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="System_8cpp_source.html#l00017">17</a> of file <a class="el" href="System_8cpp_source.html">System.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">return</span> this-&gt;_name;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <span class="keywordflow">return</span> this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">_name</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aaa64010b2d8ff50b90efd735bdc78511"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa64010b2d8ff50b90efd735bdc78511">&#9670;&nbsp;</a></span>updateEntity()</h2>
+<a id="a989156207ca899a2a99fed2c67f19ca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989156207ca899a2a99fed2c67f19ca1">&#9670;&nbsp;</a></span>updateEntity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,7 +261,7 @@ Protected Attributes</h2></td></tr>
           <td class="memname">virtual void TouhouFanGame::ECS::System::updateEntity </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramname"><em>entity</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -228,6 +271,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Applies the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> logic to the entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td><a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to update </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html#ae3de01da0334b8ff2675c41e5546b51c">TouhouFanGame::ECS::Systems::ControllableSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html#a124d980f25ef4c9bfbc1b1156650a157">TouhouFanGame::ECS::Systems::BlockedByTerrainSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html#ab3fb66bb61947de06a0bbd48b5f1307f">TouhouFanGame::ECS::Systems::UselessSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html#a6014045b1dbafd48b1456d00bc6c8103">TouhouFanGame::ECS::Systems::DisplayableSystem</a>, and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html#a7f7b408443a2785bc5956bc99c77f93b">TouhouFanGame::ECS::Systems::MovableSystem</a>.</p>
 
@@ -254,6 +305,60 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>The <a class="el" href="classTouhouFanGame_1_1ECS_1_1Core.html" title="The core of an ECS. It holds the System and Entity and make them interact with each other.">Core</a> the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> is in. </p>
+
+<p class="definition">Definition at line <a class="el" href="System_8hpp_source.html#l00031">31</a> of file <a class="el" href="System_8hpp_source.html">System.hpp</a>.</p>
+
+</div>
+</div>
+<a id="aa77424816eb786c8d9422ef6322b831c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77424816eb786c8d9422ef6322b831c">&#9670;&nbsp;</a></span>_deps</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; TouhouFanGame::ECS::System::_deps</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>All the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> required for this <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a> to work. </p>
+
+<p class="definition">Definition at line <a class="el" href="System_8hpp_source.html#l00027">27</a> of file <a class="el" href="System_8hpp_source.html">System.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a1567fd7cc803704c4b607743350f99cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1567fd7cc803704c4b607743350f99cc">&#9670;&nbsp;</a></span>_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string TouhouFanGame::ECS::System::_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>. </p>
+
 <p class="definition">Definition at line <a class="el" href="System_8hpp_source.html#l00024">24</a> of file <a class="el" href="System_8hpp_source.html">System.hpp</a>.</p>
 
 </div>
@@ -263,7 +368,9 @@ Protected Attributes</h2></td></tr>
 <li>src/ECS/<a class="el" href="System_8cpp_source.html">System.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a1e7986aedcfb6f4f066a734b3651461f"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a1e7986aedcfb6f4f066a734b3651461f">TouhouFanGame::ECS::System::_core</a></div><div class="ttdeci">Core &amp; _core</div><div class="ttdef"><b>Definition:</b> <a href="System_8hpp_source.html#l00024">System.hpp:24</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a1567fd7cc803704c4b607743350f99cc"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">TouhouFanGame::ECS::System::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdoc">The name of the System.</div><div class="ttdef"><b>Definition:</b> <a href="System_8hpp_source.html#l00024">System.hpp:24</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_aa77424816eb786c8d9422ef6322b831c"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#aa77424816eb786c8d9422ef6322b831c">TouhouFanGame::ECS::System::_deps</a></div><div class="ttdeci">std::vector&lt; std::string &gt; _deps</div><div class="ttdoc">All the Component required for this System to work.</div><div class="ttdef"><b>Definition:</b> <a href="System_8hpp_source.html#l00027">System.hpp:27</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a1e7986aedcfb6f4f066a734b3651461f"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a1e7986aedcfb6f4f066a734b3651461f">TouhouFanGame::ECS::System::_core</a></div><div class="ttdeci">Core &amp; _core</div><div class="ttdoc">The Core the System is in.</div><div class="ttdef"><b>Definition:</b> <a href="System_8hpp_source.html#l00031">System.hpp:31</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

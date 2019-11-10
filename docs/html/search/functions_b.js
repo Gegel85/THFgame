@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['main_399',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
-  ['makeentity_400',['makeEntity',['../classTouhouFanGame_1_1ECS_1_1Core.html#af516027cb0604fd6aa3ba194307247d5',1,'TouhouFanGame::ECS::Core']]],
-  ['mapnotloadedexception_401',['MapNotLoadedException',['../classTouhouFanGame_1_1MapNotLoadedException.html#a27691f8e21c526a2d562306df8d99fee',1,'TouhouFanGame::MapNotLoadedException']]],
-  ['missingdependencyexception_402',['MissingDependencyException',['../classTouhouFanGame_1_1ECS_1_1MissingDependencyException.html#af4e992ef265031959f8c444d1fdd928d',1,'TouhouFanGame::ECS::MissingDependencyException']]],
-  ['movablecomponent_403',['MovableComponent',['../classTouhouFanGame_1_1ECS_1_1Components_1_1MovableComponent.html#a6e80cc2ad084592aeaa80f9609b88d4e',1,'TouhouFanGame::ECS::Components::MovableComponent']]],
-  ['movablesystem_404',['MovableSystem',['../classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html#a637c7f63301095afdb749a7e490e1ce5',1,'TouhouFanGame::ECS::Systems::MovableSystem']]],
-  ['msg_405',['msg',['../classTouhouFanGame_1_1Logger.html#a1d3e5850cdd72b761058954538adff95',1,'TouhouFanGame::Logger']]]
+  ['loadassets_474',['loadAssets',['../classTouhouFanGame_1_1Loader.html#a01dd8aec9508d76a2a805ddde22b2ae0',1,'TouhouFanGame::Loader']]],
+  ['loadassetsfromjson_475',['loadAssetsFromJson',['../classTouhouFanGame_1_1Loader.html#a2c7c4e76447d351ba7b7e15cd9dd0f0b',1,'TouhouFanGame::Loader']]],
+  ['loadfile_476',['loadFile',['../classTouhouFanGame_1_1Loader.html#ad00d4011609fd6cc4c5dd03b59ca24cc',1,'TouhouFanGame::Loader::loadFile(sf::SoundBuffer &amp;buffer, const std::string &amp;path)'],['../classTouhouFanGame_1_1Loader.html#a7e82ee7e6a540562ee08a20d07e30f82',1,'TouhouFanGame::Loader::loadFile(sf::Music &amp;music, const std::string &amp;path)'],['../classTouhouFanGame_1_1Loader.html#a8b2ed9c1b49a44fbade6f2398b554d0b',1,'TouhouFanGame::Loader::loadFile(sf::Texture &amp;texture, const std::string &amp;path)']]],
+  ['loadfromfile_477',['loadFromFile',['../classTouhouFanGame_1_1Map.html#a1a285af7bc17da5fa7357d924d506117',1,'TouhouFanGame::Map']]],
+  ['loadsettings_478',['loadSettings',['../classTouhouFanGame_1_1Loader.html#a5d25a59ab0f4b1c147e72a6321e77961',1,'TouhouFanGame::Loader']]],
+  ['logger_479',['Logger',['../classTouhouFanGame_1_1Logger.html#a2bf125ade73d70345319d4085c14c580',1,'TouhouFanGame::Logger']]]
 ];

@@ -21,10 +21,28 @@ namespace TouhouFanGame
 
 	void Map::serialize(std::ostream &stream) const
 	{
-		if (this->_path.empty())
+		if (this->_path.empty()) {
+			logger.error("Trying to serialize a not loaded map.");
 			throw MapNotLoadedException();
+		}
 		stream << this->_path << '\0';
 		stream << this->_core;
+	}
+
+	void Map::serialize(const std::string &path)
+	{
+		logger.info("Saving map to " + path);
+		Utils::makeDirectoryTree(path);
+
+		std::ofstream stream{path};
+
+		if (stream.fail()) {
+			logger.error("Couldn't save map to " + path + ": " + strerror(errno));
+			throw MapSavingFailureException(path + ": " + strerror(errno));
+		}
+
+		this->serialize(stream);
+		stream.close();
 	}
 
 	void Map::unserialize(std::istream &stream)
@@ -32,6 +50,30 @@ namespace TouhouFanGame
 		std::getline(stream, this->_path, '\0');
 		this->loadFromFile(this->_path, false);
 		stream >> this->_core;
+	}
+
+	void Map::unserialize(const std::string &path)
+	{
+		logger.info("Loading saved map from " + path);
+
+		std::ifstream  stream{path};
+
+		if (stream.fail()) {
+			logger.error("Cannot open saved map from " + path + ": " + strerror(errno));
+			throw CorruptedMapException(path + ": " + strerror(errno));
+		}
+
+		this->unserialize(stream);
+		stream.close();
+	}
+
+	void Map::loadMap(unsigned short id)
+	{
+		try {
+			this->unserialize("saves/map_" + std::to_string(id) + ".sav");
+			return;
+		} catch (CorruptedMapException &e) {}
+		this->loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
 	}
 
 	void Map::update()
@@ -42,16 +84,16 @@ namespace TouhouFanGame
 		auto size = this->_getPlayerSize();
 
 		if (pos.x < size.x / -2.) {
-			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::LEFT]) + ".map");
+			this->loadMap(this->_links[Input::LEFT]);
 			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
 		} else if (pos.y < size.y / -2.) {
-			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::UP]) + ".map");
+			this->loadMap(this->_links[Input::UP]);
 			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
 		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
-			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::RIGHT]) + ".map");
+			this->loadMap(this->_links[Input::RIGHT]);
 			pos.x = size.x / -2.;
 		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
-			this->loadFromFile("assets/maps/map_" + std::to_string(this->_links[Input::DOWN]) + ".map");
+			this->loadMap(this->_links[Input::DOWN]);
 			pos.y = size.y / -2.;
 		}
 
@@ -116,16 +158,16 @@ namespace TouhouFanGame
 
 		this->_size.x = _readInteger<unsigned short>(stream);
 		this->_size.y = _readInteger<unsigned short>(stream);
-		logger.debug("Map size is " + toString(this->_size) + " tiles");
+		logger.debug("Map size is " + Utils::toString(this->_size) + " tiles");
 
 		for (auto len = _readInteger<unsigned>(stream); len != 0; len--) {
 			auto &result = this->_tpTriggers.emplace_back(stream);
 
 			logger.debug(
 				std::to_string(len) + " teleporters remaining ->"
-				"Position: " + toString(result.location) +
+				"Position: " + Utils::toString(result.location) +
 				"Map: " + std::to_string(result.mapId) +
-				"Spawn: " + toString(result.mapSpawn)
+				"Spawn: " + Utils::toString(result.mapSpawn)
 			);
 		}
 
@@ -155,14 +197,17 @@ namespace TouhouFanGame
 		std::ifstream stream{path};
 
 		logger.info("Loading map " + path);
-		if (stream.fail())
-			throw CorruptedMapException("Cannot open file " + path);
+		if (stream.fail()) {
+			logger.error("Cannot load map " + path + ": " + strerror(errno));
+			throw CorruptedMapException("Cannot open file " + path + ": " + strerror(errno));
+		}
 
 		this->reset();
 		stream.exceptions(stream.exceptions() | std::ifstream::eofbit);
 		try {
 			this->_loadFromStream(stream, loadEntities);
 		} catch (std::ios_base::failure &) {
+			logger.error("Unexpected EOF reached when trying to load map " + path);
 			throw CorruptedMapException("Cannot load map " + path + ": EOF reached");
 		}
 		this->_path = path;

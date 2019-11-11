@@ -75,16 +75,21 @@ $(function() {
 <div class="title">Utils.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;io.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;SFML/Graphics.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="Game_8hpp_source.html">Game.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Exceptions_8hpp_source.html">Exceptions.hpp</a>&quot;</code><br />
 </div>
 <p><a href="Utils_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceTouhouFanGame"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTouhouFanGame.html">TouhouFanGame</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceTouhouFanGame_1_1Utils"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTouhouFanGame_1_1Utils.html">TouhouFanGame::Utils</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -94,9 +99,12 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa07abd8cd59bc1c90f4bb9692d2a1a25"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTouhouFanGame.html#aa07abd8cd59bc1c90f4bb9692d2a1a25">TouhouFanGame::dispMsg</a> (const std::string &amp;title, const std::string &amp;content, int variate)</td></tr>
-<tr class="memdesc:aa07abd8cd59bc1c90f4bb9692d2a1a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display a Windows dialog box.  <a href="namespaceTouhouFanGame.html#aa07abd8cd59bc1c90f4bb9692d2a1a25">More...</a><br /></td></tr>
-<tr class="separator:aa07abd8cd59bc1c90f4bb9692d2a1a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00d91c14c4b526efeb9bf3893a32c9cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTouhouFanGame_1_1Utils.html#a00d91c14c4b526efeb9bf3893a32c9cf">TouhouFanGame::Utils::dispMsg</a> (const std::string &amp;title, const std::string &amp;content, int variate)</td></tr>
+<tr class="memdesc:a00d91c14c4b526efeb9bf3893a32c9cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display a Windows dialog box.  <a href="namespaceTouhouFanGame_1_1Utils.html#a00d91c14c4b526efeb9bf3893a32c9cf">More...</a><br /></td></tr>
+<tr class="separator:a00d91c14c4b526efeb9bf3893a32c9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab413367d0224b48e785c3b04db8a13b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTouhouFanGame_1_1Utils.html#ab413367d0224b48e785c3b04db8a13b9">TouhouFanGame::Utils::makeDirectoryTree</a> (const std::string &amp;tree)</td></tr>
+<tr class="memdesc:ab413367d0224b48e785c3b04db8a13b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a whole directory tree. The last entry is supposed to be a file and isn't made as a directory.  <a href="namespaceTouhouFanGame_1_1Utils.html#ab413367d0224b48e785c3b04db8a13b9">More...</a><br /></td></tr>
+<tr class="separator:ab413367d0224b48e785c3b04db8a13b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a5da0fd3ceb749c735cb36bfac78659a7"></a>
@@ -111,7 +119,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00009">9</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00012">12</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
 
 </div>
 </div>

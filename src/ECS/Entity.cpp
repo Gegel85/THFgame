@@ -7,7 +7,8 @@
 
 namespace TouhouFanGame::ECS
 {
-	Entity::Entity(unsigned id, const std::string &name, const std::vector<Component *> &&components) :
+	Entity::Entity(unsigned id, const std::string &name, const std::vector<Component *> &&components, bool serializable) :
+		_serializable(serializable),
 		_id(id),
 		_name(name)
 	{
@@ -68,7 +69,10 @@ namespace TouhouFanGame::ECS
 	}
 
 	void Entity::serialize(std::ostream &) const
-	{}
+	{
+		if (!this->_serializable)
+			return;
+	}
 
 	void Entity::unserialize(std::istream &)
 	{}

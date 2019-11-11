@@ -16,6 +16,9 @@ namespace TouhouFanGame::ECS
 	//! @brief Entity containing Component and updated by System
 	class Entity {
 	private:
+		//! @brief If this is the to false, the Entity will not be serialized.
+		bool _serializable = true;
+
 		//! @brief Whether this Entity is marked for deletion.
 		bool _toDel = false;
 
@@ -34,9 +37,10 @@ namespace TouhouFanGame::ECS
 		//! @param id The ID of the Entity.
 		//! @param name The name of the Entity.
 		//! @param components The Component of the Entity.
+		//! @param serializable Whether this Entity should be serialized or not.
 		//! @warning The components contained in the components vector needs to be allocated using new.
 		//! The will all be deleted when the Entity is destroyed.
-		Entity(unsigned id, const std::string &name, const std::vector<Component *> &&components);
+		Entity(unsigned id, const std::string &name, const std::vector<Component *> &&components, bool serializable = true);
 
 		//! @brief Fetch the ID of the Entity.
 		//! @return The ID of this Entity.

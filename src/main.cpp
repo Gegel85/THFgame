@@ -49,7 +49,7 @@ int	main()
 		TouhouFanGame::logger.info("Goodbye !");
 	} catch (std::exception &e) {
 		TouhouFanGame::logger.fatal(getLastExceptionName() + ": " + e.what());
-		TouhouFanGame::dispMsg(
+		TouhouFanGame::Utils::dispMsg(
 			"Fatal Error",
 			"An unrecoverable error occurred\n\n" +
 			getLastExceptionName() + ":\n" + e.what() + "\n\n"

@@ -46,6 +46,22 @@ namespace TouhouFanGame
 			BaseException("This map isn't loaded")
 		{};
 	};
+
+	//! @brief The map couldn't be saved
+	class MapSavingFailureException : public BaseException {
+	public:
+		explicit MapSavingFailureException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief The folder couldn't be created
+	class FolderCreationErrorException : public BaseException {
+	public:
+		explicit FolderCreationErrorException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
 }
 
 std::string getLastExceptionName();

@@ -15,7 +15,7 @@
 #include <windows.h>
 #endif
 
-namespace TouhouFanGame
+namespace TouhouFanGame::Utils
 {
 	//! @brief Serialize an SFML Vector2 of 2 numbers.
 	//! @details It will serialize the vector in a string like this "({x_value}, {y_value})".
@@ -35,6 +35,11 @@ namespace TouhouFanGame
 	//! @return The button clicked by the user.
 	//! @note On Non-Windows systems, it will simulate the Windows dialog box. Only only MB_YESNO, MB_ICONERROR and MB_OK are simulated on those systems.
 	int	dispMsg(const std::string &title, const std::string &content, int variate);
+
+	//! @brief Makes a whole directory tree. The last entry is supposed to be a file and isn't made as a directory.
+	//! @param tree The tree to make, folders separated by '/'.
+	//! @throw FolderCreationErrorException
+	void	makeDirectoryTree(const std::string &tree);
 }
 
 #endif //THFGAME_UTILS_HPP

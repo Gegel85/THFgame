@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['loader_327',['Loader',['../classTouhouFanGame_1_1Loader.html',1,'TouhouFanGame']]],
-  ['logger_328',['Logger',['../classTouhouFanGame_1_1Logger.html',1,'TouhouFanGame']]]
+  ['keyboard_333',['Keyboard',['../classTouhouFanGame_1_1Inputs_1_1Keyboard.html',1,'TouhouFanGame::Inputs']]]
 ];

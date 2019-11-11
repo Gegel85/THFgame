@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keyboard_326',['Keyboard',['../classTouhouFanGame_1_1Inputs_1_1Keyboard.html',1,'TouhouFanGame::Inputs']]]
+  ['input_331',['Input',['../classTouhouFanGame_1_1Input.html',1,'TouhouFanGame']]],
+  ['invalidanimationconfigexception_332',['InvalidAnimationConfigException',['../classTouhouFanGame_1_1Rendering_1_1InvalidAnimationConfigException.html',1,'TouhouFanGame::Rendering']]]
 ];

@@ -38,7 +38,7 @@ namespace TouhouFanGame
 		//! @brief The four border links.
 		unsigned short _links[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
 
-		//! @brief The path to the currently loaded map
+		//! @brief The path to the currently loaded map.
 		std::string _path;
 
 		//! @brief The size of map (in tiles).
@@ -86,17 +86,17 @@ namespace TouhouFanGame
 		static float _getCameraCenter(float size, float screenSize, float focusPoint);
 
 		//! @return The current position of the player on the map.
-		//! @warning Throws if no player or multiple players are found
+		//! @warning Throws if no player or multiple players are found.
 		//! @throw CorruptedMapException
 		sf::Vector2f &_getPlayerPosition();
 
 		//! @return The current size of the player on the map.
-		//! @warning Throws if no player or multiple players are found
+		//! @warning Throws if no player or multiple players are found.
 		//! @throw CorruptedMapException
 		sf::Vector2u &_getPlayerSize();
 
 		//! @return Returns the player.
-		//! @warning Throws if no player or multiple players are found
+		//! @warning Throws if no player or multiple players are found.
 		//! @throw CorruptedMapException
 		ECS::Entity &_getPlayer();
 
@@ -109,42 +109,56 @@ namespace TouhouFanGame
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;
 
-		//! @brief Get the object at position x y
-		//! @param x Horizontal position
-		//! @param y Vertical position
-		//! @return The object or 00 if out of bound
+		//! @brief Get the object at position x y.
+		//! @param x Horizontal position.
+		//! @param y Vertical position.
+		//! @return The object or 00 if out of bound.
 		unsigned char getObjectAt(int x, int y) const;
 
-		//! @brief Get the object at position pos
-		//! @param pos Position
-		//! @return The object or 00 if out of bound
+		//! @brief Get the object at position pos.
+		//! @param pos Position.
+		//! @return The object or 00 if out of bound.
 		unsigned char getObjectAt(sf::Vector2f pos) const;
 
 		//! @brief Serialize a map to the stream.
 		//! @param stream The stream to serialize the map to.
 		void serialize(std::ostream &stream) const;
 
+		//! @brief Serialize the map to a file
+		//! @param path The file to save to.
+		//! @throw MapSavingFailureException
+		void serialize(const std::string &path);
+
 		//! @brief Unserialize a map from the stream.
 		//! @param stream The stream to unserialize the map from.
 		void unserialize(std::istream &stream);
 
+		//! @brief Unserialize the map from a file
+		//! @param path The file to load from.
+		//! @throw CorruptedMapException
+		void unserialize(const std::string &path);
+
 		//! @brief Loads the map from the stream given.
 		//! @param path The path to the file to load the map from.
 		//! @param loadEntities Whether we want to load the entities or not.
+		//! @throw CorruptedMapException
 		void loadFromFile(const std::string &path, bool loadEntities = true);
 
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.
 		void updateCameraPosition(sf::Vector2f center);
 
-		//! @brief Resets the object to it's default state
+		//! @brief Resets the object to it's default state.
 		void reset();
 
-		//! @brief Updates the entities
+		//! @brief Updates the entities.
 		void update();
 
-		//! @brief Renders the map on a screen
+		//! @brief Renders the map on a screen.
 		void render();
+
+		//! @brief Load a map from it's ID.
+		void loadMap(unsigned short id);
 	};
 }
 

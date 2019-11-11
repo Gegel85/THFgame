@@ -3,6 +3,9 @@
 //
 
 
+#include <algorithm>
+#include <io.h>
+
 #ifndef _WIN32
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -11,8 +14,9 @@
 #endif
 
 #include "Utils.hpp"
+#include "Exceptions.hpp"
 
-namespace TouhouFanGame
+namespace TouhouFanGame::Utils
 {
 	int	dispMsg(const std::string &title, const std::string &content, int variate)
 	{
@@ -84,5 +88,20 @@ namespace TouhouFanGame
 		}
 		return (clicked);
 #endif
+	}
+
+	void	makeDirectoryTree(const std::string &tree)
+	{
+		for (auto it = std::find(tree.begin(), tree.end(), '/'); it < tree.end(); it = std::find(it + 1, tree.end(), '/')) {
+			if (
+#ifndef _WIN32
+				mkdir(tree.substr(0, it - tree.begin()).c_str() , 0755) < 0 &&
+#else
+				mkdir(tree.substr(0, it - tree.begin()).c_str()) < 0 &&
+#endif
+				errno != EEXIST
+			)
+				throw FolderCreationErrorException(tree.substr(0, it - tree.begin()) + ": " + strerror(errno));
+		}
 	}
 }

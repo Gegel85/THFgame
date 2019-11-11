@@ -11,9 +11,13 @@
 
 namespace TouhouFanGame::ECS::Components
 {
+	//! @brief Given to Entity that exists somewhere
 	class PositionComponent : public ECS::Component {
 	public:
+		//! @brief The position of the Entity
 		sf::Vector2f	position{0, 0};
+
+		//! @brief The size of the Entity
 		sf::Vector2u	size;
 
 		PositionComponent(sf::Vector2u size);

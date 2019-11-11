@@ -11,11 +11,19 @@
 
 namespace TouhouFanGame::ECS::Components
 {
+	//! @brief Given to Entity that can be controlled.
 	class ControllableComponent : public Component {
 	public:
+		//! @brief The Input device controlling this Entity.
 		Input &input;
+
+		//! @brief Whether the controls are disabled or not.
 		bool disabled = false;
+
+		//! @brief The base speed
 		float regularSpeed;
+
+		//! @brief The speed when sprinting
 		float sprintSpeed;
 
 		explicit ControllableComponent(Input &input, float regularSpeed, float sprintSpeed);

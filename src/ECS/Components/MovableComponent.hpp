@@ -13,10 +13,14 @@
 
 namespace TouhouFanGame::ECS::Components
 {
+	//! @brief Given to Entity that can move.
 	class MovableComponent : public Component {
 	public:
+		//! @brief The direction to move to.
 		unsigned char	dir = 0;
-		float		speed = 0; //I AM SPEEEEEEEEEEEED
+
+		//! @brief The speed moving at.
+		float	speed = 0; //I AM SPEEEEEEEEEEEED
 
 		explicit MovableComponent();
 		~MovableComponent() override = default;

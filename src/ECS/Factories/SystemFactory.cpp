@@ -2,6 +2,7 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
+#include <iostream>
 #include "SystemFactory.hpp"
 #include "../Systems/DisplayableSystem.hpp"
 #include "../Systems/ControllableSystem.hpp"

@@ -2,6 +2,7 @@
 // Created by Gegel85 on 27/09/2019.
 //
 
+#include <sstream>
 #include "Core.hpp"
 #include "Exceptions.hpp"
 #include "Factories/EntityFactory.hpp"
@@ -13,6 +14,9 @@ namespace TouhouFanGame::ECS
 	Core::Core()
 	{
 		Factory::SystemFactory::buildAll(*this, this->_systems);
+		logger.debug("Built " + std::to_string(this->_systems.size()) + " Systems");
+		for (auto &system : this->_systems)
+			logger.debug("Built " + system->getName() + "System");
 	}
 
 	Entity &Core::makeEntity(const std::string &typeName)
@@ -33,7 +37,7 @@ namespace TouhouFanGame::ECS
 				} catch (std::exception &e) {
 					throw UpdateErrorException(
 						"Error while updating entity #" + std::to_string(entity->getID()) +
-						"(" + entity->getName() + ")\n"+
+						" (" + entity->getName() + ")\n"+
 						component + "System :\n\t" +
 						getLastExceptionName() + ": " + e.what()
 					);

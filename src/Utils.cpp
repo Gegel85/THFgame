@@ -4,13 +4,17 @@
 
 
 #include <algorithm>
-#include <io.h>
+#include <cstring>
 
 #ifndef _WIN32
 #include <vector>
+#include <sys/stat.h>
 #include <SFML/Graphics.hpp>
-#define ICON_ERROR_PATH "assets/box/error.png"
 #include "Game.hpp"
+
+#define ICON_ERROR_PATH "assets/box/error.png"
+#else
+#include <io.h>
 #endif
 
 #include "Utils.hpp"

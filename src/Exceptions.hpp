@@ -55,6 +55,14 @@ namespace TouhouFanGame
 		{};
 	};
 
+	//! @brief This file is not a valid saved map
+	class InvalidSavedMap : public BaseException {
+	public:
+		explicit InvalidSavedMap(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
 	//! @brief The folder couldn't be created
 	class FolderCreationErrorException : public BaseException {
 	public:

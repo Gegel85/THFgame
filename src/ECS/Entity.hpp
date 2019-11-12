@@ -54,6 +54,9 @@ namespace TouhouFanGame::ECS
 		//! @return True has requested deletion. False otherwise.
 		bool toBeDestroyed() const;
 
+		//! @brief Whether the Entity can be serialized or not
+		bool isSerializable() const;
+
 		//! @brief Mark this Entity for deletion
 		void destroy();
 
@@ -71,6 +74,7 @@ namespace TouhouFanGame::ECS
 		std::vector<std::string> getComponentsNames() const;
 
 		//! @brief Serializes an Entity to a stream.
+		//! @throw NotSerializableException
 		void serialize(std::ostream &) const;
 
 		//! @brief Loads an Entity from a stream.

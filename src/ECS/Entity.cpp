@@ -2,8 +2,10 @@
 // Created by Gegel85 on 26/09/2019.
 //
 
+#include <iostream>
 #include "Entity.hpp"
 #include "Exceptions.hpp"
+#include "Factories/ComponentFactory.hpp"
 
 namespace TouhouFanGame::ECS
 {
@@ -68,14 +70,35 @@ namespace TouhouFanGame::ECS
 		return names;
 	}
 
-	void Entity::serialize(std::ostream &) const
+	bool Entity::isSerializable() const
 	{
-		if (!this->_serializable)
-			return;
+		return this->_serializable;
 	}
 
-	void Entity::unserialize(std::istream &)
-	{}
+	void Entity::serialize(std::ostream &stream) const
+	{
+		if (!this->_serializable)
+			throw NotSerializableException();
+
+		stream << this->_name << '\0' << this->_id << std::endl;
+		for (auto &comp : this->_components)
+			stream << comp->getName() << " " << *comp << std::endl;
+		stream << "THFG_ECS_Entity_End";
+	}
+
+	void Entity::unserialize(std::istream &stream)
+	{
+		std::string str;
+
+		std::getline(stream, this->_name, '\0');
+		stream >> this->_id;
+
+		for (stream >> str; str != "THFG_ECS_Entity_End" && !stream.eof(); stream >> str)
+			stream >> *this->_components.emplace_back(Factory::ComponentFactory::build(str));
+
+		if (str != "THFG_ECS_Entity_End")
+			throw InvalidSerializedString("Unexpected EOF");
+	}
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Entity &entity)

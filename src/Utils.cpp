@@ -29,7 +29,6 @@ namespace TouhouFanGame::Utils
 #else
 		std::vector<std::string>buttons;
 		int			clicked = -1;
-		sf::RenderWindow	win{{700, 220}, title, sf::Style::Titlebar | sf::Style::Close};
 		sf::Event		event;
 		sf::RectangleShape	rect;
 		sf::Font		font;
@@ -38,7 +37,12 @@ namespace TouhouFanGame::Utils
 		sf::Texture		texture;
 		sf::Sprite		sprite;
 		bool			hasIcon = false;
+		sf::RenderWindow	win{{700, 220}, title, sf::Style::Titlebar | sf::Style::Close};
 
+		win.setPosition({
+			static_cast<int>(sf::VideoMode::getDesktopMode().width  / 2 - 350),
+			static_cast<int>(sf::VideoMode::getDesktopMode().height / 2 - 110),
+		});
 		if (!font.loadFromFile("assets/arial.ttf")) {
 			logger.error("Cannot load default font !");
 			logger.error("Displaying the message in the console");

@@ -9,6 +9,7 @@
 #include <SFML/Audio.hpp>
 #include "ECS/Core.hpp"
 #include "NotCopyable.hpp"
+#include "Exceptions.hpp"
 
 #define PLAYER_SIZE 32
 
@@ -72,6 +73,8 @@ namespace TouhouFanGame
 			type result = 0;
 
 			for (size_t i = 0; i < sizeof(result); i++) {
+				if (stream.eof())
+					throw CorruptedMapException("EOF reached");
 				stream.read(&byte, 1);
 				result = result << 8U | byte;
 			}
@@ -158,7 +161,13 @@ namespace TouhouFanGame
 		void render();
 
 		//! @brief Load a map from it's ID.
+		//! @throw InvalidSavedMap
+		//! @throw CorruptedMapException
 		void loadMap(unsigned short id);
+
+		//! @brief Save the map as ID.
+		//! @throw MapSavingFailureException
+		void saveMap(unsigned short id);
 	};
 }
 

@@ -6,6 +6,7 @@
 #include "Exceptions.hpp"
 #include "Factories/EntityFactory.hpp"
 #include "Factories/SystemFactory.hpp"
+#include "../Game.hpp"
 
 namespace TouhouFanGame::ECS
 {
@@ -85,10 +86,31 @@ namespace TouhouFanGame::ECS
 	}
 
 	void Core::serialize(std::ostream &stream) const
-	{}
+	{
+		for (auto &entity : this->_entities)
+			if (entity->isSerializable())
+				stream << "Entity " << *entity << std::endl;
+		stream << "THFG_ECS_Core_End" << std::endl;
+	}
 
 	void Core::unserialize(std::istream &stream)
-	{}
+	{
+		std::string str;
+
+		for (stream >> str; str != "THFG_ECS_Core_End" && !stream.eof(); stream >> str) {
+			Entity &entity = *this->_entities.emplace_back(new Entity());
+
+			if (str != "Entity")
+				throw InvalidSerializedString("Invalid Entity header");
+
+			stream >> entity;
+			if (&this->getEntityByID(entity.getID()) != &entity)
+				throw InvalidSerializedString("Two entities have the same ID");
+		}
+
+		if (str != "THFG_ECS_Core_End")
+			throw InvalidSerializedString("Unexpected EOF");
+	}
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Core &core)

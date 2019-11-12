@@ -60,7 +60,7 @@ namespace TouhouFanGame
 
 		if (stream.fail()) {
 			logger.error("Cannot open saved map from " + path + ": " + strerror(errno));
-			throw CorruptedMapException(path + ": " + strerror(errno));
+			throw InvalidSavedMap(path + ": " + strerror(errno));
 		}
 
 		this->unserialize(stream);
@@ -72,8 +72,17 @@ namespace TouhouFanGame
 		try {
 			this->unserialize("saves/map_" + std::to_string(id) + ".sav");
 			return;
-		} catch (CorruptedMapException &e) {}
+		} catch (InvalidSavedMap &) {
+		} catch (std::exception &e) {
+			throw InvalidSavedMap(e.what());
+		}
+
 		this->loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
+	}
+
+	void Map::saveMap(unsigned short id)
+	{
+		this->serialize("saves/map_" + std::to_string(id) + ".sav");
 	}
 
 	void Map::update()
@@ -147,6 +156,8 @@ namespace TouhouFanGame
 
 		logger.debug("Loading map");
 		do {
+			if (stream.eof())
+				throw CorruptedMapException("EOF reached");
 			stream.read(&byte, 1);
 			if (byte)
 				this->_tileMap.push_back(byte);
@@ -203,13 +214,7 @@ namespace TouhouFanGame
 		}
 
 		this->reset();
-		stream.exceptions(stream.exceptions() | std::ifstream::eofbit);
-		try {
-			this->_loadFromStream(stream, loadEntities);
-		} catch (std::ios_base::failure &) {
-			logger.error("Unexpected EOF reached when trying to load map " + path);
-			throw CorruptedMapException("Cannot load map " + path + ": EOF reached");
-		}
+		this->_loadFromStream(stream, loadEntities);
 		this->_path = path;
 	}
 

@@ -20,16 +20,17 @@ namespace TouhouFanGame::ECS::Components
 		//! @brief Whether the controls are disabled or not.
 		bool disabled = false;
 
-		//! @brief The base speed
+		//! @brief The base speed.
 		float regularSpeed;
 
-		//! @brief The speed when sprinting
+		//! @brief The speed when sprinting.
 		float sprintSpeed;
 
-		explicit ControllableComponent(Input &input, float regularSpeed, float sprintSpeed);
+		//! @brief Unserializer constructor.
+		ControllableComponent(Input &input, std::istream &stream);
+		ControllableComponent(Input &input, float regularSpeed, float sprintSpeed);
 		~ControllableComponent() override = default;
 		void serialize(std::ostream &) const override;
-		void unserialize(std::istream &) override;
 	};
 }
 

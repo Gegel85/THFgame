@@ -20,10 +20,11 @@ namespace TouhouFanGame::ECS::Components
 		//! @brief The size of the Entity
 		sf::Vector2u	size;
 
+		//! @brief Unserializer constructor.
+		PositionComponent(std::istream &stream);
 		PositionComponent(sf::Vector2u size);
 		~PositionComponent() override = default;
 		void serialize(std::ostream &) const override;
-		void unserialize(std::istream &) override;
 	};
 }
 

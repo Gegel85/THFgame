@@ -3,9 +3,19 @@
 //
 
 #include "ControllableComponent.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
+	ControllableComponent::ControllableComponent(TouhouFanGame::Input &input, std::istream &stream) :
+		Component("Controllable"),
+		input(input)
+	{
+		stream >> regularSpeed >> sprintSpeed;
+		if (stream.fail())
+			throw InvalidSerializedString("Invalid ControllableComponent");
+	}
+
 	ControllableComponent::ControllableComponent(TouhouFanGame::Input &input, float regularSpeed, float sprintSpeed) :
 		Component("Controllable"),
 		input(input),
@@ -13,9 +23,8 @@ namespace TouhouFanGame::ECS::Components
 		sprintSpeed(sprintSpeed)
 	{}
 
-	void ControllableComponent::serialize(std::ostream &) const
-	{}
-
-	void ControllableComponent::unserialize(std::istream &)
-	{}
+	void ControllableComponent::serialize(std::ostream &stream) const
+	{
+		stream << regularSpeed << " " << sprintSpeed;
+	}
 }

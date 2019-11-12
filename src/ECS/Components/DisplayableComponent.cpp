@@ -7,6 +7,18 @@
 
 namespace TouhouFanGame::ECS::Components
 {
+	DisplayableComponent::DisplayableComponent(std::istream &stream) :
+		Component("Displayable"),
+		_configPath([&stream](){
+			std::string str;
+
+			stream >> str;
+			return str;
+		}()),
+		renderEntity(_game.resources.screen->addEntity(this->_configPath))
+	{
+	}
+
 	DisplayableComponent::DisplayableComponent(const std::string &config) :
 		Component("Displayable"),
 		_configPath(config),
@@ -18,9 +30,8 @@ namespace TouhouFanGame::ECS::Components
 		_game.resources.screen->removeEntity(this->renderEntity);
 	}
 
-	void DisplayableComponent::serialize(std::ostream &) const
-	{}
-
-	void DisplayableComponent::unserialize(std::istream &)
-	{}
+	void DisplayableComponent::serialize(std::ostream &stream) const
+	{
+		stream << this->_configPath;
+	}
 }

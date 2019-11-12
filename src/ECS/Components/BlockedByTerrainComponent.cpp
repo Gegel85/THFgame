@@ -14,7 +14,4 @@ namespace TouhouFanGame::ECS::Components
 
 	void BlockedByTerrainComponent::serialize(std::ostream &) const
 	{}
-
-	void BlockedByTerrainComponent::unserialize(std::istream &)
-	{}
 }

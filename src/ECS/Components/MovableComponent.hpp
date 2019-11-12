@@ -23,9 +23,10 @@ namespace TouhouFanGame::ECS::Components
 		float	speed = 0; //I AM SPEEEEEEEEEEEED
 
 		explicit MovableComponent();
+		//! @brief Unserializer constructor.
+		explicit MovableComponent(std::istream &stream);
 		~MovableComponent() override = default;
 		void serialize(std::ostream &) const override;
-		void unserialize(std::istream &) override;
 	};
 }
 

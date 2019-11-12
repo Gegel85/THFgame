@@ -24,10 +24,11 @@ namespace TouhouFanGame::ECS::Components
 		//! @brief The current Animation of the Entity.
 		Rendering::Animation	animation{Rendering::IDLE};
 
+		//! @brief Unserializer constructor.
+		explicit DisplayableComponent(std::istream &stream);
 		explicit DisplayableComponent(const std::string &configPath);
 		~DisplayableComponent() override;
 		void serialize(std::ostream &) const override;
-		void unserialize(std::istream &) override;
 	};
 }
 

@@ -19,7 +19,6 @@ namespace TouhouFanGame::ECS::Components
 		explicit BlockedByTerrainComponent(Map &map);
 		~BlockedByTerrainComponent() override = default;
 		void serialize(std::ostream &) const override;
-		void unserialize(std::istream &) override;
 	};
 }
 

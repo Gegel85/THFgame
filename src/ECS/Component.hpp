@@ -30,10 +30,6 @@ namespace TouhouFanGame::ECS
 		//! @param stream to load to.
 		virtual void serialize(std::ostream &stream) const = 0;
 
-		//! @brief Unserialize from a stream.
-		//! @param stream to load from.
-		virtual void unserialize(std::istream &stream) = 0;
-
 		template<typename type>
 		//! @brief Transforms this Component to the type.
 		//! @warning When calling this, be SURE that this Component is the type given.
@@ -46,6 +42,5 @@ namespace TouhouFanGame::ECS
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
-std::istream	&operator>>(std::istream &stream, TouhouFanGame::ECS::Component &component);
 
 #endif //THFGAME_COMPONENT_HPP

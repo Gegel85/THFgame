@@ -6,6 +6,7 @@
 #include "Entity.hpp"
 #include "Exceptions.hpp"
 #include "Factories/ComponentFactory.hpp"
+#include "../Game.hpp"
 
 namespace TouhouFanGame::ECS
 {
@@ -90,11 +91,24 @@ namespace TouhouFanGame::ECS
 	{
 		std::string str;
 
-		std::getline(stream, this->_name, '\0');
-		stream >> this->_id;
+		logger.debug("Unserializing Entity");
 
-		for (stream >> str; str != "THFG_ECS_Entity_End" && !stream.eof(); stream >> str)
-			stream >> *this->_components.emplace_back(Factory::ComponentFactory::build(str));
+		std::getline(stream, this->_name, '\0');
+		while (!this->_name.empty() && std::isspace(this->_name[0]))
+			this->_name.erase(this->_name.begin());
+
+		if (this->_name.empty())
+			throw InvalidSerializedString("The Entity name is empty");
+
+		logger.debug("Name -> " + this->_name);
+
+		stream >> this->_id;
+		logger.debug("ID -> " + std::to_string(this->_id));
+
+		for (stream >> str; str != "THFG_ECS_Entity_End" && !stream.eof(); stream >> str) {
+			logger.debug("Unserialize component " + str);
+			this->_components.emplace_back(Factory::ComponentFactory::build(str, stream));
+		}
 
 		if (str != "THFG_ECS_Entity_End")
 			throw InvalidSerializedString("Unexpected EOF");

@@ -22,9 +22,3 @@ std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Compone
 	component.serialize(stream);
 	return stream;
 }
-
-std::istream	&operator>>(std::istream &stream, TouhouFanGame::ECS::Component &component)
-{
-	component.unserialize(stream);
-	return stream;
-}

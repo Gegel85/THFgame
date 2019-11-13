@@ -145,7 +145,7 @@ namespace TouhouFanGame
 		//! @param path The path to the file to load the map from.
 		//! @param loadEntities Whether we want to load the entities or not.
 		//! @throw CorruptedMapException
-		void loadFromFile(const std::string &path, bool loadEntities = true);
+		void loadFromFile(std::string path, bool loadEntities = true);
 
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.

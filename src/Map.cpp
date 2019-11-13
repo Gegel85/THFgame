@@ -203,7 +203,7 @@ namespace TouhouFanGame
 		logger.debug("Operation completed");
 	}
 
-	void Map::loadFromFile(const std::string &path, bool loadEntities)
+	void Map::loadFromFile(std::string path, bool loadEntities)
 	{
 		std::ifstream stream{path};
 
@@ -264,10 +264,8 @@ namespace TouhouFanGame
 	void Map::updateCameraPosition(sf::Vector2f focusPoint)
 	{
 		this->_cameraUpdated = true;
-		this->_cameraCenter.x = Map::_getCameraCenter(this->_size.x * this->_tileSize,
-							      _game.resources.screen->getSize().x, focusPoint.x);
-		this->_cameraCenter.y = Map::_getCameraCenter(this->_size.y * this->_tileSize,
-							      _game.resources.screen->getSize().y, focusPoint.y);
+		this->_cameraCenter.x = Map::_getCameraCenter(this->_size.x * this->_tileSize, _game.resources.screen->getSize().x, focusPoint.x);
+		this->_cameraCenter.y = Map::_getCameraCenter(this->_size.y * this->_tileSize, _game.resources.screen->getSize().y, focusPoint.y);
 	}
 
 	float Map::_getCameraCenter(float size, float screenSize, float focusPoint)

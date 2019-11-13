@@ -69,7 +69,7 @@ namespace TouhouFanGame::Utils
 				if (event.type == sf::Event::MouseButtonPressed) {
 					if (event.mouseButton.button == sf::Mouse::Left && event.mouseButton.y >= 150 && event.mouseButton.y <= 170) {
 						buttonClicked = (event.mouseButton.x - 400 + 70 * buttons.size()) / 70;
-						if (buttonClicked >= 0 && buttonClicked < buttons.size()) {
+						if (buttonClicked >= 0 && static_cast<unsigned>(buttonClicked) < buttons.size()) {
 							clicked = buttons.size() == 2 ? (buttonClicked == 0 ? 6 : 5) : 0;
 							win.close();
 						}

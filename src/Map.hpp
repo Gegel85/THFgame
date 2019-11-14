@@ -85,6 +85,21 @@ namespace TouhouFanGame
 			return result;
 		}
 
+		//! @brief Reads an integer MSB from a stream.
+		static std::string _readString(std::istream &stream) {
+			char byte;
+			std::string result;
+
+			do {
+				if (stream.eof())
+					throw CorruptedMapException("EOF reached");
+				stream.read(&byte, 1);
+				if (byte)
+					result.push_back(byte);
+			} while (byte);
+			return result;
+		}
+
 		//! @brief Computes the center of the camera from the map size, the window size and a focus point.
 		//! @param size The size of the map.
 		//! @param screenSize The size of the window.

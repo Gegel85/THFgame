@@ -153,16 +153,11 @@ namespace TouhouFanGame
 
 	void Map::_loadFromStream(std::istream &stream, bool loadEntities)
 	{
-		char byte;
-
 		logger.debug("Loading map");
-		do {
-			if (stream.eof())
-				throw CorruptedMapException("EOF reached");
-			stream.read(&byte, 1);
-			if (byte)
-				this->_tileMap.push_back(byte);
-		} while (byte);
+
+		_game.resources.playMusic(_readString(stream));
+
+		this->_tileMap = _readString(stream);
 		logger.debug("Tilemap file is '" + this->_tileMap + "'");
 
 		this->_tileSize = _readInteger<unsigned char>(stream);

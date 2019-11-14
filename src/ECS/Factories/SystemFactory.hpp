@@ -6,7 +6,7 @@
 #define THFGAME_SYSTEMFACTORY_HPP
 
 
-#include <vector>
+#include <map>
 #include <functional>
 #include "../System.hpp"
 
@@ -16,7 +16,8 @@ namespace TouhouFanGame::ECS::Factory
 	class SystemFactory {
 	private:
 		//! @brief All the System that can be built.
-		static const std::vector<std::function<System *(Core &)>> _builders;
+		//TODO: Figure out why this doesn't work on MinGW
+		const static std::vector<std::function<System *(Core &)>> _builders;
 
 	public:
 		//! @brief Builds one instance of each System.

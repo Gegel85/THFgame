@@ -12,16 +12,16 @@
 
 namespace TouhouFanGame::ECS::Factory
 {
-	const std::vector<std::function<System *(Core &)>> SystemFactory::_builders{
-		[](Core &core){ return new Systems::DisplayableSystem(core); },
-		[](Core &core){ return new Systems::ControllableSystem(core); },
-		[](Core &core){ return new Systems::MovableSystem(core); },
-		[](Core &core){ return new Systems::BlockedByTerrainSystem(core); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
-	};
-
 	void SystemFactory::buildAll(TouhouFanGame::ECS::Core &core, std::vector<std::unique_ptr<System>> &buffer)
 	{
+		const std::vector<std::function<System *(Core &)>> _builders{
+			[](Core &core){ return new Systems::DisplayableSystem(core); },
+			[](Core &core){ return new Systems::ControllableSystem(core); },
+			[](Core &core){ return new Systems::MovableSystem(core); },
+			[](Core &core){ return new Systems::BlockedByTerrainSystem(core); },
+			[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
+		};
+
 		for (auto &fc : _builders)
 			buffer.emplace_back(fc(core));
 	}

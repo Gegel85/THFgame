@@ -24,12 +24,15 @@ namespace TouhouFanGame
 
 	void Resources::playMusic(const std::string &id)
 	{
-		this->stopMusic();
 		try {
-			this->musics.at(id).play();
+			if (this->musics.at(id).getStatus() == sf::Music::Playing)
+				return;
 		} catch (std::out_of_range &e) {
-			logger.error("Cannot play sound " + id);
+			return logger.error("Cannot play music " + id);
 		}
+
+		this->stopMusic();
+		this->musics.at(id).play();
 	}
 
 	void Resources::stopMusic()

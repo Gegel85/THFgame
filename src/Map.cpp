@@ -19,7 +19,7 @@ namespace TouhouFanGame
 	{
 	}
 
-	void Map::serialize(std::ostream &stream) const
+	void Map::_serialize(std::ostream &stream) const
 	{
 		if (this->_path.empty()) {
 			logger.error("Trying to serialize a not loaded map.");
@@ -29,7 +29,7 @@ namespace TouhouFanGame
 		stream << this->_core;
 	}
 
-	void Map::serialize(const std::string &path)
+	void Map::_serialize(const std::string &path)
 	{
 		logger.info("Saving map to " + path);
 		Utils::makeDirectoryTree(path);
@@ -41,18 +41,18 @@ namespace TouhouFanGame
 			throw MapSavingFailureException(path + ": " + strerror(errno));
 		}
 
-		this->serialize(stream);
+		this->_serialize(stream);
 		stream.close();
 	}
 
-	void Map::unserialize(std::istream &stream)
+	void Map::_unserialize(std::istream &stream)
 	{
 		std::getline(stream, this->_path, '\0');
-		this->loadFromFile(this->_path, false);
+		this->_loadFromFile(this->_path, false);
 		stream >> this->_core;
 	}
 
-	void Map::unserialize(const std::string &path)
+	void Map::_unserialize(const std::string &path)
 	{
 		logger.info("Loading saved map from " + path);
 
@@ -63,26 +63,27 @@ namespace TouhouFanGame
 			throw InvalidSavedMap(path + ": " + strerror(errno));
 		}
 
-		this->unserialize(stream);
+		this->_unserialize(stream);
 		stream.close();
 	}
 
 	void Map::loadMap(unsigned short id)
 	{
 		try {
-			this->unserialize("saves/map_" + std::to_string(id) + ".sav");
+			this->_unserialize("saves/map_" + std::to_string(id) + ".sav");
 			return;
 		} catch (InvalidSavedMap &) {
 		} catch (std::exception &e) {
 			throw InvalidSavedMap(e.what());
 		}
 
-		this->loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
+		this->_loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
+		this->_id = id;
 	}
 
 	void Map::saveMap(unsigned short id)
 	{
-		this->serialize("saves/map_" + std::to_string(id) + ".sav");
+		this->_serialize("saves/map_" + std::to_string(id) + ".sav");
 	}
 
 	void Map::update()
@@ -111,7 +112,7 @@ namespace TouhouFanGame
 				-this->_tileSize < trigger.location.x && trigger.location.x < static_cast<int>(size.x + this->_tileSize) &&
 				-this->_tileSize < trigger.location.y && trigger.location.y < static_cast<int>(size.y + this->_tileSize)
 			) {
-				this->loadFromFile("assets/maps/map_" + std::to_string(trigger.mapId) + ".map");
+				this->loadMap(trigger.mapId);
 				pos = sf::Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
 			}
 	}
@@ -203,7 +204,7 @@ namespace TouhouFanGame
 		logger.debug("Operation completed");
 	}
 
-	void Map::loadFromFile(std::string path, bool loadEntities)
+	void Map::_loadFromFile(std::string path, bool loadEntities)
 	{
 		std::ifstream stream{path};
 

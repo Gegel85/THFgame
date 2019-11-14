@@ -8,24 +8,29 @@
 
 namespace TouhouFanGame
 {
-	bool Loader::loadFile(sf::SoundBuffer &buffer, const std::string &path)
+	bool Loader::loadFile(sf::SoundBuffer &buffer, nlohmann::json &path)
 	{
-		return buffer.loadFromFile(path);
+		return buffer.loadFromFile("assets/" + static_cast<std::string>(path));
 	}
 
-	bool Loader::loadFile(sf::Music &music, const std::string &path)
+	bool Loader::loadFile(sf::Music &music, nlohmann::json &obj)
 	{
-		bool result = music.openFromFile(path);
+		bool result = music.openFromFile("assets/" + static_cast<std::string>(obj["path"]));
 
 		music.setLoop(true);
+		if (!obj["loop_points"].is_null())
+			music.setLoopPoints(sf::Music::TimeSpan{
+				sf::milliseconds(obj["loop_points"]["offset"]),
+				sf::milliseconds(obj["loop_points"]["length"])
+			});
+
 		music.setVolume(_game.state.musicVolume);
-		music.play();
 		return result;
 	}
 
-	bool Loader::loadFile(sf::Texture &texture, const std::string &path)
+	bool Loader::loadFile(sf::Texture &texture, nlohmann::json &path)
 	{
-		return texture.loadFromFile(path);
+		return texture.loadFromFile("assets/" + static_cast<std::string>(path));
 	}
 
 	void Loader::loadSettings(Game &game)

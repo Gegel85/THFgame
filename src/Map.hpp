@@ -66,6 +66,10 @@ namespace TouhouFanGame
 		//! @brief The center of the camera.
 		sf::Vector2f _cameraCenter;
 
+		//! @brief The ID of the currently loaded map
+		unsigned int _id;
+
+
 		template<typename type>
 		//! @brief Reads an integer MSB from a stream.
 		static type _readInteger(std::istream &stream) {
@@ -108,6 +112,30 @@ namespace TouhouFanGame
 		//! @param loadEntities Whether we want to load the entities or not.
 		void _loadFromStream(std::istream &stream, bool loadEntities = true);
 
+		//! @brief Serialize a map to the stream.
+		//! @param stream The stream to serialize the map to.
+		void _serialize(std::ostream &stream) const;
+
+		//! @brief Serialize the map to a file
+		//! @param path The file to save to.
+		//! @throw MapSavingFailureException
+		void _serialize(const std::string &path);
+
+		//! @brief Unserialize a map from the stream.
+		//! @param stream The stream to unserialize the map from.
+		void _unserialize(std::istream &stream);
+
+		//! @brief Unserialize the map from a file
+		//! @param path The file to load from.
+		//! @throw CorruptedMapException
+		void _unserialize(const std::string &path);
+
+		//! @brief Loads the map from the stream given.
+		//! @param path The path to the file to load the map from.
+		//! @param loadEntities Whether we want to load the entities or not.
+		//! @throw CorruptedMapException
+		void _loadFromFile(std::string path, bool loadEntities = true);
+
 	public:
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;
@@ -122,30 +150,6 @@ namespace TouhouFanGame
 		//! @param pos Position.
 		//! @return The object or 00 if out of bound.
 		unsigned char getObjectAt(sf::Vector2f pos) const;
-
-		//! @brief Serialize a map to the stream.
-		//! @param stream The stream to serialize the map to.
-		void serialize(std::ostream &stream) const;
-
-		//! @brief Serialize the map to a file
-		//! @param path The file to save to.
-		//! @throw MapSavingFailureException
-		void serialize(const std::string &path);
-
-		//! @brief Unserialize a map from the stream.
-		//! @param stream The stream to unserialize the map from.
-		void unserialize(std::istream &stream);
-
-		//! @brief Unserialize the map from a file
-		//! @param path The file to load from.
-		//! @throw CorruptedMapException
-		void unserialize(const std::string &path);
-
-		//! @brief Loads the map from the stream given.
-		//! @param path The path to the file to load the map from.
-		//! @param loadEntities Whether we want to load the entities or not.
-		//! @throw CorruptedMapException
-		void loadFromFile(std::string path, bool loadEntities = true);
 
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.

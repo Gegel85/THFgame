@@ -78,9 +78,6 @@ namespace TouhouFanGame::ECS
 
 	void Entity::serialize(std::ostream &stream) const
 	{
-		if (!this->_serializable)
-			throw NotSerializableException();
-
 		stream << this->_name << '\0' << this->_id << std::endl;
 		for (auto &comp : this->_components)
 			stream << comp->getName() << " " << *comp << std::endl;

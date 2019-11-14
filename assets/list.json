@@ -1,6 +1,15 @@
 {
 	"musics": {
-		"menu": "musics/main_menu.ogg"
+		"menu": {
+			"path": "musics/main_menu.ogg"
+		},
+		"heartfelt_fancy" : {
+			"path": "musics/heartfelt_fancy.ogg",
+			"loop_points": {
+				"offset": 132416,
+				"length": 131966
+			}
+		}
 	},
 	"sfx": {},
 	"sprites": {

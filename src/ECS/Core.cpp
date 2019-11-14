@@ -21,8 +21,11 @@ namespace TouhouFanGame::ECS
 
 	Entity &Core::makeEntity(const std::string &typeName)
 	{
-		this->_entities.emplace_back(Factory::EntityFactory::build(typeName, this->_lastGivenID++));
-		return *this->_entities.back();
+		Entity &entity = *this->_entities.emplace_back(Factory::EntityFactory::build(typeName, this->_lastGivenID++));
+
+		for (auto &comp : entity.getComponentsNames())
+			this->_entitiesByComponent[comp].emplace_back(entity);
+		return entity;
 	}
 
 	void Core::update()
@@ -51,6 +54,10 @@ namespace TouhouFanGame::ECS
 		for (size_t i = 0; i < this->_entities.size(); i++)
 			if (std::find(whitelist.begin(), whitelist.end(), this->_entities[i]->getID()) == whitelist.end())
 				this->_entities.erase(this->_entities.begin() + i--);
+		this->_entitiesByComponent.clear();
+		for (auto &entity : this->_entities)
+			for (auto &comp : entity->getComponentsNames())
+				this->_entitiesByComponent[comp].emplace_back(*entity);
 	}
 
 	System &Core::getSystemByName(const std::string &name) const
@@ -73,12 +80,11 @@ namespace TouhouFanGame::ECS
 
 	std::vector<std::reference_wrapper<Entity>> Core::getEntityByComponent(const std::string &name)
 	{
-		std::vector<std::reference_wrapper<Entity>> found;
-
-		for (auto &entity : this->_entities)
-			if (entity->hasComponent(name))
-				found.emplace_back(*entity);
-		return found;
+		try {
+			return this->_entitiesByComponent.at(name);
+		} catch (std::out_of_range &) {
+			return {};
+		}
 	}
 
 	Entity &Core::getEntityByID(unsigned id) const

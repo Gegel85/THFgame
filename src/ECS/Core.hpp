@@ -27,6 +27,9 @@ namespace TouhouFanGame::ECS
 		//! @brief All the Entity to be updated.
 		std::vector<std::unique_ptr<Entity>> _entities;
 
+		//! @brief Entities sorted by Component
+		std::map<std::string, std::vector<std::reference_wrapper<Entity>>> _entitiesByComponent;
+
 	public:
 		Core();
 

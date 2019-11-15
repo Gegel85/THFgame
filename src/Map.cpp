@@ -67,7 +67,7 @@ namespace TouhouFanGame
 		stream.close();
 	}
 
-	void Map::loadMap(unsigned short id)
+	void Map::_loadMap(unsigned short id)
 	{
 		try {
 			this->_unserialize("saves/map_" + std::to_string(id) + ".sav");
@@ -81,9 +81,38 @@ namespace TouhouFanGame
 		this->_id = id;
 	}
 
-	void Map::saveMap(unsigned short id)
+	void Map::saveMap()
 	{
-		this->_serialize("saves/map_" + std::to_string(id) + ".sav");
+		std::ofstream stream{"saves/map_player.sav"};
+
+		logger.info("Saving game");
+		if (stream.fail()) {
+			logger.error("Couldn't save map to saves/map_player.sav: " + std::string(strerror(errno)));
+			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
+		}
+		stream << this->_getPlayer() << " " << this->_id;
+		stream.close();
+
+		this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
+	}
+
+	void Map::loadMap()
+	{
+		std::ifstream stream{"saves/map_player.sav"};
+
+		logger.info("Loading game");
+		if (stream.fail()) {
+			logger.error("Couldn't load map at saves/map_player.sav: " + std::string(strerror(errno)));
+			if (errno != ENOENT)
+				throw InvalidSavedMap("saves/map_player.sav: " + std::string(strerror(errno)));
+			this->_loadMap(0);
+			return;
+		}
+		this->reset();
+		stream >> this->_core.registerEntity(new ECS::Entity()) >> this->_id;
+		stream.close();
+
+		this->_loadMap(this->_id);
 	}
 
 	void Map::update()
@@ -94,16 +123,16 @@ namespace TouhouFanGame
 		auto size = this->_getPlayerSize();
 
 		if (pos.x < size.x / -2.) {
-			this->loadMap(this->_links[Input::LEFT]);
+			this->_loadMap(this->_links[Input::LEFT]);
 			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
 		} else if (pos.y < size.y / -2.) {
-			this->loadMap(this->_links[Input::UP]);
+			this->_loadMap(this->_links[Input::UP]);
 			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
 		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
-			this->loadMap(this->_links[Input::RIGHT]);
+			this->_loadMap(this->_links[Input::RIGHT]);
 			pos.x = size.x / -2.;
 		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
-			this->loadMap(this->_links[Input::DOWN]);
+			this->_loadMap(this->_links[Input::DOWN]);
 			pos.y = size.y / -2.;
 		}
 
@@ -112,7 +141,7 @@ namespace TouhouFanGame
 				-this->_tileSize < trigger.location.x && trigger.location.x < static_cast<int>(size.x + this->_tileSize) &&
 				-this->_tileSize < trigger.location.y && trigger.location.y < static_cast<int>(size.y + this->_tileSize)
 			) {
-				this->loadMap(trigger.mapId);
+				this->_loadMap(trigger.mapId);
 				pos = sf::Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
 			}
 	}

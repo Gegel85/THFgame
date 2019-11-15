@@ -151,6 +151,11 @@ namespace TouhouFanGame
 		//! @throw CorruptedMapException
 		void _loadFromFile(std::string path, bool loadEntities = true);
 
+		//! @brief Load a map from it's ID.
+		//! @throw InvalidSavedMap
+		//! @throw CorruptedMapException
+		void _loadMap(unsigned short id);
+
 	public:
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;
@@ -179,14 +184,13 @@ namespace TouhouFanGame
 		//! @brief Renders the map on a screen.
 		void render();
 
-		//! @brief Load a map from it's ID.
-		//! @throw InvalidSavedMap
-		//! @throw CorruptedMapException
-		void loadMap(unsigned short id);
-
-		//! @brief Save the map as ID.
+		//! @brief Save the currently loaded map.
 		//! @throw MapSavingFailureException
-		void saveMap(unsigned short id);
+		void saveMap();
+
+		//! @brief Loads the saved map in the saves folder.
+		//! @throw MapSavingFailureException
+		void loadMap();
 	};
 }
 

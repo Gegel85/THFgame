@@ -39,6 +39,13 @@ namespace TouhouFanGame::ECS
 		//! @throw NoSuchEntityException If the Entity cannot be built.
 		Entity &makeEntity(const std::string &typeName);
 
+		//! @brief Registers an Entity in the Core. Will throw if the ID is already taken.
+		//! @param entity The Entity to register.
+		//! @return The Entity registered;.
+		//! @throw UpdateErrorException If the Entity's ID is already taken.
+		//! @note The Entity must have been built using new and will be deleted by the Core.
+		Entity &registerEntity(Entity *entity);
+
 		//! @brief Get and Entity using it's ID.
 		//! @param id The ID of the Entity to fetch.
 		//! @return The Entity requested.

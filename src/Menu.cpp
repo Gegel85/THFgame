@@ -23,7 +23,7 @@ namespace TouhouFanGame
 		if (event.type == sf::Event::KeyPressed) {
 			switch (event.key.code) {
 			case sf::Keyboard::F:
-				_game.state.map.saveMap(0);
+				_game.state.map.saveMap();
 			default:
 				break;
 			}
@@ -74,7 +74,7 @@ namespace TouhouFanGame
 			break;
 		case IN_GAME:
 			game.state.map.reset();
-			game.state.map.loadMap(0);
+			game.state.map.loadMap();
 			break;
 		}
 	}

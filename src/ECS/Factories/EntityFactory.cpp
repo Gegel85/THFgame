@@ -21,7 +21,7 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::MovableComponent(),
 				new Components::DisplayableComponent("assets/entities/test.json"),
 				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
-			});
+			}, false);
 		}}
 	};
 

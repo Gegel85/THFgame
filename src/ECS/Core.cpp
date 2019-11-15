@@ -87,6 +87,16 @@ namespace TouhouFanGame::ECS
 		}
 	}
 
+	Entity& Core::registerEntity(TouhouFanGame::ECS::Entity *entity)
+	{
+		try {
+			this->getEntityByID(entity->getID());
+			throw UpdateErrorException("An entity already have ID " + std::to_string(entity->getID()));
+		} catch (NoSuchEntityException &) {
+			return *this->_entities.emplace_back(entity);
+		}
+	}
+
 	Entity &Core::getEntityByID(unsigned id) const
 	{
 		for (auto &entity : this->_entities)

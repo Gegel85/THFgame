@@ -19,6 +19,11 @@ namespace TouhouFanGame::ECS
 			this->_components.emplace_back(component);
 	}
 
+	void Entity::setSerializable(bool serializable)
+	{
+		this->_serializable = serializable;
+	}
+
 	std::string Entity::getName() const
 	{
 		return this->_name;

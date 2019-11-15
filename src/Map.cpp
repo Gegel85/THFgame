@@ -81,18 +81,22 @@ namespace TouhouFanGame
 		this->_id = id;
 	}
 
-	void Map::saveMap()
+	void Map::_savePlayer()
 	{
 		std::ofstream stream{"saves/map_player.sav"};
 
-		logger.info("Saving game");
 		if (stream.fail()) {
 			logger.error("Couldn't save map to saves/map_player.sav: " + std::string(strerror(errno)));
 			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
 		}
 		stream << this->_getPlayer() << " " << this->_id;
 		stream.close();
+	}
 
+	void Map::saveMap()
+	{
+		logger.info("Saving game");
+		this->_savePlayer();
 		this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 	}
 
@@ -109,9 +113,12 @@ namespace TouhouFanGame
 			return;
 		}
 		this->reset();
-		stream >> this->_core.registerEntity(new ECS::Entity()) >> this->_id;
-		stream.close();
 
+		ECS::Entity &player = this->_core.registerEntity(new ECS::Entity());
+
+		stream >> player >> this->_id;
+		stream.close();
+		player.setSerializable(false);
 		this->_loadMap(this->_id);
 	}
 
@@ -123,17 +130,29 @@ namespace TouhouFanGame
 		auto size = this->_getPlayerSize();
 
 		if (pos.x < size.x / -2.) {
+			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->_loadMap(this->_links[Input::LEFT]);
 			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
+			this->_savePlayer();
+
 		} else if (pos.y < size.y / -2.) {
+			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->_loadMap(this->_links[Input::UP]);
 			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
+			this->_savePlayer();
+
 		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
+			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->_loadMap(this->_links[Input::RIGHT]);
 			pos.x = size.x / -2.;
+			this->_savePlayer();
+
 		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
+			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->_loadMap(this->_links[Input::DOWN]);
 			pos.y = size.y / -2.;
+			this->_savePlayer();
+
 		}
 
 		for (auto &trigger : this->_tpTriggers)

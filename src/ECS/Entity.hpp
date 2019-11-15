@@ -73,6 +73,9 @@ namespace TouhouFanGame::ECS
 		//! @return A collection of Component names that this Entity has.
 		std::vector<std::string> getComponentsNames() const;
 
+		//! @brief Change whether this Entity should be serialized or not.
+		void setSerializable(bool serializable);
+
 		//! @brief Serializes an Entity to a stream.
 		//! @throw NotSerializableException
 		void serialize(std::ostream &) const;

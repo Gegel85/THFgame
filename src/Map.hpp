@@ -156,6 +156,9 @@ namespace TouhouFanGame
 		//! @throw CorruptedMapException
 		void _loadMap(unsigned short id);
 
+		//! @brief Saves the player Entity and the map it is on.
+		void _savePlayer();
+
 	public:
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;

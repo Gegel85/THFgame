@@ -106,9 +106,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a373f834e808818409908323a822cdc12"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html#a373f834e808818409908323a822cdc12">serialize</a> (std::ostream &amp;stream) const =0</td></tr>
 <tr class="memdesc:a373f834e808818409908323a822cdc12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize to a stream.  <a href="classTouhouFanGame_1_1ECS_1_1Component.html#a373f834e808818409908323a822cdc12">More...</a><br /></td></tr>
 <tr class="separator:a373f834e808818409908323a822cdc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a898b013aef258eb24f9f78a78762df"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html#a4a898b013aef258eb24f9f78a78762df">unserialize</a> (std::istream &amp;stream)=0</td></tr>
-<tr class="memdesc:a4a898b013aef258eb24f9f78a78762df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unserialize from a stream.  <a href="classTouhouFanGame_1_1ECS_1_1Component.html#a4a898b013aef258eb24f9f78a78762df">More...</a><br /></td></tr>
-<tr class="separator:a4a898b013aef258eb24f9f78a78762df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af96f0fb4c72ff9743a206f441679fefe"><td class="memTemplParams" colspan="2">template&lt;typename type &gt; </td></tr>
 <tr class="memitem:af96f0fb4c72ff9743a206f441679fefe"><td class="memTemplItemLeft" align="right" valign="top">type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html#af96f0fb4c72ff9743a206f441679fefe">to</a> ()</td></tr>
 <tr class="memdesc:af96f0fb4c72ff9743a206f441679fefe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> to the type.  <a href="classTouhouFanGame_1_1ECS_1_1Component.html#af96f0fb4c72ff9743a206f441679fefe">More...</a><br /></td></tr>
@@ -238,7 +235,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ac1617807b2a8ec004f4ee3f01bbf3d04">TouhouFanGame::ECS::Components::ControllableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1DisplayableComponent.html#a6a8ae0e653b1af7d8350bbeccb3f4a88">TouhouFanGame::ECS::Components::DisplayableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1MovableComponent.html#a67b545fea32bf93d2ce7f8897500bd37">TouhouFanGame::ECS::Components::MovableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1PositionComponent.html#af85a6ad658a8776531676d8e2906b8fc">TouhouFanGame::ECS::Components::PositionComponent</a>, and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1BlockedByTerrainComponent.html#a02b4701cd2fca01ebb718d303eeb80cd">TouhouFanGame::ECS::Components::BlockedByTerrainComponent</a>.</p>
+<p>Implemented in <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1DisplayableComponent.html#a6a8ae0e653b1af7d8350bbeccb3f4a88">TouhouFanGame::ECS::Components::DisplayableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ac1617807b2a8ec004f4ee3f01bbf3d04">TouhouFanGame::ECS::Components::ControllableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1MovableComponent.html#a67b545fea32bf93d2ce7f8897500bd37">TouhouFanGame::ECS::Components::MovableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1PositionComponent.html#af85a6ad658a8776531676d8e2906b8fc">TouhouFanGame::ECS::Components::PositionComponent</a>, and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1BlockedByTerrainComponent.html#a02b4701cd2fca01ebb718d303eeb80cd">TouhouFanGame::ECS::Components::BlockedByTerrainComponent</a>.</p>
 
 </div>
 </div>
@@ -270,47 +267,11 @@ template&lt;typename type &gt; </div>
 <p>Transforms this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> to the type. </p>
 <dl class="section warning"><dt>Warning</dt><dd>When calling this, be SURE that this <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> is the type given. If it isn't, it will cast it anyway and won't report any error. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Component_8hpp_source.html#l00041">41</a> of file <a class="el" href="Component_8hpp_source.html">Component.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                        <span class="keywordflow">return</span> reinterpret_cast&lt;type &amp;&gt;(*<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                }</div>
+<p class="definition">Definition at line <a class="el" href="Component_8hpp_source.html#l00037">37</a> of file <a class="el" href="Component_8hpp_source.html">Component.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        <span class="keywordflow">return</span> reinterpret_cast&lt;type &amp;&gt;(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                }</div>
 </div><!-- fragment -->
-</div>
-</div>
-<a id="a4a898b013aef258eb24f9f78a78762df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a898b013aef258eb24f9f78a78762df">&#9670;&nbsp;</a></span>unserialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void TouhouFanGame::ECS::Component::unserialize </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>stream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Unserialize from a stream. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stream</td><td>to load from. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#af113c4854bbf453939fa00534bb5b4a6">TouhouFanGame::ECS::Components::ControllableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1DisplayableComponent.html#a7ad23e05a04563bc56d42622a96963ce">TouhouFanGame::ECS::Components::DisplayableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1MovableComponent.html#a555b8ede5930f2e302cc5f6447233251">TouhouFanGame::ECS::Components::MovableComponent</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1PositionComponent.html#a3930a465882aa35f5fac9277871b4859">TouhouFanGame::ECS::Components::PositionComponent</a>, and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1BlockedByTerrainComponent.html#a27edf939c249139dcb9db27c92197b22">TouhouFanGame::ECS::Components::BlockedByTerrainComponent</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

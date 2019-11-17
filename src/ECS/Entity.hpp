@@ -11,6 +11,11 @@
 #include <memory>
 #include "Component.hpp"
 
+namespace TouhouFanGame
+{
+	struct Game;
+}
+
 namespace TouhouFanGame::ECS
 {
 	//! @brief Entity containing Component and updated by System
@@ -81,12 +86,11 @@ namespace TouhouFanGame::ECS
 		void serialize(std::ostream &) const;
 
 		//! @brief Loads an Entity from a stream.
-		void unserialize(std::istream &);
+		void unserialize(Game &game, std::istream &);
 	};
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Entity &entity);
-std::istream	&operator>>(std::istream &stream, TouhouFanGame::ECS::Entity &entity);
 
 
 #endif //THFGAME_ENTITY_HPP

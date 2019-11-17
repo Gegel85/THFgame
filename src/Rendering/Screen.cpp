@@ -7,8 +7,9 @@
 
 namespace TouhouFanGame::Rendering
 {
-	Screen::Screen(const std::string &title, unsigned int width, unsigned int height) :
+	Screen::Screen(Resources &resources, const std::string &title, unsigned int width, unsigned int height) :
 		sf::RenderWindow(sf::VideoMode(width, height), title),
+		_resources(resources),
 		_title(title),
 		_fps(60),
 		_size(width, height)
@@ -88,14 +89,13 @@ namespace TouhouFanGame::Rendering
 	Entity &Screen::addEntity(const std::string &configFile)
 	{
 		logger.debug("Making new rendering entity " + configFile);
-		this->_entities.emplace_back(configFile);
-		return this->_entities.back();
+		return *this->_entities.emplace_back(new Entity(this->_resources, configFile));
 	}
 
 	void Screen::renderEntities()
 	{
 		for (auto &entity : this->_entities)
-			entity.render(*this);
+			entity->render(*this);
 	}
 
 	void Screen::deleteEntities()
@@ -106,7 +106,7 @@ namespace TouhouFanGame::Rendering
 	void Screen::removeEntity(Entity &entity)
 	{
 		for (auto it = this->_entities.begin(); it < this->_entities.end(); it++)
-			if (&*it == &entity)
+			if (&**it == &entity)
 				this->_entities.erase(it);
 	}
 

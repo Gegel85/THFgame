@@ -9,27 +9,33 @@
 #include "../Component.hpp"
 #include "../../Rendering/Entity.hpp"
 
-namespace TouhouFanGame::ECS::Components
+namespace TouhouFanGame
 {
-	//! @brief Given to Entity that can be displayed.
-	class DisplayableComponent : public Component {
-	private:
-		//! @brief The path to the config file loaded.
-		std::string _configPath;
+	struct Game;
+	namespace ECS::Components {
+		//! @brief Given to Entity that can be displayed.
+		class DisplayableComponent : public Component {
+		private:
+			//! @brief The Screen the Rendering::Entity is in.
+			Rendering::Screen &_screen;
 
-	public:
-		//! @brief The Rendering::Entity bound to this Entity.
-		Rendering::Entity	&renderEntity;
+			//! @brief The path to the config file loaded.
+			std::string _configPath;
 
-		//! @brief The current Animation of the Entity.
-		Rendering::Animation	animation{Rendering::IDLE};
+		public:
+			//! @brief The Rendering::Entity bound to this Entity.
+			Rendering::Entity	&renderEntity;
 
-		//! @brief Unserializer constructor.
-		explicit DisplayableComponent(std::istream &stream);
-		explicit DisplayableComponent(const std::string &configPath);
-		~DisplayableComponent() override;
-		void serialize(std::ostream &) const override;
-	};
+			//! @brief The current Animation of the Entity.
+			Rendering::Animation	animation{Rendering::IDLE};
+
+			//! @brief Unserializer constructor.
+			explicit DisplayableComponent(Game &game, std::istream &stream);
+			explicit DisplayableComponent(Game &game, const std::string &configPath);
+			~DisplayableComponent() override;
+			void serialize(std::ostream &) const override;
+		};
+	}
 }
 
 

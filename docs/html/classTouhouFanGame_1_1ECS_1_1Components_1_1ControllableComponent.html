@@ -92,6 +92,9 @@ Inheritance diagram for TouhouFanGame::ECS::Components::ControllableComponent:</
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ad3064119edeff720b73ece3604bad640"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ad3064119edeff720b73ece3604bad640">ControllableComponent</a> (<a class="el" href="classTouhouFanGame_1_1Input.html">Input</a> &amp;<a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>, std::istream &amp;stream)</td></tr>
+<tr class="memdesc:ad3064119edeff720b73ece3604bad640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unserializer constructor.  <a href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ad3064119edeff720b73ece3604bad640">More...</a><br /></td></tr>
+<tr class="separator:ad3064119edeff720b73ece3604bad640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18f92051888f44381148c61c1794f4fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a18f92051888f44381148c61c1794f4fb">ControllableComponent</a> (<a class="el" href="classTouhouFanGame_1_1Input.html">Input</a> &amp;<a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>, float <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a>, float <a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>)</td></tr>
 <tr class="separator:a18f92051888f44381148c61c1794f4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9d8df638da69c770f863754e38042d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ac9d8df638da69c770f863754e38042d4">~ControllableComponent</a> () override=default</td></tr>
@@ -99,9 +102,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac1617807b2a8ec004f4ee3f01bbf3d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ac1617807b2a8ec004f4ee3f01bbf3d04">serialize</a> (std::ostream &amp;) const override</td></tr>
 <tr class="memdesc:ac1617807b2a8ec004f4ee3f01bbf3d04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize to a stream.  <a href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#ac1617807b2a8ec004f4ee3f01bbf3d04">More...</a><br /></td></tr>
 <tr class="separator:ac1617807b2a8ec004f4ee3f01bbf3d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af113c4854bbf453939fa00534bb5b4a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#af113c4854bbf453939fa00534bb5b4a6">unserialize</a> (std::istream &amp;) override</td></tr>
-<tr class="memdesc:af113c4854bbf453939fa00534bb5b4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unserialize from a stream.  <a href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#af113c4854bbf453939fa00534bb5b4a6">More...</a><br /></td></tr>
-<tr class="separator:af113c4854bbf453939fa00534bb5b4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classTouhouFanGame_1_1ECS_1_1Component"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classTouhouFanGame_1_1ECS_1_1Component')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">TouhouFanGame::ECS::Component</a></td></tr>
 <tr class="memitem:a8b683772e9d5e07925f62d2f0a679616 inherit pub_methods_classTouhouFanGame_1_1ECS_1_1Component"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html#a8b683772e9d5e07925f62d2f0a679616">Component</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a8b683772e9d5e07925f62d2f0a679616 inherit pub_methods_classTouhouFanGame_1_1ECS_1_1Component"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,14 +135,51 @@ Public Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="ControllableComponent_8hpp_source.html#l00015">15</a> of file <a class="el" href="ControllableComponent_8hpp_source.html">ControllableComponent.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a18f92051888f44381148c61c1794f4fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18f92051888f44381148c61c1794f4fb">&#9670;&nbsp;</a></span>ControllableComponent()</h2>
+<a id="ad3064119edeff720b73ece3604bad640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3064119edeff720b73ece3604bad640">&#9670;&nbsp;</a></span>ControllableComponent() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TouhouFanGame::ECS::Components::ControllableComponent::ControllableComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTouhouFanGame_1_1Input.html">TouhouFanGame::Input</a> &amp;&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Unserializer constructor. </p>
+
+<p class="definition">Definition at line <a class="el" href="ControllableComponent_8cpp_source.html#l00010">10</a> of file <a class="el" href="ControllableComponent_8cpp_source.html">ControllableComponent.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                                                                                                  :</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Component.html#a8b683772e9d5e07925f62d2f0a679616">Component</a>(<span class="stringliteral">&quot;Controllable&quot;</span>),</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                stream &gt;&gt; <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a> &gt;&gt; <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keywordflow">if</span> (stream.fail())</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                        <span class="keywordflow">throw</span> InvalidSerializedString(<span class="stringliteral">&quot;Invalid ControllableComponent&quot;</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a18f92051888f44381148c61c1794f4fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f92051888f44381148c61c1794f4fb">&#9670;&nbsp;</a></span>ControllableComponent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">TouhouFanGame::ECS::Components::ControllableComponent::ControllableComponent </td>
@@ -168,20 +205,15 @@ Public Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ControllableComponent_8cpp_source.html#l00009">9</a> of file <a class="el" href="ControllableComponent_8cpp_source.html">ControllableComponent.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                                                                                                                     :</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Component.html#a8b683772e9d5e07925f62d2f0a679616">Component</a>(<span class="stringliteral">&quot;Controllable&quot;</span>),</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>),</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a>),</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        {}</div>
+<p class="definition">Definition at line <a class="el" href="ControllableComponent_8cpp_source.html#l00019">19</a> of file <a class="el" href="ControllableComponent_8cpp_source.html">ControllableComponent.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                                                                                                     :</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Component.html#a8b683772e9d5e07925f62d2f0a679616">Component</a>(<span class="stringliteral">&quot;Controllable&quot;</span>),</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a4ef428d60bfd79da857d3451d60027da">input</a>),</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a>),</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -245,47 +277,10 @@ Public Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html#a373f834e808818409908323a822cdc12">TouhouFanGame::ECS::Component</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ControllableComponent_8cpp_source.html#l00016">16</a> of file <a class="el" href="ControllableComponent_8cpp_source.html">ControllableComponent.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="af113c4854bbf453939fa00534bb5b4a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af113c4854bbf453939fa00534bb5b4a6">&#9670;&nbsp;</a></span>unserialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TouhouFanGame::ECS::Components::ControllableComponent::unserialize </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>stream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Unserialize from a stream. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">stream</td><td>to load from. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html#a4a898b013aef258eb24f9f78a78762df">TouhouFanGame::ECS::Component</a>.</p>
-
-<p class="definition">Definition at line <a class="el" href="ControllableComponent_8cpp_source.html#l00019">19</a> of file <a class="el" href="ControllableComponent_8cpp_source.html">ControllableComponent.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {}</div>
+<p class="definition">Definition at line <a class="el" href="ControllableComponent_8cpp_source.html#l00026">26</a> of file <a class="el" href="ControllableComponent_8cpp_source.html">ControllableComponent.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                stream &lt;&lt; <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#afc7f7e26807f6006e01c30e41a6efc9c">regularSpeed</a> &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; <a class="code" href="classTouhouFanGame_1_1ECS_1_1Components_1_1ControllableComponent.html#a78169756f3147af8e69277883251b2bf">sprintSpeed</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>

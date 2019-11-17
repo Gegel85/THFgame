@@ -8,12 +8,12 @@
 
 namespace TouhouFanGame
 {
-	bool Loader::loadFile(sf::SoundBuffer &buffer, nlohmann::json &path)
+	bool Loader::loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path)
 	{
 		return buffer.loadFromFile("assets/" + static_cast<std::string>(path));
 	}
 
-	bool Loader::loadFile(sf::Music &music, nlohmann::json &obj)
+	bool Loader::loadFile(Settings &settings, sf::Music &music, nlohmann::json &obj)
 	{
 		bool result = music.openFromFile("assets/" + static_cast<std::string>(obj["path"]));
 
@@ -24,11 +24,11 @@ namespace TouhouFanGame
 				sf::milliseconds(obj["loop_points"]["length"])
 			});
 
-		music.setVolume(_game.state.musicVolume);
+		music.setVolume(settings.musicVolume);
 		return result;
 	}
 
-	bool Loader::loadFile(sf::Texture &texture, nlohmann::json &path)
+	bool Loader::loadFile(Settings &, sf::Texture &texture, nlohmann::json &path)
 	{
 		return texture.loadFromFile("assets/" + static_cast<std::string>(path));
 	}
@@ -36,9 +36,9 @@ namespace TouhouFanGame
 	void Loader::loadSettings(Game &game)
 	{
 		logger.info("Loading settings");
-		game.state.input.reset(new Inputs::Keyboard(&*game.resources.screen));
-		game.state.musicVolume = 100;
-		game.state.sfxVolume = 100;
+		game.state.settings.input.reset(new Inputs::Keyboard(&*game.resources.screen));
+		game.state.settings.musicVolume = 100;
+		game.state.settings.sfxVolume = 100;
 		for (auto &sound : game.resources.sounds)
 			sound.setVolume(100);
 	}
@@ -49,7 +49,7 @@ namespace TouhouFanGame
 		nlohmann::json data;
 
 		logger.debug("Opening main window");
-		game.resources.screen.reset(new Rendering::Screen{"THFgame"});
+		game.resources.screen.reset(new Rendering::Screen{game.resources, "THFgame"});
 
 		loadSettings(game);
 
@@ -78,13 +78,13 @@ namespace TouhouFanGame
 				);
 
 			logger.debug("Loading musics");
-			loadAssetsFromJson("Musics", data["musics"], game.resources.musics);
+			loadAssetsFromJson(game.state.settings, "Musics", data["musics"], game.resources.musics);
 
 			logger.debug("Loading sfx");
-			loadAssetsFromJson("Sound effects", data["sfx"], game.resources.soundBuffers);
+			loadAssetsFromJson(game.state.settings, "Sound effects", data["sfx"], game.resources.soundBuffers);
 
 			logger.debug("Loading sprites");
-			loadAssetsFromJson("Sprites", data["sprites"], game.resources.textures);
+			loadAssetsFromJson(game.state.settings, "Sprites", data["sprites"], game.resources.textures);
 		} catch (nlohmann::detail::parse_error &e) {
 			throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
 		} catch (nlohmann::detail::type_error &e) {

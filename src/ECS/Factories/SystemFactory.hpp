@@ -16,6 +16,7 @@ namespace TouhouFanGame::ECS::Factory
 	class SystemFactory {
 	private:
 		//! @brief All the System that can be built.
+		//! @warning Do not use this ! It has some weird behaviour when compiling with MinGW.
 		//TODO: Figure out why this doesn't work on MinGW
 		const static std::vector<std::function<System *(Core &)>> _builders;
 

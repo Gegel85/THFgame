@@ -13,11 +13,20 @@
 #include "System.hpp"
 #include "../Rendering/Screen.hpp"
 
+namespace TouhouFanGame
+{
+	struct Game;
+}
+
 namespace TouhouFanGame::ECS
 {
+
 	//! @brief The core of an ECS. It holds the System and Entity and make them interact with each other.
 	class Core {
 	private:
+		//! @brief The Game this ECS is in.
+		Game &_game;
+
 		//! @brief The last ID given to an Entity created.
 		unsigned _lastGivenID = 0;
 
@@ -31,7 +40,7 @@ namespace TouhouFanGame::ECS
 		std::map<std::string, std::vector<std::reference_wrapper<Entity>>> _entitiesByComponent;
 
 	public:
-		Core();
+		Core(Game &game);
 
 		//! @brief Builds an Entity using the EntityFactory and keep it to be updated.
 		//! @param typeName The name of the Entity to build. This will be given to the EntityFactory.

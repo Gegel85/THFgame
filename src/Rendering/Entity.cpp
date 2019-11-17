@@ -11,7 +11,7 @@
 
 namespace TouhouFanGame::Rendering
 {
-	Entity::Config::Config(const std::string &path)
+	Entity::Config::Config(Resources &resources, const std::string &path)
 	{
 		std::ifstream stream{path};
 		nlohmann::json value;
@@ -38,7 +38,7 @@ namespace TouhouFanGame::Rendering
 					counter += this->animations[i];
 				}
 			this->animationStart.emplace_back(counter);
-			this->textureSize = _game.resources.textures.at(this->texture).getSize();
+			this->textureSize = resources.textures.at(this->texture).getSize();
 			if (this->textureSize.x % this->tileSize.x || this->textureSize.y % this->tileSize.y)
 				throw InvalidAnimationConfigException(
 					"The texture chosen (" + this->texture +
@@ -71,8 +71,9 @@ namespace TouhouFanGame::Rendering
 		};
 	}
 
-	Entity::Entity(const std::string &configPath) :
-		_configs(configPath)
+	Entity::Entity(Resources &resources, const std::string &configPath) :
+		_resources(resources),
+		_configs(resources, configPath)
 	{
 	}
 
@@ -111,7 +112,7 @@ namespace TouhouFanGame::Rendering
 		unsigned char	animation = this->_animation * 8 + dir;
 		sf::Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
 
-		this->_sprite.setTexture(_game.resources.textures.at(this->_configs.texture));
+		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));
 		this->_sprite.setScale({
 			this->_size.x / static_cast<float>(this->_configs.tileSize.x),
 			this->_size.x / static_cast<float>(this->_configs.tileSize.y)
@@ -135,8 +136,8 @@ namespace TouhouFanGame::Rendering
 			std::uniform_int_distribution distribution{0, 59};
 			std::uniform_int_distribution distribution2{0, 1};
 
-			if (!distribution(_game.resources.random)) {
-				this->_animation = static_cast<Animation>(IDLEANIM1 + distribution2(_game.resources.random));
+			if (!distribution(this->_resources.random)) {
+				this->_animation = static_cast<Animation>(IDLEANIM1 + distribution2(this->_resources.random));
 				this->_animationState = 0;
 				this->_delay = this->_configs.delays[this->_animation];
 			}

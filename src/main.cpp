@@ -17,35 +17,33 @@ namespace TouhouFanGame
 	//! @brief The global logger
 	Logger logger{"./latest.log", Logger::DEBUG};
 
-	//! @brief Global game resources and state
-	//! @note This is global because some Lua functions needs to access it
-	Game _game;
-
 	//! @brief The game loop
-	void	gameLoop()
+	void	gameLoop(Game &game)
 	{
 		sf::Event event;
 
-		MenuMgr::changeMenu(_game, MenuMgr::MAIN_MENU);
-		while (_game.resources.screen->isOpen()) {
-			_game.resources.screen->clear();
+		MenuMgr::changeMenu(game, MenuMgr::MAIN_MENU);
+		while (game.resources.screen->isOpen()) {
+			game.resources.screen->clear();
 
-			while (_game.resources.screen->pollEvent(event))
-				MenuMgr::handleEvent(_game, event);
-			MenuMgr::renderMenu(_game);
+			while (game.resources.screen->pollEvent(event))
+				MenuMgr::handleEvent(game, event);
+			MenuMgr::renderMenu(game);
 
-			_game.resources.screen->display();
+			game.resources.screen->display();
 		}
 	}
 }
 
 int	main()
 {
+	TouhouFanGame::Game game;
+
 	try {
 		TouhouFanGame::logger.info("Loading assets...");
-		TouhouFanGame::Loader::loadAssets(TouhouFanGame::_game);
+		TouhouFanGame::Loader::loadAssets(game);
 		TouhouFanGame::logger.info("Starting game.");
-		TouhouFanGame::gameLoop();
+		TouhouFanGame::gameLoop(game);
 		TouhouFanGame::logger.info("Goodbye !");
 	} catch (std::exception &e) {
 		TouhouFanGame::logger.fatal(getLastExceptionName() + ": " + e.what());

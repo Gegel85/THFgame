@@ -11,22 +11,25 @@
 #include <functional>
 #include "../Entity.hpp"
 
-namespace TouhouFanGame::ECS::Factory
+namespace TouhouFanGame
 {
-	//! @brief Builds Entity
-	class EntityFactory {
-	private:
-		//! @brief Maps an Entity name to it's builder
-		const static std::map<std::string, std::function<ECS::Entity *(unsigned int)>> _builders;
+	struct Game;
+	namespace ECS::Factory {
+		//! @brief Builds Entity
+		class EntityFactory {
+		private:
+			//! @brief Maps an Entity name to it's builder
+			const static std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> _builders;
 
-	public:
-		//! @brief Builds an Entity and assign it an ID.
-		//! @param name The name of the Entity to build.
-		//! @param id The ID of the new Entity.
-		//! @return The requested Entity.
-		//! @throw NoSuchEntityException
-		static Entity *build(const std::string &name, unsigned int id);
-	};
+		public:
+			//! @brief Builds an Entity and assign it an ID.
+			//! @param name The name of the Entity to build.
+			//! @param id The ID of the new Entity.
+			//! @return The requested Entity.
+			//! @throw NoSuchEntityException
+			static Entity *build(Game &game, const std::string &name, unsigned int id);
+		};
+	}
 }
 
 

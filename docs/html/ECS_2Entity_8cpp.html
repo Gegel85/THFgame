@@ -74,8 +74,11 @@ $(function() {
 <div class="title">Entity.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="ECS_2Entity_8hpp_source.html">Entity.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="ECS_2Entity_8hpp_source.html">Entity.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ECS_2Exceptions_8hpp_source.html">Exceptions.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ComponentFactory_8hpp_source.html">Factories/ComponentFactory.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Game_8hpp_source.html">../Game.hpp</a>&quot;</code><br />
 </div>
 <p><a href="ECS_2Entity_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -90,8 +93,6 @@ Namespaces</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a4d0a4a7a5773166d6fcfc8283f381824"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ECS_2Entity_8cpp.html#a4d0a4a7a5773166d6fcfc8283f381824">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">TouhouFanGame::ECS::Entity</a> &amp;entity)</td></tr>
 <tr class="separator:a4d0a4a7a5773166d6fcfc8283f381824"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4d7e1b8d60a009ab5f8282d17a0b3f8"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ECS_2Entity_8cpp.html#ac4d7e1b8d60a009ab5f8282d17a0b3f8">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">TouhouFanGame::ECS::Entity</a> &amp;entity)</td></tr>
-<tr class="separator:ac4d7e1b8d60a009ab5f8282d17a0b3f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a4d0a4a7a5773166d6fcfc8283f381824"></a>
@@ -120,51 +121,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ECS_2Entity_8cpp_source.html#l00081">81</a> of file <a class="el" href="ECS_2Entity_8cpp_source.html">Entity.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        entity.<a class="code" href="classTouhouFanGame_1_1ECS_1_1Entity.html#ad91dd2bb648deec7855db48a27f25b0b">serialize</a>(stream);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> stream;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ac4d7e1b8d60a009ab5f8282d17a0b3f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4d7e1b8d60a009ab5f8282d17a0b3f8">&#9670;&nbsp;</a></span>operator&gt;&gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::istream&amp; operator&gt;&gt; </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&#160;</td>
-          <td class="paramname"><em>stream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">TouhouFanGame::ECS::Entity</a> &amp;&#160;</td>
-          <td class="paramname"><em>entity</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="ECS_2Entity_8cpp_source.html#l00087">87</a> of file <a class="el" href="ECS_2Entity_8cpp_source.html">Entity.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        entity.<a class="code" href="classTouhouFanGame_1_1ECS_1_1Entity.html#ae64846ba476fbcb6ba331fbd91ebf7d8">unserialize</a>(stream);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> stream;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="ECS_2Entity_8cpp_source.html#l00120">120</a> of file <a class="el" href="ECS_2Entity_8cpp_source.html">Entity.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;{</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        entity.<a class="code" href="classTouhouFanGame_1_1ECS_1_1Entity.html#ad91dd2bb648deec7855db48a27f25b0b">serialize</a>(stream);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> stream;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Entity_html_ad91dd2bb648deec7855db48a27f25b0b"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Entity.html#ad91dd2bb648deec7855db48a27f25b0b">TouhouFanGame::ECS::Entity::serialize</a></div><div class="ttdeci">void serialize(std::ostream &amp;) const</div><div class="ttdoc">Serializes an Entity to a stream.</div><div class="ttdef"><b>Definition:</b> <a href="ECS_2Entity_8cpp_source.html#l00071">Entity.cpp:71</a></div></div>
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Entity_html_ae64846ba476fbcb6ba331fbd91ebf7d8"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Entity.html#ae64846ba476fbcb6ba331fbd91ebf7d8">TouhouFanGame::ECS::Entity::unserialize</a></div><div class="ttdeci">void unserialize(std::istream &amp;)</div><div class="ttdoc">Loads an Entity from a stream.</div><div class="ttdef"><b>Definition:</b> <a href="ECS_2Entity_8cpp_source.html#l00077">Entity.cpp:77</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Entity_html_ad91dd2bb648deec7855db48a27f25b0b"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Entity.html#ad91dd2bb648deec7855db48a27f25b0b">TouhouFanGame::ECS::Entity::serialize</a></div><div class="ttdeci">void serialize(std::ostream &amp;) const</div><div class="ttdoc">Serializes an Entity to a stream.</div><div class="ttdef"><b>Definition:</b> <a href="ECS_2Entity_8cpp_source.html#l00084">Entity.cpp:84</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -81,8 +81,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a49955ad5e9f70326729445f5321c4403"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a49955ad5e9f70326729445f5321c4403">Config</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:a49955ad5e9f70326729445f5321c4403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e3c3421ea5137d7d61f6d8953eba29c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a5e3c3421ea5137d7d61f6d8953eba29c">Config</a> (<a class="el" href="structTouhouFanGame_1_1Resources.html">Resources</a> &amp;resources, const std::string &amp;path)</td></tr>
+<tr class="separator:a5e3c3421ea5137d7d61f6d8953eba29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44d29a70cd16ae193ffb65f5458e277f"><td class="memItemLeft" align="right" valign="top">sf::Vector2u&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a44d29a70cd16ae193ffb65f5458e277f">getPositionFromAnimationIndex</a> (unsigned index)</td></tr>
 <tr class="memdesc:a44d29a70cd16ae193ffb65f5458e277f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch the position on the sprite sheet of a tile.  <a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a44d29a70cd16ae193ffb65f5458e277f">More...</a><br /></td></tr>
 <tr class="separator:a44d29a70cd16ae193ffb65f5458e277f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,10 +111,10 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The configs of an entity. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00043">43</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00048">48</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a49955ad5e9f70326729445f5321c4403"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49955ad5e9f70326729445f5321c4403">&#9670;&nbsp;</a></span>Config()</h2>
+<a id="a5e3c3421ea5137d7d61f6d8953eba29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e3c3421ea5137d7d61f6d8953eba29c">&#9670;&nbsp;</a></span>Config()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,9 +122,19 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">TouhouFanGame::Rendering::Entity::Config::Config </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>path</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structTouhouFanGame_1_1Resources.html">Resources</a> &amp;&#160;</td>
+          <td class="paramname"><em>resources</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -162,7 +172,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                                        counter += this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af46de5740214454fe27cdbe01a4ff2f3">animations</a>[i];</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a018a527519e70c7b446049ffa7b52e73">animationStart</a>.emplace_back(counter);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                        this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a5791155259916020ea2531025f107eb6">textureSize</a> = <a class="code" href="namespaceTouhouFanGame.html#adf67c85d493b517ee1551262bad4e20f">_game</a>.<a class="code" href="structTouhouFanGame_1_1Game.html#ab915268d24fa37417027bc1999b9dff9">resources</a>.<a class="code" href="structTouhouFanGame_1_1Resources.html#a0cdd8af951b0c5d6ee94828c954922a5">textures</a>.at(this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af9b030c6c94d379d21cfbb95bfd885b6">texture</a>).getSize();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                        this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a5791155259916020ea2531025f107eb6">textureSize</a> = resources.textures.at(this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af9b030c6c94d379d21cfbb95bfd885b6">texture</a>).getSize();</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <span class="keywordflow">if</span> (this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a5791155259916020ea2531025f107eb6">textureSize</a>.x % this-&gt;tileSize.x || this-&gt;textureSize.y % this-&gt;tileSize.y)</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                <span class="keywordflow">throw</span> InvalidAnimationConfigException(</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                        <span class="stringliteral">&quot;The texture chosen (&quot;</span> + this-&gt;<a class="code" href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af9b030c6c94d379d21cfbb95bfd885b6">texture</a> +</div>
@@ -240,7 +250,7 @@ Public Attributes</h2></td></tr>
 
 <p>The number of tiles for each animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00062">62</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00067">67</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 
 </div>
 </div>
@@ -258,7 +268,7 @@ Public Attributes</h2></td></tr>
 
 <p>The start of each animation's first tile. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00065">65</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00070">70</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +286,7 @@ Public Attributes</h2></td></tr>
 
 <p>The time to wait before switching to the next tile of this animation. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00068">68</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00073">73</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 
 </div>
 </div>
@@ -294,7 +304,7 @@ Public Attributes</h2></td></tr>
 
 <p>The texture index. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00053">53</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00058">58</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 
 </div>
 </div>
@@ -312,7 +322,7 @@ Public Attributes</h2></td></tr>
 
 <p>The texture size. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00056">56</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00061">61</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 
 </div>
 </div>
@@ -330,7 +340,7 @@ Public Attributes</h2></td></tr>
 
 <p>The size of a single tile in pixel. </p>
 
-<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00059">59</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rendering_2Entity_8hpp_source.html#l00064">64</a> of file <a class="el" href="Rendering_2Entity_8hpp_source.html">Entity.hpp</a>.</p>
 
 </div>
 </div>
@@ -339,16 +349,13 @@ Public Attributes</h2></td></tr>
 <li>src/Rendering/<a class="el" href="Rendering_2Entity_8cpp_source.html">Entity.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_a018a527519e70c7b446049ffa7b52e73"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a018a527519e70c7b446049ffa7b52e73">TouhouFanGame::Rendering::Entity::Config::animationStart</a></div><div class="ttdeci">std::vector&lt; unsigned &gt; animationStart</div><div class="ttdoc">The start of each animation's first tile.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00065">Entity.hpp:65</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Game_html_ab915268d24fa37417027bc1999b9dff9"><div class="ttname"><a href="structTouhouFanGame_1_1Game.html#ab915268d24fa37417027bc1999b9dff9">TouhouFanGame::Game::resources</a></div><div class="ttdeci">Resources resources</div><div class="ttdoc">The loaded resources.</div><div class="ttdef"><b>Definition:</b> <a href="Game_8hpp_source.html#l00037">Game.hpp:37</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_af46de5740214454fe27cdbe01a4ff2f3"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af46de5740214454fe27cdbe01a4ff2f3">TouhouFanGame::Rendering::Entity::Config::animations</a></div><div class="ttdeci">std::vector&lt; unsigned &gt; animations</div><div class="ttdoc">The number of tiles for each animation.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00062">Entity.hpp:62</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_a5791155259916020ea2531025f107eb6"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a5791155259916020ea2531025f107eb6">TouhouFanGame::Rendering::Entity::Config::textureSize</a></div><div class="ttdeci">sf::Vector2u textureSize</div><div class="ttdoc">The texture size.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00056">Entity.hpp:56</a></div></div>
-<div class="ttc" id="anamespaceTouhouFanGame_1_1Rendering_html_ab3feda10330a5f87684ad57a1aff9dd6a02071a2b830471a7974127d202a87204"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Rendering.html#ab3feda10330a5f87684ad57a1aff9dd6a02071a2b830471a7974127d202a87204">TouhouFanGame::Rendering::DEAD</a></div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00024">Entity.hpp:24</a></div></div>
-<div class="ttc" id="anamespaceTouhouFanGame_html_adf67c85d493b517ee1551262bad4e20f"><div class="ttname"><a href="namespaceTouhouFanGame.html#adf67c85d493b517ee1551262bad4e20f">TouhouFanGame::_game</a></div><div class="ttdeci">Game _game</div><div class="ttdoc">Global game resources and state.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00022">main.cpp:22</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_aefef18fec9432414153b9b20f80c8073"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#aefef18fec9432414153b9b20f80c8073">TouhouFanGame::Rendering::Entity::Config::tileSize</a></div><div class="ttdeci">sf::Vector2u tileSize</div><div class="ttdoc">The size of a single tile in pixel.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00059">Entity.hpp:59</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_af1665a33a85fa34615719ea0054f06db"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af1665a33a85fa34615719ea0054f06db">TouhouFanGame::Rendering::Entity::Config::delays</a></div><div class="ttdeci">std::vector&lt; unsigned &gt; delays</div><div class="ttdoc">The time to wait before switching to the next tile of this animation.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00068">Entity.hpp:68</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_af9b030c6c94d379d21cfbb95bfd885b6"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af9b030c6c94d379d21cfbb95bfd885b6">TouhouFanGame::Rendering::Entity::Config::texture</a></div><div class="ttdeci">std::string texture</div><div class="ttdoc">The texture index.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00053">Entity.hpp:53</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Resources_html_a0cdd8af951b0c5d6ee94828c954922a5"><div class="ttname"><a href="structTouhouFanGame_1_1Resources.html#a0cdd8af951b0c5d6ee94828c954922a5">TouhouFanGame::Resources::textures</a></div><div class="ttdeci">std::map&lt; std::string, sf::Texture &gt; textures</div><div class="ttdoc">The loaded sprites.</div><div class="ttdef"><b>Definition:</b> <a href="Resources_8hpp_source.html#l00029">Resources.hpp:29</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_a018a527519e70c7b446049ffa7b52e73"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a018a527519e70c7b446049ffa7b52e73">TouhouFanGame::Rendering::Entity::Config::animationStart</a></div><div class="ttdeci">std::vector&lt; unsigned &gt; animationStart</div><div class="ttdoc">The start of each animation's first tile.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00070">Entity.hpp:70</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_af46de5740214454fe27cdbe01a4ff2f3"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af46de5740214454fe27cdbe01a4ff2f3">TouhouFanGame::Rendering::Entity::Config::animations</a></div><div class="ttdeci">std::vector&lt; unsigned &gt; animations</div><div class="ttdoc">The number of tiles for each animation.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00067">Entity.hpp:67</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_a5791155259916020ea2531025f107eb6"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#a5791155259916020ea2531025f107eb6">TouhouFanGame::Rendering::Entity::Config::textureSize</a></div><div class="ttdeci">sf::Vector2u textureSize</div><div class="ttdoc">The texture size.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00061">Entity.hpp:61</a></div></div>
+<div class="ttc" id="anamespaceTouhouFanGame_1_1Rendering_html_ab3feda10330a5f87684ad57a1aff9dd6a02071a2b830471a7974127d202a87204"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Rendering.html#ab3feda10330a5f87684ad57a1aff9dd6a02071a2b830471a7974127d202a87204">TouhouFanGame::Rendering::DEAD</a></div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00029">Entity.hpp:29</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_aefef18fec9432414153b9b20f80c8073"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#aefef18fec9432414153b9b20f80c8073">TouhouFanGame::Rendering::Entity::Config::tileSize</a></div><div class="ttdeci">sf::Vector2u tileSize</div><div class="ttdoc">The size of a single tile in pixel.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00064">Entity.hpp:64</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_af1665a33a85fa34615719ea0054f06db"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af1665a33a85fa34615719ea0054f06db">TouhouFanGame::Rendering::Entity::Config::delays</a></div><div class="ttdeci">std::vector&lt; unsigned &gt; delays</div><div class="ttdoc">The time to wait before switching to the next tile of this animation.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00073">Entity.hpp:73</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Rendering_1_1Entity_1_1Config_html_af9b030c6c94d379d21cfbb95bfd885b6"><div class="ttname"><a href="structTouhouFanGame_1_1Rendering_1_1Entity_1_1Config.html#af9b030c6c94d379d21cfbb95bfd885b6">TouhouFanGame::Rendering::Entity::Config::texture</a></div><div class="ttdeci">std::string texture</div><div class="ttdoc">The texture index.</div><div class="ttdef"><b>Definition:</b> <a href="Rendering_2Entity_8hpp_source.html#l00058">Entity.hpp:58</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

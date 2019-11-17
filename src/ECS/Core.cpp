@@ -11,7 +11,8 @@
 
 namespace TouhouFanGame::ECS
 {
-	Core::Core()
+	Core::Core(Game &game) :
+		_game(game)
 	{
 		Factory::SystemFactory::buildAll(*this, this->_systems);
 		logger.debug("Built " + std::to_string(this->_systems.size()) + " Systems");
@@ -21,7 +22,7 @@ namespace TouhouFanGame::ECS
 
 	Entity &Core::makeEntity(const std::string &typeName)
 	{
-		Entity &entity = *this->_entities.emplace_back(Factory::EntityFactory::build(typeName, this->_lastGivenID++));
+		Entity &entity = *this->_entities.emplace_back(Factory::EntityFactory::build(this->_game, typeName, this->_lastGivenID++));
 
 		for (auto &comp : entity.getComponentsNames())
 			this->_entitiesByComponent[comp].emplace_back(entity);
@@ -123,7 +124,7 @@ namespace TouhouFanGame::ECS
 			if (str != "Entity")
 				throw InvalidSerializedString("Invalid Entity header");
 
-			stream >> entity;
+			entity.unserialize(this->_game, stream);
 			if (&this->getEntityByID(entity.getID()) != &entity)
 				throw InvalidSerializedString("Two entities have the same ID");
 		}

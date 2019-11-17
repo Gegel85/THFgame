@@ -8,6 +8,11 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace TouhouFanGame
+{
+	class Resources;
+}
+
 namespace TouhouFanGame::Rendering
 {
 	class Screen;
@@ -42,7 +47,7 @@ namespace TouhouFanGame::Rendering
 		//! @brief The configs of an entity
 		struct Config {
 			//! @param path The path to the file to be loaded
-			Config(const std::string &path);
+			Config(Resources &resources, const std::string &path);
 
 			//! @brief Fetch the position on the sprite sheet of a tile
 			//! @param index The index of the tile
@@ -50,13 +55,13 @@ namespace TouhouFanGame::Rendering
 			sf::Vector2u getPositionFromAnimationIndex(unsigned index);
 
 			//! @brief The texture index
-			std::string		texture;
+			std::string	texture;
 
 			//! @brief The texture size
-			sf::Vector2u		textureSize;
+			sf::Vector2u	textureSize;
 
 			//! @brief The size of a single tile in pixel
-			sf::Vector2u		tileSize;
+			sf::Vector2u	tileSize;
 
 			//! @brief The number of tiles for each animation
 			std::vector<unsigned>	animations;
@@ -67,6 +72,9 @@ namespace TouhouFanGame::Rendering
 			//! @brief The time to wait before switching to the next tile of this animation
 			std::vector<unsigned>	delays;
 		};
+
+		//! @brief The resources this Entity can use
+		Resources &_resources;
 
 		//! @brief Used to draw the entity on the Screen
 		sf::Sprite	_sprite;
@@ -98,7 +106,7 @@ namespace TouhouFanGame::Rendering
 
 	public:
 		//! @param configPath Path to the JSON config file to load
-		explicit Entity(const std::string &configPath);
+		explicit Entity(Resources &resources, const std::string &configPath);
 
 		//! @brief Changes the current animation
 		//! @param newAnimation The new animation to use

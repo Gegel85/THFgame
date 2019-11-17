@@ -14,42 +14,46 @@ namespace TouhouFanGame::Rendering
 	//! @brief Represents the screen
 	class Screen : public sf::RenderWindow {
 	private:
+		//! @brief The Resources the Screen is in.
+		Resources &_resources;
+
 		//! @brief The top left position of the camera.
-		sf::Vector2f		_camera{0, 0};
+		sf::Vector2f _camera{0, 0};
 
 		//! @brief The view attached to the window, controlling the camera.
-		sf::View		_view;
+		sf::View _view;
 
 		//! @brief All the entities present on the screen.
-		std::vector<Entity>	_entities;
+		std::vector<std::unique_ptr<Entity>> _entities;
 
 		//! @brief Resource used to render rectangles.
-		sf::RectangleShape	_rect;
+		sf::RectangleShape _rect;
 
 		//! @brief Resource used to render text.
-		sf::Text		_text;
+		sf::Text _text;
 
 		//! @brief Resource used compute FPS.
-		sf::Clock		_clock;
+		sf::Clock _clock;
 
 		//! @brief Resource used to render sprites.
-		sf::Sprite		_sprite;
+		sf::Sprite _sprite;
 
 		//! @brief The current title of the window.
-		std::string		_title;
+		std::string _title;
 
 		//! @brief The current fps.
-		double			_fps;
+		double _fps;
 
 		//! @brief The latest size of the window, used to detect resize.
-		sf::Vector2u		_size;
+		sf::Vector2u _size;
 
 	public:
 		//! @brief Constructor.
 		//! @param title The title for the window.
 		//! @param width The width of the window.
 		//! @param height The height of the window.
-		explicit Screen(const std::string &title, unsigned int width = 640, unsigned int height = 480);
+		//! @param resources The resources the screen is in.
+		Screen(Resources &resources, const std::string &title, unsigned int width = 640, unsigned int height = 480);
 
 		//! @brief Destructor. Only log that the windows has been destroyed.
 		~Screen() override;

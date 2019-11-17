@@ -18,12 +18,12 @@ namespace TouhouFanGame
 	void MenuMgr::_renderMainMenu(Game &)
 	{}
 
-	void MenuMgr::_handleGameEvents(Game &, const sf::Event &event)
+	void MenuMgr::_handleGameEvents(Game &game, const sf::Event &event)
 	{
 		if (event.type == sf::Event::KeyPressed) {
 			switch (event.key.code) {
 			case sf::Keyboard::F:
-				_game.state.map.saveMap();
+				game.state.map.saveMap();
 			default:
 				break;
 			}

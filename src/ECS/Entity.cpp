@@ -89,7 +89,7 @@ namespace TouhouFanGame::ECS
 		stream << "THFG_ECS_Entity_End";
 	}
 
-	void Entity::unserialize(std::istream &stream)
+	void Entity::unserialize(Game &game, std::istream &stream)
 	{
 		std::string str;
 
@@ -109,7 +109,7 @@ namespace TouhouFanGame::ECS
 
 		for (stream >> str; str != "THFG_ECS_Entity_End" && !stream.eof(); stream >> str) {
 			logger.debug("Unserialize component " + str);
-			this->_components.emplace_back(Factory::ComponentFactory::build(str, stream));
+			this->_components.emplace_back(Factory::ComponentFactory::build(game, str, stream));
 		}
 
 		if (str != "THFG_ECS_Entity_End")
@@ -120,11 +120,5 @@ namespace TouhouFanGame::ECS
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Entity &entity)
 {
 	entity.serialize(stream);
-	return stream;
-}
-
-std::istream	&operator>>(std::istream &stream, TouhouFanGame::ECS::Entity &entity)
-{
-	entity.unserialize(stream);
 	return stream;
 }

@@ -33,6 +33,9 @@ namespace TouhouFanGame
 			TpTrigger(std::istream &stream);
 		};
 
+		//! @brief The Game this map is in.
+		Game &_game;
+
 		//! @brief Whether the camera has already been updated this frame.
 		bool _cameraUpdated = false;
 
@@ -160,6 +163,8 @@ namespace TouhouFanGame
 		void _savePlayer();
 
 	public:
+		Map(Game &game);
+
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;
 

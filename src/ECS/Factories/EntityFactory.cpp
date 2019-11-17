@@ -13,22 +13,22 @@
 
 namespace TouhouFanGame::ECS::Factory
 {
-	const std::map<std::string, std::function<ECS::Entity *(unsigned int)>> EntityFactory::_builders = {
-		{"Player", [](unsigned int id){
+	const std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> EntityFactory::_builders = {
+		{"Player", [](Game &game, unsigned int id){
 			return new Entity(id, "Player", {
-				new Components::ControllableComponent(*_game.state.input, 2, 4),
-				new Components::BlockedByTerrainComponent(_game.state.map),
+				new Components::ControllableComponent(*game.state.settings.input, 2, 4),
+				new Components::BlockedByTerrainComponent(game.state.map),
 				new Components::MovableComponent(),
-				new Components::DisplayableComponent("assets/entities/test.json"),
+				new Components::DisplayableComponent(game, "assets/entities/test.json"),
 				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
 			}, false);
 		}}
 	};
 
-	Entity	*EntityFactory::build(const std::string &name, unsigned int id)
+	Entity	*EntityFactory::build(Game &game, const std::string &name, unsigned int id)
 	{
 		try {
-			return _builders.at(name)(id);
+			return _builders.at(name)(game, id);
 		} catch (std::out_of_range &) {
 			throw NoSuchEntityException("Cannot find any way to build a " + name);
 		}

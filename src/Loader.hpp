@@ -19,19 +19,19 @@ namespace TouhouFanGame
 		//! @param buffer Buffer to load the file in.
 		//! @param path Path to the file.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(sf::SoundBuffer &buffer, nlohmann::json &path);
+		static bool loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path);
 
 		//! @brief Load a music file.
 		//! @param music Buffer to load the file in.
 		//! @param obj Object containing the path to the file and the loop points.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(sf::Music &music, nlohmann::json &obj);
+		static bool loadFile(Settings &, sf::Music &music, nlohmann::json &obj);
 
 		//! @brief Load a texture file.
 		//! @param texture Buffer to load the file in.
 		//! @param path Path to the file.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(sf::Texture &texture, nlohmann::json &path);
+		static bool loadFile(Settings &, sf::Texture &texture, nlohmann::json &path);
 
 		//! @brief Load settings.
 		//! @param game Game state and resources.
@@ -46,7 +46,7 @@ namespace TouhouFanGame
 		//! @param dataName The name of the data that are currently loaded.
 		//! @param paths Array of json paths.
 		//! @param data Map of buffers to load the files in.
-		static void loadAssetsFromJson(const std::string &dataName, nlohmann::json &paths, std::map<std::string, dataType> &data)
+		static void loadAssetsFromJson(Settings &settings, const std::string &dataName, nlohmann::json &paths, std::map<std::string, dataType> &data)
 		{
 			if (paths.is_null())
 				logger.warn("No " + dataName + " is marked for loading");
@@ -59,7 +59,7 @@ namespace TouhouFanGame
 					logger.warn("A sound is already loaded with key " + value.key());
 				} catch (std::out_of_range &) {}
 
-				if (!loadFile(data[value.key()], value.value()))
+				if (!loadFile(settings, data[value.key()], value.value()))
 					logger.error("Cannot load element " + value.value().dump());
 			}
 		}

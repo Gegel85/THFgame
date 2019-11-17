@@ -12,6 +12,12 @@
 
 namespace TouhouFanGame
 {
+	Map::Map(TouhouFanGame::Game &game) :
+		_game(game),
+		_core(game)
+	{
+	}
+
 	Map::TpTrigger::TpTrigger(std::istream &stream) :
 		location(_readInteger<unsigned short>(stream), _readInteger<unsigned short>(stream)),
 		mapId(_readInteger<unsigned short>(stream)),
@@ -116,7 +122,8 @@ namespace TouhouFanGame
 
 		ECS::Entity &player = this->_core.registerEntity(new ECS::Entity());
 
-		stream >> player >> this->_id;
+		player.unserialize(this->_game, stream);
+		stream >> this->_id;
 		stream.close();
 		player.setSerializable(false);
 		this->_loadMap(this->_id);

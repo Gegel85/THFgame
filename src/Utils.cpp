@@ -43,6 +43,7 @@ namespace TouhouFanGame::Utils
 			static_cast<int>(sf::VideoMode::getDesktopMode().width  / 2 - 350),
 			static_cast<int>(sf::VideoMode::getDesktopMode().height / 2 - 110),
 		});
+		win.setFramerateLimit(10);
 		if (!font.loadFromFile("assets/arial.ttf")) {
 			logger.error("Cannot load default font !");
 			logger.error("Displaying the message in the console");

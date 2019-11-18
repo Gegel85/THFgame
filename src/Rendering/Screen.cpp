@@ -55,7 +55,7 @@ namespace TouhouFanGame::Rendering
 
 	void	Screen::draw(sf::IntRect rect)
 	{
-		this->_rect.setPosition(sf::Vector2f(rect.left, rect.width));
+		this->_rect.setPosition(sf::Vector2f(rect.left, rect.top));
 		this->_rect.setSize(sf::Vector2f(rect.width, rect.height));
 		sf::RenderWindow::draw(this->_rect);
 	}
@@ -92,6 +92,11 @@ namespace TouhouFanGame::Rendering
 		return *this->_entities.emplace_back(new Entity(this->_resources, configFile));
 	}
 
+	sf::Vector2f Screen::getCameraCenter() const
+	{
+		return this->_cameraCenter;
+	}
+
 	void Screen::renderEntities()
 	{
 		for (auto &entity : this->_entities)
@@ -113,7 +118,7 @@ namespace TouhouFanGame::Rendering
 	void Screen::display()
 	{
 		if (this->getSize() != this->_size) {
-			this->_view.setCenter(this->getSize().x / 2. + this->_camera.x, this->getSize().y / 2. + this->_camera.y);
+			this->_view.setCenter(this->_cameraCenter.x, this->_cameraCenter.y);
 			this->_view.setSize(this->getSize().x, this->getSize().y);
 			this->setView(this->_view);
 		}
@@ -122,10 +127,10 @@ namespace TouhouFanGame::Rendering
 		sf::RenderWindow::display();
 	}
 
-	void Screen::setCamera(sf::Vector2f newCamera)
+	void Screen::setCameraCenter(sf::Vector2f newCamera)
 	{
-		this->_camera = newCamera;
-		this->_view.setCenter(this->getSize().x / 2. + this->_camera.x, this->getSize().y / 2. + this->_camera.y);
+		this->_cameraCenter = newCamera;
+		this->_view.setCenter(this->_cameraCenter.x, this->_cameraCenter.y);
 		this->_view.setSize(this->getSize().x, this->getSize().y);
 		this->setView(this->_view);
 	}

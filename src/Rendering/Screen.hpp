@@ -18,7 +18,7 @@ namespace TouhouFanGame::Rendering
 		Resources &_resources;
 
 		//! @brief The top left position of the camera.
-		sf::Vector2f _camera{0, 0};
+		sf::Vector2f _cameraCenter{0, 0};
 
 		//! @brief The view attached to the window, controlling the camera.
 		sf::View _view;
@@ -91,7 +91,7 @@ namespace TouhouFanGame::Rendering
 		void	renderEntities();
 
 		//! @brief Change the current camera center
-		void	setCamera(sf::Vector2f);
+		void	setCameraCenter(sf::Vector2f);
 
 		//! @brief Draw a rectangle on the screen
 		//! @param rect The position and size of the rectangle (relative to the camera)
@@ -106,6 +106,10 @@ namespace TouhouFanGame::Rendering
 		//! @param sprite The sprite to use
 		//! @param pos The position on the screen (relative to the camera)
 		void	draw(sf::Sprite &sprite, sf::Vector2f pos);
+
+		//! @brief Get the camera center.
+		//! @breif The current camera center.
+		sf::Vector2f getCameraCenter() const;
 
 		//! @brief Draw a texture on the screen
 		//! @param texture The texture to use

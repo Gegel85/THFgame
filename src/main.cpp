@@ -38,10 +38,15 @@ namespace TouhouFanGame
 int	main()
 {
 	TouhouFanGame::Game game;
+	//TODO: Add proper font loading.
+	sf::Font font;
+
+	font.loadFromFile("assets/arial.ttf");
 
 	try {
 		TouhouFanGame::logger.info("Loading assets...");
 		TouhouFanGame::Loader::loadAssets(game);
+		game.resources.screen->setFont(font);
 		TouhouFanGame::logger.info("Starting game.");
 		TouhouFanGame::gameLoop(game);
 		TouhouFanGame::logger.info("Goodbye !");

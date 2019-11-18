@@ -55,6 +55,7 @@ namespace TouhouFanGame::ECS::Systems
 		unsigned char newDir = mov.dir;
 		float end = mov.speed - std::fmod(mov.speed, tileSize) + tileSize;
 
+		//TODO: Fix collision when going DOWN
 		for (float x = -end; x < pos.size.x + end; x += tileSize)
 			for (float y = -end; y < pos.size.y + end; y += tileSize)
 				if (block.map.getObjectAt({pos.position.x + x, pos.position.y + y}) & 0x80U)

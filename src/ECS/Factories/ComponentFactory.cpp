@@ -15,6 +15,8 @@
 #include "../Components/BlockedByTerrainComponent.hpp"
 #include "../Components/HealthComponent.hpp"
 #include "../Components/ManaComponent.hpp"
+#include "../Components/NameComponent.hpp"
+#include "../Components/PlayerHudComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -26,6 +28,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"BlockedByTerrain", [](Game &game, std::istream &      ){ return new Components::BlockedByTerrainComponent(game.state.map); }},
 		{"Mana",             [](Game &    , std::istream &stream){ return new Components::ManaComponent(stream); }},
 		{"Health",           [](Game &    , std::istream &stream){ return new Components::HealthComponent(stream); }},
+		{"Name",             [](Game &    , std::istream &stream){ return new Components::NameComponent(stream); }},
+		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(*game.resources.screen); }},
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

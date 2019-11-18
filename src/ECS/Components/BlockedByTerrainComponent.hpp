@@ -7,18 +7,18 @@
 
 
 #include "../../Map.hpp"
+#include "BasicSerializeComponent.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
 	//! @brief Given to Entity that are blocked by Map terrain.
-	class BlockedByTerrainComponent : public Component {
+	class BlockedByTerrainComponent : public BasicSerializeComponent {
 	public:
 		//! @brief The Map the Entity is in.
 		Map &map;
 
 		explicit BlockedByTerrainComponent(Map &map);
 		~BlockedByTerrainComponent() override = default;
-		void serialize(std::ostream &) const override;
 	};
 }
 

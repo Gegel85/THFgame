@@ -12,6 +12,8 @@
 #include "../../Game.hpp"
 #include "../Components/HealthComponent.hpp"
 #include "../Components/ManaComponent.hpp"
+#include "../Components/NameComponent.hpp"
+#include "../Components/PlayerHudComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -25,6 +27,8 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
 				new Components::HealthComponent(20),
 				new Components::ManaComponent(20),
+				new Components::NameComponent("Test Character"),
+				new Components::PlayerHUDComponent(*game.resources.screen)
 			}, false);
 		}}
 	};

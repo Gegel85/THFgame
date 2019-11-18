@@ -11,8 +11,8 @@ namespace TouhouFanGame
 {
 	void MenuMgr::_renderGame(Game &game)
 	{
-		game.state.map.update();
 		game.state.map.render();
+		game.state.map.update();
 	}
 
 	void MenuMgr::_renderMainMenu(Game &)
@@ -65,7 +65,7 @@ namespace TouhouFanGame
 
 	void MenuMgr::changeMenu(Game &game, Menu newMenu)
 	{
-		game.resources.screen->setCamera({0, 0});
+		game.resources.screen->setCameraCenter({0, 0});
 		game.resources.stopMusic();
 		game.state.currentMenu = newMenu;
 		switch (newMenu) {

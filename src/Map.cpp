@@ -210,7 +210,7 @@ namespace TouhouFanGame
 	{
 		logger.debug("Loading map");
 
-		_game.resources.playMusic(_readString(stream));
+		this->_game.resources.playMusic(_readString(stream));
 
 		this->_tileMap = _readString(stream);
 		logger.debug("Tilemap file is '" + this->_tileMap + "'");
@@ -279,12 +279,12 @@ namespace TouhouFanGame
 			this->updateCameraPosition(pos);
 		}
 
-		sf::Vector2u size = _game.resources.screen->getSize();
+		sf::Vector2u size = this->_game.resources.screen->getSize();
 		sf::Vector2f pos = this->_cameraCenter;
 
+		this->_game.resources.screen->setCameraCenter(pos);
 		pos.x -= size.x / 2.;
 		pos.y -= size.y / 2.;
-		_game.resources.screen->setCamera(pos);
 		pos.x /= this->_tileSize;
 		pos.y /= this->_tileSize;
 		size.x = ceil(size.x / static_cast<float>(this->_tileSize));
@@ -309,7 +309,7 @@ namespace TouhouFanGame
 		}
 
 		this->_cameraUpdated = false;
-		_game.resources.screen->renderEntities();
+		this->_game.resources.screen->renderEntities();
 	}
 
 	void Map::updateCameraPosition(sf::Vector2f focusPoint)

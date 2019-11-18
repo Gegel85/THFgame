@@ -7,11 +7,8 @@
 namespace TouhouFanGame::ECS::Components
 {
 	BlockedByTerrainComponent::BlockedByTerrainComponent(TouhouFanGame::Map &map) :
-		Component("BlockedByTerrain"),
+		BasicSerializeComponent("BlockedByTerrain"),
 		map(map)
 	{
 	}
-
-	void BlockedByTerrainComponent::serialize(std::ostream &) const
-	{}
 }

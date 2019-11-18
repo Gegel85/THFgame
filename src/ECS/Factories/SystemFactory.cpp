@@ -11,6 +11,7 @@
 #include "../Systems/BlockedByTerrainSystem.hpp"
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/ManaSystem.hpp"
+#include "../Systems/PlayerHudSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -22,6 +23,8 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::HealthSystem(core); },
 		[](Core &core){ return new Systems::ManaSystem(core); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
+		[](Core &core){ return new Systems::UselessSystem(core, "Name"); },
+		[](Core &core){ return new Systems::PlayerHUDSystem(core); },
 	};
 
 	void SystemFactory::buildAll(TouhouFanGame::ECS::Core &core, std::vector<std::unique_ptr<System>> &buffer)

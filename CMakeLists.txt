@@ -74,7 +74,7 @@ add_executable(
 	src/ECS/Factories/ComponentFactory.hpp
 	src/ECS/Components/HealthComponent.cpp
 	src/ECS/Components/HealthComponent.hpp
-	src/ECS/Components/ManaComponent.cpp src/ECS/Components/ManaComponent.hpp src/ECS/Systems/HealthSystem.cpp src/ECS/Systems/HealthSystem.hpp src/ECS/Systems/ManaSystem.cpp src/ECS/Systems/ManaSystem.hpp)
+	src/ECS/Components/ManaComponent.cpp src/ECS/Components/ManaComponent.hpp src/ECS/Systems/HealthSystem.cpp src/ECS/Systems/HealthSystem.hpp src/ECS/Systems/ManaSystem.cpp src/ECS/Systems/ManaSystem.hpp src/ECS/Components/NameComponent.cpp src/ECS/Components/NameComponent.hpp src/ECS/Components/PlayerHudComponent.cpp src/ECS/Components/PlayerHudComponent.hpp src/ECS/Components/BasicSerializeComponent.cpp src/ECS/Components/BasicSerializeComponent.hpp src/ECS/Systems/PlayerHudSystem.cpp src/ECS/Systems/PlayerHudSystem.hpp)
 
 target_link_libraries(
 	THFgame

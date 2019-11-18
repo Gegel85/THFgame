@@ -10,6 +10,8 @@
 #include "../Components/ControllableComponent.hpp"
 #include "../Components/BlockedByTerrainComponent.hpp"
 #include "../../Game.hpp"
+#include "../Components/HealthComponent.hpp"
+#include "../Components/ManaComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -21,6 +23,8 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::MovableComponent(),
 				new Components::DisplayableComponent(game, "assets/entities/test.json"),
 				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
+				new Components::HealthComponent(20),
+				new Components::ManaComponent(20),
 			}, false);
 		}}
 	};

@@ -68,7 +68,13 @@ add_executable(
 	src/Resources.cpp
 	src/Resources.hpp
 	src/Utils.hpp
-	src/Utils.cpp src/NotCopyable.hpp src/ECS/Factories/ComponentFactory.cpp src/ECS/Factories/ComponentFactory.hpp)
+	src/Utils.cpp
+	src/NotCopyable.hpp
+	src/ECS/Factories/ComponentFactory.cpp
+	src/ECS/Factories/ComponentFactory.hpp
+	src/ECS/Components/HealthComponent.cpp
+	src/ECS/Components/HealthComponent.hpp
+	src/ECS/Components/ManaComponent.cpp src/ECS/Components/ManaComponent.hpp src/ECS/Systems/HealthSystem.cpp src/ECS/Systems/HealthSystem.hpp src/ECS/Systems/ManaSystem.cpp src/ECS/Systems/ManaSystem.hpp)
 
 target_link_libraries(
 	THFgame

@@ -9,6 +9,8 @@
 #include "../Systems/MovableSystem.hpp"
 #include "../Systems/UselessSystem.hpp"
 #include "../Systems/BlockedByTerrainSystem.hpp"
+#include "../Systems/HealthSystem.hpp"
+#include "../Systems/ManaSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -19,6 +21,8 @@ namespace TouhouFanGame::ECS::Factory
 			[](Core &core){ return new Systems::ControllableSystem(core); },
 			[](Core &core){ return new Systems::MovableSystem(core); },
 			[](Core &core){ return new Systems::BlockedByTerrainSystem(core); },
+			[](Core &core){ return new Systems::HealthSystem(core); },
+			[](Core &core){ return new Systems::ManaSystem(core); },
 			[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
 		};
 

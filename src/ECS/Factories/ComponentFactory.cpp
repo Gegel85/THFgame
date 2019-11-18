@@ -13,6 +13,8 @@
 #include "../Components/MovableComponent.hpp"
 #include "../Components/DisplayableComponent.hpp"
 #include "../Components/BlockedByTerrainComponent.hpp"
+#include "../Components/HealthComponent.hpp"
+#include "../Components/ManaComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -22,6 +24,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"Controllable",     [](Game &game, std::istream &stream){ return new Components::ControllableComponent(*game.state.settings.input, stream); }},
 		{"Displayable",      [](Game &game, std::istream &stream){ return new Components::DisplayableComponent(game, stream); }},
 		{"BlockedByTerrain", [](Game &game, std::istream &      ){ return new Components::BlockedByTerrainComponent(game.state.map); }},
+		{"Mana",             [](Game &    , std::istream &stream){ return new Components::ManaComponent(stream); }},
+		{"Health",           [](Game &    , std::istream &stream){ return new Components::HealthComponent(stream); }},
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

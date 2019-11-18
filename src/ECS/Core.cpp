@@ -15,9 +15,6 @@ namespace TouhouFanGame::ECS
 		_game(game)
 	{
 		Factory::SystemFactory::buildAll(*this, this->_systems);
-		logger.debug("Built " + std::to_string(this->_systems.size()) + " Systems");
-		for (auto &system : this->_systems)
-			logger.debug("Built " + system->getName() + "System");
 	}
 
 	Entity &Core::makeEntity(const std::string &typeName)

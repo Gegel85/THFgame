@@ -71,9 +71,13 @@ namespace TouhouFanGame
 		game.state.currentMenu = newMenu;
 		switch (newMenu) {
 		case MAIN_MENU:
+			game.state.hud.setDispPlayerHUD(false);
+			game.state.hud.setDispBossHUD(false);
 			game.resources.playMusic("menu");
 			break;
 		case IN_GAME:
+			game.state.hud.setDispPlayerHUD(true);
+			game.state.hud.setDispBossHUD(false);
 			game.state.map.reset();
 			game.state.map.loadMap();
 			break;

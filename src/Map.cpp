@@ -210,7 +210,10 @@ namespace TouhouFanGame
 	{
 		logger.debug("Loading map");
 
-		this->_game.resources.playMusic(_readString(stream));
+		std::string music = _readString(stream);
+
+		this->_game.resources.playMusic(music);
+		this->_game.state.hud.setMusicName(music);
 
 		this->_tileMap = _readString(stream);
 		logger.debug("Tilemap file is '" + this->_tileMap + "'");

@@ -15,13 +15,46 @@ namespace TouhouFanGame::Rendering
 {
 	class HUD {
 	private:
+		//! @brief Whether the boss HUD should be displayed.
+		bool _dispBoss = false;
+
+		//! @brief Whether the player HUD should be displayed.
+		bool _dispPlayer = false;
+
+		//! @brief The current boss life %.
 		float _bossLife = 0;
+
+		//! @brief The current player life %.
 		float _playerLife = 0;
+
+		//! @brief The current player mana %.
 		float _playerMana = 0;
-		unsigned musicNamePos = 0;
+
+		//! @brief Internal counter for the music.
+		unsigned _musicNamePos = 0;
+
+		//! @brief The current boss name.
 		std::string _bossName = "";
+
+		//! @brief The current music name.
 		std::string _musicName = "";
+
+		//! @brief The current player name.
 		std::string _playerName = "";
+
+		//! @brief Renders the player HUD on screen.
+		void _renderPlayerHUD(Screen &screen);
+
+		//! @brief Renders the boss HUD on screen.
+		void _renderBossHUD(Screen &screen);
+
+		//! @brief Renders the currently playing music's name on screen.
+		void _renderMusic(Screen &screen);
+
+	public:
+		void setDispBossHUD(bool dispBoss);
+
+		void setDispPlayerHUD(bool dispPlayer);
 
 	public:
 		//! @brief Set music name.

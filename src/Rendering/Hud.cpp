@@ -34,7 +34,9 @@ void TouhouFanGame::Rendering::HUD::setPlayerName(const std::string &playerName)
 
 void TouhouFanGame::Rendering::HUD::setMusicName(const std::string &musicName)
 {
-	this->_musicNamePos = 120;
+	if (this->_musicName == musicName)
+		return;
+	this->_musicNamePos = 180;
 	this->_musicName = musicName;
 }
 
@@ -112,8 +114,32 @@ void TouhouFanGame::Rendering::HUD::_renderBossHUD(TouhouFanGame::Rendering::Scr
 
 }
 
-void TouhouFanGame::Rendering::HUD::_renderMusic(TouhouFanGame::Rendering::Screen &)
+void TouhouFanGame::Rendering::HUD::_renderMusic(TouhouFanGame::Rendering::Screen &screen)
 {
+	auto camera = screen.getCameraCenter();
+	auto screenSize = screen.getSize();
+
+	screen.fillColor(sf::Color{120, 120, 120});
+	screen.textSize(15);
+	if (this->_musicNamePos > 120) {
+		screen.draw(this->_musicName, {
+			camera.x + screenSize.x / 2.f - screen.getTextWidth(this->_musicName) * (1 - (this->_musicNamePos - 120) / 60.f),
+			camera.y - screenSize.y / 2.f + 10,
+		});
+	} else if (this->_musicNamePos > 60) {
+		screen.draw(this->_musicName, {
+			camera.x + screenSize.x / 2.f - screen.getTextWidth(this->_musicName),
+			camera.y - screenSize.y / 2.f + 10,
+		});
+	} else {
+		screen.fillColor(sf::Color{120, 120, 120, static_cast<sf::Uint8>(255 * this->_musicNamePos / 60)});
+		screen.draw(this->_musicName, {
+			camera.x + screenSize.x / 2.f - screen.getTextWidth(this->_musicName),
+			camera.y - screenSize.y / 2.f + 10,
+		});
+	}
+
+	screen.fillColor(sf::Color{255, 255, 255});
 	this->_musicNamePos--;
 }
 

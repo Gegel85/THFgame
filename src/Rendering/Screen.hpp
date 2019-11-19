@@ -123,6 +123,10 @@ namespace TouhouFanGame::Rendering
 		//! @brief Refresh the window
 		//! @details This will draw all object buffered before this call. It will also update the FPS counter and change the camera according to the new window size if it has changed.
 		void	display();
+
+		//! @brief Gets the width in pixels a text would be.
+		//! @return The width of the text.
+		float getTextWidth(const std::string &text);
 	};
 }
 

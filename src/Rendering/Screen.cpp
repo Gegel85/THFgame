@@ -2,6 +2,7 @@
 // Created by Gegel85 on 15/01/2019.
 //
 
+#include <iostream>
 #include "../Game.hpp"
 #include "Screen.hpp"
 
@@ -138,5 +139,18 @@ namespace TouhouFanGame::Rendering
 	double Screen::getFPS()
 	{
 		return this->_fps;
+	}
+
+	float Screen::getTextWidth(const std::string &text)
+	{
+		float size = 0;
+		auto font = this->_text.getFont();
+
+		if (!font)
+			return 0;
+
+		for (char c : text)
+			size += font->getGlyph(c, this->_text.getCharacterSize(), false).advance;
+		return size;
 	}
 }

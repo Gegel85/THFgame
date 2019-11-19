@@ -6,7 +6,7 @@
 #define THFGAME_PLAYERHUDCOMPONENT_HPP
 
 
-#include "../../Rendering/Screen.hpp"
+#include "../../Rendering/Hud.hpp"
 #include "BasicSerializeComponent.hpp"
 
 namespace TouhouFanGame::ECS::Components
@@ -15,9 +15,9 @@ namespace TouhouFanGame::ECS::Components
 	class PlayerHUDComponent : public BasicSerializeComponent {
 	public:
 		//! @brief The Screen to render the HUD on.
-		Rendering::Screen &screen;
+		Rendering::HUD &hud;
 
-		PlayerHUDComponent(Rendering::Screen &screen);
+		PlayerHUDComponent(Rendering::HUD &hud);
 		~PlayerHUDComponent() override = default;
 	};
 }

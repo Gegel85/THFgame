@@ -11,8 +11,9 @@ namespace TouhouFanGame
 {
 	void MenuMgr::_renderGame(Game &game)
 	{
-		game.state.map.render();
 		game.state.map.update();
+		game.state.map.render();
+		game.state.hud.draw(*game.resources.screen);
 	}
 
 	void MenuMgr::_renderMainMenu(Game &)

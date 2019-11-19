@@ -20,45 +20,9 @@ namespace TouhouFanGame::ECS::Systems
 		auto &mana = entity.getComponent("Mana").to<Components::ManaComponent>();
 		auto &name = entity.getComponent("Name").to<Components::NameComponent>();
 		auto &hud = entity.getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
-		auto camera = hud.screen.getCameraCenter();
-		auto screenSize = hud.screen.getSize();
 
-		hud.screen.fillColor(sf::Color{120, 120, 120});
-		hud.screen.textSize(15);
-		hud.screen.draw(name.name, {
-			camera.x - screenSize.x / 2.f + 5,
-			camera.y + screenSize.y / 2.f - 53,
-		});
-
-		hud.screen.fillColor(sf::Color{120, 120, 120});
-		hud.screen.draw(sf::IntRect{
-			static_cast<int>(camera.x - screenSize.x / 2. + 5),
-			static_cast<int>(camera.y + screenSize.y / 2. - 35),
-			210,
-			30
-		});
-		hud.screen.draw(sf::IntRect{
-			static_cast<int>(camera.x + screenSize.x / 2. - 215),
-			static_cast<int>(camera.y + screenSize.y / 2. - 35),
-			210,
-			30
-		});
-
-		hud.screen.fillColor(sf::Color{255, 0, 0});
-		hud.screen.draw(sf::IntRect{
-			static_cast<int>(camera.x - screenSize.x / 2. + 10),
-			static_cast<int>(camera.y + screenSize.y / 2. - 30),
-			static_cast<int>(health.health * 200 / health.maxHealth),
-			20
-		});
-		hud.screen.fillColor(sf::Color{200, 200, 255});
-		hud.screen.draw(sf::IntRect{
-			static_cast<int>(camera.x + screenSize.x / 2. - 210),
-			static_cast<int>(camera.y + screenSize.y / 2. - 30),
-			static_cast<int>(mana.mana * 200 / mana.maxMana),
-			20
-		});
-
-		hud.screen.fillColor(sf::Color{255, 255, 255});
+		hud.hud.setPlayerName(name.name);
+		hud.hud.setPlayerLife(health.health * 100 / health.maxHealth);
+		hud.hud.setPlayerMana(mana.mana * 100 / mana.maxMana);
 	}
 }

@@ -6,8 +6,8 @@
 
 namespace TouhouFanGame::ECS::Components
 {
-	PlayerHUDComponent::PlayerHUDComponent(TouhouFanGame::Rendering::Screen &screen) :
+	PlayerHUDComponent::PlayerHUDComponent(TouhouFanGame::Rendering::HUD &hud) :
 		BasicSerializeComponent("PlayerHUD"),
-		screen(screen)
+		hud(hud)
 	{}
 }

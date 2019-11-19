@@ -5,6 +5,7 @@
 #ifndef THFGAME_GAME_HPP
 #define THFGAME_GAME_HPP
 
+#include "Rendering/Hud.hpp"
 #include "Logger.hpp"
 #include "Resources.hpp"
 #include "Menu.hpp"
@@ -32,6 +33,9 @@ namespace TouhouFanGame
 
 		//! @brief The currently loaded map
 		Map map;
+
+		//! @brief The currently displayed HUD.
+		Rendering::HUD hud;
 
 		//! @brief Settings of the game
 		Settings settings;

@@ -29,7 +29,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"Mana",             [](Game &    , std::istream &stream){ return new Components::ManaComponent(stream); }},
 		{"Health",           [](Game &    , std::istream &stream){ return new Components::HealthComponent(stream); }},
 		{"Name",             [](Game &    , std::istream &stream){ return new Components::NameComponent(stream); }},
-		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(*game.resources.screen); }},
+		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(game.state.hud); }},
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

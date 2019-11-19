@@ -28,7 +28,7 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::HealthComponent(20),
 				new Components::ManaComponent(20),
 				new Components::NameComponent("Test Character"),
-				new Components::PlayerHUDComponent(*game.resources.screen)
+				new Components::PlayerHUDComponent(game.state.hud)
 			}, false);
 		}}
 	};

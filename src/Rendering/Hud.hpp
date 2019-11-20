@@ -11,6 +11,9 @@
 
 #include "Screen.hpp"
 
+#define HUD_VERTICAL_SIZE 60
+#define HUD_HORIZONTAL_SIZE 0
+
 namespace TouhouFanGame::Rendering
 {
 	class HUD {

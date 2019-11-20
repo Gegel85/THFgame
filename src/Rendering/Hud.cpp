@@ -45,6 +45,14 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 	auto camera = screen.getCameraCenter();
 	auto screenSize = screen.getSize();
 
+	screen.fillColor(sf::Color{0, 0, 0});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2.),
+		static_cast<int>(camera.y + screenSize.y / 2. - 55),
+		static_cast<int>(screenSize.x),
+		static_cast<int>(screenSize.y)
+	});
+
 	screen.fillColor(sf::Color{120, 120, 120});
 	screen.textSize(15);
 	screen.draw(this->_playerName, {
@@ -52,7 +60,7 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		camera.y + screenSize.y / 2.f - 53,
 	});
 
-	screen.fillColor(sf::Color{120, 120, 120});
+	screen.fillColor(sf::Color{200, 200, 200});
 	screen.draw(sf::IntRect{
 		static_cast<int>(camera.x - screenSize.x / 2. + 5),
 		static_cast<int>(camera.y + screenSize.y / 2. - 35),
@@ -73,7 +81,7 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		static_cast<int>(this->_playerLife * 2),
 		20
 	});
-	screen.fillColor(sf::Color{200, 200, 255});
+	screen.fillColor(sf::Color{106, 90, 205});
 	screen.draw(sf::IntRect{
 		static_cast<int>(camera.x + screenSize.x / 2. - 210),
 		static_cast<int>(camera.y + screenSize.y / 2. - 30),
@@ -87,14 +95,7 @@ void TouhouFanGame::Rendering::HUD::_renderBossHUD(TouhouFanGame::Rendering::Scr
 	auto camera = screen.getCameraCenter();
 	auto screenSize = screen.getSize();
 
-	screen.fillColor(sf::Color{120, 120, 120});
-	screen.textSize(15);
-	screen.draw(this->_bossName, {
-		camera.x - screenSize.x / 2.f + 5,
-		camera.y + screenSize.y / 2.f - 53,
-	});
-
-	screen.fillColor(sf::Color{120, 120, 120});
+	screen.fillColor(sf::Color{120, 120, 120, 120});
 	screen.draw(sf::IntRect{
 		static_cast<int>(camera.x - screenSize.x / 2. + 1),
 		static_cast<int>(camera.y - screenSize.y / 2. + 1),
@@ -109,7 +110,6 @@ void TouhouFanGame::Rendering::HUD::_renderBossHUD(TouhouFanGame::Rendering::Scr
 		static_cast<int>(this->_bossLife * (screenSize.x - 4) / 100),
 		3
 	});
-
 }
 
 void TouhouFanGame::Rendering::HUD::_renderMusic(TouhouFanGame::Rendering::Screen &screen)

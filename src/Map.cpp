@@ -295,8 +295,8 @@ namespace TouhouFanGame
 
 		for (unsigned y = pos.y < 0 ? 0 : pos.y; y < pos.y + size.y && y < this->_size.y; y++) {
 			for (unsigned x = pos.x < 0 ? 0 : pos.x; x < pos.x + size.x && x < this->_size.x; x++) {
-				_game.resources.screen->draw(
-					_game.resources.textures.at(this->_tileMap),
+				this->_game.resources.screen->draw(
+					this->_game.resources.textures.at(this->_tileMap),
 					{
 						static_cast<float>(x * this->_tileSize),
 						static_cast<float>(y * this->_tileSize)
@@ -318,8 +318,16 @@ namespace TouhouFanGame
 	void Map::updateCameraPosition(sf::Vector2f focusPoint)
 	{
 		this->_cameraUpdated = true;
-		this->_cameraCenter.x = Map::_getCameraCenter(this->_size.x * this->_tileSize, _game.resources.screen->getSize().x, focusPoint.x);
-		this->_cameraCenter.y = Map::_getCameraCenter(this->_size.y * this->_tileSize, _game.resources.screen->getSize().y, focusPoint.y);
+		this->_cameraCenter.x = Map::_getCameraCenter(
+			this->_size.x * this->_tileSize,
+			this->_game.resources.screen->getSize().x - HUD_HORIZONTAL_SIZE,
+			focusPoint.x
+		) + HUD_HORIZONTAL_SIZE / 2;
+		this->_cameraCenter.y = Map::_getCameraCenter(
+			this->_size.y * this->_tileSize,
+			this->_game.resources.screen->getSize().y - HUD_VERTICAL_SIZE,
+			focusPoint.y
+		) + HUD_VERTICAL_SIZE / 2;
 	}
 
 	float Map::_getCameraCenter(float size, float screenSize, float focusPoint)

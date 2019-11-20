@@ -2,8 +2,8 @@
 // Created by Gegel85 on 25/09/2019.
 //
 
-#ifndef THFGAME_MENU_HPP
-#define THFGAME_MENU_HPP
+#ifndef THFGAME_MENUMGR_HPP
+#define THFGAME_MENUMGR_HPP
 
 
 #include <SFML/Window/Event.hpp>
@@ -45,4 +45,4 @@ namespace TouhouFanGame
 }
 
 
-#endif //THFGAME_MENU_HPP
+#endif //THFGAME_MENUMGR_HPP

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "Menu.hpp"
+#include "MenuMgr.hpp"
 #include "Game.hpp"
 #include "ECS/Components/PositionComponent.hpp"
 

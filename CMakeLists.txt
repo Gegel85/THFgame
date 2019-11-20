@@ -58,8 +58,8 @@ add_executable(
 	src/main.cpp
 	src/Map.cpp
 	src/Map.hpp
-	src/Menu.cpp
-	src/Menu.hpp
+	src/MenuMgr.cpp
+	src/MenuMgr.hpp
 	src/Rendering/Entity.cpp
 	src/Rendering/Entity.hpp
 	src/Rendering/Exceptions.hpp

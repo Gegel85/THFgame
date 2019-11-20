@@ -8,7 +8,7 @@
 #include "Rendering/Hud.hpp"
 #include "Logger.hpp"
 #include "Resources.hpp"
-#include "Menu.hpp"
+#include "MenuMgr.hpp"
 #include "Map.hpp"
 #include "Input.hpp"
 

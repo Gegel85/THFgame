@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include "Logger.hpp"
 #include "Loader.hpp"
-#include "Menu.hpp"
+#include "MenuMgr.hpp"
 #include "Exceptions.hpp"
 #include "Utils.hpp"
 

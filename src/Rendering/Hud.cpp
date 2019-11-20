@@ -24,7 +24,7 @@ void TouhouFanGame::Rendering::HUD::setPlayerMana(float playerMana)
 
 void TouhouFanGame::Rendering::HUD::setBossName(const std::string &bossName)
 {
-	this->_bossName = bossName;
+	this->_bossName = bossName + ": ";
 }
 
 void TouhouFanGame::Rendering::HUD::setPlayerName(const std::string &playerName)
@@ -48,9 +48,9 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 	screen.fillColor(sf::Color{0, 0, 0});
 	screen.draw(sf::IntRect{
 		static_cast<int>(camera.x - screenSize.x / 2.),
-		static_cast<int>(camera.y + screenSize.y / 2. - 55),
+		static_cast<int>(camera.y + screenSize.y / 2. - HUD_VERTICAL_SIZE),
 		static_cast<int>(screenSize.x),
-		static_cast<int>(screenSize.y)
+		HUD_VERTICAL_SIZE
 	});
 
 	screen.fillColor(sf::Color{120, 120, 120});
@@ -95,19 +95,34 @@ void TouhouFanGame::Rendering::HUD::_renderBossHUD(TouhouFanGame::Rendering::Scr
 	auto camera = screen.getCameraCenter();
 	auto screenSize = screen.getSize();
 
+	screen.fillColor(sf::Color{0, 0, 0});
+	screen.textSize(10);
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2.),
+		static_cast<int>(camera.y - screenSize.y / 2.),
+		static_cast<int>(screen.getTextWidth(this->_bossName)),
+		10
+	});
+
+	screen.fillColor(sf::Color{255, 255, 255});
+	screen.draw(this->_bossName, {
+		camera.x - screenSize.x / 2.f,
+		camera.y - screenSize.y / 2.f - 3,
+	});
+
 	screen.fillColor(sf::Color{120, 120, 120, 120});
 	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 1),
+		static_cast<int>(camera.x - screenSize.x / 2. + 1 + screen.getTextWidth(this->_bossName)),
 		static_cast<int>(camera.y - screenSize.y / 2. + 1),
-		static_cast<int>(screenSize.x - 2),
+		static_cast<int>(screenSize.x - 2 - screen.getTextWidth(this->_bossName)),
 		5
 	});
 
-	screen.fillColor(sf::Color{255, 0, 0});
+	screen.fillColor(sf::Color{255, 0, 0, 120});
 	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 2),
+		static_cast<int>(camera.x - screenSize.x / 2. + 2 + screen.getTextWidth(this->_bossName)),
 		static_cast<int>(camera.y - screenSize.y / 2. + 2),
-		static_cast<int>(this->_bossLife * (screenSize.x - 4) / 100),
+		static_cast<int>(this->_bossLife * (screenSize.x - 4 - screen.getTextWidth(this->_bossName)) / 100),
 		3
 	});
 }

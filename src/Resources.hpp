@@ -23,7 +23,7 @@ namespace TouhouFanGame
 		std::unique_ptr<Rendering::Screen> screen;
 
 		//! @brief The loaded musics
-		std::map<std::string, sf::Music> musics;
+		std::map<std::string, std::pair<sf::Music, std::string>> musics;
 
 		//! @brief The loaded sprites
 		std::map<std::string, sf::Texture> textures;

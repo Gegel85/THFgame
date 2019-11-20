@@ -1,17 +1,20 @@
 {
 	"musics": {
 		"menu": {
-			"path": "musics/main_menu.ogg"
+			"path": "musics/main_menu.ogg",
+			"description": "EoSD Main Menu Theme: A Dream That is More Scarlet Than Red"
 		},
 		"heartfelt_fancy" : {
 			"path": "musics/heartfelt_fancy.ogg",
+			"description": "SA Stage 4 Theme: Heartfelt Fancy",
 			"loop_points": {
 				"offset": 6305,
 				"length": 131966
 			}
 		},
 		"satori_maiden": {
-			"path": "musics/satori_maiden_3rd_eye.ogg"
+			"path": "musics/satori_maiden_3rd_eye.ogg",
+			"description": "SA Stage 4 Satori's Theme: Satori Maiden ~ 3rd Eye"
 		}
 	},
 	"sfx": {},

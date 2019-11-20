@@ -213,7 +213,7 @@ namespace TouhouFanGame
 		std::string music = _readString(stream);
 
 		this->_game.resources.playMusic(music);
-		this->_game.state.hud.setMusicName(music);
+		this->_game.state.hud.setMusicName(this->_game.resources.musics.at(music).second);
 
 		this->_tileMap = _readString(stream);
 		logger.debug("Tilemap file is '" + this->_tileMap + "'");

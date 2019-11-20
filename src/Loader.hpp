@@ -25,7 +25,7 @@ namespace TouhouFanGame
 		//! @param music Buffer to load the file in.
 		//! @param obj Object containing the path to the file and the loop points.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(Settings &, sf::Music &music, nlohmann::json &obj);
+		static bool loadFile(Settings &, std::pair<sf::Music, std::string> &music, nlohmann::json &obj);
 
 		//! @brief Load a texture file.
 		//! @param texture Buffer to load the file in.

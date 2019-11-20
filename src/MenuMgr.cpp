@@ -19,12 +19,13 @@ namespace TouhouFanGame
 	void MenuMgr::_renderMainMenu(Game &)
 	{}
 
-	void MenuMgr::_handleGameEvents(Game &game, const sf::Event &event)
+	void MenuMgr::_renderInventory(Game &)
+	{}
+
+	void MenuMgr::_handleGameEvents(Game &, const sf::Event &event)
 	{
 		if (event.type == sf::Event::KeyPressed) {
 			switch (event.key.code) {
-			case sf::Keyboard::F:
-				game.state.map.saveMap();
 			default:
 				break;
 			}
@@ -34,8 +35,11 @@ namespace TouhouFanGame
 	void MenuMgr::_handleMainMenuEvents(Game &game, const sf::Event &event)
 	{
 		if (event.type == sf::Event::KeyPressed)
-			changeMenu(game, IN_GAME);
+			changeMenu(game, IN_GAME_MENU);
 	}
+
+	void MenuMgr::_handleInventoryEvents(Game &, const sf::Event &)
+	{}
 
 	void MenuMgr::handleEvent(Game &game, const sf::Event &event)
 	{
@@ -44,11 +48,11 @@ namespace TouhouFanGame
 
 		switch (game.state.currentMenu) {
 		case MAIN_MENU:
-			_handleMainMenuEvents(game, event);
-			break;
-		case IN_GAME:
-			_handleGameEvents(game, event);
-			break;
+			return _handleMainMenuEvents(game, event);
+		case IN_GAME_MENU:
+			return _handleGameEvents(game, event);
+		case INVENTORY_MENU:
+			return _handleInventoryEvents(game, event);
 		}
 	}
 
@@ -56,31 +60,35 @@ namespace TouhouFanGame
 	{
 		switch (game.state.currentMenu) {
 		case MAIN_MENU:
-			_renderMainMenu(game);
-			break;
-		case IN_GAME:
-			_renderGame(game);
-			break;
+			return _renderMainMenu(game);
+		case IN_GAME_MENU:
+			return _renderGame(game);
+		case INVENTORY_MENU:
+			return _renderInventory(game);
 		}
 	}
 
 	void MenuMgr::changeMenu(Game &game, Menu newMenu)
 	{
-		game.resources.screen->setCameraCenter({0, 0});
-		game.resources.stopMusic();
-		game.state.currentMenu = newMenu;
 		switch (newMenu) {
 		case MAIN_MENU:
+			game.resources.stopMusic();
 			game.state.hud.setDispPlayerHUD(false);
 			game.state.hud.setDispBossHUD(false);
 			game.resources.playMusic("menu");
 			break;
-		case IN_GAME:
+		case IN_GAME_MENU:
+			game.resources.screen->setCameraCenter({0, 0});
 			game.state.hud.setDispPlayerHUD(true);
 			game.state.hud.setDispBossHUD(false);
-			game.state.map.reset();
-			game.state.map.loadMap();
+			if (game.state.currentMenu == MAIN_MENU) {
+				game.state.map.reset();
+				game.state.map.loadMap();
+			}
+			break;
+		case INVENTORY_MENU:
 			break;
 		}
+		game.state.currentMenu = newMenu;
 	}
 }

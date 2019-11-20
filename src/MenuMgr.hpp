@@ -17,15 +17,18 @@ namespace TouhouFanGame
 	private:
 		static void _renderMainMenu(Game &game);
 		static void _renderGame(Game &game);
+		static void _renderInventory(Game &game);
 
 		static void _handleMainMenuEvents(Game &game, const sf::Event &);
 		static void _handleGameEvents(Game &game, const sf::Event &);
+		static void _handleInventoryEvents(Game &game, const sf::Event &);
 
 	public:
 		//! @brief All the menus
 		enum Menu {
 			MAIN_MENU,
-			IN_GAME
+			IN_GAME_MENU,
+			INVENTORY_MENU,
 		};
 
 		//! @brief Renders the current Menu on the screen

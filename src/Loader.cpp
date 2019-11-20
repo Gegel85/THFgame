@@ -13,18 +13,19 @@ namespace TouhouFanGame
 		return buffer.loadFromFile("assets/" + static_cast<std::string>(path));
 	}
 
-	bool Loader::loadFile(Settings &settings, sf::Music &music, nlohmann::json &obj)
+	bool Loader::loadFile(Settings &settings, std::pair<sf::Music, std::string> &music, nlohmann::json &obj)
 	{
-		bool result = music.openFromFile("assets/" + static_cast<std::string>(obj["path"]));
+		bool result = music.first.openFromFile("assets/" + static_cast<std::string>(obj["path"]));
 
-		music.setLoop(true);
+		music.second = obj["description"].is_null() ? "" : obj["description"];
+		music.first.setLoop(true);
 		if (!obj["loop_points"].is_null())
-			music.setLoopPoints(sf::Music::TimeSpan{
+			music.first.setLoopPoints(sf::Music::TimeSpan{
 				sf::milliseconds(obj["loop_points"]["offset"]),
 				sf::milliseconds(obj["loop_points"]["length"])
 			});
 
-		music.setVolume(settings.musicVolume);
+		music.first.setVolume(settings.musicVolume);
 		return result;
 	}
 

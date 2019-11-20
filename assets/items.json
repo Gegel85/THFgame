@@ -1,0 +1,18 @@
+[
+  {
+    "name": "potion",
+    "icon": "heal_potion",
+    "description": "Healing potion",
+    "effects": {
+      "healing": 10
+    }
+  },
+  {
+    "name": "mana potion",
+    "icon": "mana_potion",
+    "description": "Healing potion",
+    "effects": {
+      "mana": 10
+    }
+  }
+]

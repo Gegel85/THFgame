@@ -7,6 +7,7 @@
 
 #include <SFML/Audio.hpp>
 #include <random>
+#include <json.hpp>
 #include "Rendering/Screen.hpp"
 
 namespace TouhouFanGame
@@ -33,6 +34,9 @@ namespace TouhouFanGame
 
 		//! @brief The sound objects used to play sfx
 		sf::Sound sounds[128];
+
+		//! @brief The items JSON file loaded.
+		nlohmann::json items;
 
 		//! @brief Plays a sound effect
 		//! @param id The id of the sound effect to play

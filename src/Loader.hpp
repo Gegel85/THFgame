@@ -33,6 +33,10 @@ namespace TouhouFanGame
 		//! @return Whether the file could be loaded or not.
 		static bool loadFile(Settings &, sf::Texture &texture, nlohmann::json &path);
 
+		//! @brief Load items.
+		//! @param game Game state and resources.
+		static void loadItems(Game &game);
+
 		//! @brief Load settings.
 		//! @param game Game state and resources.
 		static void loadSettings(Game &game);

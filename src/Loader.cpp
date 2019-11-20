@@ -44,6 +44,36 @@ namespace TouhouFanGame
 			sound.setVolume(100);
 	}
 
+	void Loader::loadItems(TouhouFanGame::Game &game)
+	{
+		std::ifstream stream{"assets/items.json"};
+
+		if (stream.fail())
+			throw CorruptedAssetsListException("Cannot open assets list from assets/items.json");
+		stream >> game.resources.items;
+		stream.close();
+
+		if (!game.resources.items.is_array())
+			throw CorruptedAssetsListException("Items list must be an array");
+
+		for (nlohmann::json &obj : game.resources.items) {
+			if (!obj.is_object())
+				throw CorruptedAssetsListException("Items list must be an array of objects");
+			if (!obj["name"].is_string())
+				throw CorruptedAssetsListException("Items name must be string");
+			if (!obj["icon"].is_string())
+				throw CorruptedAssetsListException("Items icon must be string");
+			if (!obj["description"].is_string())
+				throw CorruptedAssetsListException("Items description must be string");
+			if (!obj["effects"].is_object() && !obj["effects"].is_null())
+				throw CorruptedAssetsListException("Items effects must be an object or null");
+			if (obj["effects"].is_object() && !obj["effects"]["healing"].is_number() && !obj["effects"]["healing"].is_null())
+				throw CorruptedAssetsListException("Items healing effect must be a number or null");
+			if (obj["effects"].is_object() && !obj["effects"]["mana"].is_number() && !obj["effects"]["mana"].is_null())
+				throw CorruptedAssetsListException("Items mana healing effect must be a number or null");
+		}
+	}
+
 	void Loader::loadAssets(Game &game)
 	{
 		std::ifstream stream{"assets/list.json"};
@@ -65,6 +95,7 @@ namespace TouhouFanGame
 		try {
 			logger.debug("Parsing json");
 			stream >> data;
+			stream.close();
 
 			logger.debug("Loading icon");
 			if (data["icon"].is_null())
@@ -86,6 +117,9 @@ namespace TouhouFanGame
 
 			logger.debug("Loading sprites");
 			loadAssetsFromJson(game.state.settings, "Sprites", data["sprites"], game.resources.textures);
+
+			logger.debug("Loading items json");
+			loadItems(game);
 		} catch (nlohmann::detail::parse_error &e) {
 			throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
 		} catch (nlohmann::detail::type_error &e) {

@@ -80,8 +80,6 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		static_cast<int>(this->_playerMana * 2),
 		20
 	});
-
-	screen.fillColor(sf::Color{255, 255, 255});
 }
 
 void TouhouFanGame::Rendering::HUD::_renderBossHUD(TouhouFanGame::Rendering::Screen &screen)
@@ -139,7 +137,6 @@ void TouhouFanGame::Rendering::HUD::_renderMusic(TouhouFanGame::Rendering::Scree
 		});
 	}
 
-	screen.fillColor(sf::Color{255, 255, 255});
 	this->_musicNamePos--;
 }
 
@@ -153,6 +150,8 @@ void TouhouFanGame::Rendering::HUD::draw(TouhouFanGame::Rendering::Screen &scree
 
 	if (this->_musicNamePos)
 		this->_renderMusic(screen);
+
+	screen.fillColor(sf::Color{255, 255, 255});
 }
 
 void TouhouFanGame::Rendering::HUD::setDispBossHUD(bool dispBoss)

@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Entity.hpp"
 #include "Exceptions.hpp"
-#include "../nlohmann/json.hpp"
+#include "json.hpp"
 #include "../Game.hpp"
 
 namespace TouhouFanGame::Rendering

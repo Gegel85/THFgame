@@ -3,7 +3,7 @@
 //
 
 #include "Loader.hpp"
-#include "Exceptions.hpp"
+#include "../Exceptions.hpp"
 #include "Input/Keyboard.hpp"
 
 namespace TouhouFanGame

@@ -8,8 +8,8 @@
 
 #include <SFML/Audio.hpp>
 #include "ECS/Core.hpp"
-#include "NotCopyable.hpp"
-#include "Exceptions.hpp"
+#include "../NotCopyable.hpp"
+#include "../Exceptions.hpp"
 
 #define PLAYER_SIZE 32
 

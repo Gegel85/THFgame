@@ -70,6 +70,14 @@ namespace TouhouFanGame
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};
+
+	//! @brief This Item cannot be found
+	class ItemNotFoundException : public BaseException {
+	public:
+		explicit ItemNotFoundException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
 }
 
 std::string getLastExceptionName();

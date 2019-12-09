@@ -1,18 +1,23 @@
 [
-  {
-    "name": "potion",
-    "icon": "heal_potion",
-    "description": "Healing potion",
-    "effects": {
-      "healing": 10
+    {
+        "name": "Potion",
+        "icon": "heal_potion",
+        "description": "Healing potion",
+        "effects": {
+            "healing": 10
+        }
+    },
+    {
+        "type": null,
+        "name": "Mana Potion",
+        "icon": "mana_potion",
+        "description": "Healing potion",
+        "effects": {
+            "mana": 10,
+            "max_mana": null,
+            "healing": null,
+            "max_health": null,
+            "ability": null
+        }
     }
-  },
-  {
-    "name": "mana potion",
-    "icon": "mana_potion",
-    "description": "Healing potion",
-    "effects": {
-      "mana": 10
-    }
-  }
 ]

@@ -9,6 +9,7 @@
 #include <random>
 #include <json.hpp>
 #include "Rendering/Screen.hpp"
+#include "Inventory/Item.hpp"
 
 namespace TouhouFanGame
 {
@@ -36,7 +37,7 @@ namespace TouhouFanGame
 		sf::Sound sounds[128];
 
 		//! @brief The items JSON file loaded.
-		nlohmann::json items;
+		std::vector<std::unique_ptr<Item>> items;
 
 		//! @brief Plays a sound effect
 		//! @param id The id of the sound effect to play

@@ -5,6 +5,7 @@
 #include "Loader.hpp"
 #include "../Exceptions.hpp"
 #include "Input/Keyboard.hpp"
+#include "Inventory/ItemFactory.hpp"
 
 namespace TouhouFanGame
 {
@@ -47,31 +48,18 @@ namespace TouhouFanGame
 	void Loader::loadItems(TouhouFanGame::Game &game)
 	{
 		std::ifstream stream{"assets/items.json"};
+		nlohmann::json objs;
 
 		if (stream.fail())
 			throw CorruptedAssetsListException("Cannot open assets list from assets/items.json");
-		stream >> game.resources.items;
+		stream >> objs;
 		stream.close();
 
-		if (!game.resources.items.is_array())
+		if (!objs.is_array())
 			throw CorruptedAssetsListException("Items list must be an array");
 
-		for (nlohmann::json &obj : game.resources.items) {
-			if (!obj.is_object())
-				throw CorruptedAssetsListException("Items list must be an array of objects");
-			if (!obj["name"].is_string())
-				throw CorruptedAssetsListException("Items name must be string");
-			if (!obj["icon"].is_string())
-				throw CorruptedAssetsListException("Items icon must be string");
-			if (!obj["description"].is_string())
-				throw CorruptedAssetsListException("Items description must be string");
-			if (!obj["effects"].is_object() && !obj["effects"].is_null())
-				throw CorruptedAssetsListException("Items effects must be an object or null");
-			if (obj["effects"].is_object() && !obj["effects"]["healing"].is_number() && !obj["effects"]["healing"].is_null())
-				throw CorruptedAssetsListException("Items healing effect must be a number or null");
-			if (obj["effects"].is_object() && !obj["effects"]["mana"].is_number() && !obj["effects"]["mana"].is_null())
-				throw CorruptedAssetsListException("Items mana healing effect must be a number or null");
-		}
+		for (nlohmann::json &obj : objs)
+			game.resources.items.emplace_back(ItemFactory::buildItem(obj["type"].is_null() ? "Classic" : obj["type"], obj));
 	}
 
 	void Loader::loadAssets(Game &game)

@@ -90,7 +90,9 @@ add_executable(
 	src/Core/Resources.hpp
 	src/Utils.cpp
 	src/Utils.hpp
-)
+	src/Core/Inventory/Item.cpp
+	src/Core/Inventory/Item.hpp
+	src/Core/Inventory/ItemFactory.cpp src/Core/Inventory/ItemFactory.hpp src/Core/Inventory/ClassicItem.cpp src/Core/Inventory/ClassicItem.hpp)
 
 target_link_libraries(
 	THFgame

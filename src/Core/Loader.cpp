@@ -58,8 +58,8 @@ namespace TouhouFanGame
 		if (!objs.is_array())
 			throw CorruptedAssetsListException("Items list must be an array");
 
-		for (nlohmann::json &obj : objs)
-			game.resources.items.emplace_back(ItemFactory::buildItem(obj["type"].is_null() ? "Classic" : obj["type"], obj));
+		for (unsigned i = 0; i < objs.size(); i++)
+			game.resources.items.emplace_back(ItemFactory::buildItem(i, objs[i]["type"].is_null() ? "Classic" : objs[i]["type"], objs[i]));
 	}
 
 	void Loader::loadAssets(Game &game)

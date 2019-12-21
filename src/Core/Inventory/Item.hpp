@@ -13,6 +13,8 @@ namespace TouhouFanGame
 {
 	class Item {
 	private:
+		unsigned _index;
+
 		virtual void _specialEffect(ECS::Entity &entity) = 0;
 
 	protected:
@@ -26,6 +28,7 @@ namespace TouhouFanGame
 		int _maxLife;
 
 	public:
+		unsigned getIndex() const;
 		const std::string &getName() const;
 		const std::string &getTexture() const;
 		const std::string &getDescription() const;
@@ -36,7 +39,7 @@ namespace TouhouFanGame
 		int getMaxLife() const;
 
 	public:
-		Item(nlohmann::json obj);
+		Item(unsigned index, nlohmann::json obj);
 		void use(ECS::Entity &entity);
 	};
 }

@@ -37,7 +37,7 @@ namespace TouhouFanGame
 		sf::Sound sounds[128];
 
 		//! @brief The items JSON file loaded.
-		std::vector<std::unique_ptr<Item>> items;
+		std::vector<std::shared_ptr<Item>> items;
 
 		//! @brief Plays a sound effect
 		//! @param id The id of the sound effect to play

@@ -120,11 +120,6 @@ namespace TouhouFanGame
 		//! @throw CorruptedMapException
 		sf::Vector2u &_getPlayerSize();
 
-		//! @return Returns the player.
-		//! @warning Throws if no player or multiple players are found.
-		//! @throw CorruptedMapException
-		ECS::Entity &_getPlayer();
-
 		//! @brief Loads the map from the stream given.
 		//! @param stream The stream to load the map from.
 		//! @param loadEntities Whether we want to load the entities or not.
@@ -178,6 +173,11 @@ namespace TouhouFanGame
 		//! @param pos Position.
 		//! @return The object or 00 if out of bound.
 		unsigned char getObjectAt(sf::Vector2f pos) const;
+
+		//! @return Returns the player.
+		//! @warning Throws if no player or multiple players are found.
+		//! @throw CorruptedMapException
+		ECS::Entity &getPlayer();
 
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.

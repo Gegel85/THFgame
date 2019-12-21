@@ -15,7 +15,7 @@ namespace TouhouFanGame
 		void _specialEffect(ECS::Entity &entity) override;
 
 	public:
-		ClassicItem(const nlohmann::json &obj);
+		ClassicItem(unsigned id, const nlohmann::json &obj);
 	};
 }
 

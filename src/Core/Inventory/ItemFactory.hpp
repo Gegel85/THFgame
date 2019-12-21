@@ -12,10 +12,10 @@ namespace TouhouFanGame
 {
 	class ItemFactory {
 	private:
-		static const std::map<std::string, std::function<Item *(const nlohmann::json &)>> _builders;
+		static const std::map<std::string, std::function<Item *(unsigned, const nlohmann::json &)>> _builders;
 
 	public:
-		static Item *buildItem(const std::string &name, const nlohmann::json &obj);
+		static Item *buildItem(unsigned int id, const std::string &name, const nlohmann::json &obj);
 	};
 }
 

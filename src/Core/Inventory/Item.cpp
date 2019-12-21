@@ -8,7 +8,8 @@
 
 namespace TouhouFanGame
 {
-	Item::Item(nlohmann::json obj) :
+	Item::Item(unsigned index, nlohmann::json obj) :
+		_index(index),
 		_name(         obj["name"].is_null()                  ? "" : obj["name"]),
 		_texture(      obj["icon"].is_null()                  ? "" : obj["icon"]),
 		_description(  obj["description"].is_null()           ? "" : obj["description"]),
@@ -31,6 +32,11 @@ namespace TouhouFanGame
 		health.maxHealth += this->_maxLife;
 
 		this->_specialEffect(entity);
+	}
+
+	unsigned Item::getIndex() const
+	{
+		return this->_index;
 	}
 
 	const std::string &Item::getName() const

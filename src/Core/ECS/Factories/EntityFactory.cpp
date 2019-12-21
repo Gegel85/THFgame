@@ -14,6 +14,7 @@
 #include "../Components/ManaComponent.hpp"
 #include "../Components/NameComponent.hpp"
 #include "../Components/PlayerHudComponent.hpp"
+#include "../Components/InventoryComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -28,7 +29,8 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::HealthComponent(20),
 				new Components::ManaComponent(20),
 				new Components::NameComponent("Test Character"),
-				new Components::PlayerHUDComponent(game.state.hud)
+				new Components::PlayerHUDComponent(game.state.hud),
+				new Components::InventoryComponent(16)
 			}, false);
 		}}
 	};

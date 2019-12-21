@@ -95,7 +95,7 @@ namespace TouhouFanGame
 			logger.error("Couldn't save map to saves/map_player.sav: " + std::string(strerror(errno)));
 			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
 		}
-		stream << this->_getPlayer() << " " << this->_id;
+		stream << this->getPlayer() << " " << this->_id;
 		stream.close();
 	}
 
@@ -175,7 +175,7 @@ namespace TouhouFanGame
 	void Map::reset()
 	{
 		try {
-			this->_core.clear({this->_getPlayer().getID()});
+			this->_core.clear({this->getPlayer().getID()});
 		} catch (CorruptedMapException &) {}
 		this->_objects.clear();
 		this->_tileMap.clear();
@@ -344,7 +344,7 @@ namespace TouhouFanGame
 		return focusPoint;
 	}
 
-	ECS::Entity &Map::_getPlayer()
+	ECS::Entity &Map::getPlayer()
 	{
 		std::vector<std::reference_wrapper<ECS::Entity>> players = this->_core.getEntityByName("Player");
 
@@ -359,11 +359,11 @@ namespace TouhouFanGame
 
 	sf::Vector2u &Map::_getPlayerSize()
 	{
-		return this->_getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().size;
+		return this->getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().size;
 	}
 
 	sf::Vector2f &Map::_getPlayerPosition()
 	{
-		return this->_getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().position;
+		return this->getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().position;
 	}
 }

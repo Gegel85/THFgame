@@ -17,6 +17,7 @@
 #include "../Components/ManaComponent.hpp"
 #include "../Components/NameComponent.hpp"
 #include "../Components/PlayerHudComponent.hpp"
+#include "../Components/InventoryComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -30,6 +31,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"Health",           [](Game &    , std::istream &stream){ return new Components::HealthComponent(stream); }},
 		{"Name",             [](Game &    , std::istream &stream){ return new Components::NameComponent(stream); }},
 		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(game.state.hud); }},
+		{"Inventory",        [](Game &game, std::istream &stream){ return new Components::InventoryComponent(stream, game.resources.items); }},
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

@@ -6,8 +6,8 @@
 
 namespace TouhouFanGame
 {
-	ClassicItem::ClassicItem(const nlohmann::json &obj) :
-		Item(obj)
+	ClassicItem::ClassicItem(unsigned i, const nlohmann::json &obj) :
+		Item(i, obj)
 	{
 	}
 

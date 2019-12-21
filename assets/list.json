@@ -20,7 +20,9 @@
 	"sfx": {},
 	"sprites": {
 		"tilemap1": "tilemaps/tilemap1.png",
-		"testEntity": "entities/test.png"
+		"testEntity": "entities/test.png",
+		"heal_potion": "items/heal_potion.png",
+		"mana_potion": "items/mana_potion.png"
 	},
 	"icon": "icon.png"
 }

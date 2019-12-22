@@ -92,7 +92,7 @@ add_executable(
 	src/Utils.hpp
 	src/Core/Inventory/Item.cpp
 	src/Core/Inventory/Item.hpp
-	src/Core/Inventory/ItemFactory.cpp src/Core/Inventory/ItemFactory.hpp src/Core/Inventory/ClassicItem.cpp src/Core/Inventory/ClassicItem.hpp src/Core/ECS/Components/InventoryComponent.cpp src/Core/ECS/Components/InventoryComponent.hpp src/Core/Menus/Menu.cpp src/Core/Menus/Menu.hpp src/Core/Menus/InventoryMenu.cpp src/Core/Menus/InventoryMenu.hpp src/Core/Menus/MainMenu.cpp src/Core/Menus/MainMenu.hpp src/Core/Menus/InGameMenu.cpp src/Core/Menus/InGameMenu.hpp)
+	src/Core/Inventory/ItemFactory.cpp src/Core/Inventory/ItemFactory.hpp src/Core/Inventory/ClassicItem.cpp src/Core/Inventory/ClassicItem.hpp src/Core/ECS/Components/InventoryComponent.cpp src/Core/ECS/Components/InventoryComponent.hpp src/Core/Menus/Menu.cpp src/Core/Menus/Menu.hpp src/Core/Menus/InventoryMenu.cpp src/Core/Menus/InventoryMenu.hpp src/Core/Menus/MainMenu.cpp src/Core/Menus/MainMenu.hpp src/Core/Menus/InGameMenu.cpp src/Core/Menus/InGameMenu.hpp src/Core/Menus/Exceptions.hpp)
 
 target_link_libraries(
 	THFgame

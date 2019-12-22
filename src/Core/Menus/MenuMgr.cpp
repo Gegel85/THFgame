@@ -4,9 +4,8 @@
 
 #include <iostream>
 #include "MenuMgr.hpp"
-#include "../Game.hpp"
+#include "Exceptions.hpp"
 #include "../ECS/Components/PositionComponent.hpp"
-#include "../ECS/Components/InventoryComponent.hpp"
 
 namespace TouhouFanGame
 {
@@ -24,7 +23,12 @@ namespace TouhouFanGame
 
 	void MenuMgr::changeMenu(const std::string &newMenu)
 	{
-		this->_menus.at(newMenu)->switched(true);
+		try {
+			this->_menus.at(newMenu)->switched(true);
+		} catch (std::out_of_range &) {
+			throw InvalidMenuException("No menu is named " + newMenu);
+		}
+
 		if (!this->_currentMenu.empty())
 			this->_menus.at(this->_currentMenu)->switched(false);
 		this->_currentMenu = newMenu;

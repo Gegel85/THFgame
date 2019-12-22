@@ -124,7 +124,8 @@ namespace TouhouFanGame::Inputs
 			sf::Keyboard::E,
 			sf::Keyboard::Escape
 		},
-		_window(window)
+		_window(window),
+		_state(NB_OF_ACTION)
 	{}
 
 	void Keyboard::handleEvent(sf::Event event)
@@ -181,4 +182,33 @@ namespace TouhouFanGame::Inputs
 
 	void Keyboard::unserialize(std::istream &)
 	{}
+
+	void Keyboard::_updateState()
+	{
+		for (unsigned i = 0; i < NB_OF_ACTION; i++) {
+			bool press = this->actionPressed(static_cast<Action>(i));
+
+			if (press != this->_state[i]) {
+				this->_state[i] = press;
+				this->_events.emplace_back(
+					press ? Event::EVENT_TRIGGERED : Event::EVENT_STOPPED_TRIGGER,
+					static_cast<Action>(i)
+				);
+			}
+		}
+	}
+
+	std::optional<Keyboard::Event> Keyboard::pollEvent()
+	{
+		if (this->_events.empty())
+			this->_updateState();
+
+		if (!this->_events.empty()) {
+			auto event = this->_events[0];
+
+			this->_events.erase(this->_events.begin());
+			return event;
+		}
+		return {};
+	}
 }

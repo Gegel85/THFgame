@@ -28,6 +28,18 @@ namespace TouhouFanGame
 			NB_OF_ACTION
 		};
 
+		//! @brief An Event occuring
+		struct Event {
+			enum Type {
+				EVENT_TRIGGERED,
+				EVENT_STOPPED_TRIGGER,
+			};
+
+			Type type;
+			Action action;
+			Event(Type type, Action action);
+		};
+
 		//! @brief Transforms the Action enumeration into a string.
 		//! @param action The value to convert.
 		//! @return A string representing the value given.
@@ -41,6 +53,10 @@ namespace TouhouFanGame
 
 		//! @brief No longer tries to change the key.
 		virtual void cancelChangeKey() = 0;
+
+		//! @brief Polls the next Event in queeu
+		//! @return The next Event that wasn't processed or an empty optional if no Event is remaining
+		virtual std::optional<Event> pollEvent() = 0;
 
 		//! @brief Tell if the action is currently triggered.
 		//! @param action The action to check.

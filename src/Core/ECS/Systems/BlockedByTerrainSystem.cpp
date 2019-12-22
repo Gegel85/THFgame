@@ -8,7 +8,7 @@
 #include "../Components/PositionComponent.hpp"
 #include "../Components/MovableComponent.hpp"
 #include "../Components/BlockedByTerrainComponent.hpp"
-#include "../../Input.hpp"
+#include "../../Input/Input.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {

@@ -1,7 +1,7 @@
 #include "Core/Game.hpp"
 #include "Logger.hpp"
 #include "Core/Loader.hpp"
-#include "Core/MenuMgr.hpp"
+#include "Core/Menus/MenuMgr.hpp"
 #include "Exceptions.hpp"
 #include "Utils.hpp"
 
@@ -22,14 +22,18 @@ namespace TouhouFanGame
 	{
 		sf::Event event;
 
-		MenuMgr::changeMenu(game, MenuMgr::MAIN_MENU);
+		game.state.menuMgr.changeMenu("main_menu");
 		while (game.resources.screen->isOpen()) {
 			game.resources.screen->clear();
 
 			while (game.resources.screen->pollEvent(event))
-				MenuMgr::handleEvent(game, event);
-			MenuMgr::renderMenu(game);
+				if (event.type == sf::Event::Closed)
+					game.resources.screen->close();
 
+			for (auto e = game.state.settings.input->pollEvent(); e; e = game.state.settings.input->pollEvent())
+				game.state.menuMgr.handleEvent(*e);
+
+			game.state.menuMgr.renderMenu();
 			game.resources.screen->display();
 		}
 	}

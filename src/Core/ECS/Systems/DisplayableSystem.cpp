@@ -6,7 +6,7 @@
 #include "../Components/PositionComponent.hpp"
 #include "../Components/DisplayableComponent.hpp"
 #include "../Components/MovableComponent.hpp"
-#include "../../Input.hpp"
+#include "../../Input/Input.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {

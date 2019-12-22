@@ -8,9 +8,9 @@
 #include "Rendering/Hud.hpp"
 #include "../Logger.hpp"
 #include "Resources.hpp"
-#include "MenuMgr.hpp"
+#include "Menus/MenuMgr.hpp"
 #include "Map.hpp"
-#include "Input.hpp"
+#include "Input/Input.hpp"
 
 namespace TouhouFanGame
 {
@@ -29,7 +29,7 @@ namespace TouhouFanGame
 	//! @brief Describe the current game state
 	struct GameState {
 		//! @brief The current menu
-		MenuMgr::Menu currentMenu;
+		MenuMgr menuMgr;
 
 		//! @brief The currently loaded map
 		Map map;

@@ -7,7 +7,7 @@
 
 
 #include "../Component.hpp"
-#include "../../Input.hpp"
+#include "../../Input/Input.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {

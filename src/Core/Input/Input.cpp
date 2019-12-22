@@ -31,4 +31,10 @@ namespace TouhouFanGame
 			return "??";
 		}
 	}
+
+	Input::Event::Event(TouhouFanGame::Input::Event::Type type, TouhouFanGame::Input::Action action) :
+		type(type),
+		action(action)
+	{
+	}
 }

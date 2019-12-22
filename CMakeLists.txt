@@ -65,8 +65,8 @@ add_executable(
 	src/Exceptions.cpp
 	src/Exceptions.hpp
 	src/Core/Game.hpp
-	src/Core/Input.cpp
-	src/Core/Input.hpp
+	src/Core/Input/Input.cpp
+	src/Core/Input/Input.hpp
 	src/Core/Input/Keyboard.cpp
 	src/Core/Input/Keyboard.hpp
 	src/Core/Loader.cpp
@@ -76,8 +76,8 @@ add_executable(
 	src/main.cpp
 	src/Core/Map.cpp
 	src/Core/Map.hpp
-	src/Core/MenuMgr.cpp
-	src/Core/MenuMgr.hpp
+	src/Core/Menus/MenuMgr.cpp
+	src/Core/Menus/MenuMgr.hpp
 	src/NotCopyable.hpp
 	src/Core/Rendering/Entity.cpp
 	src/Core/Rendering/Entity.hpp
@@ -92,7 +92,7 @@ add_executable(
 	src/Utils.hpp
 	src/Core/Inventory/Item.cpp
 	src/Core/Inventory/Item.hpp
-	src/Core/Inventory/ItemFactory.cpp src/Core/Inventory/ItemFactory.hpp src/Core/Inventory/ClassicItem.cpp src/Core/Inventory/ClassicItem.hpp src/Core/ECS/Components/InventoryComponent.cpp src/Core/ECS/Components/InventoryComponent.hpp)
+	src/Core/Inventory/ItemFactory.cpp src/Core/Inventory/ItemFactory.hpp src/Core/Inventory/ClassicItem.cpp src/Core/Inventory/ClassicItem.hpp src/Core/ECS/Components/InventoryComponent.cpp src/Core/ECS/Components/InventoryComponent.hpp src/Core/Menus/Menu.cpp src/Core/Menus/Menu.hpp src/Core/Menus/InventoryMenu.cpp src/Core/Menus/InventoryMenu.hpp src/Core/Menus/MainMenu.cpp src/Core/Menus/MainMenu.hpp src/Core/Menus/InGameMenu.cpp src/Core/Menus/InGameMenu.hpp)
 
 target_link_libraries(
 	THFgame

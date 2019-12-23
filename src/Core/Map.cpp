@@ -6,9 +6,9 @@
 #include <cstring>
 #include "Map.hpp"
 #include "Game.hpp"
-#include "../Exceptions.hpp"
+#include "Exceptions.hpp"
 #include "ECS/Components/PositionComponent.hpp"
-#include "../Utils.hpp"
+#include "Utils.hpp"
 
 namespace TouhouFanGame
 {
@@ -186,13 +186,13 @@ namespace TouhouFanGame
 	unsigned char Map::getObjectAt(int x, int y) const
 	{
 		if (x < 0)
-			return 0x00;
+			return this->_solidBorders * 0x80;
 		if (y < 0)
-			return 0x00;
+			return this->_solidBorders * 0x80;
 		if (x / this->_tileSize >= this->_size.x)
-			return 0x00;
+			return this->_solidBorders * 0x80;
 		if (y / this->_tileSize >= this->_size.y)
-			return 0x00;
+			return this->_solidBorders * 0x80;
 		return this->_objects[this->_size.x * (y / this->_tileSize) + (x / this->_tileSize)];
 	}
 
@@ -217,6 +217,9 @@ namespace TouhouFanGame
 
 		this->_tileMap = _readString(stream);
 		logger.debug("Tilemap file is '" + this->_tileMap + "'");
+
+		this->_solidBorders = _readInteger<unsigned char>(stream) & 0b1U;
+		logger.debug("Borders are " + std::string(this->_solidBorders ? "solid" : "not solid"));
 
 		this->_tileSize = _readInteger<unsigned char>(stream);
 		logger.debug("Tilesize is " + std::to_string(this->_tileSize));
@@ -365,5 +368,10 @@ namespace TouhouFanGame
 	sf::Vector2f &Map::_getPlayerPosition()
 	{
 		return this->getPlayer().getComponent("Position").to<ECS::Components::PositionComponent>().position;
+	}
+
+	void Map::setBordersSolid(bool linksDisabled)
+	{
+		this->_solidBorders = linksDisabled;
 	}
 }

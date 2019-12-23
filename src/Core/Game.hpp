@@ -6,7 +6,7 @@
 #define THFGAME_GAME_HPP
 
 #include "Rendering/Hud.hpp"
-#include "../Logger.hpp"
+#include "Logger.hpp"
 #include "Resources.hpp"
 #include "Menus/MenuMgr.hpp"
 #include "Map.hpp"

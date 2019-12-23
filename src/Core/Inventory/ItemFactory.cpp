@@ -3,7 +3,7 @@
 //
 
 #include "ItemFactory.hpp"
-#include "../../Exceptions.hpp"
+#include "../Exceptions.hpp"
 #include "ClassicItem.hpp"
 
 namespace TouhouFanGame

@@ -6,7 +6,7 @@
 #define THFGAME_RENDERING_EXCEPTION_HPP
 
 
-#include "../../Exceptions.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::Rendering
 {

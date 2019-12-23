@@ -62,8 +62,8 @@ add_executable(
 	src/Core/ECS/Systems/PlayerHudSystem.hpp
 	src/Core/ECS/Systems/UselessSystem.cpp
 	src/Core/ECS/Systems/UselessSystem.hpp
-	src/Exceptions.cpp
-	src/Exceptions.hpp
+	src/Core/Exceptions.cpp
+	src/Core/Exceptions.hpp
 	src/Core/Game.hpp
 	src/Core/Input/Input.cpp
 	src/Core/Input/Input.hpp
@@ -71,14 +71,14 @@ add_executable(
 	src/Core/Input/Keyboard.hpp
 	src/Core/Loader.cpp
 	src/Core/Loader.hpp
-	src/Logger.cpp
-	src/Logger.hpp
-	src/main.cpp
+	src/Core/Logger.cpp
+	src/Core/Logger.hpp
+	src/Game/main.cpp
 	src/Core/Map.cpp
 	src/Core/Map.hpp
 	src/Core/Menus/MenuMgr.cpp
 	src/Core/Menus/MenuMgr.hpp
-	src/NotCopyable.hpp
+	src/Core/NotCopyable.hpp
 	src/Core/Rendering/Entity.cpp
 	src/Core/Rendering/Entity.hpp
 	src/Core/Rendering/Exceptions.hpp
@@ -88,8 +88,8 @@ add_executable(
 	src/Core/Rendering/Screen.hpp
 	src/Core/Resources.cpp
 	src/Core/Resources.hpp
-	src/Utils.cpp
-	src/Utils.hpp
+	src/Core/Utils.cpp
+	src/Core/Utils.hpp
 	src/Core/Inventory/Item.cpp
 	src/Core/Inventory/Item.hpp
 	src/Core/Inventory/ItemFactory.cpp src/Core/Inventory/ItemFactory.hpp src/Core/Inventory/ClassicItem.cpp src/Core/Inventory/ClassicItem.hpp src/Core/ECS/Components/InventoryComponent.cpp src/Core/ECS/Components/InventoryComponent.hpp src/Core/Menus/Menu.cpp src/Core/Menus/Menu.hpp src/Core/Menus/InventoryMenu.cpp src/Core/Menus/InventoryMenu.hpp src/Core/Menus/MainMenu.cpp src/Core/Menus/MainMenu.hpp src/Core/Menus/InGameMenu.cpp src/Core/Menus/InGameMenu.hpp src/Core/Menus/Exceptions.hpp)

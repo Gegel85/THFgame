@@ -6,7 +6,7 @@
 #define THFGAME_EXCEPTION_HPP
 
 
-#include "../../Exceptions.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::ECS
 {

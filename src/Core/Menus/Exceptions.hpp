@@ -8,7 +8,7 @@
 
 #include <exception>
 #include <string>
-#include "../../Exceptions.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame
 {

@@ -8,8 +8,8 @@
 
 #include <SFML/Audio.hpp>
 #include "ECS/Core.hpp"
-#include "../NotCopyable.hpp"
-#include "../Exceptions.hpp"
+#include "NotCopyable.hpp"
+#include "Exceptions.hpp"
 
 #define PLAYER_SIZE 32
 
@@ -38,6 +38,10 @@ namespace TouhouFanGame
 
 		//! @brief Whether the camera has already been updated this frame.
 		bool _cameraUpdated = false;
+
+		//! @brief Whether borders are solid objects
+		//! @note This will only make borders solid object
+		bool _solidBorders = false;
 
 		//! @brief The four border links.
 		unsigned short _links[4] = {0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF};
@@ -182,6 +186,10 @@ namespace TouhouFanGame
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.
 		void updateCameraPosition(sf::Vector2f center);
+
+		//! @brief Sets the borders solid or not.
+		//! @param solid New value.
+		void setBordersSolid(bool solid);
 
 		//! @brief Resets the object to it's default state.
 		void reset();

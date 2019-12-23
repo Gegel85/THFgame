@@ -1,9 +1,9 @@
-#include "Core/Game.hpp"
-#include "Logger.hpp"
-#include "Core/Loader.hpp"
-#include "Core/Menus/MenuMgr.hpp"
-#include "Exceptions.hpp"
-#include "Utils.hpp"
+#include "../Core/Game.hpp"
+#include "../Core/Logger.hpp"
+#include "../Core/Loader.hpp"
+#include "../Core/Menus/MenuMgr.hpp"
+#include "../Core/Exceptions.hpp"
+#include "../Core/Utils.hpp"
 
 #ifdef _WIN32
 #include <windows.h>

@@ -87,6 +87,41 @@ namespace TouhouFanGame
 		this->_id = id;
 	}
 
+	void Map::_saveMapToStream(std::ostream &stream)
+	{
+		logger.debug("Loading map");
+
+		stream << this->_music << '\0';
+		stream << this->_tileMap << '\0';
+		stream << static_cast<char>(this->_solidBorders);
+
+		logger.debug("Saving tile size");
+		stream.write(reinterpret_cast<char *>(&this->_tileSize), sizeof(this->_tileSize));
+
+		logger.debug("Saving map size");
+		stream.write(reinterpret_cast<char *>(&this->_size.x), sizeof(this->_size.x));
+		stream.write(reinterpret_cast<char *>(&this->_size.y), sizeof(this->_size.y));
+
+		logger.debug("Saving teleporters");
+		unsigned length = this->_tpTriggers.size();
+		stream.write(reinterpret_cast<char *>(&length), sizeof(length));
+		for (auto &trigger : this->_tpTriggers)
+			stream << trigger;
+
+		logger.debug("Saving links");
+		for (auto link : this->_links)
+			stream.write(reinterpret_cast<char *>(&link), sizeof(link));
+
+		logger.debug("Saving objects");
+		for (auto obj : this->_objects)
+			stream.write(reinterpret_cast<char *>(&obj), sizeof(obj));
+
+		logger.debug("Saving entities");
+		stream << this->_core;
+
+		logger.debug("Operation completed");
+	}
+
 	void Map::_savePlayer()
 	{
 		std::ofstream stream{"saves/map_player.sav"};
@@ -99,11 +134,30 @@ namespace TouhouFanGame
 		stream.close();
 	}
 
-	void Map::saveMap()
+	void Map::saveState()
 	{
 		logger.info("Saving game");
+
+		if (this->_path.empty()) {
+			logger.error("Trying to serialize a not loaded map.");
+			throw MapNotLoadedException();
+		}
+
 		this->_savePlayer();
 		this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
+	}
+
+	void Map::saveMap()
+	{
+		std::ofstream stream{"assets/maps/map_" + std::to_string(this->_id) + ".map"};
+
+		logger.info("Loading game");
+		if (stream.fail()) {
+			logger.error("Couldn't load map at saves/map_player.sav: " + std::string(strerror(errno)));
+			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
+		}
+		this->_saveMapToStream(stream);
+		stream.close();
 	}
 
 	void Map::loadMap()
@@ -210,10 +264,9 @@ namespace TouhouFanGame
 	{
 		logger.debug("Loading map");
 
-		std::string music = _readString(stream);
-
-		this->_game.resources.playMusic(music);
-		this->_game.state.hud.setMusicName(this->_game.resources.musics.at(music).second);
+		this->_music = _readString(stream);
+		this->_game.resources.playMusic(this->_music);
+		this->_game.state.hud.setMusicName(this->_game.resources.musics.at(this->_music).second);
 
 		this->_tileMap = _readString(stream);
 		logger.debug("Tilemap file is '" + this->_tileMap + "'");
@@ -374,4 +427,14 @@ namespace TouhouFanGame
 	{
 		this->_solidBorders = linksDisabled;
 	}
+}
+
+std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::Map::TpTrigger &trigger)
+{
+	stream.write(reinterpret_cast<const char *>(&trigger.location.x), sizeof(trigger.location.x));
+	stream.write(reinterpret_cast<const char *>(&trigger.location.y), sizeof(trigger.location.y));
+	stream.write(reinterpret_cast<const char *>(&trigger.mapId), sizeof(trigger.mapId));
+	stream.write(reinterpret_cast<const char *>(&trigger.mapSpawn.x), sizeof(trigger.mapSpawn.x));
+	stream.write(reinterpret_cast<const char *>(&trigger.mapSpawn.y), sizeof(trigger.mapSpawn.y));
+	return stream;
 }

@@ -17,7 +17,7 @@ namespace TouhouFanGame
 {
 	//! @brief A map loaded by the game.
 	class Map {
-	private:
+	public:
 		//! @brief A trigger that teleports the player to another Map.
 		struct TpTrigger {
 			//! @brief The position of the trigger on the Map.
@@ -33,6 +33,7 @@ namespace TouhouFanGame
 			TpTrigger(std::istream &stream);
 		};
 
+	private:
 		//! @brief The Game this map is in.
 		Game &_game;
 
@@ -48,6 +49,9 @@ namespace TouhouFanGame
 
 		//! @brief The path to the currently loaded map.
 		std::string _path;
+
+		//! @brief The music played with the map.
+		std::string _music;
 
 		//! @brief The size of map (in tiles).
 		sf::Vector2<unsigned short> _size;
@@ -153,6 +157,10 @@ namespace TouhouFanGame
 		//! @throw CorruptedMapException
 		void _loadFromFile(std::string path, bool loadEntities = true);
 
+		//! @brief Saves the map to a stream
+		//! @param stream The stream to save the map to
+		void _saveMapToStream(std::ostream &stream);
+
 		//! @brief Load a map from it's ID.
 		//! @throw InvalidSavedMap
 		//! @throw CorruptedMapException
@@ -204,10 +212,17 @@ namespace TouhouFanGame
 		//! @throw MapSavingFailureException
 		void saveMap();
 
+		//! @brief Save the currently map state to a save file.
+		//! @throw MapSavingFailureException
+		void saveState();
+
 		//! @brief Loads the saved map in the saves folder.
 		//! @throw MapSavingFailureException
 		void loadMap();
 	};
 }
+
+std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::Map::TpTrigger &trigger);
+
 
 #endif //THFGAME_MAP_HPP

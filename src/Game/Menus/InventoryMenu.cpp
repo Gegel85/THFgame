@@ -3,7 +3,7 @@
 //
 
 #include "InventoryMenu.hpp"
-#include "../ECS/Components/InventoryComponent.hpp"
+#include "../../Core/ECS/Components/InventoryComponent.hpp"
 
 namespace TouhouFanGame
 {

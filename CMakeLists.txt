@@ -100,12 +100,12 @@ add_executable(
 	src/Core/ECS/Components/InventoryComponent.hpp
 	src/Core/Menus/Menu.cpp
 	src/Core/Menus/Menu.hpp
-	src/Core/Menus/InventoryMenu.cpp
-	src/Core/Menus/InventoryMenu.hpp
-	src/Core/Menus/MainMenu.cpp
-	src/Core/Menus/MainMenu.hpp
-	src/Core/Menus/InGameMenu.cpp
-	src/Core/Menus/InGameMenu.hpp
+	src/Game/Menus/InventoryMenu.cpp
+	src/Game/Menus/InventoryMenu.hpp
+	src/Game/Menus/MainMenu.cpp
+	src/Game/Menus/MainMenu.hpp
+	src/Game/Menus/InGameMenu.cpp
+	src/Game/Menus/InGameMenu.hpp
 	src/Core/Menus/Exceptions.hpp
 )
 

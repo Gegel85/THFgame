@@ -4,6 +4,9 @@
 #include "../Core/Menus/MenuMgr.hpp"
 #include "../Core/Exceptions.hpp"
 #include "../Core/Utils.hpp"
+#include "Menus/MainMenu.hpp"
+#include "Menus/InGameMenu.hpp"
+#include "Menus/InventoryMenu.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -16,6 +19,16 @@ namespace TouhouFanGame
 {
 	//! @brief The global logger
 	Logger logger{"./latest.log", Logger::DEBUG};
+
+	void	setup(Game &game)
+	{
+		logger.debug("Opening main window");
+		game.resources.screen.reset(new Rendering::Screen{game.resources, "THFgame"});
+
+		game.state.menuMgr.addMenu<MainMenu>("main_menu", game.state.map, game.resources, game.state.hud);
+		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.map, game.state.hud, *game.resources.screen);
+		game.state.menuMgr.addMenu<InventoryMenu>("inventory", game.state.map, game.state.hud, *game.resources.screen, game.resources.textures);
+	}
 
 	//! @brief The game loop
 	void	gameLoop(Game &game)
@@ -37,33 +50,45 @@ namespace TouhouFanGame
 			game.resources.screen->display();
 		}
 	}
+
+	int	run()
+	{
+		Game game;
+		//TODO: Add proper font loading.
+		sf::Font font;
+
+
+		try {
+			logger.info("Setting up...");
+			setup(game);
+
+			font.loadFromFile("assets/arial.ttf");
+			game.resources.screen->setFont(font);
+
+			logger.info("Loading assets...");
+			Loader::loadAssets(game);
+
+			logger.info("Starting game.");
+			gameLoop(game);
+
+			game.resources.screen->setFont(font);
+		} catch (std::exception &e) {
+			logger.fatal(getLastExceptionName() + ": " + e.what());
+			Utils::dispMsg(
+				"Fatal Error",
+				"An unrecoverable error occurred\n\n" +
+				getLastExceptionName() + ":\n" + e.what() + "\n\n"
+				"Click OK to close the application",
+				MB_ICONERROR
+			);
+			return EXIT_FAILURE;
+		}
+		logger.info("Goodbye !");
+		return EXIT_SUCCESS;
+	}
 }
 
 int	main()
 {
-	TouhouFanGame::Game game;
-	//TODO: Add proper font loading.
-	sf::Font font;
-
-	font.loadFromFile("assets/arial.ttf");
-
-	try {
-		TouhouFanGame::logger.info("Loading assets...");
-		TouhouFanGame::Loader::loadAssets(game);
-		game.resources.screen->setFont(font);
-		TouhouFanGame::logger.info("Starting game.");
-		TouhouFanGame::gameLoop(game);
-		TouhouFanGame::logger.info("Goodbye !");
-	} catch (std::exception &e) {
-		TouhouFanGame::logger.fatal(getLastExceptionName() + ": " + e.what());
-		TouhouFanGame::Utils::dispMsg(
-			"Fatal Error",
-			"An unrecoverable error occurred\n\n" +
-			getLastExceptionName() + ":\n" + e.what() + "\n\n"
-			"Click OK to close the application",
-			MB_ICONERROR
-		);
-		return EXIT_FAILURE;
-	}
-	return EXIT_SUCCESS;
+	return TouhouFanGame::run();
 }

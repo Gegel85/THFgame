@@ -6,9 +6,6 @@
 #include "Exceptions.hpp"
 #include "Input/Keyboard.hpp"
 #include "Inventory/ItemFactory.hpp"
-#include "Menus/MainMenu.hpp"
-#include "Menus/InGameMenu.hpp"
-#include "Menus/InventoryMenu.hpp"
 
 namespace TouhouFanGame
 {
@@ -70,14 +67,7 @@ namespace TouhouFanGame
 		std::ifstream stream{"assets/list.json"};
 		nlohmann::json data;
 
-		logger.debug("Opening main window");
-		game.resources.screen.reset(new Rendering::Screen{game.resources, "THFgame"});
-
 		loadSettings(game);
-
-		game.state.menuMgr.addMenu<MainMenu>("main_menu", game.state.map, game.resources, game.state.hud);
-		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.map, game.state.hud, *game.resources.screen);
-		game.state.menuMgr.addMenu<InventoryMenu>("inventory", game.state.map, game.state.hud, *game.resources.screen, game.resources.textures);
 
 		//We do this because on MinGW std::random_device always produce the same output
 		//(also we don't need the most unpredictable seed)

@@ -6,11 +6,11 @@
 #define THFGAME_MAINMENU_HPP
 
 
-#include "Menu.hpp"
-#include "MenuMgr.hpp"
-#include "../Resources.hpp"
-#include "../Map.hpp"
-#include "../Rendering/Hud.hpp"
+#include "../../Core/Menus/Menu.hpp"
+#include "../../Core/Menus/MenuMgr.hpp"
+#include "../../Core/Resources.hpp"
+#include "../../Core/Map.hpp"
+#include "../../Core/Rendering/Hud.hpp"
 
 namespace TouhouFanGame
 {

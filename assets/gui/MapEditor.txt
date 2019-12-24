@@ -1,0 +1,36 @@
+MenuBar.main_bar {
+    MinimumSubMenuWidth = 125;
+    Size = (&.size, 20);
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = #D8D8D8;
+        distancetoside = 4;
+        selectedbackgroundcolor = #006EFF;
+        selectedtextcolor = white;
+        textcolor = black;
+        textcolordisabled = #7D7D7D;
+    }
+
+    Menu {
+        Text = File;
+
+        Menu {
+            Text = "Load map";
+        }
+
+        Menu {
+            Enabled = false;
+            Text = Save;
+        }
+
+        Menu {
+            Enabled = false;
+            Text = "Save as";
+        }
+
+        Menu {
+            Text = Quit;
+        }
+    }
+}

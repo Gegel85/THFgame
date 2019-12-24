@@ -20,14 +20,6 @@ Renderer.1 {
     texturehover = None;
 }
 
-Renderer.2 {
-    backgroundcolor = transparent;
-    bordercolor = #3C3C3C;
-    borders = (0, 0, 0, 0);
-    textcolor = #3C3C3C;
-    texturebackground = None;
-}
-
 Label.Widget1 {
     AutoSize = true;
     Position = (30, 20);
@@ -35,7 +27,14 @@ Label.Widget1 {
     Size = (34.2, 18);
     Text = "Map:";
     TextSize = 13;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        textcolor = #3C3C3C;
+        texturebackground = None;
+    }
 }
 
 Button.BtnCancel {
@@ -59,7 +58,7 @@ Slider.MapNumber {
     Maximum = 10;
     Minimum = 0;
     Position = (90, 20);
-    Size = (260, 16);
+    Size = (220, 16);
     Step = 1;
     Value = 0;
 
@@ -78,12 +77,32 @@ Slider.MapNumber {
     }
 }
 
-Label.Label1 {
-    AutoSize = true;
-    Position = (355, 20);
-    ScrollbarPolicy = Never;
-    Size = (11.2, 18);
-    Text = 0;
+EditBox.CurrentMap {
+    DefaultText = 0;
+    InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
+    Position = (325, 20);
+    Size = (60, 18);
     TextSize = 13;
-    renderer = &2;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        caretcolor = black;
+        caretwidth = 1;
+        defaulttextcolor = #A0A0A0;
+        padding = (0, 0, 0, 0);
+        selectedtextbackgroundcolor = #006EFF;
+        selectedtextcolor = white;
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        texture = None;
+        texturedisabled = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }

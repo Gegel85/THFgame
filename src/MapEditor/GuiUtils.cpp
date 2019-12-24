@@ -59,23 +59,31 @@ namespace TouhouFanGame
 		filenameWindow->setTitle(title);
 		filenameWindow->setSize(400, 100);
 		filenameWindow->loadWidgetsFromFile("assets/gui/LoadFile.txt");
+		filenameWindow->setFocused(true);
 
-		auto label = filenameWindow->get<tgui::Label>("Label1");
+		auto box = filenameWindow->get<tgui::EditBox>("CurrentMap");
 		auto slider = filenameWindow->get<tgui::Slider>("MapNumber");
 		auto buttonLoad = filenameWindow->get<tgui::Button>("BtnLoad");
 		auto buttonCancelLoadingImage = filenameWindow->get<tgui::Button>("BtnCancel");
 
-		label->setText(std::to_string(defaultValue));
+		box->setText(std::to_string(defaultValue));
 		buttonLoad->setText(loadButtonCaption);
 		slider->setMinimum(0);
 		slider->setMaximum(65535);
 		slider->setValue(defaultValue);
-		slider->setFocused(true);
-		slider->connect("ValueChanged", [slider, label]() {
+		slider->connect("ValueChanged", [slider, box]() {
 			slider->setValue(static_cast<int>(slider->getValue()));
-			label->setText(std::to_string(static_cast<int>(slider->getValue())));
+			box->setText(std::to_string(static_cast<int>(slider->getValue())));
 		});
 
+		box->connect("TextChanged", [box, slider]{
+			try {
+				slider->setValue(std::stol(static_cast<std::string>(box->getText())));
+			} catch (std::exception &) {
+				slider->setValue(0);
+				box->setText("0");
+			}
+		});
 		buttonCancelLoadingImage->connect("pressed", [filenameWindow]{
 			filenameWindow->close();
 		});

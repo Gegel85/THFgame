@@ -15,6 +15,8 @@
 
 namespace TouhouFanGame
 {
+	class MapEditor;
+
 	//! @brief A map loaded by the game.
 	class Map {
 	public:
@@ -32,6 +34,8 @@ namespace TouhouFanGame
 			//! @brief Loads a trigger from the stream.
 			TpTrigger(std::istream &stream);
 		};
+
+		friend MapEditor;
 
 	private:
 		//! @brief The Game this map is in.
@@ -80,7 +84,6 @@ namespace TouhouFanGame
 		//! @brief The ID of the currently loaded map
 		unsigned int _id;
 
-
 		template<typename type>
 		//! @brief Reads an integer MSB from a stream.
 		static type _readInteger(std::istream &stream) {
@@ -109,6 +112,22 @@ namespace TouhouFanGame
 					result.push_back(byte);
 			} while (byte);
 			return result;
+		}
+
+		template<typename type>
+		//! @brief Writes an integer MSB from a stream.
+		static void _writeInteger(std::ostream &stream, type value) {
+			char val;
+
+			for (size_t i = sizeof(value); i > 0; i--) {
+				val = value >> 8 * (i - 1);
+				stream.write(&val, 1);
+			}
+		}
+
+		//! @brief Writes an integer MSB from a stream.
+		static void _writeString(std::ostream &stream, const std::string &str) {
+			stream << str << '\0';
 		}
 
 		//! @brief Computes the center of the camera from the map size, the window size and a focus point.

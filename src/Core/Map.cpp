@@ -91,30 +91,29 @@ namespace TouhouFanGame
 	{
 		logger.debug("Loading map");
 
-		stream << this->_music << '\0';
-		stream << this->_tileMap << '\0';
+		_writeString(stream, this->_music);
+		_writeString(stream, this->_tileMap);
 		stream << static_cast<char>(this->_solidBorders);
 
 		logger.debug("Saving tile size");
-		stream.write(reinterpret_cast<char *>(&this->_tileSize), sizeof(this->_tileSize));
+		_writeInteger(stream, this->_tileSize);
 
 		logger.debug("Saving map size");
-		stream.write(reinterpret_cast<char *>(&this->_size.x), sizeof(this->_size.x));
-		stream.write(reinterpret_cast<char *>(&this->_size.y), sizeof(this->_size.y));
+		_writeInteger(stream, this->_size.x);
+		_writeInteger(stream, this->_size.y);
 
 		logger.debug("Saving teleporters");
-		unsigned length = this->_tpTriggers.size();
-		stream.write(reinterpret_cast<char *>(&length), sizeof(length));
+		_writeInteger<unsigned>(stream, this->_tpTriggers.size());
 		for (auto &trigger : this->_tpTriggers)
 			stream << trigger;
 
 		logger.debug("Saving links");
 		for (auto link : this->_links)
-			stream.write(reinterpret_cast<char *>(&link), sizeof(link));
+			_writeInteger(stream, link);
 
 		logger.debug("Saving objects");
 		for (auto obj : this->_objects)
-			stream.write(reinterpret_cast<char *>(&obj), sizeof(obj));
+			_writeInteger(stream, obj);
 
 		logger.debug("Saving entities");
 		stream << this->_core;

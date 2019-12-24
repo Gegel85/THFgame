@@ -13,12 +13,16 @@ namespace TouhouFanGame
 {
 	class MapEditor {
 	private:
+		Map _map;
 		Game _game;
 		sf::Font _font;
+		unsigned _loaded;
 		std::unique_ptr<tgui::Gui> _gui;
 
+		void _makeAllWidgets();
+		void _displaySettings();
 	public:
-		MapEditor() = default;
+		MapEditor();
 		void setup();
 		int run();
 	};

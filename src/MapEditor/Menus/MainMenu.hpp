@@ -16,16 +16,13 @@ namespace TouhouFanGame
 {
 	class MainMenu : public Menu {
 	private:
-		Map _map;
+		Map &_map;
 		MenuMgr &_menu;
-		unsigned _loaded;
 		tgui::Gui &_gui;
-		sf::RenderWindow &_window;
-
-		void _addAllWidgets();
+		Rendering::Screen &_window;
 
 	public:
-		MainMenu(MenuMgr &menu, Game &game, tgui::Gui &gui, sf::RenderWindow &window);
+		MainMenu(MenuMgr &menu, Map &map, tgui::Gui &gui, Rendering::Screen &window);
 		void render() override;
 		void switched(bool isActive) override;
 		void handleEvent(const Input::Event &event) override;

@@ -40,4 +40,16 @@ namespace TouhouFanGame
 		for (auto &music : this->musics)
 			music.second.first.stop();
 	}
+
+	void Resources::setMusicVolume(float newVolume)
+	{
+		for (auto &music : this->musics)
+			music.second.first.setVolume(newVolume);
+	}
+
+	void Resources::setSoundVolume(float newVolume)
+	{
+		for (auto &sound : this->sounds)
+			sound.setVolume(newVolume);
+	}
 }

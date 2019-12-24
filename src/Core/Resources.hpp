@@ -50,6 +50,14 @@ namespace TouhouFanGame
 
 		//! @brief Stops any music currently playing
 		void stopMusic();
+
+		//! @brief Changes the volume of all the musics.
+		//! @param newVolume New volume.
+		void setMusicVolume(float newVolume);
+
+		//! @brief Changes the volume of all the sounds.
+		//! @param newVolume New volume.
+		void setSoundVolume(float newVolume);
 	};
 }
 

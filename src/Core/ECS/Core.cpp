@@ -108,7 +108,7 @@ namespace TouhouFanGame::ECS
 		for (auto &entity : this->_entities)
 			if (entity->isSerializable())
 				stream << "Entity " << *entity << std::endl;
-		stream << "THFG_ECS_Core_End" << std::endl;
+		stream << "THFG_ECS_Core_End";
 	}
 
 	void Core::unserialize(std::istream &stream)

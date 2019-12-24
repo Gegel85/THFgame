@@ -30,7 +30,26 @@ MenuBar.main_bar {
         }
 
         Menu {
+            Text = "Settings";
+        }
+
+        Menu {
             Text = Quit;
+        }
+    }
+    Menu {
+        Text = Windows;
+
+        Menu {
+            Text = Objects;
+        }
+
+        Menu {
+            Text = Musics;
+        }
+
+        Menu {
+            Text = Entities;
         }
     }
 }

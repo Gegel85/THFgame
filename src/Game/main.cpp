@@ -57,7 +57,6 @@ namespace TouhouFanGame
 		//TODO: Add proper font loading.
 		sf::Font font;
 
-
 		try {
 			logger.info("Setting up...");
 			setup(game);

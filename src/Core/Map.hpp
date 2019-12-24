@@ -137,7 +137,7 @@ namespace TouhouFanGame
 		//! @param stream The stream to serialize the map to.
 		void _serialize(std::ostream &stream) const;
 
-		//! @brief Serialize the map to a file
+		//! @brief Serialize the map to a file.
 		//! @param path The file to save to.
 		//! @throw MapSavingFailureException
 		void _serialize(const std::string &path);
@@ -146,25 +146,14 @@ namespace TouhouFanGame
 		//! @param stream The stream to unserialize the map from.
 		void _unserialize(std::istream &stream);
 
-		//! @brief Unserialize the map from a file
+		//! @brief Unserialize the map from a file.
 		//! @param path The file to load from.
 		//! @throw CorruptedMapException
 		void _unserialize(const std::string &path);
 
-		//! @brief Loads the map from the stream given.
-		//! @param path The path to the file to load the map from.
-		//! @param loadEntities Whether we want to load the entities or not.
-		//! @throw CorruptedMapException
-		void _loadFromFile(std::string path, bool loadEntities = true);
-
-		//! @brief Saves the map to a stream
-		//! @param stream The stream to save the map to
+		//! @brief Saves the map to a stream.
+		//! @param stream The stream to save the map to.
 		void _saveMapToStream(std::ostream &stream);
-
-		//! @brief Load a map from it's ID.
-		//! @throw InvalidSavedMap
-		//! @throw CorruptedMapException
-		void _loadMap(unsigned short id);
 
 		//! @brief Saves the player Entity and the map it is on.
 		void _savePlayer();
@@ -215,6 +204,21 @@ namespace TouhouFanGame
 		//! @brief Save the currently map state to a save file.
 		//! @throw MapSavingFailureException
 		void saveState();
+
+		//! @brief Saves the map to a stream.
+		//! @param path The path to the file.
+		void saveMapToFile(const std::string &path);
+
+		//! @brief Loads the map from the stream given.
+		//! @param path The path to the file to load the map from.
+		//! @param loadEntities Whether we want to load the entities or not.
+		//! @throw CorruptedMapException
+		void loadFromFile(std::string path, bool loadEntities = true);
+
+		//! @brief Load a map from it's ID.
+		//! @throw InvalidSavedMap
+		//! @throw CorruptedMapException
+		void loadMap(unsigned short id);
 
 		//! @brief Loads the saved map in the saves folder.
 		//! @throw MapSavingFailureException

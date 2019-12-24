@@ -54,7 +54,7 @@ namespace TouhouFanGame
 	void Map::_unserialize(std::istream &stream)
 	{
 		std::getline(stream, this->_path, '\0');
-		this->_loadFromFile(this->_path, false);
+		this->loadFromFile(this->_path, false);
 		stream >> this->_core;
 	}
 
@@ -73,7 +73,7 @@ namespace TouhouFanGame
 		stream.close();
 	}
 
-	void Map::_loadMap(unsigned short id)
+	void Map::loadMap(unsigned short id)
 	{
 		try {
 			this->_unserialize("saves/map_" + std::to_string(id) + ".sav");
@@ -83,7 +83,7 @@ namespace TouhouFanGame
 			throw InvalidSavedMap(e.what());
 		}
 
-		this->_loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
+		this->loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
 		this->_id = id;
 	}
 
@@ -147,17 +147,27 @@ namespace TouhouFanGame
 		this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 	}
 
-	void Map::saveMap()
+	void Map::saveMapToFile(const std::string &path)
 	{
-		std::ofstream stream{"assets/maps/map_" + std::to_string(this->_id) + ".map"};
+		std::rename(
+			path.c_str(),
+			(path + ".backup").c_str()
+		);
+
+		std::ofstream stream{path};
 
 		logger.info("Loading game");
 		if (stream.fail()) {
-			logger.error("Couldn't load map at saves/map_player.sav: " + std::string(strerror(errno)));
-			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
+			logger.error("Couldn't load map at " + path + ": " + std::string(strerror(errno)));
+			throw MapSavingFailureException(path + ": " + std::string(strerror(errno)));
 		}
 		this->_saveMapToStream(stream);
 		stream.close();
+	}
+
+	void Map::saveMap()
+	{
+		this->saveMapToFile("assets/maps/map_" + std::to_string(this->_id) + ".map");
 	}
 
 	void Map::loadMap()
@@ -169,7 +179,7 @@ namespace TouhouFanGame
 			logger.error("Couldn't load map at saves/map_player.sav: " + std::string(strerror(errno)));
 			if (errno != ENOENT)
 				throw InvalidSavedMap("saves/map_player.sav: " + std::string(strerror(errno)));
-			this->_loadMap(0);
+			this->loadMap(0);
 			return;
 		}
 		this->reset();
@@ -180,7 +190,7 @@ namespace TouhouFanGame
 		stream >> this->_id;
 		stream.close();
 		player.setSerializable(false);
-		this->_loadMap(this->_id);
+		this->loadMap(this->_id);
 	}
 
 	void Map::update()
@@ -192,25 +202,25 @@ namespace TouhouFanGame
 
 		if (pos.x < size.x / -2.) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
-			this->_loadMap(this->_links[Input::LEFT]);
+			this->loadMap(this->_links[Input::LEFT]);
 			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
 			this->_savePlayer();
 
 		} else if (pos.y < size.y / -2.) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
-			this->_loadMap(this->_links[Input::UP]);
+			this->loadMap(this->_links[Input::UP]);
 			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
 			this->_savePlayer();
 
 		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
-			this->_loadMap(this->_links[Input::RIGHT]);
+			this->loadMap(this->_links[Input::RIGHT]);
 			pos.x = size.x / -2.;
 			this->_savePlayer();
 
 		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
-			this->_loadMap(this->_links[Input::DOWN]);
+			this->loadMap(this->_links[Input::DOWN]);
 			pos.y = size.y / -2.;
 			this->_savePlayer();
 
@@ -221,7 +231,7 @@ namespace TouhouFanGame
 				-this->_tileSize < trigger.location.x && trigger.location.x < static_cast<int>(size.x + this->_tileSize) &&
 				-this->_tileSize < trigger.location.y && trigger.location.y < static_cast<int>(size.y + this->_tileSize)
 			) {
-				this->_loadMap(trigger.mapId);
+				this->loadMap(trigger.mapId);
 				pos = sf::Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
 			}
 	}
@@ -313,7 +323,7 @@ namespace TouhouFanGame
 		logger.debug("Operation completed");
 	}
 
-	void Map::_loadFromFile(std::string path, bool loadEntities)
+	void Map::loadFromFile(std::string path, bool loadEntities)
 	{
 		std::ifstream stream{path};
 

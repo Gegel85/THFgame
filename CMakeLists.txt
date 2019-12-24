@@ -23,6 +23,8 @@ add_executable(
 	src/Core/ECS/Components/DisplayableComponent.hpp
 	src/Core/ECS/Components/HealthComponent.cpp
 	src/Core/ECS/Components/HealthComponent.hpp
+	src/Core/ECS/Components/InventoryComponent.cpp
+	src/Core/ECS/Components/InventoryComponent.hpp
 	src/Core/ECS/Components/ManaComponent.cpp
 	src/Core/ECS/Components/ManaComponent.hpp
 	src/Core/ECS/Components/MovableComponent.cpp
@@ -69,13 +71,21 @@ add_executable(
 	src/Core/Input/Input.hpp
 	src/Core/Input/Keyboard.cpp
 	src/Core/Input/Keyboard.hpp
+	src/Core/Inventory/ClassicItem.cpp
+	src/Core/Inventory/ClassicItem.hpp
+	src/Core/Inventory/Item.cpp
+	src/Core/Inventory/Item.hpp
+	src/Core/Inventory/ItemFactory.cpp
+	src/Core/Inventory/ItemFactory.hpp
 	src/Core/Loader.cpp
 	src/Core/Loader.hpp
 	src/Core/Logger.cpp
 	src/Core/Logger.hpp
-	src/Game/main.cpp
 	src/Core/Map.cpp
 	src/Core/Map.hpp
+	src/Core/Menus/Exceptions.hpp
+	src/Core/Menus/Menu.cpp
+	src/Core/Menus/Menu.hpp
 	src/Core/Menus/MenuMgr.cpp
 	src/Core/Menus/MenuMgr.hpp
 	src/Core/NotCopyable.hpp
@@ -90,23 +100,13 @@ add_executable(
 	src/Core/Resources.hpp
 	src/Core/Utils.cpp
 	src/Core/Utils.hpp
-	src/Core/Inventory/Item.cpp
-	src/Core/Inventory/Item.hpp
-	src/Core/Inventory/ItemFactory.cpp
-	src/Core/Inventory/ItemFactory.hpp
-	src/Core/Inventory/ClassicItem.cpp
-	src/Core/Inventory/ClassicItem.hpp
-	src/Core/ECS/Components/InventoryComponent.cpp
-	src/Core/ECS/Components/InventoryComponent.hpp
-	src/Core/Menus/Menu.cpp
-	src/Core/Menus/Menu.hpp
+	src/Game/main.cpp
+	src/Game/Menus/InGameMenu.cpp
+	src/Game/Menus/InGameMenu.hpp
 	src/Game/Menus/InventoryMenu.cpp
 	src/Game/Menus/InventoryMenu.hpp
 	src/Game/Menus/MainMenu.cpp
 	src/Game/Menus/MainMenu.hpp
-	src/Game/Menus/InGameMenu.cpp
-	src/Game/Menus/InGameMenu.hpp
-	src/Core/Menus/Exceptions.hpp
 )
 
 target_link_libraries(
@@ -119,8 +119,102 @@ target_link_libraries(
 
 add_executable(
 	map_editor
+	src/Core/ECS/Component.cpp
+	src/Core/ECS/Component.hpp
+	src/Core/ECS/Components/BasicSerializeComponent.cpp
+	src/Core/ECS/Components/BasicSerializeComponent.hpp
+	src/Core/ECS/Components/BlockedByTerrainComponent.cpp
+	src/Core/ECS/Components/BlockedByTerrainComponent.hpp
+	src/Core/ECS/Components/ControllableComponent.cpp
+	src/Core/ECS/Components/ControllableComponent.hpp
+	src/Core/ECS/Components/DisplayableComponent.cpp
+	src/Core/ECS/Components/DisplayableComponent.hpp
+	src/Core/ECS/Components/HealthComponent.cpp
+	src/Core/ECS/Components/HealthComponent.hpp
+	src/Core/ECS/Components/InventoryComponent.cpp
+	src/Core/ECS/Components/InventoryComponent.hpp
+	src/Core/ECS/Components/ManaComponent.cpp
+	src/Core/ECS/Components/ManaComponent.hpp
+	src/Core/ECS/Components/MovableComponent.cpp
+	src/Core/ECS/Components/MovableComponent.hpp
+	src/Core/ECS/Components/NameComponent.cpp
+	src/Core/ECS/Components/NameComponent.hpp
+	src/Core/ECS/Components/PlayerHudComponent.cpp
+	src/Core/ECS/Components/PlayerHudComponent.hpp
+	src/Core/ECS/Components/PositionComponent.cpp
+	src/Core/ECS/Components/PositionComponent.hpp
+	src/Core/ECS/Core.cpp
+	src/Core/ECS/Core.hpp
+	src/Core/ECS/Entity.cpp
+	src/Core/ECS/Entity.hpp
+	src/Core/ECS/Exceptions.hpp
+	src/Core/ECS/Factories/ComponentFactory.cpp
+	src/Core/ECS/Factories/ComponentFactory.hpp
+	src/Core/ECS/Factories/EntityFactory.cpp
+	src/Core/ECS/Factories/EntityFactory.hpp
+	src/Core/ECS/Factories/SystemFactory.cpp
+	src/Core/ECS/Factories/SystemFactory.hpp
+	src/Core/ECS/System.cpp
+	src/Core/ECS/System.hpp
+	src/Core/ECS/Systems/BlockedByTerrainSystem.cpp
+	src/Core/ECS/Systems/BlockedByTerrainSystem.hpp
+	src/Core/ECS/Systems/ControllableSystem.cpp
+	src/Core/ECS/Systems/ControllableSystem.hpp
+	src/Core/ECS/Systems/DisplayableSystem.cpp
+	src/Core/ECS/Systems/DisplayableSystem.hpp
+	src/Core/ECS/Systems/HealthSystem.cpp
+	src/Core/ECS/Systems/HealthSystem.hpp
+	src/Core/ECS/Systems/ManaSystem.cpp
+	src/Core/ECS/Systems/ManaSystem.hpp
+	src/Core/ECS/Systems/MovableSystem.cpp
+	src/Core/ECS/Systems/MovableSystem.hpp
+	src/Core/ECS/Systems/PlayerHudSystem.cpp
+	src/Core/ECS/Systems/PlayerHudSystem.hpp
+	src/Core/ECS/Systems/UselessSystem.cpp
+	src/Core/ECS/Systems/UselessSystem.hpp
+	src/Core/Exceptions.cpp
+	src/Core/Exceptions.hpp
+	src/Core/Game.hpp
+	src/Core/Input/Input.cpp
+	src/Core/Input/Input.hpp
+	src/Core/Input/Keyboard.cpp
+	src/Core/Input/Keyboard.hpp
+	src/Core/Inventory/ClassicItem.cpp
+	src/Core/Inventory/ClassicItem.hpp
+	src/Core/Inventory/Item.cpp
+	src/Core/Inventory/Item.hpp
+	src/Core/Inventory/ItemFactory.cpp
+	src/Core/Inventory/ItemFactory.hpp
+	src/Core/Loader.cpp
+	src/Core/Loader.hpp
+	src/Core/Logger.cpp
+	src/Core/Logger.hpp
 	src/Core/Map.cpp
 	src/Core/Map.hpp
+	src/Core/Menus/Exceptions.hpp
+	src/Core/Menus/Menu.cpp
+	src/Core/Menus/Menu.hpp
+	src/Core/Menus/MenuMgr.cpp
+	src/Core/Menus/MenuMgr.hpp
+	src/Core/NotCopyable.hpp
+	src/Core/Rendering/Entity.cpp
+	src/Core/Rendering/Entity.hpp
+	src/Core/Rendering/Exceptions.hpp
+	src/Core/Rendering/Hud.cpp
+	src/Core/Rendering/Hud.hpp
+	src/Core/Rendering/Screen.cpp
+	src/Core/Rendering/Screen.hpp
+	src/Core/Resources.cpp
+	src/Core/Resources.hpp
+	src/Core/Utils.cpp
+	src/Core/Utils.hpp
+	src/MapEditor/main.cpp
+	src/MapEditor/MapEditor.cpp
+	src/MapEditor/MapEditor.hpp
+	src/MapEditor/Menus/MainMenu.cpp
+	src/MapEditor/Menus/MainMenu.hpp
+	src/MapEditor/GuiUtils.cpp
+	src/MapEditor/GuiUtils.hpp
 )
 
 target_link_libraries(

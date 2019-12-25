@@ -12,8 +12,7 @@ namespace TouhouFanGame::Rendering
 		sf::RenderWindow(sf::VideoMode(width, height), title),
 		_resources(resources),
 		_title(title),
-		_fps(60),
-		_size(width, height)
+		_fps(60)
 	{
 		TouhouFanGame::logger.info("Opening window \"" + title + "\"");
 		this->setFramerateLimit(60);
@@ -118,11 +117,6 @@ namespace TouhouFanGame::Rendering
 
 	void Screen::display()
 	{
-		if (this->getSize() != this->_size) {
-			this->_view.setCenter(this->_cameraCenter.x, this->_cameraCenter.y);
-			this->_view.setSize(this->getSize().x, this->getSize().y);
-			this->setView(this->_view);
-		}
 		this->_fps = 1 / this->_clock.getElapsedTime().asSeconds();
 		this->_clock.restart();
 		sf::RenderWindow::display();

@@ -2,6 +2,7 @@
 // Created by Gegel85 on 22/12/2019.
 //
 
+#include <iostream>
 #include "../GuiUtils.hpp"
 #include "MainMenu.hpp"
 
@@ -17,8 +18,6 @@ namespace TouhouFanGame
 
 	void MainMenu::render()
 	{
-		this->_map.updateCameraPosition({0, 20});
-		this->_map.render();
 		this->_window.setTitle("THFgame map editor (" + std::to_string(this->_window.getFPS()) + " FPS)");
 		this->_gui.draw();
 	}

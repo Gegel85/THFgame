@@ -67,11 +67,17 @@ namespace TouhouFanGame
 		});
 	}
 
+	void MapEditor::_renderMap()
+	{
+		this->_map.updateCameraPosition({0, 20});
+		this->_map.render();
+	}
+
 	void MapEditor::setup()
 	{
 		logger.info("Setting up...");
 		logger.debug("Opening main window");
-		this->_game.resources.screen = std::make_unique<Rendering::Screen>(this->_game.resources, "THFgame map editor");
+		this->_game.resources.screen = std::make_unique<Rendering::Screen>(this->_game.resources, "THFgame map editor", 800, 640);
 		this->_gui = std::make_unique<tgui::Gui>(*this->_game.resources.screen);
 		this->_game.state.menuMgr.addMenu<MainMenu>("main_menu", this->_map, *this->_gui, *this->_game.resources.screen);
 
@@ -96,14 +102,24 @@ namespace TouhouFanGame
 			this->_game.resources.screen->clear();
 
 			while (this->_game.resources.screen->pollEvent(event)) {
-				if (event.type == sf::Event::Closed)
+				switch (event.type) {
+				case sf::Event::Closed:
 					this->_game.resources.screen->close();
+					break;
+				case sf::Event::Resized:
+					this->_game.resources.screen->setView(sf::View{sf::FloatRect(0, 0, event.size.width, event.size.height)});
+					this->_gui->setView(sf::View{sf::FloatRect(0, 0, event.size.width, event.size.height)});
+					break;
+				default:
+					break;
+				}
 				this->_gui->handleEvent(event);
 			}
 
 			for (auto e = this->_game.state.settings.input->pollEvent(); e; e = this->_game.state.settings.input->pollEvent())
 				this->_game.state.menuMgr.handleEvent(*e);
 
+			this->_renderMap();
 			this->_game.state.menuMgr.renderMenu();
 			this->_game.resources.screen->display();
 		}

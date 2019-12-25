@@ -44,9 +44,6 @@ namespace TouhouFanGame::Rendering
 		//! @brief The current fps.
 		double _fps;
 
-		//! @brief The latest size of the window, used to detect resize.
-		sf::Vector2u _size;
-
 	public:
 		//! @brief Constructor.
 		//! @param title The title for the window.

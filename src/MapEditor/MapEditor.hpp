@@ -21,6 +21,7 @@ namespace TouhouFanGame
 
 		void _makeAllWidgets();
 		void _displaySettings();
+		void _renderMap();
 	public:
 		MapEditor();
 		void setup();

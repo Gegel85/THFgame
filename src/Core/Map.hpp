@@ -58,10 +58,10 @@ namespace TouhouFanGame
 		std::string _music;
 
 		//! @brief The size of map (in tiles).
-		sf::Vector2<unsigned short> _size;
+		sf::Vector2<unsigned short> _size = {0, 0};
 
 		//! @brief The size in pixel of a single square tile.
-		unsigned char _tileSize = 0;
+		unsigned char _tileSize = 16;
 
 		//! @brief The id of the texture in the Resources to use to render the tiles.
 		std::string _tileMap;

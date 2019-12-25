@@ -13,15 +13,29 @@ namespace TouhouFanGame
 {
 	class MapEditor {
 	private:
+		struct MapParams {
+			sf::Vector2<unsigned short> size;
+			bool solid;
+			std::string music;
+			std::string tilemap;
+			unsigned char tilesize;
+			MapParams() = default;
+			MapParams(const Map &map);
+		};
+
 		Map _map;
 		Game _game;
 		sf::Font _font;
 		unsigned _loaded;
+		MapParams _params;
+		sf::Vector2f _cameraPos;
 		std::unique_ptr<tgui::Gui> _gui;
 
 		void _makeAllWidgets();
 		void _displaySettings();
 		void _renderMap();
+		void _resetMap();
+		void _showMapEditWindow();
 	public:
 		MapEditor();
 		void setup();

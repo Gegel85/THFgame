@@ -7,6 +7,7 @@
 
 
 #include <TGUI/TGUI.hpp>
+#include "../Core/Map.hpp"
 
 namespace TouhouFanGame
 {
@@ -14,7 +15,7 @@ namespace TouhouFanGame
 	tgui::TextBox::Ptr makeTextBox(tgui::Layout x, tgui::Layout y, tgui::Layout width, tgui::Layout height, const std::string &placeholder = "");
 	tgui::TextBox::Ptr makeTypeBox(tgui::Layout x, tgui::Layout y, tgui::Layout width, tgui::Layout height, const std::string &placeholder = "");
 	tgui::Picture::Ptr makePicture(const tgui::Texture &texture, tgui::Layout x, tgui::Layout y, tgui::Layout width, tgui::Layout height);
-	tgui::ChildWindow::Ptr openWindowWithFocus(tgui::Gui &gui);
+	tgui::ChildWindow::Ptr openWindowWithFocus(tgui::Gui &gui, const std::function<void()> &closeHandle = {});
 	void showLoadFileWindow(tgui::Gui &gui, const std::string &title, const std::string &loadButtonCaption, unsigned short defaultValue, const std::function<void(unsigned short)> &onLoad);
 }
 

@@ -7,7 +7,7 @@ Renderer.1 {
 }
 
 ChildWindow.ChildWindow1 {
-    Size = (110, 280);
+    Size = (110, 420);
     Title = Tools;
     TitleAlignment = Center;
     TitleButtons = Close;
@@ -44,7 +44,7 @@ ChildWindow.ChildWindow1 {
         }
     }
 
-    BitmapButton.Add {
+    BitmapButton.Terrain {
         Image = "assets/editor/add.png";
         ImageScaling = 0;
         Position = (10, 10);
@@ -63,7 +63,7 @@ ChildWindow.ChildWindow1 {
     BitmapButton.Delete {
         Image = "assets/editor/delete.png";
         ImageScaling = 0;
-        Position = (60, 10);
+        Position = (60, 110);
         Size = (40, 40);
         TextSize = 13;
         renderer = &1;
@@ -72,7 +72,7 @@ ChildWindow.ChildWindow1 {
     BitmapButton."Zoom-" {
         Image = "assets/editor/zoom-.png";
         ImageScaling = 0;
-        Position = (10, 60);
+        Position = (60, 160);
         Size = (40, 40);
         TextSize = 13;
         renderer = &1;
@@ -81,7 +81,7 @@ ChildWindow.ChildWindow1 {
     BitmapButton."Zoom+" {
         Image = "assets/editor/zoom+.png";
         ImageScaling = 0;
-        Position = (60, 60);
+        Position = (10, 160);
         Size = (40, 40);
         TextSize = 13;
         renderer = &1;
@@ -89,13 +89,54 @@ ChildWindow.ChildWindow1 {
 
     ScrollablePanel.ScrollablePanel1 {
         ContentSize = (0, 0);
-        Position = (10, 110);
-        Size = (90, 160);
+        Position = (10, 210);
+        Size = (90, 200);
 
         Renderer {
-            backgroundcolor = white;
-            bordercolor = black;
             texturebackground = None;
+        }
+    }
+
+    BitmapButton.Teleporter {
+        Image = "assets/editor/teleporter.png";
+        ImageScaling = 0;
+        Position = (10, 110);
+        Size = (40, 40);
+        TextSize = 13;
+        renderer = &1;
+    }
+
+    BitmapButton.Entity {
+        Image = "assets/editor/entities.png";
+        ImageScaling = 0;
+        Position = (60, 10);
+        Size = (40, 40);
+        TextSize = 13;
+        renderer = &1;
+    }
+
+    BitmapButton.BitmapButton1 {
+        Image = "assets/editor/solid.png";
+        ImageScaling = 0;
+        Position = (10, 60);
+        Size = (40, 40);
+        TextSize = 13;
+        renderer = &1;
+    }
+
+    BitmapButton.BitmapButton2 {
+        Image = "assets/editor/show.png";
+        ImageScaling = 0;
+        Position = (60, 60);
+        Size = (40, 40);
+        TextSize = 13;
+
+        Renderer {
+            texture = None;
+            texturedisabled = None;
+            texturedown = None;
+            texturefocused = None;
+            texturehover = None;
         }
     }
 }

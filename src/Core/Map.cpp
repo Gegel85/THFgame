@@ -77,6 +77,7 @@ namespace TouhouFanGame
 	{
 		try {
 			this->_unserialize("saves/map_" + std::to_string(id) + ".sav");
+			this->_id = id;
 			return;
 		} catch (InvalidSavedMap &) {
 		} catch (std::exception &e) {
@@ -244,6 +245,8 @@ namespace TouhouFanGame
 		this->_tileMap.clear();
 		this->_tpTriggers.clear();
 		this->_path.clear();
+		this->_tileSize = 16;
+		std::memset(this->_links, 0xFF, sizeof(this->_links));
 	}
 
 	unsigned char Map::getObjectAt(int x, int y) const
@@ -308,6 +311,7 @@ namespace TouhouFanGame
 		}
 
 		logger.debug("Fetching objects");
+		this->_objects.reserve(this->_size.x * this->_size.y);
 		for (unsigned y = 0; y < this->_size.y; y++)
 			for (unsigned x = 0; x < this->_size.x; x++)
 				this->_objects.push_back(_readInteger<unsigned char>(stream));
@@ -367,7 +371,7 @@ namespace TouhouFanGame
 						static_cast<float>(y * this->_tileSize)
 					},
 					{
-						static_cast<int>((this->_objects.at(x + y * this->_size.x) & 0x7F) * this->_tileSize),
+						static_cast<int>((this->_objects[x + y * this->_size.x] & 0x7F) * this->_tileSize),
 						0,
 						static_cast<int>(this->_tileSize),
 						static_cast<int>(this->_tileSize)

@@ -16,6 +16,10 @@ MenuBar.main_bar {
         Text = File;
 
         Menu {
+            Text = "New map";
+        }
+
+        Menu {
             Text = "Load map";
         }
 
@@ -25,8 +29,11 @@ MenuBar.main_bar {
         }
 
         Menu {
-            Enabled = false;
             Text = "Save as";
+        }
+
+        Menu {
+            Text = "Map properties";
         }
 
         Menu {

@@ -93,7 +93,7 @@ namespace TouhouFanGame
 		});
 	}
 
-	tgui::ChildWindow::Ptr openWindowWithFocus(tgui::Gui &gui)
+	tgui::ChildWindow::Ptr openWindowWithFocus(tgui::Gui &gui, const std::function<void()> &closeHandle)
 	{
 		auto panel = tgui::Panel::create({"100%", "100%"});
 		panel->getRenderer()->setBackgroundColor({0, 0, 0, 175});
@@ -106,10 +106,12 @@ namespace TouhouFanGame
 		window->setFocused(true);
 
 		const bool tabUsageEnabled = gui.isTabKeyUsageEnabled();
-		auto closeWindow = [&gui, window, panel, tabUsageEnabled]{
+		auto closeWindow = [&gui, window, panel, tabUsageEnabled, closeHandle]{
 			gui.remove(window);
 			gui.remove(panel);
 			gui.setTabKeyUsageEnabled(tabUsageEnabled);
+			if (closeHandle)
+				closeHandle();
 		};
 
 		panel->connect("Clicked", closeWindow);

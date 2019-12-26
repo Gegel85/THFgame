@@ -38,6 +38,7 @@ namespace TouhouFanGame
 		void _showMapEditWindow();
 	public:
 		MapEditor();
+		~MapEditor();
 		void setup();
 		int run();
 	};

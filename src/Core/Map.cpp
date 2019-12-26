@@ -124,6 +124,7 @@ namespace TouhouFanGame
 
 	void Map::_savePlayer()
 	{
+		Utils::makeDirectoryTree("saves/map_player.sav");
 		std::ofstream stream{"saves/map_player.sav"};
 
 		if (stream.fail()) {
@@ -153,6 +154,7 @@ namespace TouhouFanGame
 			path.c_str(),
 			(path + ".backup").c_str()
 		);
+		Utils::makeDirectoryTree(path);
 
 		std::ofstream stream{path};
 

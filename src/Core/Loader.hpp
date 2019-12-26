@@ -41,6 +41,10 @@ namespace TouhouFanGame
 		//! @param game Game state and resources.
 		static void loadSettings(Game &game);
 
+		//! @brief Save settings.
+		//! @param settings Settings to save.
+		static void saveSettings(Settings &settings);
+
 		//! @brief Load all game assets.
 		//! @param game Game state and resources.
 		static void loadAssets(Game &game);

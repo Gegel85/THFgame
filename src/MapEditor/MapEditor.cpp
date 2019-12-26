@@ -25,6 +25,11 @@ namespace TouhouFanGame
 	{
 	}
 
+	MapEditor::~MapEditor()
+	{
+		Loader::saveSettings(this->_game.state.settings);
+	}
+
 	void MapEditor::_displaySettings()
 	{
 		auto win = openWindowWithFocus(*this->_gui);

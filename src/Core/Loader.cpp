@@ -6,6 +6,7 @@
 #include "Exceptions.hpp"
 #include "Input/Keyboard.hpp"
 #include "Inventory/ItemFactory.hpp"
+#include "Utils.hpp"
 
 namespace TouhouFanGame
 {
@@ -35,14 +36,33 @@ namespace TouhouFanGame
 		return texture.loadFromFile("assets/" + static_cast<std::string>(path));
 	}
 
+	void Loader::saveSettings(TouhouFanGame::Settings &settings)
+	{
+		Utils::makeDirectoryTree("saves/settings.sav");
+
+		std::ofstream stream("saves/settings.sav");
+
+		settings.input->serialize(stream);
+		stream << std::endl << settings.musicVolume << std::endl << settings.sfxVolume;
+		stream.close();
+	}
+
 	void Loader::loadSettings(Game &game)
 	{
+		std::ifstream stream("saves/settings.sav");
+
 		logger.info("Loading settings");
 		game.state.settings.input.reset(new Inputs::Keyboard(&*game.resources.screen));
-		game.state.settings.musicVolume = 100;
-		game.state.settings.sfxVolume = 100;
-		for (auto &sound : game.resources.sounds)
-			sound.setVolume(100);
+		if (stream.fail()) {
+			logger.error("Cannot open file save/settings.sav " + std::string(strerror(errno)));
+			game.state.settings.musicVolume = 100;
+			game.state.settings.sfxVolume = 100;
+		} else {
+			game.state.settings.input->unserialize(stream);
+			stream >> game.state.settings.musicVolume >> game.state.settings.sfxVolume;
+		}
+		game.resources.setMusicVolume(game.state.settings.musicVolume);
+		game.resources.setSoundVolume(game.state.settings.sfxVolume);
 	}
 
 	void Loader::loadItems(TouhouFanGame::Game &game)

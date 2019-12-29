@@ -21,6 +21,21 @@ Renderer.1 {
 }
 
 Renderer.2 {
+    arrowbackgroundcolor = #F5F5F5;
+    arrowbackgroundcolorhover = white;
+    arrowcolor = #3C3C3C;
+    arrowcolorhover = black;
+    backgroundcolor = #F5F5F5;
+    bordercolor = black;
+    borders = (1, 1, 1, 1);
+    padding = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturearrow = None;
+    texturearrowhover = None;
+    texturebackground = None;
+}
+
+Renderer.3 {
     backgroundcolor = transparent;
     bordercolor = #3C3C3C;
     borders = (0, 0, 0, 0);
@@ -28,7 +43,7 @@ Renderer.2 {
     texturebackground = None;
 }
 
-Renderer.3 {
+Renderer.4 {
     backgroundcolor = #F5F5F5;
     backgroundcolordisabled = #E6E6E6;
     backgroundcolorhover = white;
@@ -57,11 +72,11 @@ Label.Widget1 {
     Size = (40.2, 18);
     Text = Width;
     TextSize = 13;
-    renderer = &2;
+    renderer = &3;
 }
 
 Button.BtnCancel {
-    Position = (324, 110);
+    Position = (324, 170);
     Size = (61, 22);
     Text = Cancel;
     TextSize = 13;
@@ -69,7 +84,7 @@ Button.BtnCancel {
 }
 
 Button.BtnLoad {
-    Position = ((btncancel.left - 15) - width, 110);
+    Position = ((btncancel.left - 15) - width, 170);
     Text = OK;
     TextSize = 13;
     renderer = &1;
@@ -82,25 +97,25 @@ Label.Label1 {
     Size = (44.2, 18);
     Text = Heigth;
     TextSize = 13;
-    renderer = &2;
+    renderer = &3;
 }
 
 EditBox.MapWidth {
     InputValidator = "[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (90, 18);
+    Position = (100, 18);
     Size = (110, 22);
     Text = 32;
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 EditBox.MapHeight {
     InputValidator = "[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (90, 48);
+    Position = (100, 48);
     Size = (110, 22);
     Text = 32;
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 Label.Label2 {
@@ -110,16 +125,16 @@ Label.Label2 {
     Size = (54.2, 18);
     Text = "Tile size";
     TextSize = 13;
-    renderer = &2;
+    renderer = &3;
 }
 
 EditBox.TileSize {
     InputValidator = "[1-9]\\d{0,1}|[1-2]\\d{2}|2[0-4]\\d|25[0-5]";
-    Position = (90, 78);
+    Position = (100, 78);
     Size = (110, 22);
     Text = 16;
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 Label.Label3 {
@@ -129,7 +144,7 @@ Label.Label3 {
     Size = (79.2, 18);
     Text = "Solid border";
     TextSize = 13;
-    renderer = &2;
+    renderer = &3;
 }
 
 CheckBox.SolidBorder {
@@ -172,7 +187,7 @@ Label.Label4 {
     Size = (58.2, 18);
     Text = "Tile map";
     TextSize = 13;
-    renderer = &2;
+    renderer = &3;
 }
 
 ComboBox.TileMap {
@@ -183,21 +198,7 @@ ComboBox.TileMap {
     Position = (290, 48);
     Size = (95, 22);
     TextSize = 13;
-
-    Renderer {
-        arrowbackgroundcolor = #F5F5F5;
-        arrowbackgroundcolorhover = white;
-        arrowcolor = #3C3C3C;
-        arrowcolorhover = black;
-        backgroundcolor = #F5F5F5;
-        bordercolor = black;
-        borders = (1, 1, 1, 1);
-        padding = (0, 0, 0, 0);
-        textcolor = #3C3C3C;
-        texturearrow = None;
-        texturearrowhover = None;
-        texturebackground = None;
-    }
+    renderer = &2;
 }
 
 Label.Label5 {
@@ -207,14 +208,7 @@ Label.Label5 {
     Size = (38.2, 18);
     Text = Music;
     TextSize = 13;
-
-    Renderer {
-        backgroundcolor = transparent;
-        bordercolor = #3C3C3C;
-        borders = (0, 0, 0, 0);
-        textcolor = #3C3C3C;
-        texturebackground = None;
-    }
+    renderer = &3;
 }
 
 ComboBox.Music {
@@ -225,19 +219,81 @@ ComboBox.Music {
     Position = (290, 78);
     Size = (95, 22);
     TextSize = 13;
+    renderer = &2;
+}
 
-    Renderer {
-        arrowbackgroundcolor = #F5F5F5;
-        arrowbackgroundcolorhover = white;
-        arrowcolor = #3C3C3C;
-        arrowcolorhover = black;
-        backgroundcolor = #F5F5F5;
-        bordercolor = black;
-        borders = (1, 1, 1, 1);
-        padding = (0, 0, 0, 0);
-        textcolor = #3C3C3C;
-        texturearrow = None;
-        texturearrowhover = None;
-        texturebackground = None;
-    }
+Label.Label6 {
+    AutoSize = true;
+    Position = (30, 110);
+    ScrollbarPolicy = Never;
+    Size = (45.2, 18);
+    Text = "Up link";
+    TextSize = 13;
+    renderer = &3;
+}
+
+Label.Label7 {
+    AutoSize = true;
+    Position = (30, 140);
+    ScrollbarPolicy = Never;
+    Size = (65.2, 18);
+    Text = "Down link";
+    TextSize = 13;
+    renderer = &3;
+}
+
+Label.Label8 {
+    AutoSize = true;
+    Position = (220, 110);
+    ScrollbarPolicy = Never;
+    Size = (53.2, 18);
+    Text = "Left link";
+    TextSize = 13;
+    renderer = &3;
+}
+
+Label.Label9 {
+    AutoSize = true;
+    Position = (220, 140);
+    ScrollbarPolicy = Never;
+    Size = (61.2, 18);
+    Text = "Right link";
+    TextSize = 13;
+    renderer = &3;
+}
+
+EditBox.UpLink {
+    InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
+    Position = (100, 108);
+    Size = (110, 22);
+    Text = 0;
+    TextSize = 13;
+    renderer = &4;
+}
+
+EditBox.DownLink {
+    InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
+    Position = (100, 138);
+    Size = (110, 22);
+    Text = 0;
+    TextSize = 13;
+    renderer = &4;
+}
+
+EditBox.LeftLink {
+    InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
+    Position = (290, 108);
+    Size = (95, 22);
+    Text = 0;
+    TextSize = 13;
+    renderer = &4;
+}
+
+EditBox.RightLink {
+    InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
+    Position = (290, 138);
+    Size = (95, 22);
+    Text = 0;
+    TextSize = 13;
+    renderer = &4;
 }

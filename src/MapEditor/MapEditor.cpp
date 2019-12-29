@@ -21,6 +21,7 @@ namespace TouhouFanGame
 		tilemap(map._tileMap),
 		tilesize(map._tileSize)
 	{
+		std::memcpy(this->links, map._links, sizeof(this->links));
 	}
 
 	MapEditor::MapEditor() :
@@ -62,7 +63,7 @@ namespace TouhouFanGame
 		});
 
 		win->setTitle("Change map settings");
-		win->setSize(400, 140);
+		win->setSize(400, 200);
 		win->loadWidgetsFromFile("assets/gui/EditMap.txt");
 		win->setFocused(true);
 
@@ -74,6 +75,10 @@ namespace TouhouFanGame
 		auto music = win->get<tgui::ComboBox>("Music");
 		auto buttonLoad = win->get<tgui::Button>("BtnLoad");
 		auto buttonCancelLoadingImage = win->get<tgui::Button>("BtnCancel");
+		auto upLink = win->get<tgui::EditBox>("UpLink");
+		auto downLink = win->get<tgui::EditBox>("DownLink");
+		auto leftLink = win->get<tgui::EditBox>("LeftLink");
+		auto rightLink = win->get<tgui::EditBox>("RightLink");
 
 		width->setText(std::to_string(this->_params.size.x));
 		width->connect("TextChanged", [this, width]{
@@ -100,6 +105,26 @@ namespace TouhouFanGame
 			} catch (std::invalid_argument &) {
 				this->_params.tilesize = 1;
 			}
+		});
+
+		upLink->setText(std::to_string(this->_params.links[Input::UP]));
+		upLink->connect("TextChanged", [this, upLink]{
+			this->_params.links[Input::UP] = std::stol(upLink->getText().toAnsiString());
+		});
+
+		downLink->setText(std::to_string(this->_params.links[Input::DOWN]));
+		downLink->connect("TextChanged", [this, downLink]{
+			this->_params.links[Input::DOWN] = std::stol(downLink->getText().toAnsiString());
+		});
+
+		leftLink->setText(std::to_string(this->_params.links[Input::LEFT]));
+		leftLink->connect("TextChanged", [this, leftLink]{
+			this->_params.links[Input::LEFT] = std::stol(leftLink->getText().toAnsiString());
+		});
+
+		rightLink->setText(std::to_string(this->_params.links[Input::RIGHT]));
+		rightLink->connect("TextChanged", [this, rightLink]{
+			this->_params.links[Input::RIGHT] = std::stol(rightLink->getText().toAnsiString());
 		});
 
 		tmap->removeAllItems();
@@ -142,6 +167,7 @@ namespace TouhouFanGame
 			this->_map._tileMap = this->_params.tilemap;
 			this->_map._tileSize = this->_params.tilesize;
 			this->_map._solidBorders = this->_params.solid;
+			std::memcpy(this->_map._links, this->_params.links, sizeof(this->_params.links));
 			win->close();
 		});
 	}

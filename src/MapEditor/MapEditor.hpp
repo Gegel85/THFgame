@@ -19,6 +19,7 @@ namespace TouhouFanGame
 			std::string music;
 			std::string tilemap;
 			unsigned char tilesize;
+			unsigned short links[4];
 			MapParams() = default;
 			MapParams(const Map &map);
 		};

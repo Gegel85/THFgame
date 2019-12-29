@@ -24,8 +24,8 @@ MenuBar.main_bar {
         }
 
         Menu {
-            Enabled = false;
             Text = Save;
+            Enabled = false;
         }
 
         Menu {
@@ -37,26 +37,21 @@ MenuBar.main_bar {
         }
 
         Menu {
-            Text = "Settings";
+            Text = Settings;
         }
 
         Menu {
             Text = Quit;
         }
     }
+
+    Menu {
+        Text = New;
+        Items = [Entity, Teleporter];
+    }
+
     Menu {
         Text = Windows;
-
-        Menu {
-            Text = Objects;
-        }
-
-        Menu {
-            Text = Musics;
-        }
-
-        Menu {
-            Text = Entities;
-        }
+        Items = [Tools, View];
     }
 }

@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cstring>
 
+#include <sstream>
 #ifndef _WIN32
 #include <vector>
 #include <sys/stat.h>
@@ -112,5 +113,13 @@ namespace TouhouFanGame::Utils
 			)
 				throw FolderCreationErrorException(tree.substr(0, it - tree.begin()) + ": " + strerror(errno));
 		}
+	}
+
+	std::string floatToString(float nb)
+	{
+		std::stringstream stream;
+
+		stream << nb;
+		return stream.str();
 	}
 }

@@ -31,14 +31,15 @@ namespace TouhouFanGame
 		return box;
 	}
 
-	tgui::TextBox::Ptr makeTypeBox(tgui::Layout x, tgui::Layout y, tgui::Layout width, tgui::Layout height, const std::string &placeholder)
+	tgui::EditBox::Ptr makeTypeBox(tgui::Layout x, tgui::Layout y, tgui::Layout width, tgui::Layout height, const std::string &placeholder, const std::string &inputValidator)
 	{
-		tgui::TextBox::Ptr box = tgui::TextBox::create();
+		tgui::EditBox::Ptr box = tgui::EditBox::create();
 
 		box->setPosition(std::move(x), std::move(y));
 		box->setSize({std::move(width), std::move(height)});
 		box->setText(placeholder);
 		box->setReadOnly(false);
+		box->setInputValidator(inputValidator);
 		return box;
 	}
 
@@ -91,6 +92,14 @@ namespace TouhouFanGame
 			onLoad(slider->getValue());
 			filenameWindow->close();
 		});
+	}
+
+	tgui::Label::Ptr makeLabel(const std::string &content, tgui::Layout x, tgui::Layout y)
+	{
+		auto label = tgui::Label::create(content);
+
+		label->setPosition(x, y);
+		return label;
 	}
 
 	tgui::ChildWindow::Ptr openWindowWithFocus(tgui::Gui &gui, const std::function<void()> &closeHandle)

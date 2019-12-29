@@ -28,6 +28,9 @@ namespace TouhouFanGame
 			//! @return The requested Entity.
 			//! @throw NoSuchEntityException
 			static Entity *build(Game &game, const std::string &name, unsigned int id);
+
+			//! @brief Returns a list of all the Entity this factory can build.
+			static std::vector<std::string> getItemList();
 		};
 	}
 }

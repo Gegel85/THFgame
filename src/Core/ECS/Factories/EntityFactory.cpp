@@ -32,6 +32,9 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::PlayerHUDComponent(game.state.hud),
 				new Components::InventoryComponent(16)
 			}, false);
+		}},
+		{"Entity", [](Game &, unsigned int id) {
+			return new Entity(id, "Entity", {});
 		}}
 	};
 
@@ -42,5 +45,15 @@ namespace TouhouFanGame::ECS::Factory
 		} catch (std::out_of_range &) {
 			throw NoSuchEntityException("Cannot find any way to build a " + name);
 		}
+	}
+
+	std::vector<std::string> EntityFactory::getItemList()
+	{
+		std::vector<std::string> list;
+
+		list.reserve(_builders.size());
+		for (auto &builder : _builders)
+			list.push_back(builder.first);
+		return list;
 	}
 }

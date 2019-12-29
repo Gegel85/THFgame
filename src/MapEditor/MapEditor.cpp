@@ -8,6 +8,9 @@
 #include "Menus/MainMenu.hpp"
 #include "GuiUtils.hpp"
 #include "../Core/Utils.hpp"
+#include "../Core/ECS/Factories/EntityFactory.hpp"
+#include "../Core/ECS/Factories/ComponentFactory.hpp"
+#include "ComponentGui.hpp"
 
 namespace TouhouFanGame
 {
@@ -212,6 +215,143 @@ namespace TouhouFanGame
 		menuBar->connectMenuItem({"File", "Quit"}, [this]{
 			this->_game.resources.screen->close();
 		});
+		menuBar->connectMenuItem({"Windows", "Tools"}, [this]{
+			this->_showToolBox();
+		});
+		menuBar->connectMenuItem({"New", "Entity"}, [this]{
+			this->_showNewEntityBox();
+		});
+		menuBar->connectMenuItem({"New", "Teleporter"}, [this]{
+			this->_showNewTeleporterBox();
+		});
+	}
+
+	void MapEditor::_showNewEntityBox()
+	{
+		auto window = openWindowWithFocus(*this->_gui);
+
+		window->loadWidgetsFromFile("assets/gui/windows/newEntity.txt");
+
+		auto box = window->get<tgui::ComboBox>("EntityName");
+		auto okButton = window->get<tgui::Button>("OKButton");
+		auto cancelButton = window->get<tgui::Button>("CancelButton");
+
+		window->setTitle("New entity");
+		window->setSize({140, 70});
+		box->removeAllItems();
+		for (auto &val : ECS::Factory::EntityFactory::getItemList())
+			box->addItem(val);
+		box->setSelectedItem("Entity");
+		okButton->connect("Pressed", [this, box, window]{
+			this->_showEntityProperties(
+				this->_map._core.makeEntity(box->getSelectedItem())
+			);
+			window->close();
+		});
+		cancelButton->connect("Pressed", [window]{
+			window->close();
+		});
+	}
+
+	void MapEditor::_showEntityProperties(TouhouFanGame::ECS::Entity &entity)
+	{
+		auto window = openWindowWithFocus(*this->_gui);
+
+		window->loadWidgetsFromFile("assets/gui/windows/entity.txt");
+
+		auto panel = window->get<tgui::ScrollablePanel>("ScrollablePanel1");
+		auto name = panel->get<tgui::Label>("EntityName");
+		auto componentBox = panel->get<tgui::ComboBox>("ComponentName");
+		auto deleteButton = panel->get<tgui::Button>("Delete");
+		auto newButton = panel->get<tgui::Button>("New");
+		auto okButton = panel->get<tgui::Button>("okButton");
+		const auto basePos = name->getSize().y + name->getPosition().y;
+		unsigned pos = 0;
+
+		name->setText(entity.getName());
+		window->setSize({350, 250});
+		panel->setSize({350, 250});
+		window->setTitle("Entity " + std::to_string(entity.getID()));
+
+		for (auto &componentName : entity.getComponentsNames()) {
+			auto pan = ComponentGui::build(entity.getComponent(componentName));
+			auto label = makeLabel(componentName, 10, basePos + pos);
+			auto button = tgui::Button::create("X");
+
+			button->setPosition("parent.w - 40", basePos + pos);
+			button->setSize({20, 20});
+			button->connect("Pressed", [window, this, componentName, &entity]{
+				entity.removeComponent(componentName);
+				window->close();
+				this->_showEntityProperties(entity);
+			});
+			pan->setPosition(10, basePos + pos + label->getSize().y);
+			panel->add(label, componentName + "Label");
+			panel->add(pan, componentName + "Component");
+			panel->add(button);
+			pos += pan->getSize().y + label->getSize().y;
+		}
+
+		componentBox->setPosition(
+			componentBox->getPosition().x,
+			componentBox->getPosition().y + pos
+		);
+		componentBox->removeAllItems();
+		for (auto &val : ECS::Factory::ComponentFactory::getItemList())
+			if (!entity.hasComponent(val)) {
+				componentBox->addItem(val);
+				componentBox->setSelectedItem(val);
+			}
+		if (componentBox->getItemCount() == 0)
+			newButton->setEnabled(false);
+
+		okButton->setPosition(
+			okButton->getPosition().x,
+			okButton->getPosition().y + pos
+		);
+		okButton->connect("Pressed", [window]{
+			window->close();
+		});
+
+		newButton->setPosition(
+			newButton->getPosition().x,
+			newButton->getPosition().y + pos
+		);
+		newButton->connect("Pressed", [window, &entity, componentBox, this]{
+			entity.addComponent(ECS::Factory::ComponentFactory::build(this->_game, componentBox->getSelectedItem()));
+			window->close();
+			this->_showEntityProperties(entity);
+		});
+
+		deleteButton->setPosition(
+			deleteButton->getPosition().x,
+			deleteButton->getPosition().y + pos
+		);
+		deleteButton->connect("Pressed", [window, &entity, this]{
+			this->_map._core.deleteEntity(entity);
+			window->close();
+		});
+	}
+
+	void MapEditor::_showNewTeleporterBox()
+	{
+		auto window = openWindowWithFocus(*this->_gui);
+
+		window->setTitle("New teleporter");
+	}
+
+	void MapEditor::_showToolBox()
+	{
+		auto window = this->_gui->get<tgui::ChildWindow>("ToolWindow");
+
+		if (!window) {
+			window = tgui::ChildWindow::create();
+			this->_gui->add(window, "ToolWindow");
+		}
+		window->setTitle("Tools");
+		window->setPosition(32, 32);
+		window->setSize({110, 210});
+		window->loadWidgetsFromFile("assets/gui/windows/tools.txt");
 	}
 
 	void MapEditor::_renderMap()

@@ -1,0 +1,106 @@
+Renderer.1 {
+    backgroundcolor = #F5F5F5;
+    backgroundcolordisabled = #E6E6E6;
+    backgroundcolordown = #EBEBEB;
+    backgroundcolorhover = white;
+    bordercolor = #3C3C3C;
+    bordercolordisabled = #7D7D7D;
+    bordercolordown = black;
+    bordercolorfocused = #1E1EB4;
+    bordercolorhover = black;
+    borders = (1, 1, 1, 1);
+    textcolor = #3C3C3C;
+    textcolordisabled = #7D7D7D;
+    textcolordown = black;
+    textcolorhover = black;
+    texture = None;
+    texturedisabled = None;
+    texturedown = None;
+    texturefocused = None;
+    texturehover = None;
+}
+
+Renderer.2 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+}
+
+ScrollablePanel.ScrollablePanel1 {
+    ContentSize = (0, 0);
+    Size = (300, 150);
+
+    Renderer {
+        backgroundcolor = transparent;
+        opacity = 1;
+        opacitydisabled = -1;
+        texturebackground = None;
+        transparenttexture = true;
+    }
+
+    Button.okButton {
+        Position = (254, 40);
+        Text = OK;
+        TextSize = 13;
+        renderer = &1;
+    }
+
+    Button.New {
+        Position = (168, 70);
+        Size = (122, 22);
+        Text = "New component";
+        TextSize = 13;
+        renderer = &1;
+    }
+
+    Button.Delete {
+        Position = (184, 40);
+        Text = Delete;
+        TextSize = 13;
+        renderer = &1;
+    }
+
+    Label.EntityName {
+        AutoSize = true;
+        Position = (10, 10);
+        ScrollbarPolicy = Never;
+        Size = (3.2, 18);
+        TextSize = 13;
+        renderer = &2;
+    }
+
+    ComboBox.ComponentName {
+        ChangeItemOnScroll = true;
+        ExpandDirection = Down;
+        ItemsToDisplay = 0;
+        MaximumItems = 0;
+        Position = (10, 70);
+        Size = (150, 22);
+        TextSize = 13;
+
+        Renderer {
+            arrowbackgroundcolor = #F5F5F5;
+            arrowbackgroundcolorhover = white;
+            arrowcolor = #3C3C3C;
+            arrowcolorhover = black;
+            backgroundcolor = #F5F5F5;
+            bordercolor = black;
+            borders = (1, 1, 1, 1);
+            padding = (0, 0, 0, 0);
+            textcolor = #3C3C3C;
+            texturearrow = None;
+            texturearrowhover = None;
+            texturebackground = None;
+        }
+    }
+
+    Label.Label1 {
+        Position = (10, componentname.top + componentname.h);
+        ScrollbarPolicy = Never;
+        Size = (37.2, componentname.h);
+        TextSize = 13;
+        renderer = &2;
+    }
+}

@@ -33,6 +33,18 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &game, std::istream &stream){ return new Components::InventoryComponent(stream, game.resources.items); }},
 	};
+	const std::map<std::string, std::function<Component *(Game &)>> ComponentFactory::_basicBuilders{
+		{"Movable",          [](Game &    ){ return new Components::MovableComponent(); }},
+		{"Position",         [](Game &    ){ return new Components::PositionComponent({0, 0}); }},
+		{"Controllable",     [](Game &game){ return new Components::ControllableComponent(*game.state.settings.input, 2, 4); }},
+		{"Displayable",      [](Game &game){ return new Components::DisplayableComponent(game, "assets/entities/test.json"); }},
+		{"BlockedByTerrain", [](Game &game){ return new Components::BlockedByTerrainComponent(game.state.map); }},
+		{"Mana",             [](Game &    ){ return new Components::ManaComponent(20); }},
+		{"Health",           [](Game &    ){ return new Components::HealthComponent(20); }},
+		{"Name",             [](Game &    ){ return new Components::NameComponent(""); }},
+		{"PlayerHUD",        [](Game &game){ return new Components::PlayerHUDComponent(game.state.hud); }},
+		{"Inventory",        [](Game &    ){ return new Components::InventoryComponent(16); }},
+	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)
 	{
@@ -41,5 +53,24 @@ namespace TouhouFanGame::ECS::Factory
 		} catch (std::out_of_range &) {
 			throw NoSuchComponentException("Cannot find any way to build a " + name + "Component");
 		}
+	}
+
+	Component *ComponentFactory::build(TouhouFanGame::Game &game, const std::string &name)
+	{
+		try {
+			return _basicBuilders.at(name)(game);
+		} catch (std::out_of_range &) {
+			throw NoSuchComponentException("Cannot find any way to build a " + name + "Component");
+		}
+	}
+
+	std::vector<std::string> ComponentFactory::getItemList()
+	{
+		std::vector<std::string> list;
+
+		list.reserve(_builders.size());
+		for (auto &builder : _builders)
+			list.push_back(builder.first);
+		return list;
 	}
 }

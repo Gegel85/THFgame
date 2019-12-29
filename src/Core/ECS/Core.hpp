@@ -88,6 +88,15 @@ namespace TouhouFanGame::ECS
 		//! @brief Updates all the Entity in the Core
 		void update();
 
+		//! @brief Delete an Entity.
+		void deleteEntity(Entity &entity);
+
+		//! @brief Delete an Entity.
+		void deleteEntity(Entity *entity);
+
+		//! @brief Delete an Entity.
+		void deleteEntity(unsigned entityID);
+
 		//! @brief Deletes all the Entity in the Core besides the the Entity
 		//! with an ID contained in the whitelist.
 		//! @param whitelist A list of Entity's ID to leave in the Core.

@@ -36,6 +36,10 @@ namespace TouhouFanGame
 		void _renderMap();
 		void _resetMap();
 		void _showMapEditWindow();
+		void _showToolBox();
+		void _showNewEntityBox();
+		void _showNewTeleporterBox();
+		void _showEntityProperties(ECS::Entity &entity);
 	public:
 		MapEditor();
 		~MapEditor();

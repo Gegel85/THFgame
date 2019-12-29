@@ -89,6 +89,25 @@ namespace TouhouFanGame::ECS
 		stream << "THFG_ECS_Entity_End";
 	}
 
+	void Entity::addComponent(TouhouFanGame::ECS::Component *component)
+	{
+		this->_components.emplace_back(component);
+	}
+
+	void Entity::removeComponent(const std::string &name)
+	{
+		this->_components.erase(
+			std::remove_if(
+				this->_components.begin(),
+				this->_components.end(),
+				[&name](const std::unique_ptr<Component> &comp) {
+					return comp->getName() == name;
+				}
+			),
+			this->_components.end()
+		);
+	}
+
 	void Entity::unserialize(Game &game, std::istream &stream)
 	{
 		std::string str;

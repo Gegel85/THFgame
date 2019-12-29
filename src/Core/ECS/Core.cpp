@@ -45,6 +45,25 @@ namespace TouhouFanGame::ECS
 				}
 	}
 
+	void Core::deleteEntity(Entity &entity)
+	{
+		this->deleteEntity(&entity);
+	}
+
+	void Core::deleteEntity(Entity *entity)
+	{
+		for (size_t i = 0; i < this->_entities.size(); i++)
+			if (&*this->_entities[i] == entity) {
+				this->_entities.erase(this->_entities.begin() + i);
+				return;
+			}
+	}
+
+	void Core::deleteEntity(unsigned entityID)
+	{
+		this->deleteEntity(this->getEntityByID(entityID));
+	}
+
 	void Core::clear(std::vector<unsigned int> whitelist)
 	{
 		if (whitelist.empty())

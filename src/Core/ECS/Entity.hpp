@@ -78,6 +78,12 @@ namespace TouhouFanGame::ECS
 		//! @return A collection of Component names that this Entity has.
 		std::vector<std::string> getComponentsNames() const;
 
+		//! @brief Add a Component to an Entity.
+		void addComponent(Component *component);
+
+		//! @brief Removes a Component from an Entity.
+		void removeComponent(const std::string &name);
+
 		//! @brief Change whether this Entity should be serialized or not.
 		void setSerializable(bool serializable);
 

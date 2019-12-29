@@ -40,6 +40,11 @@ namespace TouhouFanGame::Utils
 	//! @param tree The tree to make, folders separated by '/'.
 	//! @throw FolderCreationErrorException
 	void	makeDirectoryTree(const std::string &tree);
+
+	//! @brief Returns the floating number representation with the least number of decimals.
+	//! @param nb The number to convert to string.
+	//! @return The string representation of the number given.
+	std::string floatToString(float nb);
 }
 
 #endif //THFGAME_UTILS_HPP

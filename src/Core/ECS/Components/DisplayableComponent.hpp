@@ -12,6 +12,8 @@
 namespace TouhouFanGame
 {
 	struct Game;
+	class ComponentGui;
+
 	namespace ECS::Components {
 		//! @brief Given to Entity that can be displayed.
 		class DisplayableComponent : public Component {
@@ -21,6 +23,8 @@ namespace TouhouFanGame
 
 			//! @brief The path to the config file loaded.
 			std::string _configPath;
+
+			friend ComponentGui;
 
 		public:
 			//! @brief The Rendering::Entity bound to this Entity.

@@ -9,26 +9,27 @@
 #include <functional>
 #include <TGUI/TGUI.hpp>
 #include "../Core/ECS/Component.hpp"
+#include "../Core/Game.hpp"
 
 namespace TouhouFanGame
 {
 	class ComponentGui {
 	private:
-		static std::map<std::string, std::function<tgui::Panel::Ptr(ECS::Component &)>> _builders;
+		static std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Component &)>> _builders;
 
-		static tgui::Panel::Ptr MovableGui(ECS::Component &);
-		static tgui::Panel::Ptr PositionGui(ECS::Component &);
-		static tgui::Panel::Ptr ControllableGui(ECS::Component &);
-		static tgui::Panel::Ptr DisplayableGui(ECS::Component &);
-		static tgui::Panel::Ptr BlockedByTerrainGui(ECS::Component &);
-		static tgui::Panel::Ptr ManaGui(ECS::Component &);
-		static tgui::Panel::Ptr HealthGui(ECS::Component &);
-		static tgui::Panel::Ptr NameGui(ECS::Component &);
-		static tgui::Panel::Ptr PlayerHUDGui(ECS::Component &);
-		static tgui::Panel::Ptr InventoryGui(ECS::Component &);
+		static tgui::Panel::Ptr MovableGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr PositionGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr ControllableGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr DisplayableGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr BlockedByTerrainGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr ManaGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr HealthGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr NameGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr PlayerHUDGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr InventoryGui(Game &, ECS::Component &);
 
 	public:
-		static tgui::Panel::Ptr build(ECS::Component &component);
+		static tgui::Panel::Ptr build(Game &, ECS::Component &component);
 	};
 }
 

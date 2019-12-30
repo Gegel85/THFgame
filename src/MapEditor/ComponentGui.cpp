@@ -7,23 +7,30 @@
 #include "../Core/ECS/Components/MovableComponent.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
 #include "../Core/Utils.hpp"
+#include "../Core/ECS/Components/ControllableComponent.hpp"
+#include "../Core/ECS/Components/DisplayableComponent.hpp"
+#include "../Core/ECS/Components/BlockedByTerrainComponent.hpp"
+#include "../Core/ECS/Components/ManaComponent.hpp"
+#include "../Core/ECS/Components/HealthComponent.hpp"
+#include "../Core/ECS/Components/NameComponent.hpp"
+#include "../Core/ECS/Components/InventoryComponent.hpp"
 
 namespace TouhouFanGame
 {
-	std::map<std::string, std::function<tgui::Panel::Ptr(ECS::Component &component)>> ComponentGui::_builders{
-		{"Movable",          [](ECS::Component &component){ return MovableGui(component);          }},
-		{"Position",         [](ECS::Component &component){ return PositionGui(component);         }},
-		{"Controllable",     [](ECS::Component &component){ return ControllableGui(component);     }},
-		{"Displayable",      [](ECS::Component &component){ return DisplayableGui(component);      }},
-		{"BlockedByTerrain", [](ECS::Component &component){ return BlockedByTerrainGui(component); }},
-		{"Mana",             [](ECS::Component &component){ return ManaGui(component);             }},
-		{"Health",           [](ECS::Component &component){ return HealthGui(component);           }},
-		{"Name",             [](ECS::Component &component){ return NameGui(component);             }},
-		{"PlayerHUD",        [](ECS::Component &component){ return PlayerHUDGui(component);        }},
-		{"Inventory",        [](ECS::Component &component){ return InventoryGui(component);        }},
+	std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Component &component)>> ComponentGui::_builders{
+		{"Movable",          [](Game &game, ECS::Component &component){ return MovableGui(game, component);          }},
+		{"Position",         [](Game &game, ECS::Component &component){ return PositionGui(game, component);         }},
+		{"Controllable",     [](Game &game, ECS::Component &component){ return ControllableGui(game, component);     }},
+		{"Displayable",      [](Game &game, ECS::Component &component){ return DisplayableGui(game, component);      }},
+		{"BlockedByTerrain", [](Game &game, ECS::Component &component){ return BlockedByTerrainGui(game, component); }},
+		{"Mana",             [](Game &game, ECS::Component &component){ return ManaGui(game, component);             }},
+		{"Health",           [](Game &game, ECS::Component &component){ return HealthGui(game, component);           }},
+		{"Name",             [](Game &game, ECS::Component &component){ return NameGui(game, component);             }},
+		{"PlayerHUD",        [](Game &game, ECS::Component &component){ return PlayerHUDGui(game, component);        }},
+		{"Inventory",        [](Game &game, ECS::Component &component){ return InventoryGui(game, component);        }},
 	};
 	
-	tgui::Panel::Ptr ComponentGui::MovableGui(ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::MovableGui(Game &, ECS::Component &component)
 	{
 		auto &movable = component.to<ECS::Components::MovableComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -63,7 +70,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 	
-	tgui::Panel::Ptr ComponentGui::PositionGui(ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::PositionGui(Game &, ECS::Component &component)
 	{
 		auto &position = component.to<ECS::Components::PositionComponent>();
 		auto panel = tgui::Panel::create({300, 50});
@@ -131,50 +138,243 @@ namespace TouhouFanGame
 		return panel;
 	}
 	
-	tgui::Panel::Ptr ComponentGui::ControllableGui(ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ControllableGui(Game &, ECS::Component &component)
 	{
-		
+		auto &controllable = component.to<ECS::Components::ControllableComponent>();
+		auto panel = tgui::Panel::create({300, 30});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Normal speed", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			40,
+			speedLabel->getSize().y,
+			Utils::floatToString(controllable.regularSpeed),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
+		auto sprintLabel = makeLabel("Sprint speed", speedEditBox->getSize().x + speedEditBox->getPosition().x + 10, 0);
+		auto sprintEditBox = makeTypeBox(
+			sprintLabel->getSize().x + sprintLabel->getPosition().x,
+			0,
+			40,
+			speedLabel->getSize().y,
+			Utils::floatToString(controllable.sprintSpeed),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
+
+		speedEditBox->connect("TextChanged", [&controllable, speedEditBox]{
+			controllable.regularSpeed = std::stof(speedEditBox->getText().toAnsiString());
+		});
+		sprintEditBox->connect("TextChanged", [&controllable, sprintEditBox]{
+			controllable.sprintSpeed = std::stof(sprintEditBox->getText().toAnsiString());
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		panel->add(sprintLabel);
+		panel->add(sprintEditBox);
+		return panel;
 	}
 	
-	tgui::Panel::Ptr ComponentGui::DisplayableGui(ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::DisplayableGui(Game &, ECS::Component &component)
 	{
-		
+		auto &displayable = component.to<ECS::Components::DisplayableComponent>();
+		auto panel = tgui::Panel::create({300, 30});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Entity config path", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			160,
+			speedLabel->getSize().y,
+			displayable._configPath
+		);
+
+		speedEditBox->connect("TextChanged", [&displayable, speedEditBox]{
+			displayable._configPath = speedEditBox->getText().toAnsiString();
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		return panel;
 	}
 	
-	tgui::Panel::Ptr ComponentGui::BlockedByTerrainGui(ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::BlockedByTerrainGui(Game &, ECS::Component &)
 	{
-		
+		return tgui::Panel::create({0, 0});
 	}
 	
-	tgui::Panel::Ptr ComponentGui::ManaGui(ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ManaGui(Game &, ECS::Component &component)
 	{
-		
+		auto &manaComp = component.to<ECS::Components::ManaComponent>();
+		auto panel = tgui::Panel::create({300, 30});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto maxManaLabel = makeLabel("Max mana", 0, 0);
+		auto maxManaEditBox = makeTypeBox(
+			maxManaLabel->getSize().x,
+			0,
+			60,
+			maxManaLabel->getSize().y,
+			Utils::floatToString(manaComp.maxMana),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
+		auto manaLabel = makeLabel("Current mana", maxManaEditBox->getSize().x + maxManaEditBox->getPosition().x + 10, 0);
+		auto manaEditBox = makeTypeBox(
+			manaLabel->getSize().x + manaLabel->getPosition().x,
+			0,
+			60,
+			maxManaLabel->getSize().y,
+			Utils::floatToString(manaComp.mana),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
+
+		maxManaEditBox->connect("TextChanged", [&manaComp, maxManaEditBox]{
+			manaComp.maxMana = std::stof(maxManaEditBox->getText().toAnsiString());
+		});
+		manaEditBox->connect("TextChanged", [&manaComp, manaEditBox]{
+			manaComp.mana = std::stof(manaEditBox->getText().toAnsiString());
+		});
+		panel->setRenderer(render);
+		panel->add(maxManaLabel);
+		panel->add(maxManaEditBox);
+		panel->add(manaLabel);
+		panel->add(manaEditBox);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::HealthGui(Game &, ECS::Component &component)
+	{
+		auto &healthComp = component.to<ECS::Components::HealthComponent>();
+		auto panel = tgui::Panel::create({300, 30});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto maxHealthLabel = makeLabel("Max mana", 0, 0);
+		auto maxHealthEditBox = makeTypeBox(
+			maxHealthLabel->getSize().x,
+			0,
+			60,
+			maxHealthLabel->getSize().y,
+			Utils::floatToString(healthComp.maxHealth),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
+		auto healthLabel = makeLabel("Current mana", maxHealthEditBox->getSize().x + maxHealthEditBox->getPosition().x + 10, 0);
+		auto healthEditBox = makeTypeBox(
+			healthLabel->getSize().x + healthLabel->getPosition().x,
+			0,
+			60,
+			maxHealthLabel->getSize().y,
+			Utils::floatToString(healthComp.health),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
+
+		maxHealthEditBox->connect("TextChanged", [&healthComp, maxHealthEditBox]{
+			healthComp.maxHealth = std::stof(maxHealthEditBox->getText().toAnsiString());
+		});
+		healthEditBox->connect("TextChanged", [&healthComp, healthEditBox]{
+			healthComp.health = std::stof(healthEditBox->getText().toAnsiString());
+		});
+		panel->setRenderer(render);
+		panel->add(maxHealthLabel);
+		panel->add(maxHealthEditBox);
+		panel->add(healthLabel);
+		panel->add(healthEditBox);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::NameGui(Game &, ECS::Component &component)
+	{
+		auto &name = component.to<ECS::Components::NameComponent>();
+		auto panel = tgui::Panel::create({300, 30});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto nameLabel = makeLabel("Entity config path", 0, 0);
+		auto nameEditBox = makeTypeBox(
+			nameLabel->getSize().x,
+			0,
+			160,
+			nameLabel->getSize().y,
+			name.name
+		);
+
+		nameEditBox->connect("TextChanged", [&name, nameEditBox]{
+			name.name = nameEditBox->getText().toAnsiString();
+		});
+		panel->setRenderer(render);
+		panel->add(nameLabel);
+		panel->add(nameEditBox);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::PlayerHUDGui(Game &, ECS::Component &)
+	{
+		return tgui::Panel::create({0, 0});
+	}
+
+	tgui::Panel::Ptr ComponentGui::InventoryGui(Game &game, ECS::Component &component)
+	{
+		auto &inventory = component.to<ECS::Components::InventoryComponent>();
+		auto panel = tgui::Panel::create({300, 50});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto sizeLabel = makeLabel("Inventory size", 0, 0);
+		auto itemsLabel = makeLabel("Inventory items", 0, sizeLabel->getSize().y);
+		auto sizeEditBox = makeTypeBox(
+			itemsLabel->getSize().x,
+			0,
+			60,
+			sizeLabel->getSize().y,
+			std::to_string(inventory.maxSize),
+			"[+-]?[0-9]+"
+		);
+		std::string itemsStr;
+
+		for (auto &item : inventory.items)
+			itemsStr += std::to_string(item->getIndex()) + ",";
+
+		auto itemsEditBox = makeTypeBox(
+			itemsLabel->getSize().x,
+			sizeLabel->getSize().y,
+			160,
+			sizeLabel->getSize().y,
+			itemsStr,
+			"(([0-9]+,)*[0-9]+)?"
+		);
+
+		sizeEditBox->connect("TextChanged", [&inventory, sizeEditBox]{
+			inventory.maxSize = std::stol(sizeEditBox->getText().toAnsiString());
+		});
+		itemsEditBox->connect("TextChanged", [&inventory, &game, itemsEditBox]{
+			std::stringstream stream(itemsEditBox->getText());
+			std::string token;
+
+			inventory.items.clear();
+			while (std::getline(stream, token, ',')) {
+				try {
+					inventory.items.push_back(game.resources.items.at(std::stol(token)));
+				} catch (std::out_of_range &) {}
+			}
+		});
+		panel->setRenderer(render);
+		panel->add(sizeLabel);
+		panel->add(sizeEditBox);
+		panel->add(itemsLabel);
+		panel->add(itemsEditBox);
+		return panel;
 	}
 	
-	tgui::Panel::Ptr ComponentGui::HealthGui(ECS::Component &component)
-	{
-		
-	}
-	
-	tgui::Panel::Ptr ComponentGui::NameGui(ECS::Component &component)
-	{
-		
-	}
-	
-	tgui::Panel::Ptr ComponentGui::PlayerHUDGui(ECS::Component &component)
-	{
-		
-	}
-	
-	tgui::Panel::Ptr ComponentGui::InventoryGui(ECS::Component &component)
-	{
-		
-	}
-	
-	tgui::Panel::Ptr ComponentGui::build(TouhouFanGame::ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::build(Game &game, TouhouFanGame::ECS::Component &component)
 	{
 		try {
-			return _builders[component.getName()](component);
+			return _builders[component.getName()](game, component);
 		} catch (std::out_of_range &) {
 			return tgui::Panel::create();
 		}

@@ -279,6 +279,17 @@ namespace TouhouFanGame
 		});
 	}
 
+	void MapEditor::_removeComponentFromEntity(TouhouFanGame::ECS::Entity &entity, const std::string &name)
+	{
+		entity.removeComponent(name);
+		for (const auto &comp : entity.getComponentsNames()) {
+			const auto &deps = this->_map._core.getSystemByName(comp).getDependencies();
+
+			if (std::find(deps.begin(), deps.end(), name) != deps.end())
+				this->_removeComponentFromEntity(entity, comp);
+		}
+	}
+
 	void MapEditor::_showEntityProperties(TouhouFanGame::ECS::Entity &entity)
 	{
 		auto window = openWindowWithFocus(*this->_gui);
@@ -307,7 +318,7 @@ namespace TouhouFanGame
 			button->setPosition("parent.w - 40", basePos + pos);
 			button->setSize({20, 20});
 			button->connect("Pressed", [window, this, componentName, &entity]{
-				entity.removeComponent(componentName);
+				this->_removeComponentFromEntity(entity, componentName);
 				window->close();
 				this->_showEntityProperties(entity);
 			});
@@ -345,6 +356,8 @@ namespace TouhouFanGame
 		);
 		newButton->connect("Pressed", [window, &entity, componentBox, this]{
 			entity.addComponent(ECS::Factory::ComponentFactory::build(this->_game, componentBox->getSelectedItem()));
+			for (const auto &dep : this->_map._core.getSystemByName(componentBox->getSelectedItem()).getDependencies())
+				entity.addComponent(ECS::Factory::ComponentFactory::build(this->_game, dep));
 			window->close();
 			this->_showEntityProperties(entity);
 		});
@@ -376,7 +389,7 @@ namespace TouhouFanGame
 		}
 		window->setTitle("Tools");
 		window->setPosition(32, 32);
-		window->setSize({110, 210});
+		window->setSize({110, 160});
 		window->loadWidgetsFromFile("assets/gui/windows/tools.txt");
 	}
 

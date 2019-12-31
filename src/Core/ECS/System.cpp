@@ -29,4 +29,9 @@ namespace TouhouFanGame::ECS
 					this->_name + "System"
 				);
 	}
+
+	const std::vector<std::string> &System::getDependencies() const
+	{
+		return this->_deps;
+	}
 }

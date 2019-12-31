@@ -295,7 +295,7 @@ namespace TouhouFanGame
 		auto render = tgui::RendererData::create({
 			{"backgroundcolor", "transparent"}
 		});
-		auto nameLabel = makeLabel("Entity config path", 0, 0);
+		auto nameLabel = makeLabel("Entity name", 0, 0);
 		auto nameEditBox = makeTypeBox(
 			nameLabel->getSize().x,
 			0,

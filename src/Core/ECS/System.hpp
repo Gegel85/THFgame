@@ -41,6 +41,9 @@ namespace TouhouFanGame::ECS
 		//! @throw MissingDependencyException
 		void	checkDependencies(const Entity &entity) const;
 
+		//! @brief Get the dependencies needed by this System.
+		const std::vector<std::string> &getDependencies() const;
+
 		//! @brief Gets the name of the System
 		//! @return The name of the System
 		std::string	getName() const;

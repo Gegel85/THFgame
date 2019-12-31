@@ -73,7 +73,7 @@ namespace TouhouFanGame::ECS
 
 		//! @brief Get a System by it's name.
 		//! @param name The name of the Entity to fetch.
-		//! @return The Entity requested.
+		//! @return The System requested.
 		//! @throw NoSuchEntityException
 		System &getSystemByName(const std::string &name) const;
 

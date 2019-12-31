@@ -1,0 +1,111 @@
+Renderer.1 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+}
+
+Renderer.2 {
+    backgroundcolor = #F5F5F5;
+    backgroundcolordisabled = #E6E6E6;
+    backgroundcolorhover = white;
+    bordercolor = #3C3C3C;
+    bordercolordisabled = #7D7D7D;
+    bordercolorhover = black;
+    borders = (1, 1, 1, 1);
+    caretcolor = black;
+    caretwidth = 1;
+    defaulttextcolor = #A0A0A0;
+    padding = (0, 0, 0, 0);
+    selectedtextbackgroundcolor = #006EFF;
+    selectedtextcolor = white;
+    textcolor = #3C3C3C;
+    textcolordisabled = #7D7D7D;
+    texture = None;
+    texturedisabled = None;
+    texturefocused = None;
+    texturehover = None;
+}
+
+Label.Label1 {
+    AutoSize = true;
+    Position = (10, 10);
+    ScrollbarPolicy = Never;
+    Size = (109.2, 18);
+    Text = "Destination map";
+    TextSize = 13;
+    renderer = &1;
+}
+
+EditBox.EditBox1 {
+    InputValidator = UInt;
+    Position = (160, 8);
+    Size = (110, 22);
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        caretcolor = black;
+        caretwidth = 1;
+        defaulttextcolor = #A0A0A0;
+        padding = (0, 0, 0, 0);
+        selectedtextbackgroundcolor = #006EFF;
+        selectedtextcolor = white;
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        texture = None;
+        texturedisabled = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}
+
+Label.Label2 {
+    AutoSize = true;
+    Position = (10, 40);
+    ScrollbarPolicy = Never;
+    Size = (143.2, 18);
+    Text = "Destination position X";
+    TextSize = 13;
+    renderer = &1;
+}
+
+EditBox.EditBox2 {
+    InputValidator = Float;
+    Position = (160, 38);
+    Size = (110, 22);
+    TextSize = 13;
+    renderer = &2;
+}
+
+EditBox.EditBox3 {
+    InputValidator = Float;
+    Position = (160, 68);
+    Size = (110, 22);
+    TextSize = 13;
+    renderer = &2;
+}
+
+Label.Label3 {
+    AutoSize = true;
+    Position = (10, 70);
+    ScrollbarPolicy = Never;
+    Size = (142.2, 18);
+    Text = "Destination position Y";
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        textcolor = #3C3C3C;
+        texturebackground = None;
+    }
+}

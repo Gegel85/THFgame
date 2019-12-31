@@ -225,13 +225,12 @@ namespace TouhouFanGame
 			this->loadMap(this->_links[Input::DOWN]);
 			pos.y = size.y / -2.;
 			this->_savePlayer();
-
 		}
 
 		for (auto &trigger : this->_tpTriggers)
 			if (
-				-this->_tileSize < trigger.location.x && trigger.location.x < static_cast<int>(size.x + this->_tileSize) &&
-				-this->_tileSize < trigger.location.y && trigger.location.y < static_cast<int>(size.y + this->_tileSize)
+				pos.x < trigger.location.x + this->_tileSize && trigger.location.x < size.x + pos.x &&
+				pos.y < trigger.location.y + this->_tileSize && trigger.location.y < size.y + pos.y
 			) {
 				this->loadMap(trigger.mapId);
 				pos = sf::Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);

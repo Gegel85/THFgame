@@ -400,6 +400,11 @@ namespace TouhouFanGame
 			this->_game.resources.screen->getSize().y / 2.f - this->_cameraPos.y
 		};
 		this->_map._cameraUpdated = true;
+
+		auto &system = this->_map._core.getSystemByName("Displayable");
+
+		for (auto &entity : this->_map._core.getEntityByComponent("Displayable"))
+			system.updateEntity(entity);
 		this->_map.render();
 	}
 

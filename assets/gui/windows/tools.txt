@@ -12,14 +12,7 @@ BitmapButton.Terrain {
     Position = (60, 10);
     Size = (40, 40);
     TextSize = 13;
-
-    Renderer {
-        texture = None;
-        texturedisabled = None;
-        texturedown = None;
-        texturefocused = None;
-        texturehover = None;
-    }
+    renderer = &1;
 }
 
 BitmapButton.Delete {
@@ -37,7 +30,14 @@ BitmapButton."Zoom-" {
     Position = (60, 110);
     Size = (40, 40);
     TextSize = 13;
-    renderer = &1;
+
+    Renderer {
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }
 
 BitmapButton."Zoom+" {
@@ -49,8 +49,8 @@ BitmapButton."Zoom+" {
     renderer = &1;
 }
 
-BitmapButton.Select {
-    Image = "assets/editor/select.png";
+BitmapButton.Solid {
+    Image = "assets/editor/solid.png";
     ImageScaling = 0;
     Position = (10, 10);
     Size = (40, 40);
@@ -64,12 +64,5 @@ BitmapButton.ResetZoom {
     Position = (10, 60);
     Size = (40, 40);
     TextSize = 13;
-
-    Renderer {
-        texture = None;
-        texturedisabled = None;
-        texturedown = None;
-        texturefocused = None;
-        texturehover = None;
-    }
+    renderer = &1;
 }

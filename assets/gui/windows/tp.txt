@@ -38,7 +38,7 @@ Label.Label1 {
     renderer = &1;
 }
 
-EditBox.EditBox1 {
+EditBox.DestMap {
     InputValidator = UInt;
     Position = (160, 8);
     Size = (110, 22);
@@ -77,7 +77,7 @@ Label.Label2 {
     renderer = &1;
 }
 
-EditBox.EditBox2 {
+EditBox.XDestPos {
     InputValidator = Float;
     Position = (160, 38);
     Size = (110, 22);
@@ -85,7 +85,7 @@ EditBox.EditBox2 {
     renderer = &2;
 }
 
-EditBox.EditBox3 {
+EditBox.YDestPos {
     InputValidator = Float;
     Position = (160, 68);
     Size = (110, 22);
@@ -108,4 +108,47 @@ Label.Label3 {
         textcolor = #3C3C3C;
         texturebackground = None;
     }
+}
+
+Label.Label4 {
+    AutoSize = true;
+    Position = (10, 100);
+    ScrollbarPolicy = Never;
+    Size = (66.2, 18);
+    Text = "Position X";
+    TextSize = 13;
+    renderer = &1;
+}
+
+EditBox.XPos {
+    InputValidator = Float;
+    Position = (160, 98);
+    Size = (110, 22);
+    TextSize = 13;
+    renderer = &2;
+}
+
+Label.Label5 {
+    AutoSize = true;
+    Position = (10, 130);
+    ScrollbarPolicy = Never;
+    Size = (65.2, 18);
+    Text = "Position Y";
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = transparent;
+        bordercolor = #3C3C3C;
+        borders = (0, 0, 0, 0);
+        textcolor = #3C3C3C;
+        texturebackground = None;
+    }
+}
+
+EditBox.YPos {
+    InputValidator = Float;
+    Position = (160, 128);
+    Size = (110, 22);
+    TextSize = 13;
+    renderer = &2;
 }

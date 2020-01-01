@@ -27,10 +27,12 @@ namespace TouhouFanGame
 		Map _map;
 		Game _game;
 		sf::Font _font;
+		bool _pressed = false;
+		bool _deleting = false;
 		unsigned _loaded;
 		MapParams _params;
 		sf::Vector2f _cameraPos;
-		unsigned char selected = 0;
+		unsigned char _selected = 0;
 		std::unique_ptr<tgui::Gui> _gui;
 
 		void _makeAllWidgets();
@@ -38,8 +40,10 @@ namespace TouhouFanGame
 		void _renderMap();
 		void _resetMap();
 		void _showMapEditWindow();
-		void _showToolBox();
+		void _showToolBox(bool openWindow = true);
 		void _showNewEntityBox();
+		void _changeObject(sf::Vector2i pixels);
+		void _changeObject(int x, int y);
 		void _showNewTeleporterBox();
 		void _showEntityProperties(ECS::Entity &entity);
 		void _removeComponentFromEntity(ECS::Entity &entity, const std::string &name);

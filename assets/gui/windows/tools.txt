@@ -6,35 +6,10 @@ Renderer.1 {
     texturehover = None;
 }
 
-BitmapButton.Terrain {
-    Image = "assets/editor/add.png";
-    ImageScaling = 0;
-    Position = (60, 10);
-    Size = (40, 40);
-    TextSize = 13;
-
-    Renderer {
-        texture = None;
-        texturedisabled = None;
-        texturedown = None;
-        texturefocused = None;
-        texturehover = None;
-    }
-}
-
-BitmapButton.Delete {
-    Image = "assets/editor/delete.png";
-    ImageScaling = 0;
-    Position = (60, 60);
-    Size = (40, 40);
-    TextSize = 13;
-    renderer = &1;
-}
-
 BitmapButton."Zoom-" {
     Image = "assets/editor/zoom-.png";
     ImageScaling = 0;
-    Position = (60, 110);
+    Position = (60, 60);
     Size = (40, 40);
     TextSize = 13;
     renderer = &1;
@@ -43,7 +18,7 @@ BitmapButton."Zoom-" {
 BitmapButton."Zoom+" {
     Image = "assets/editor/zoom+.png";
     ImageScaling = 0;
-    Position = (10, 110);
+    Position = (10, 60);
     Size = (40, 40);
     TextSize = 13;
     renderer = &1;
@@ -61,16 +36,16 @@ BitmapButton.Solid {
 BitmapButton.ResetZoom {
     Image = "assets/editor/zoom_reset.png";
     ImageScaling = 0;
-    Position = (10, 60);
+    Position = (60, 10);
     Size = (40, 40);
     TextSize = 13;
     renderer = &1;
 }
 
-ScrollablePanel.ScrollablePanel1 {
+ScrollablePanel.ObjectsPanel {
     ContentSize = (0, 0);
-    Position = (10, 160);
-    Size = (90, 170);
+    Position = (10, 110);
+    Size = (90, 220);
 
     Renderer {
         backgroundcolor = transparent;

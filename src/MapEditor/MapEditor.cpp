@@ -168,6 +168,7 @@ namespace TouhouFanGame
 			this->_map._tileSize = this->_params.tilesize;
 			this->_map._solidBorders = this->_params.solid;
 			std::memcpy(this->_map._links, this->_params.links, sizeof(this->_params.links));
+			this->_showToolBox(false);
 			win->close();
 		});
 	}
@@ -188,7 +189,10 @@ namespace TouhouFanGame
 		menuBar->connectMenuItem({"File", "Load map"}, [this, menuBar]{
 			showLoadFileWindow(*this->_gui, "Load map", "Open", 0, [this, menuBar](unsigned short id) {
 				try {
+					std::string oldTileMap = this->_map._tileMap;
+
 					this->_map.loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
+					this->_showToolBox(false);
 					this->_loaded = id;
 					menuBar->setMenuItemEnabled({"File", "Save"}, true);
 				} catch (std::exception &e) {
@@ -379,18 +383,68 @@ namespace TouhouFanGame
 		window->setTitle("New teleporter");
 	}
 
-	void MapEditor::_showToolBox()
+	void MapEditor::_showToolBox(bool openWindow)
 	{
 		auto window = this->_gui->get<tgui::ChildWindow>("ToolWindow");
 
-		if (!window) {
+		if (!window && openWindow) {
 			window = tgui::ChildWindow::create();
 			this->_gui->add(window, "ToolWindow");
+			window->connect({"Closed", "EscapeKeyPressed"}, [this, window] {
+				this->_gui->remove(window);
+			});
+			window->setTitle("Tools");
+			window->setSize({110, 340});
+			window->setPosition("&.w - w", 20);
+			window->loadWidgetsFromFile("assets/gui/windows/tools.txt");
+
+			auto solidButton = window->get<tgui::BitmapButton>("Solid");
+			auto terrainButton = window->get<tgui::BitmapButton>("Terrain");
+			auto deleteButton = window->get<tgui::BitmapButton>("Delete");
+			auto resetZButton = window->get<tgui::BitmapButton>("ResetZoom");
+			auto zoomPButton = window->get<tgui::BitmapButton>("Zoom+");
+			auto zoomMButton = window->get<tgui::BitmapButton>("Zoom-");
+
+			solidButton->getRenderer()->setBackgroundColor((this->_selected & 0x80U) ? "#888888" : "white");
+			solidButton->connect("Pressed", [solidButton, this]{
+				auto renderer = tgui::RendererData::create({
+					{"backgroundcolor", (this->_selected & 0x80U) ? "white" : "#888888"}
+				});
+
+				solidButton->setRenderer(renderer);
+				this->_selected = (this->_selected | 0x80U) & ~(this->_selected & 0x80U);
+			});
+		} else if (!window)
+			return;
+
+		auto panel = window->get<tgui::ScrollablePanel>("ObjectsPanel");
+		auto &texture = this->_game.resources.textures[this->_map._tileMap];
+
+		for (int i = 0; i < 0x80; i++) {
+			auto button = panel->get<tgui::BitmapButton>("Button" + std::to_string(i));
+
+			if (!button) {
+				button = tgui::BitmapButton::create();
+				panel->add(button, "Button" + std::to_string(i));
+			}
+
+			auto renderer = button->getRenderer();
+
+			renderer->setBackgroundColorHover("#888888");
+			renderer->setBackgroundColor((this->_selected & 0x7F) == i ? "#888888" : "white");
+			button->setPosition((i % 2) * 40, (i / 2) * 40);
+			button->setSize({32, 32});
+			button->setImage(tgui::Texture{
+				texture,
+				{i * this->_map._tileSize, 0, this->_map._tileSize, this->_map._tileSize},
+			});
+			button->setImageScaling(8.f / this->_map._tileSize);
+			button->connect("Pressed", [this, i, panel, button]{
+				panel->get<tgui::BitmapButton>("Button" + std::to_string(this->_selected & 0x7FU))->getRenderer()->setBackgroundColor("white");
+				button->getRenderer()->setBackgroundColor("#888888");
+				this->_selected = (this->_selected & 0x80U) | i;
+			});
 		}
-		window->setTitle("Tools");
-		window->setPosition(32, 32);
-		window->setSize({110, 160});
-		window->loadWidgetsFromFile("assets/gui/windows/tools.txt");
 	}
 
 	void MapEditor::_renderMap()
@@ -450,6 +504,24 @@ namespace TouhouFanGame
 		Loader::loadAssets(this->_game);
 
 		this->_resetMap();
+		this->_showToolBox();
+	}
+
+	void MapEditor::_changeObject(int x, int y)
+	{
+		this->_changeObject({x, y});
+	}
+
+	void MapEditor::_changeObject(sf::Vector2i pixels)
+	{
+		auto coords = this->_game.resources.screen->mapPixelToCoords(pixels);
+		sf::Vector2i real(
+			coords.x / this->_map._tileSize,
+			coords.y / this->_map._tileSize
+		);
+
+		if (real.x < this->_map._size.x && real.y < this->_map._size.y && this->_pressed && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			this->_map._objects[real.x + this->_map._size.x * real.y] = this->_selected;
 	}
 
 	int MapEditor::run()
@@ -476,8 +548,19 @@ namespace TouhouFanGame
 					this->_game.resources.screen->setView(sf::View{sf::FloatRect(0, 0, event.size.width, event.size.height)});
 					this->_gui->setView(sf::View{sf::FloatRect(0, 0, event.size.width, event.size.height)});
 					break;
-				case sf::Event::MouseButtonPressed:
 				default:
+					break;
+				case sf::Event::MouseButtonPressed:
+					if (event.mouseButton.button == sf::Mouse::Left)
+						this->_pressed = true;
+					this->_changeObject(event.mouseButton.x, event.mouseButton.y);
+					break;
+				case sf::Event::MouseButtonReleased:
+					if (event.mouseButton.button == sf::Mouse::Left)
+						this->_pressed = false;
+					break;
+				case sf::Event::MouseMoved:
+					this->_changeObject(event.mouseMove.x,event.mouseMove.y);
 					break;
 				}
 			}

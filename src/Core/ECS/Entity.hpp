@@ -37,7 +37,7 @@ namespace TouhouFanGame::ECS
 		std::vector<std::unique_ptr<Component>> _components;
 
 	public:
-		Entity() = default;
+		Entity(unsigned id);
 
 		//! @param id The ID of the Entity.
 		//! @param name The name of the Entity.

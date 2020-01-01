@@ -182,11 +182,13 @@ namespace TouhouFanGame
 			if (errno != ENOENT)
 				throw InvalidSavedMap("saves/map_player.sav: " + std::string(strerror(errno)));
 			this->loadMap(0);
+			if (this->_core.getEntityByName("Player").empty())
+				this->_core.makeEntity("Player");
 			return;
 		}
 		this->reset();
 
-		ECS::Entity &player = this->_core.registerEntity(new ECS::Entity());
+		ECS::Entity &player = this->_core.registerEntity(new ECS::Entity(0));
 
 		player.unserialize(this->_game, stream);
 		stream >> this->_id;
@@ -241,7 +243,9 @@ namespace TouhouFanGame
 	{
 		try {
 			this->_core.clear({this->getPlayer().getID()});
-		} catch (CorruptedMapException &) {}
+		} catch (CorruptedMapException &) {
+			this->_core.clear();
+		}
 		this->_objects.clear();
 		this->_tileMap.clear();
 		this->_tpTriggers.clear();
@@ -320,9 +324,6 @@ namespace TouhouFanGame
 		if (loadEntities) {
 			logger.debug("Loading entities");
 			stream >> this->_core;
-
-			if (this->_core.getEntityByName("Player").empty())
-				this->_core.makeEntity("Player");
 		}
 		logger.debug("Operation completed");
 	}

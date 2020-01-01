@@ -19,6 +19,11 @@ namespace TouhouFanGame::ECS
 			this->_components.emplace_back(component);
 	}
 
+	Entity::Entity(unsigned id) :
+		_id(id)
+	{
+	}
+
 	void Entity::setSerializable(bool serializable)
 	{
 		this->_serializable = serializable;
@@ -83,7 +88,7 @@ namespace TouhouFanGame::ECS
 
 	void Entity::serialize(std::ostream &stream) const
 	{
-		stream << this->_name << '\0' << this->_id << std::endl;
+		stream << this->_name << '\0';
 		for (auto &comp : this->_components)
 			stream << comp->getName() << " " << *comp << std::endl;
 		stream << "THFG_ECS_Entity_End";
@@ -122,9 +127,6 @@ namespace TouhouFanGame::ECS
 			throw InvalidSerializedString("The Entity name is empty");
 
 		logger.debug("Name -> " + this->_name);
-
-		stream >> this->_id;
-		logger.debug("ID -> " + std::to_string(this->_id));
 
 		for (stream >> str; str != "THFG_ECS_Entity_End" && !stream.eof(); stream >> str) {
 			logger.debug("Unserialize component " + str);

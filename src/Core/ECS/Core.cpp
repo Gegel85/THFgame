@@ -19,7 +19,11 @@ namespace TouhouFanGame::ECS
 
 	Entity &Core::makeEntity(const std::string &typeName)
 	{
-		Entity &entity = *this->_entities.emplace_back(Factory::EntityFactory::build(this->_game, typeName, this->_lastGivenID++));
+		try {
+			while (true) this->getEntityByID(++this->_lastGivenID);
+		} catch (NoSuchEntityException &) {}
+
+		Entity &entity = *this->_entities.emplace_back(Factory::EntityFactory::build(this->_game, typeName, this->_lastGivenID));
 
 		for (auto &comp : entity.getComponentsNames())
 			this->_entitiesByComponent[comp].emplace_back(entity);
@@ -66,15 +70,19 @@ namespace TouhouFanGame::ECS
 
 	void Core::clear(std::vector<unsigned int> whitelist)
 	{
+		this->_entitiesByComponent.clear();
+		this->_lastGivenID = 0;
 		if (whitelist.empty())
 			return this->_entities.clear();
 		for (size_t i = 0; i < this->_entities.size(); i++)
 			if (std::find(whitelist.begin(), whitelist.end(), this->_entities[i]->getID()) == whitelist.end())
 				this->_entities.erase(this->_entities.begin() + i--);
-		this->_entitiesByComponent.clear();
-		for (auto &entity : this->_entities)
+		for (auto &entity : this->_entities) {
+			if (this->_lastGivenID < entity->getID())
+				this->_lastGivenID = entity->getID();
 			for (auto &comp : entity->getComponentsNames())
 				this->_entitiesByComponent[comp].emplace_back(*entity);
+		}
 	}
 
 	System &Core::getSystemByName(const std::string &name) const
@@ -110,6 +118,8 @@ namespace TouhouFanGame::ECS
 			this->getEntityByID(entity->getID());
 			throw UpdateErrorException("An entity already have ID " + std::to_string(entity->getID()));
 		} catch (NoSuchEntityException &) {
+			for (auto &comp : entity->getComponentsNames())
+				this->_entitiesByComponent[comp].emplace_back(*entity);
 			return *this->_entities.emplace_back(entity);
 		}
 	}
@@ -135,14 +145,25 @@ namespace TouhouFanGame::ECS
 		std::string str;
 
 		for (stream >> str; str != "THFG_ECS_Core_End" && !stream.eof(); stream >> str) {
-			Entity &entity = *this->_entities.emplace_back(new Entity());
+			try {
+				while (true) this->getEntityByID(++this->_lastGivenID);
+			} catch (NoSuchEntityException &) {}
+
+			auto *entity = new Entity(this->_lastGivenID);
 
 			if (str != "Entity")
 				throw InvalidSerializedString("Invalid Entity header");
 
-			entity.unserialize(this->_game, stream);
-			if (&this->getEntityByID(entity.getID()) != &entity)
-				throw InvalidSerializedString("Two entities have the same ID");
+			entity->unserialize(this->_game, stream);
+			try {
+				this->getEntityByID(entity->getID());
+				delete entity;
+				throw InvalidSerializedString("Two entities have ID " + std::to_string(entity->getID()));
+			} catch (NoSuchEntityException &) {
+				for (auto &comp : entity->getComponentsNames())
+					this->_entitiesByComponent[comp].emplace_back(*entity);
+				this->_entities.emplace_back(entity);
+			}
 		}
 
 		if (str != "THFG_ECS_Core_End")

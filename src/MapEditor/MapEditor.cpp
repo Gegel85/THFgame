@@ -402,10 +402,25 @@ namespace TouhouFanGame
 		this->_map._cameraUpdated = true;
 
 		auto &system = this->_map._core.getSystemByName("Displayable");
+		sf::RectangleShape rect;
 
 		for (auto &entity : this->_map._core.getEntityByComponent("Displayable"))
 			system.updateEntity(entity);
 		this->_map.render();
+
+		rect.setFillColor(sf::Color{
+			255, 0, 0, 100
+		});
+		rect.setSize(sf::Vector2f(
+			this->_map._tileSize,
+			this->_map._tileSize
+		));
+		for (int i = 0; i < this->_map._size.x; i++)
+			for (int j = 0; j < this->_map._size.y; j++)
+				if (this->_map._objects[i + j * this->_map._size.x] & 0x80U) {
+					rect.setPosition(i * this->_map._tileSize, j * this->_map._tileSize);
+					static_cast<sf::RenderWindow &>(*this->_game.resources.screen).draw(rect);
+				}
 	}
 
 	void MapEditor::_resetMap()

@@ -30,6 +30,7 @@ namespace TouhouFanGame
 		unsigned _loaded;
 		MapParams _params;
 		sf::Vector2f _cameraPos;
+		unsigned char selected = 0;
 		std::unique_ptr<tgui::Gui> _gui;
 
 		void _makeAllWidgets();

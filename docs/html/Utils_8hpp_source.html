@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TouhouFanGame: src/Utils.hpp Source File</title>
+<title>TouhouFanGame: src/Core/Utils.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,7 +91,7 @@ $(function() {
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceTouhouFanGame_1_1Utils.html">TouhouFanGame::Utils</a></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> type&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceTouhouFanGame_1_1Utils.html#a16826b44161fde1a1d49b4d70de4feba">   25</a></span>&#160;        std::string <a class="code" href="namespaceTouhouFanGame_1_1Utils.html#a16826b44161fde1a1d49b4d70de4feba">toString</a>(sf::Vector2&lt;type&gt; &amp;vec)</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceTouhouFanGame_1_1Utils.html#a7927c20272f224b62e29f209e5b68b87">   25</a></span>&#160;        std::string <a class="code" href="namespaceTouhouFanGame_1_1Utils.html#a7927c20272f224b62e29f209e5b68b87">toString</a>(<span class="keyword">const</span> sf::Vector2&lt;type&gt; &amp;vec)</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">return</span> <span class="stringliteral">&quot;(&quot;</span> + std::to_string(vec.x) + <span class="stringliteral">&quot;, &quot;</span> + std::to_string(vec.y) + <span class="stringliteral">&quot;)&quot;</span>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
@@ -99,14 +99,17 @@ $(function() {
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">int</span>     <a class="code" href="namespaceTouhouFanGame_1_1Utils.html#a00d91c14c4b526efeb9bf3893a32c9cf">dispMsg</a>(<span class="keyword">const</span> std::string &amp;title, <span class="keyword">const</span> std::string &amp;content, <span class="keywordtype">int</span> variate);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span>    <a class="code" href="namespaceTouhouFanGame_1_1Utils.html#ab413367d0224b48e785c3b04db8a13b9">makeDirectoryTree</a>(<span class="keyword">const</span> std::string &amp;tree);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif //THFGAME_UTILS_HPP</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::string <a class="code" href="namespaceTouhouFanGame_1_1Utils.html#a25a9cc40cc56c16314b89695b32d4de1">floatToString</a>(<span class="keywordtype">float</span> nb);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif //THFGAME_UTILS_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_a00d91c14c4b526efeb9bf3893a32c9cf"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#a00d91c14c4b526efeb9bf3893a32c9cf">TouhouFanGame::Utils::dispMsg</a></div><div class="ttdeci">int dispMsg(const std::string &amp;title, const std::string &amp;content, int variate)</div><div class="ttdoc">Display a Windows dialog box.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00025">Utils.cpp:25</a></div></div>
-<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_ab413367d0224b48e785c3b04db8a13b9"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#ab413367d0224b48e785c3b04db8a13b9">TouhouFanGame::Utils::makeDirectoryTree</a></div><div class="ttdeci">void makeDirectoryTree(const std::string &amp;tree)</div><div class="ttdoc">Makes a whole directory tree. The last entry is supposed to be a file and isn't made as a directory.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00101">Utils.cpp:101</a></div></div>
-<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html">TouhouFanGame::Utils</a></div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00023">Utils.cpp:23</a></div></div>
-<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_a16826b44161fde1a1d49b4d70de4feba"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#a16826b44161fde1a1d49b4d70de4feba">TouhouFanGame::Utils::toString</a></div><div class="ttdeci">std::string toString(sf::Vector2&lt; type &gt; &amp;vec)</div><div class="ttdoc">Serialize an SFML Vector2 of 2 numbers.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00025">Utils.hpp:25</a></div></div>
+<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_a00d91c14c4b526efeb9bf3893a32c9cf"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#a00d91c14c4b526efeb9bf3893a32c9cf">TouhouFanGame::Utils::dispMsg</a></div><div class="ttdeci">int dispMsg(const std::string &amp;title, const std::string &amp;content, int variate)</div><div class="ttdoc">Display a Windows dialog box.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00026">Utils.cpp:26</a></div></div>
+<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_a25a9cc40cc56c16314b89695b32d4de1"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#a25a9cc40cc56c16314b89695b32d4de1">TouhouFanGame::Utils::floatToString</a></div><div class="ttdeci">std::string floatToString(float nb)</div><div class="ttdoc">Returns the floating number representation with the least number of decimals.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00118">Utils.cpp:118</a></div></div>
+<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_ab413367d0224b48e785c3b04db8a13b9"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#ab413367d0224b48e785c3b04db8a13b9">TouhouFanGame::Utils::makeDirectoryTree</a></div><div class="ttdeci">void makeDirectoryTree(const std::string &amp;tree)</div><div class="ttdoc">Makes a whole directory tree. The last entry is supposed to be a file and isn't made as a directory.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00103">Utils.cpp:103</a></div></div>
+<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html">TouhouFanGame::Utils</a></div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00024">Utils.cpp:24</a></div></div>
+<div class="ttc" id="anamespaceTouhouFanGame_1_1Utils_html_a7927c20272f224b62e29f209e5b68b87"><div class="ttname"><a href="namespaceTouhouFanGame_1_1Utils.html#a7927c20272f224b62e29f209e5b68b87">TouhouFanGame::Utils::toString</a></div><div class="ttdeci">std::string toString(const sf::Vector2&lt; type &gt; &amp;vec)</div><div class="ttdoc">Serialize an SFML Vector2 of 2 numbers.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00025">Utils.hpp:25</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TouhouFanGame: src/Exceptions.hpp Source File</title>
+<title>TouhouFanGame: src/Core/Exceptions.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -136,15 +136,24 @@ $(function() {
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1BaseException.html">BaseException</a>(static_cast&lt;const std::string &amp;&amp;&gt;(msg))</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                {};</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        };</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;std::string <a class="code" href="Exceptions_8hpp.html#a36444f2b61f20487cc92aad1ede5145f">getLastExceptionName</a>();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif //THFGAME_EXCEPTIONS_HPP</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classTouhouFanGame_1_1ItemNotFoundException.html">   75</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classTouhouFanGame_1_1ItemNotFoundException.html">ItemNotFoundException</a> : <span class="keyword">public</span> <a class="code" href="classTouhouFanGame_1_1BaseException.html">BaseException</a> {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classTouhouFanGame_1_1ItemNotFoundException.html#a989f5c9c27483a92730503430b9b562b">   77</a></span>&#160;                <span class="keyword">explicit</span> <a class="code" href="classTouhouFanGame_1_1ItemNotFoundException.html#a989f5c9c27483a92730503430b9b562b">ItemNotFoundException</a>(<span class="keyword">const</span> std::string &amp;&amp;msg) :</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        <a class="code" href="classTouhouFanGame_1_1BaseException.html">BaseException</a>(static_cast&lt;const std::string &amp;&amp;&gt;(msg))</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                {};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        };</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;std::string <a class="code" href="Exceptions_8hpp.html#a36444f2b61f20487cc92aad1ede5145f">getLastExceptionName</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif //THFGAME_EXCEPTIONS_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassTouhouFanGame_1_1CorruptedAssetsListException_html_abec596d7b8be35768e3df2719b70af81"><div class="ttname"><a href="classTouhouFanGame_1_1CorruptedAssetsListException.html#abec596d7b8be35768e3df2719b70af81">TouhouFanGame::CorruptedAssetsListException::CorruptedAssetsListException</a></div><div class="ttdeci">CorruptedAssetsListException(const std::string &amp;&amp;msg)</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00029">Exceptions.hpp:29</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1InvalidSavedMap_html"><div class="ttname"><a href="classTouhouFanGame_1_1InvalidSavedMap.html">TouhouFanGame::InvalidSavedMap</a></div><div class="ttdoc">This file is not a valid saved map.</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00059">Exceptions.hpp:59</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1BaseException_html_ae1a083f2698fe6ebb6136024592f8182"><div class="ttname"><a href="classTouhouFanGame_1_1BaseException.html#ae1a083f2698fe6ebb6136024592f8182">TouhouFanGame::BaseException::BaseException</a></div><div class="ttdeci">BaseException(const std::string &amp;&amp;msg)</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00018">Exceptions.hpp:18</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ItemNotFoundException_html_a989f5c9c27483a92730503430b9b562b"><div class="ttname"><a href="classTouhouFanGame_1_1ItemNotFoundException.html#a989f5c9c27483a92730503430b9b562b">TouhouFanGame::ItemNotFoundException::ItemNotFoundException</a></div><div class="ttdeci">ItemNotFoundException(const std::string &amp;&amp;msg)</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00077">Exceptions.hpp:77</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ItemNotFoundException_html"><div class="ttname"><a href="classTouhouFanGame_1_1ItemNotFoundException.html">TouhouFanGame::ItemNotFoundException</a></div><div class="ttdoc">This Item cannot be found.</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00075">Exceptions.hpp:75</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1FolderCreationErrorException_html_ac1aabe169fca74f85105f6e70307da2f"><div class="ttname"><a href="classTouhouFanGame_1_1FolderCreationErrorException.html#ac1aabe169fca74f85105f6e70307da2f">TouhouFanGame::FolderCreationErrorException::FolderCreationErrorException</a></div><div class="ttdeci">FolderCreationErrorException(const std::string &amp;&amp;msg)</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00069">Exceptions.hpp:69</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1InvalidSavedMap_html_a8a47b80c1da8f11a08e1869cda1395ee"><div class="ttname"><a href="classTouhouFanGame_1_1InvalidSavedMap.html#a8a47b80c1da8f11a08e1869cda1395ee">TouhouFanGame::InvalidSavedMap::InvalidSavedMap</a></div><div class="ttdeci">InvalidSavedMap(const std::string &amp;&amp;msg)</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00061">Exceptions.hpp:61</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1CorruptedAssetsListException_html"><div class="ttname"><a href="classTouhouFanGame_1_1CorruptedAssetsListException.html">TouhouFanGame::CorruptedAssetsListException</a></div><div class="ttdoc">The assets list is corrupted or invalid.</div><div class="ttdef"><b>Definition:</b> <a href="Exceptions_8hpp_source.html#l00027">Exceptions.hpp:27</a></div></div>

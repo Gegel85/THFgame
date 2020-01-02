@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TouhouFanGame: src/ECS/Systems/MovableSystem.cpp Source File</title>
+<title>TouhouFanGame: src/Core/ECS/Systems/MovableSystem.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b1a122bf62c958266ec5bf64d14fde5a.html">ECS</a></li><li class="navelem"><a class="el" href="dir_b0ccf9fd37b047266b8dc6b1d4d4ce05.html">Systems</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li><li class="navelem"><a class="el" href="dir_6bb9cba4a4d9118e871a84273dff12f7.html">ECS</a></li><li class="navelem"><a class="el" href="dir_b46d59843a6373b4ad91eeef5828baa7.html">Systems</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -79,7 +79,7 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MovableSystem_8hpp.html">MovableSystem.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../Components/PositionComponent.hpp&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../Components/MovableComponent.hpp&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../../Input.hpp&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../../Input/Input.hpp&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceTouhouFanGame_1_1ECS_1_1Systems.html">TouhouFanGame::ECS::Systems</a></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
@@ -105,7 +105,7 @@ $(function() {
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Core_html"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Core.html">TouhouFanGame::ECS::Core</a></div><div class="ttdoc">The core of an ECS. It holds the System and Entity and make them interact with each other.</div><div class="ttdef"><b>Definition:</b> <a href="Core_8hpp_source.html#l00025">Core.hpp:25</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Input_html_acc36579ecb234d7a153afda1feb79fcfa0c19e29cf08e52f9884f438ea67c8f8a"><div class="ttname"><a href="classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcfa0c19e29cf08e52f9884f438ea67c8f8a">TouhouFanGame::Input::LEFT</a></div><div class="ttdef"><b>Definition:</b> <a href="Input_8hpp_source.html#l00022">Input.hpp:22</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Components_1_1MovableComponent_html"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Components_1_1MovableComponent.html">TouhouFanGame::ECS::Components::MovableComponent</a></div><div class="ttdoc">Given to Entity that can move.</div><div class="ttdef"><b>Definition:</b> <a href="MovableComponent_8hpp_source.html#l00017">MovableComponent.hpp:17</a></div></div>
-<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Entity_html_ae0390ff45f2de431fcfbbc56442243c7"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Entity.html#ae0390ff45f2de431fcfbbc56442243c7">TouhouFanGame::ECS::Entity::getComponent</a></div><div class="ttdeci">Component &amp; getComponent(const std::string &amp;name) const</div><div class="ttdoc">Returns the Component of the Entity that has this name.</div><div class="ttdef"><b>Definition:</b> <a href="ECS_2Entity_8cpp_source.html#l00057">Entity.cpp:57</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Entity_html_ae0390ff45f2de431fcfbbc56442243c7"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Entity.html#ae0390ff45f2de431fcfbbc56442243c7">TouhouFanGame::ECS::Entity::getComponent</a></div><div class="ttdeci">Component &amp; getComponent(const std::string &amp;name) const</div><div class="ttdoc">Returns the Component of the Entity that has this name.</div><div class="ttdef"><b>Definition:</b> <a href="ECS_2Entity_8cpp_source.html#l00062">Entity.cpp:62</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1Input_html_acc36579ecb234d7a153afda1feb79fcfacf34a256db0ea06b415ea7f850795be8"><div class="ttname"><a href="classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcfacf34a256db0ea06b415ea7f850795be8">TouhouFanGame::Input::UP</a></div><div class="ttdef"><b>Definition:</b> <a href="Input_8hpp_source.html#l00019">Input.hpp:19</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Components_1_1PositionComponent_html"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Components_1_1PositionComponent.html">TouhouFanGame::ECS::Components::PositionComponent</a></div><div class="ttdoc">Given to Entity that exists somewhere.</div><div class="ttdef"><b>Definition:</b> <a href="PositionComponent_8hpp_source.html#l00015">PositionComponent.hpp:15</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem_html_a637c7f63301095afdb749a7e490e1ce5"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html#a637c7f63301095afdb749a7e490e1ce5">TouhouFanGame::ECS::Systems::MovableSystem::MovableSystem</a></div><div class="ttdeci">MovableSystem(Core &amp;core)</div><div class="ttdef"><b>Definition:</b> <a href="MovableSystem_8cpp_source.html#l00013">MovableSystem.cpp:13</a></div></div>

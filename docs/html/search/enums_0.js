@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['action_670',['Action',['../classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcf',1,'TouhouFanGame::Input']]],
-  ['animation_671',['Animation',['../namespaceTouhouFanGame_1_1Rendering.html#ab3feda10330a5f87684ad57a1aff9dd6',1,'TouhouFanGame::Rendering']]]
+  ['action_1073',['Action',['../classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcf',1,'TouhouFanGame::Input']]],
+  ['animation_1074',['Animation',['../namespaceTouhouFanGame_1_1Rendering.html#ab3feda10330a5f87684ad57a1aff9dd6',1,'TouhouFanGame::Rendering']]]
 ];

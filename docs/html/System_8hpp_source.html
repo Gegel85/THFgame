@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TouhouFanGame: src/ECS/System.hpp Source File</title>
+<title>TouhouFanGame: src/Core/ECS/System.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b1a122bf62c958266ec5bf64d14fde5a.html">ECS</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2f0e5642e47e7ed59fe0f0829eafb5f.html">Core</a></li><li class="navelem"><a class="el" href="dir_6bb9cba4a4d9118e871a84273dff12f7.html">ECS</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -102,18 +102,21 @@ $(function() {
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordtype">void</span>    <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#ac976cce8fd91edf21ae9059a03d07bfd">checkDependencies</a>(<span class="keyword">const</span> <a class="code" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;entity) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                std::string     <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">getName</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a989156207ca899a2a99fed2c67f19ca1">updateEntity</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;entity) = 0;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        };</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif //THFGAME_SYSTEM_HPP</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;<a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a5740777c600ac72cf455be897bd60be9">getDependencies</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                std::string     <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">getName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#a989156207ca899a2a99fed2c67f19ca1">updateEntity</a>(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;entity) = 0;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        };</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif //THFGAME_SYSTEM_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_ac976cce8fd91edf21ae9059a03d07bfd"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#ac976cce8fd91edf21ae9059a03d07bfd">TouhouFanGame::ECS::System::checkDependencies</a></div><div class="ttdeci">void checkDependencies(const Entity &amp;entity) const</div><div class="ttdoc">Check if the entity match the dependencies.</div><div class="ttdef"><b>Definition:</b> <a href="System_8cpp_source.html#l00022">System.cpp:22</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a0ca7dec82521f29a735bf8e188a4e40a"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a0ca7dec82521f29a735bf8e188a4e40a">TouhouFanGame::ECS::System::System</a></div><div class="ttdeci">System(Core &amp;_parent, const std::string &amp;&amp;name, const std::vector&lt; std::string &gt; &amp;&amp;dependencies)</div><div class="ttdef"><b>Definition:</b> <a href="System_8cpp_source.html#l00010">System.cpp:10</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a989156207ca899a2a99fed2c67f19ca1"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a989156207ca899a2a99fed2c67f19ca1">TouhouFanGame::ECS::System::updateEntity</a></div><div class="ttdeci">virtual void updateEntity(Entity &amp;entity)=0</div><div class="ttdoc">Applies the System logic to the entity.</div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a5740777c600ac72cf455be897bd60be9"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a5740777c600ac72cf455be897bd60be9">TouhouFanGame::ECS::System::getDependencies</a></div><div class="ttdeci">const std::vector&lt; std::string &gt; &amp; getDependencies() const</div><div class="ttdoc">Get the dependencies needed by this System.</div><div class="ttdef"><b>Definition:</b> <a href="System_8cpp_source.html#l00033">System.cpp:33</a></div></div>
 <div class="ttc" id="anamespaceTouhouFanGame_1_1ECS_html"><div class="ttname"><a href="namespaceTouhouFanGame_1_1ECS.html">TouhouFanGame::ECS</a></div><div class="ttdef"><b>Definition:</b> <a href="Component_8cpp_source.html#l00007">Component.cpp:7</a></div></div>
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a7dd0b0884ebffab87f0e2cd2ac48b9d3"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">TouhouFanGame::ECS::System::getName</a></div><div class="ttdeci">std::string getName() const</div><div class="ttdoc">Gets the name of the System.</div><div class="ttdef"><b>Definition:</b> <a href="System_8cpp_source.html#l00017">System.cpp:17</a></div></div>
 <div class="ttc" id="aECS_2Entity_8hpp_html"><div class="ttname"><a href="ECS_2Entity_8hpp.html">Entity.hpp</a></div></div>

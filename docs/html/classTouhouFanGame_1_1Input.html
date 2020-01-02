@@ -68,6 +68,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -91,6 +92,12 @@ Inheritance diagram for TouhouFanGame::Input:</div>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html">Event</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html" title="An Event occuring.">Event</a> occuring.  <a href="structTouhouFanGame_1_1Input_1_1Event.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:acc36579ecb234d7a153afda1feb79fcf"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcf">Action</a> { <br />
@@ -119,6 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a459822c61760f4b74bfe93e64035592e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Input.html#a459822c61760f4b74bfe93e64035592e">cancelChangeKey</a> ()=0</td></tr>
 <tr class="memdesc:a459822c61760f4b74bfe93e64035592e"><td class="mdescLeft">&#160;</td><td class="mdescRight">No longer tries to change the key.  <a href="classTouhouFanGame_1_1Input.html#a459822c61760f4b74bfe93e64035592e">More...</a><br /></td></tr>
 <tr class="separator:a459822c61760f4b74bfe93e64035592e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f2659661776779e795e9c600b66098c"><td class="memItemLeft" align="right" valign="top">virtual std::optional&lt; <a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Input.html#a7f2659661776779e795e9c600b66098c">pollEvent</a> ()=0</td></tr>
+<tr class="memdesc:a7f2659661776779e795e9c600b66098c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Polls the next <a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html" title="An Event occuring.">Event</a> in queeu.  <a href="classTouhouFanGame_1_1Input.html#a7f2659661776779e795e9c600b66098c">More...</a><br /></td></tr>
+<tr class="separator:a7f2659661776779e795e9c600b66098c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f245e783fcf2f4dc4b873b59f110e25"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1Input.html#a8f245e783fcf2f4dc4b873b59f110e25">actionPressed</a> (<a class="el" href="classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcf">Action</a> action)=0</td></tr>
 <tr class="memdesc:a8f245e783fcf2f4dc4b873b59f110e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell if the action is currently triggered.  <a href="classTouhouFanGame_1_1Input.html#a8f245e783fcf2f4dc4b873b59f110e25">More...</a><br /></td></tr>
 <tr class="separator:a8f245e783fcf2f4dc4b873b59f110e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,8 +234,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether the action is triggered or not. </dd></dl>
-
-<p>Implemented in <a class="el" href="classTouhouFanGame_1_1Inputs_1_1Keyboard.html#a375f35ee20f5f7fabfc27198e7c84a1c">TouhouFanGame::Inputs::Keyboard</a>.</p>
 
 </div>
 </div>
@@ -353,8 +361,6 @@ Static Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>False if the key has not been changed yet. True otherwise. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If you need to cancel the change key mode, call cancelChangeKey. </dd></dl>
 
-<p>Implemented in <a class="el" href="classTouhouFanGame_1_1Inputs_1_1Keyboard.html#a5d24fa9e168e01178b949d0d9bbf1ada">TouhouFanGame::Inputs::Keyboard</a>.</p>
-
 </div>
 </div>
 <a id="a59c898abd5a54b2fbac5f7e8d7adc107"></a>
@@ -419,8 +425,6 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classTouhouFanGame_1_1Inputs_1_1Keyboard.html#aded9c26e3465c00400144d7273bd5e4c">TouhouFanGame::Inputs::Keyboard</a>.</p>
-
 </div>
 </div>
 <a id="a0579802d03a0554bdc8f40d52304a3c7"></a>
@@ -450,6 +454,36 @@ Static Public Member Functions</h2></td></tr>
 <p>Consumes an event. Will try to change the key if in change key mode. </p>
 
 <p>Implemented in <a class="el" href="classTouhouFanGame_1_1Inputs_1_1Keyboard.html#a8369201ee104adbd05d1abc04f037b05">TouhouFanGame::Inputs::Keyboard</a>.</p>
+
+</div>
+</div>
+<a id="a7f2659661776779e795e9c600b66098c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f2659661776779e795e9c600b66098c">&#9670;&nbsp;</a></span>pollEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::optional&lt;<a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html">Event</a>&gt; TouhouFanGame::Input::pollEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Polls the next <a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html" title="An Event occuring.">Event</a> in queeu. </p>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html" title="An Event occuring.">Event</a> that wasn't processed or an empty optional if no <a class="el" href="structTouhouFanGame_1_1Input_1_1Event.html" title="An Event occuring.">Event</a> is remaining </dd></dl>
+
+<p>Implemented in <a class="el" href="classTouhouFanGame_1_1Inputs_1_1Keyboard.html#a2e3b984c92b59a156d11026f1ebae584">TouhouFanGame::Inputs::Keyboard</a>.</p>
 
 </div>
 </div>
@@ -526,8 +560,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/<a class="el" href="Input_8hpp_source.html">Input.hpp</a></li>
-<li>src/<a class="el" href="Input_8cpp_source.html">Input.cpp</a></li>
+<li>src/Core/Input/<a class="el" href="Input_8hpp_source.html">Input.hpp</a></li>
+<li>src/Core/Input/<a class="el" href="Input_8cpp_source.html">Input.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="aclassTouhouFanGame_1_1Input_html_acc36579ecb234d7a153afda1feb79fcfadf5dcc5e5287b2e535585f502015844c"><div class="ttname"><a href="classTouhouFanGame_1_1Input.html#acc36579ecb234d7a153afda1feb79fcfadf5dcc5e5287b2e535585f502015844c">TouhouFanGame::Input::NB_OF_ACTION</a></div><div class="ttdef"><b>Definition:</b> <a href="Input_8hpp_source.html#l00028">Input.hpp:28</a></div></div>

@@ -23,6 +23,7 @@ namespace TouhouFanGame
 
 		public:
 			//! @brief Builds an Entity and assign it an ID.
+			//! @param game Game resources and state.
 			//! @param name The name of the Entity to build.
 			//! @param id The ID of the new Entity.
 			//! @return The requested Entity.

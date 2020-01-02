@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['icon_5ferror_5fpath_709',['ICON_ERROR_PATH',['../main_8cpp.html#a5da0fd3ceb749c735cb36bfac78659a7',1,'ICON_ERROR_PATH():&#160;main.cpp'],['../Utils_8cpp.html#a5da0fd3ceb749c735cb36bfac78659a7',1,'ICON_ERROR_PATH():&#160;Utils.cpp']]]
+  ['hud_5fhorizontal_5fsize_1112',['HUD_HORIZONTAL_SIZE',['../Hud_8hpp.html#a56ad2f0ab5419af3d38cffd69779524e',1,'Hud.hpp']]],
+  ['hud_5fvertical_5fsize_1113',['HUD_VERTICAL_SIZE',['../Hud_8hpp.html#a75c731b1cf6e3ad8d595a0f51fc6fd19',1,'Hud.hpp']]]
 ];

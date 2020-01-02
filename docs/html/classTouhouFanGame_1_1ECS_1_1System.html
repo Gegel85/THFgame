@@ -87,11 +87,14 @@ Inheritance diagram for TouhouFanGame::ECS::System:</div>
  <div class="center">
   <img src="classTouhouFanGame_1_1ECS_1_1System.png" usemap="#TouhouFanGame::ECS::System_map" alt=""/>
   <map id="TouhouFanGame::ECS::System_map" name="TouhouFanGame::ECS::System_map">
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html" title="Updates Entity having a BlockedByTerrainComponent." alt="TouhouFanGame::ECS::Systems::BlockedByTerrainSystem" shape="rect" coords="0,56,338,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html" title="Updates Entity having a ControllableComponent." alt="TouhouFanGame::ECS::Systems::ControllableSystem" shape="rect" coords="348,56,686,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html" title="Updates Entity having a DisplayableComponent." alt="TouhouFanGame::ECS::Systems::DisplayableSystem" shape="rect" coords="696,56,1034,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html" title="Updates Entity having a MovableComponent." alt="TouhouFanGame::ECS::Systems::MovableSystem" shape="rect" coords="1044,56,1382,80"/>
-<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html" title="A useless System meant for Component that don&#39;t need one." alt="TouhouFanGame::ECS::Systems::UselessSystem" shape="rect" coords="1392,56,1730,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html" title="Updates Entity having a BlockedByTerrainComponent." alt="TouhouFanGame::ECS::Systems::BlockedByTerrainSystem" shape="rect" coords="348,56,686,80"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html" title="Updates Entity having a ControllableComponent." alt="TouhouFanGame::ECS::Systems::ControllableSystem" shape="rect" coords="348,112,686,136"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html" title="Updates Entity having a DisplayableComponent." alt="TouhouFanGame::ECS::Systems::DisplayableSystem" shape="rect" coords="348,168,686,192"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1HealthSystem.html" title="Updates Entity having a HealthComponent." alt="TouhouFanGame::ECS::Systems::HealthSystem" shape="rect" coords="348,224,686,248"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ManaSystem.html" title="Updates Entity having a HealthComponent." alt="TouhouFanGame::ECS::Systems::ManaSystem" shape="rect" coords="348,280,686,304"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html" title="Updates Entity having a MovableComponent." alt="TouhouFanGame::ECS::Systems::MovableSystem" shape="rect" coords="348,336,686,360"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1PlayerHUDSystem.html" title="Updates Entity having a PlayerHUDComponent." alt="TouhouFanGame::ECS::Systems::PlayerHUDSystem" shape="rect" coords="348,392,686,416"/>
+<area href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html" title="A useless System meant for Component that don&#39;t need one." alt="TouhouFanGame::ECS::Systems::UselessSystem" shape="rect" coords="348,448,686,472"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -102,6 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac976cce8fd91edf21ae9059a03d07bfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#ac976cce8fd91edf21ae9059a03d07bfd">checkDependencies</a> (const <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> &amp;entity) const</td></tr>
 <tr class="memdesc:ac976cce8fd91edf21ae9059a03d07bfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the entity match the dependencies.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#ac976cce8fd91edf21ae9059a03d07bfd">More...</a><br /></td></tr>
 <tr class="separator:ac976cce8fd91edf21ae9059a03d07bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5740777c600ac72cf455be897bd60be9"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a5740777c600ac72cf455be897bd60be9">getDependencies</a> () const</td></tr>
+<tr class="memdesc:a5740777c600ac72cf455be897bd60be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the dependencies needed by this <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#a5740777c600ac72cf455be897bd60be9">More...</a><br /></td></tr>
+<tr class="separator:a5740777c600ac72cf455be897bd60be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd0b0884ebffab87f0e2cd2ac48b9d3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">getName</a> () const</td></tr>
 <tr class="memdesc:a7dd0b0884ebffab87f0e2cd2ac48b9d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>.  <a href="classTouhouFanGame_1_1ECS_1_1System.html#a7dd0b0884ebffab87f0e2cd2ac48b9d3">More...</a><br /></td></tr>
 <tr class="separator:a7dd0b0884ebffab87f0e2cd2ac48b9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,6 +229,30 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a5740777c600ac72cf455be897bd60be9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5740777c600ac72cf455be897bd60be9">&#9670;&nbsp;</a></span>getDependencies()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; std::string &gt; &amp; TouhouFanGame::ECS::System::getDependencies </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the dependencies needed by this <a class="el" href="classTouhouFanGame_1_1ECS_1_1System.html" title="A System, affecting Entities. The updateEntity method is called only if this Entity has the correspon...">System</a>. </p>
+
+<p class="definition">Definition at line <a class="el" href="System_8cpp_source.html#l00033">33</a> of file <a class="el" href="System_8cpp_source.html">System.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">return</span> this-&gt;<a class="code" href="classTouhouFanGame_1_1ECS_1_1System.html#aa77424816eb786c8d9422ef6322b831c">_deps</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a7dd0b0884ebffab87f0e2cd2ac48b9d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7dd0b0884ebffab87f0e2cd2ac48b9d3">&#9670;&nbsp;</a></span>getName()</h2>
 
@@ -280,7 +310,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html#ae3de01da0334b8ff2675c41e5546b51c">TouhouFanGame::ECS::Systems::ControllableSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html#a124d980f25ef4c9bfbc1b1156650a157">TouhouFanGame::ECS::Systems::BlockedByTerrainSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html#ab3fb66bb61947de06a0bbd48b5f1307f">TouhouFanGame::ECS::Systems::UselessSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html#a6014045b1dbafd48b1456d00bc6c8103">TouhouFanGame::ECS::Systems::DisplayableSystem</a>, and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html#a7f7b408443a2785bc5956bc99c77f93b">TouhouFanGame::ECS::Systems::MovableSystem</a>.</p>
+<p>Implemented in <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1HealthSystem.html#afa3204d125a63411f9a8ebe58b63bc90">TouhouFanGame::ECS::Systems::HealthSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ManaSystem.html#a46dd72f88ba24a317eea67d9ea04401e">TouhouFanGame::ECS::Systems::ManaSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1ControllableSystem.html#ae3de01da0334b8ff2675c41e5546b51c">TouhouFanGame::ECS::Systems::ControllableSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1BlockedByTerrainSystem.html#a124d980f25ef4c9bfbc1b1156650a157">TouhouFanGame::ECS::Systems::BlockedByTerrainSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1UselessSystem.html#ab3fb66bb61947de06a0bbd48b5f1307f">TouhouFanGame::ECS::Systems::UselessSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1DisplayableSystem.html#a6014045b1dbafd48b1456d00bc6c8103">TouhouFanGame::ECS::Systems::DisplayableSystem</a>, <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1MovableSystem.html#a7f7b408443a2785bc5956bc99c77f93b">TouhouFanGame::ECS::Systems::MovableSystem</a>, and <a class="el" href="classTouhouFanGame_1_1ECS_1_1Systems_1_1PlayerHUDSystem.html#a13ff93d0808d099c4d220577cb88e4c8">TouhouFanGame::ECS::Systems::PlayerHUDSystem</a>.</p>
 
 </div>
 </div>
@@ -364,8 +394,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/ECS/<a class="el" href="System_8hpp_source.html">System.hpp</a></li>
-<li>src/ECS/<a class="el" href="System_8cpp_source.html">System.cpp</a></li>
+<li>src/Core/ECS/<a class="el" href="System_8hpp_source.html">System.hpp</a></li>
+<li>src/Core/ECS/<a class="el" href="System_8cpp_source.html">System.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1System_html_a1567fd7cc803704c4b607743350f99cc"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1System.html#a1567fd7cc803704c4b607743350f99cc">TouhouFanGame::ECS::System::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdoc">The name of the System.</div><div class="ttdef"><b>Definition:</b> <a href="System_8hpp_source.html#l00024">System.hpp:24</a></div></div>

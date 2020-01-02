@@ -78,12 +78,19 @@ $(function() {
 
 <p>A trigger that teleports the player to another <a class="el" href="classTouhouFanGame_1_1Map.html" title="A map loaded by the game.">Map</a>.  
  <a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Map_8hpp_source.html">Map.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a20b32817c52575f9c6bd7c48030187ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a20b32817c52575f9c6bd7c48030187ff">serialize</a> (std::ostream &amp;stream) const</td></tr>
+<tr class="memdesc:a20b32817c52575f9c6bd7c48030187ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize to a stream.  <a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a20b32817c52575f9c6bd7c48030187ff">More...</a><br /></td></tr>
+<tr class="separator:a20b32817c52575f9c6bd7c48030187ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b58693c7d9d73b11e80ffe864237c5f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a6b58693c7d9d73b11e80ffe864237c5f">TpTrigger</a> (std::istream &amp;stream)</td></tr>
 <tr class="memdesc:a6b58693c7d9d73b11e80ffe864237c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a trigger from the stream.  <a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a6b58693c7d9d73b11e80ffe864237c5f">More...</a><br /></td></tr>
 <tr class="separator:a6b58693c7d9d73b11e80ffe864237c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10c14aed402b79c6216c912ea8c2b52d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a10c14aed402b79c6216c912ea8c2b52d">TpTrigger</a> ()=default</td></tr>
+<tr class="separator:a10c14aed402b79c6216c912ea8c2b52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -100,10 +107,10 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A trigger that teleports the player to another <a class="el" href="classTouhouFanGame_1_1Map.html" title="A map loaded by the game.">Map</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00022">22</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00024">24</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6b58693c7d9d73b11e80ffe864237c5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b58693c7d9d73b11e80ffe864237c5f">&#9670;&nbsp;</a></span>TpTrigger()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b58693c7d9d73b11e80ffe864237c5f">&#9670;&nbsp;</a></span>TpTrigger() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,12 +128,68 @@ Public Attributes</h2></td></tr>
 <p>Loads a trigger from the stream. </p>
 
 <p class="definition">Definition at line <a class="el" href="Map_8cpp_source.html#l00021">21</a> of file <a class="el" href="Map_8cpp_source.html">Map.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                                  :</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">location</a>(_readInteger&lt;unsigned short&gt;(stream), _readInteger&lt;unsigned short&gt;(stream)),</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a5522128bcb67193c51fb170f87e50cbf">mapId</a>(_readInteger&lt;unsigned short&gt;(stream)),</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">mapSpawn</a>(_readInteger&lt;unsigned short&gt;(stream), _readInteger&lt;unsigned short&gt;(stream))</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">location</a>.x = _readInteger&lt;unsigned short&gt;(stream);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">location</a>.y = _readInteger&lt;unsigned short&gt;(stream);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a5522128bcb67193c51fb170f87e50cbf">mapId</a> = _readInteger&lt;unsigned short&gt;(stream);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">mapSpawn</a>.x = _readInteger&lt;unsigned short&gt;(stream);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">mapSpawn</a>.y = _readInteger&lt;unsigned short&gt;(stream);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a10c14aed402b79c6216c912ea8c2b52d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10c14aed402b79c6216c912ea8c2b52d">&#9670;&nbsp;</a></span>TpTrigger() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TouhouFanGame::Map::TpTrigger::TpTrigger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a20b32817c52575f9c6bd7c48030187ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20b32817c52575f9c6bd7c48030187ff">&#9670;&nbsp;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TouhouFanGame::Map::TpTrigger::serialize </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serialize to a stream. </p>
+
+<p class="definition">Definition at line <a class="el" href="Map_8cpp_source.html#l00030">30</a> of file <a class="el" href="Map_8cpp_source.html">Map.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="classTouhouFanGame_1_1Map.html#acb538e67d0b988aeccd28a6914656fd3">Map::_writeInteger</a>(stream, this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">location</a>.x);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="classTouhouFanGame_1_1Map.html#acb538e67d0b988aeccd28a6914656fd3">Map::_writeInteger</a>(stream, this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">location</a>.y);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <a class="code" href="classTouhouFanGame_1_1Map.html#acb538e67d0b988aeccd28a6914656fd3">Map::_writeInteger</a>(stream, this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a5522128bcb67193c51fb170f87e50cbf">mapId</a>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <a class="code" href="classTouhouFanGame_1_1Map.html#acb538e67d0b988aeccd28a6914656fd3">Map::_writeInteger</a>(stream, this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">mapSpawn</a>.x);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="classTouhouFanGame_1_1Map.html#acb538e67d0b988aeccd28a6914656fd3">Map::_writeInteger</a>(stream, this-&gt;<a class="code" href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">mapSpawn</a>.x);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -145,7 +208,7 @@ Public Attributes</h2></td></tr>
 
 <p>The position of the trigger on the <a class="el" href="classTouhouFanGame_1_1Map.html" title="A map loaded by the game.">Map</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00024">24</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00026">26</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
 
 </div>
 </div>
@@ -163,7 +226,7 @@ Public Attributes</h2></td></tr>
 
 <p>The <a class="el" href="classTouhouFanGame_1_1Map.html" title="A map loaded by the game.">Map</a> to warp to. </p>
 
-<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00027">27</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00029">29</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
 
 </div>
 </div>
@@ -181,18 +244,19 @@ Public Attributes</h2></td></tr>
 
 <p>Where to place the player after teleporting it. </p>
 
-<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00030">30</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Map_8hpp_source.html#l00032">32</a> of file <a class="el" href="Map_8hpp_source.html">Map.hpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
-<li>src/<a class="el" href="Map_8hpp_source.html">Map.hpp</a></li>
-<li>src/<a class="el" href="Map_8cpp_source.html">Map.cpp</a></li>
+<li>src/Core/<a class="el" href="Map_8hpp_source.html">Map.hpp</a></li>
+<li>src/Core/<a class="el" href="Map_8cpp_source.html">Map.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="astructTouhouFanGame_1_1Map_1_1TpTrigger_html_a5522128bcb67193c51fb170f87e50cbf"><div class="ttname"><a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a5522128bcb67193c51fb170f87e50cbf">TouhouFanGame::Map::TpTrigger::mapId</a></div><div class="ttdeci">unsigned short mapId</div><div class="ttdoc">The Map to warp to.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00027">Map.hpp:27</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Map_1_1TpTrigger_html_adaa64e245ab2946d49b5e141e35d7192"><div class="ttname"><a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">TouhouFanGame::Map::TpTrigger::location</a></div><div class="ttdeci">sf::Vector2&lt; unsigned short &gt; location</div><div class="ttdoc">The position of the trigger on the Map.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00024">Map.hpp:24</a></div></div>
-<div class="ttc" id="astructTouhouFanGame_1_1Map_1_1TpTrigger_html_a0bc152c41146b0129181048673acd70a"><div class="ttname"><a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">TouhouFanGame::Map::TpTrigger::mapSpawn</a></div><div class="ttdeci">sf::Vector2&lt; unsigned short &gt; mapSpawn</div><div class="ttdoc">Where to place the player after teleporting it.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00030">Map.hpp:30</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Map_1_1TpTrigger_html_a5522128bcb67193c51fb170f87e50cbf"><div class="ttname"><a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a5522128bcb67193c51fb170f87e50cbf">TouhouFanGame::Map::TpTrigger::mapId</a></div><div class="ttdeci">unsigned short mapId</div><div class="ttdoc">The Map to warp to.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00029">Map.hpp:29</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Map_1_1TpTrigger_html_adaa64e245ab2946d49b5e141e35d7192"><div class="ttname"><a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#adaa64e245ab2946d49b5e141e35d7192">TouhouFanGame::Map::TpTrigger::location</a></div><div class="ttdeci">sf::Vector2&lt; unsigned short &gt; location</div><div class="ttdoc">The position of the trigger on the Map.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00026">Map.hpp:26</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1Map_html_acb538e67d0b988aeccd28a6914656fd3"><div class="ttname"><a href="classTouhouFanGame_1_1Map.html#acb538e67d0b988aeccd28a6914656fd3">TouhouFanGame::Map::_writeInteger</a></div><div class="ttdeci">static void _writeInteger(std::ostream &amp;stream, type value)</div><div class="ttdoc">Writes an integer MSBF to a stream.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00125">Map.hpp:125</a></div></div>
+<div class="ttc" id="astructTouhouFanGame_1_1Map_1_1TpTrigger_html_a0bc152c41146b0129181048673acd70a"><div class="ttname"><a href="structTouhouFanGame_1_1Map_1_1TpTrigger.html#a0bc152c41146b0129181048673acd70a">TouhouFanGame::Map::TpTrigger::mapSpawn</a></div><div class="ttdeci">sf::Vector2&lt; unsigned short &gt; mapSpawn</div><div class="ttdoc">Where to place the player after teleporting it.</div><div class="ttdef"><b>Definition:</b> <a href="Map_8hpp_source.html#l00032">Map.hpp:32</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

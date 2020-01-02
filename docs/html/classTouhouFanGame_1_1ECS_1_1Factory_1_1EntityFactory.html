@@ -86,6 +86,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ad23f0c4db12df70729c86cd9d4f9bde2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#ad23f0c4db12df70729c86cd9d4f9bde2">build</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game, const std::string &amp;name, unsigned int id)</td></tr>
 <tr class="memdesc:ad23f0c4db12df70729c86cd9d4f9bde2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds an <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> and assign it an ID.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#ad23f0c4db12df70729c86cd9d4f9bde2">More...</a><br /></td></tr>
 <tr class="separator:ad23f0c4db12df70729c86cd9d4f9bde2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1f86dae9b4c1dcf14c64fd616c57a9"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a9d1f86dae9b4c1dcf14c64fd616c57a9">getItemList</a> ()</td></tr>
+<tr class="memdesc:a9d1f86dae9b4c1dcf14c64fd616c57a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> this factory can build.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a9d1f86dae9b4c1dcf14c64fd616c57a9">More...</a><br /></td></tr>
+<tr class="separator:a9d1f86dae9b4c1dcf14c64fd616c57a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -141,6 +144,7 @@ Static Private Attributes</h2></td></tr>
 <p>Builds an <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> and assign it an ID. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">game</td><td><a class="el" href="structTouhouFanGame_1_1Game.html" title="The game state and resources.">Game</a> resources and state. </td></tr>
     <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to build. </td></tr>
     <tr><td class="paramname">id</td><td>The ID of the new <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a>. </td></tr>
   </table>
@@ -154,14 +158,51 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="EntityFactory_8cpp_source.html#l00028">28</a> of file <a class="el" href="EntityFactory_8cpp_source.html">EntityFactory.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                        <span class="keywordflow">return</span> <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a1baaf7d641eb4c899912e661e92300df">_builders</a>.at(name)(game, id);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                        <span class="keywordflow">throw</span> NoSuchEntityException(<span class="stringliteral">&quot;Cannot find any way to build a &quot;</span> + name);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+<p class="definition">Definition at line <a class="el" href="EntityFactory_8cpp_source.html#l00041">41</a> of file <a class="el" href="EntityFactory_8cpp_source.html">EntityFactory.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        <span class="keywordflow">return</span> <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a1baaf7d641eb4c899912e661e92300df">_builders</a>.at(name)(game, id);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        <span class="keywordflow">throw</span> NoSuchEntityException(<span class="stringliteral">&quot;Cannot find any way to build a &quot;</span> + name);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9d1f86dae9b4c1dcf14c64fd616c57a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d1f86dae9b4c1dcf14c64fd616c57a9">&#9670;&nbsp;</a></span>getItemList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; TouhouFanGame::ECS::Factory::EntityFactory::getItemList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a list of all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> this factory can build. </p>
+
+<p class="definition">Definition at line <a class="el" href="EntityFactory_8cpp_source.html#l00050">50</a> of file <a class="el" href="EntityFactory_8cpp_source.html">EntityFactory.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                std::vector&lt;std::string&gt; list;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                list.reserve(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a1baaf7d641eb4c899912e661e92300df">_builders</a>.size());</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;builder : <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a1baaf7d641eb4c899912e661e92300df">_builders</a>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        list.push_back(builder.first);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span> list;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -193,7 +234,15 @@ Static Private Attributes</h2></td></tr>
 <div class="line">                                <span class="keyword">new</span> Components::MovableComponent(),</div>
 <div class="line">                                <span class="keyword">new</span> Components::DisplayableComponent(game, <span class="stringliteral">&quot;assets/entities/test.json&quot;</span>),</div>
 <div class="line">                                <span class="keyword">new</span> Components::PositionComponent({<a class="code" href="Map_8hpp.html#a5fac8f2cc29ea5bde30c8fa4a4daa306">PLAYER_SIZE</a>, <a class="code" href="Map_8hpp.html#a5fac8f2cc29ea5bde30c8fa4a4daa306">PLAYER_SIZE</a>}),</div>
+<div class="line">                                <span class="keyword">new</span> Components::HealthComponent(20),</div>
+<div class="line">                                <span class="keyword">new</span> Components::ManaComponent(20),</div>
+<div class="line">                                <span class="keyword">new</span> Components::NameComponent(<span class="stringliteral">&quot;Test Character&quot;</span>),</div>
+<div class="line">                                <span class="keyword">new</span> Components::PlayerHUDComponent(game.state.hud),</div>
+<div class="line">                                <span class="keyword">new</span> Components::InventoryComponent(16)</div>
 <div class="line">                        }, <span class="keyword">false</span>);</div>
+<div class="line">                }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Entity&quot;</span>, [](Game &amp;, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> id) {</div>
+<div class="line">                        <span class="keywordflow">return</span> <span class="keyword">new</span> Entity(<span class="keywordtype">id</span>, <span class="stringliteral">&quot;Entity&quot;</span>, {});</div>
 <div class="line">                }}</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
@@ -204,8 +253,8 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/ECS/Factories/<a class="el" href="EntityFactory_8hpp_source.html">EntityFactory.hpp</a></li>
-<li>src/ECS/Factories/<a class="el" href="EntityFactory_8cpp_source.html">EntityFactory.cpp</a></li>
+<li>src/Core/ECS/Factories/<a class="el" href="EntityFactory_8hpp_source.html">EntityFactory.hpp</a></li>
+<li>src/Core/ECS/Factories/<a class="el" href="EntityFactory_8cpp_source.html">EntityFactory.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory_html_a1baaf7d641eb4c899912e661e92300df"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1EntityFactory.html#a1baaf7d641eb4c899912e661e92300df">TouhouFanGame::ECS::Factory::EntityFactory::_builders</a></div><div class="ttdeci">const static std::map&lt; std::string, std::function&lt; ECS::Entity *(Game &amp;, unsigned int)&gt; &gt; _builders</div><div class="ttdoc">Maps an Entity name to it's builder.</div><div class="ttdef"><b>Definition:</b> <a href="EntityFactory_8hpp_source.html#l00022">EntityFactory.hpp:22</a></div></div>

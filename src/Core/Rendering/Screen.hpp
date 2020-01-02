@@ -105,7 +105,7 @@ namespace TouhouFanGame::Rendering
 		void	draw(sf::Sprite &sprite, sf::Vector2f pos);
 
 		//! @brief Get the camera center.
-		//! @breif The current camera center.
+		//! @brief The current camera center.
 		sf::Vector2f getCameraCenter() const;
 
 		//! @brief Draw a texture on the screen

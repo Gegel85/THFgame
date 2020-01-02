@@ -86,20 +86,90 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a63889e1e5a9f84091a1786993c8fe5b8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a63889e1e5a9f84091a1786993c8fe5b8">build</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game, const std::string &amp;name, std::istream &amp;stream)</td></tr>
 <tr class="memdesc:a63889e1e5a9f84091a1786993c8fe5b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> by unserializing it.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a63889e1e5a9f84091a1786993c8fe5b8">More...</a><br /></td></tr>
 <tr class="separator:a63889e1e5a9f84091a1786993c8fe5b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae676639557bf0024701d25699ca305c3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#ae676639557bf0024701d25699ca305c3">build</a> (<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;game, const std::string &amp;name)</td></tr>
+<tr class="memdesc:ae676639557bf0024701d25699ca305c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a>.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#ae676639557bf0024701d25699ca305c3">More...</a><br /></td></tr>
+<tr class="separator:ae676639557bf0024701d25699ca305c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11a70657a39fadf2a08213181576d3fd"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a11a70657a39fadf2a08213181576d3fd">getItemList</a> ()</td></tr>
+<tr class="memdesc:a11a70657a39fadf2a08213181576d3fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> this factory can build.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a11a70657a39fadf2a08213181576d3fd">More...</a><br /></td></tr>
+<tr class="separator:a11a70657a39fadf2a08213181576d3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a0dfe7d55b3783537617d556f4db0df67"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::function&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">Component</a> *(<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;, std::istream &amp;)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">_builders</a></td></tr>
 <tr class="memdesc:a0dfe7d55b3783537617d556f4db0df67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> name to it's builder.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">More...</a><br /></td></tr>
 <tr class="separator:a0dfe7d55b3783537617d556f4db0df67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78563fbaea23bb81d639146637ae674e"><td class="memItemLeft" align="right" valign="top">static const std::map&lt; std::string, std::function&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">Component</a> *(<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;)&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a78563fbaea23bb81d639146637ae674e">_basicBuilders</a></td></tr>
+<tr class="memdesc:a78563fbaea23bb81d639146637ae674e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> name to it's builder.  <a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a78563fbaea23bb81d639146637ae674e">More...</a><br /></td></tr>
+<tr class="separator:a78563fbaea23bb81d639146637ae674e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Builds <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="ComponentFactory_8hpp_source.html#l00024">24</a> of file <a class="el" href="ComponentFactory_8hpp_source.html">ComponentFactory.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae676639557bf0024701d25699ca305c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae676639557bf0024701d25699ca305c3">&#9670;&nbsp;</a></span>build() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">Component</a> * TouhouFanGame::ECS::Factory::ComponentFactory::build </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structTouhouFanGame_1_1Game.html">TouhouFanGame::Game</a> &amp;&#160;</td>
+          <td class="paramname"><em>game</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Builds a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">game</td><td>The game the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> will be in. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> to build. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The requested <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a>. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classTouhouFanGame_1_1ECS_1_1NoSuchComponentException.html" title="The Component requested couldn&#39;t be found on this Entity.">NoSuchComponentException</a></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ComponentFactory_8cpp_source.html#l00058">58</a> of file <a class="el" href="ComponentFactory_8cpp_source.html">ComponentFactory.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        <span class="keywordflow">return</span> <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a78563fbaea23bb81d639146637ae674e">_basicBuilders</a>.at(name)(game);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        <span class="keywordflow">throw</span> NoSuchComponentException(<span class="stringliteral">&quot;Cannot find any way to build a &quot;</span> + name + <span class="stringliteral">&quot;Component&quot;</span>);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a63889e1e5a9f84091a1786993c8fe5b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63889e1e5a9f84091a1786993c8fe5b8">&#9670;&nbsp;</a></span>build()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a63889e1e5a9f84091a1786993c8fe5b8">&#9670;&nbsp;</a></span>build() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,18 +225,93 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ComponentFactory_8cpp_source.html#l00027">27</a> of file <a class="el" href="ComponentFactory_8cpp_source.html">ComponentFactory.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                        <span class="keywordflow">return</span> <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">_builders</a>.at(name)(game, stream);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                        <span class="keywordflow">throw</span> NoSuchComponentException(<span class="stringliteral">&quot;Cannot find any way to build a &quot;</span> + name + <span class="stringliteral">&quot;Component&quot;</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<p class="definition">Definition at line <a class="el" href="ComponentFactory_8cpp_source.html#l00049">49</a> of file <a class="el" href="ComponentFactory_8cpp_source.html">ComponentFactory.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        <span class="keywordflow">return</span> <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">_builders</a>.at(name)(game, stream);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                } <span class="keywordflow">catch</span> (std::out_of_range &amp;) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        <span class="keywordflow">throw</span> NoSuchComponentException(<span class="stringliteral">&quot;Cannot find any way to build a &quot;</span> + name + <span class="stringliteral">&quot;Component&quot;</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a11a70657a39fadf2a08213181576d3fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11a70657a39fadf2a08213181576d3fd">&#9670;&nbsp;</a></span>getItemList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; TouhouFanGame::ECS::Factory::ComponentFactory::getItemList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a list of all the <a class="el" href="classTouhouFanGame_1_1ECS_1_1Entity.html" title="Entity containing Component and updated by System.">Entity</a> this factory can build. </p>
+
+<p class="definition">Definition at line <a class="el" href="ComponentFactory_8cpp_source.html#l00067">67</a> of file <a class="el" href="ComponentFactory_8cpp_source.html">ComponentFactory.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                std::vector&lt;std::string&gt; list;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                list.reserve(<a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">_builders</a>.size());</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;builder : <a class="code" href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">_builders</a>)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                        list.push_back(builder.first);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">return</span> list;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a78563fbaea23bb81d639146637ae674e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78563fbaea23bb81d639146637ae674e">&#9670;&nbsp;</a></span>_basicBuilders</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt; std::string, std::function&lt; <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html">Component</a> *(<a class="el" href="structTouhouFanGame_1_1Game.html">Game</a> &amp;)&gt; &gt; TouhouFanGame::ECS::Factory::ComponentFactory::_basicBuilders</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">                {<span class="stringliteral">&quot;Movable&quot;</span>,          [](Game &amp;    ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::MovableComponent(); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Position&quot;</span>,         [](Game &amp;    ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::PositionComponent({0, 0}); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Controllable&quot;</span>,     [](Game &amp;game){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::ControllableComponent(*game.state.settings.input, 2, 4); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Displayable&quot;</span>,      [](Game &amp;game){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::DisplayableComponent(game, <span class="stringliteral">&quot;assets/entities/test.json&quot;</span>); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;BlockedByTerrain&quot;</span>, [](Game &amp;game){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::BlockedByTerrainComponent(game.state.map); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Mana&quot;</span>,             [](Game &amp;    ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::ManaComponent(20); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Health&quot;</span>,           [](Game &amp;    ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::HealthComponent(20); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Name&quot;</span>,             [](Game &amp;    ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::NameComponent(<span class="stringliteral">&quot;&quot;</span>); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;PlayerHUD&quot;</span>,        [](Game &amp;game){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::PlayerHUDComponent(game.state.hud); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Inventory&quot;</span>,        [](Game &amp;    ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::InventoryComponent(16); }},</div>
+<div class="line">        }</div>
+</div><!-- fragment -->
+<p>Maps a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> name to it's builder. </p>
+
+<p class="definition">Definition at line <a class="el" href="ComponentFactory_8hpp_source.html#l00030">30</a> of file <a class="el" href="ComponentFactory_8hpp_source.html">ComponentFactory.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a0dfe7d55b3783537617d556f4db0df67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0dfe7d55b3783537617d556f4db0df67">&#9670;&nbsp;</a></span>_builders</h2>
 
@@ -192,6 +337,11 @@ Static Private Attributes</h2></td></tr>
 <div class="line">                {<span class="stringliteral">&quot;Controllable&quot;</span>,     [](Game &amp;game, std::istream &amp;stream){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::ControllableComponent(*game.state.settings.input, stream); }},</div>
 <div class="line">                {<span class="stringliteral">&quot;Displayable&quot;</span>,      [](Game &amp;game, std::istream &amp;stream){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::DisplayableComponent(game, stream); }},</div>
 <div class="line">                {<span class="stringliteral">&quot;BlockedByTerrain&quot;</span>, [](Game &amp;game, std::istream &amp;      ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::BlockedByTerrainComponent(game.state.map); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Mana&quot;</span>,             [](Game &amp;    , std::istream &amp;stream){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::ManaComponent(stream); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Health&quot;</span>,           [](Game &amp;    , std::istream &amp;stream){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::HealthComponent(stream); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Name&quot;</span>,             [](Game &amp;    , std::istream &amp;stream){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::NameComponent(stream); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;PlayerHUD&quot;</span>,        [](Game &amp;game, std::istream &amp;      ){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::PlayerHUDComponent(game.state.hud); }},</div>
+<div class="line">                {<span class="stringliteral">&quot;Inventory&quot;</span>,        [](Game &amp;game, std::istream &amp;stream){ <span class="keywordflow">return</span> <span class="keyword">new</span> Components::InventoryComponent(stream, game.resources.items); }},</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
 <p>Maps a <a class="el" href="classTouhouFanGame_1_1ECS_1_1Component.html" title="A Component linked to a System.">Component</a> name to it's builder. </p>
@@ -201,11 +351,12 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/ECS/Factories/<a class="el" href="ComponentFactory_8hpp_source.html">ComponentFactory.hpp</a></li>
-<li>src/ECS/Factories/<a class="el" href="ComponentFactory_8cpp_source.html">ComponentFactory.cpp</a></li>
+<li>src/Core/ECS/Factories/<a class="el" href="ComponentFactory_8hpp_source.html">ComponentFactory.hpp</a></li>
+<li>src/Core/ECS/Factories/<a class="el" href="ComponentFactory_8cpp_source.html">ComponentFactory.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory_html_a0dfe7d55b3783537617d556f4db0df67"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a0dfe7d55b3783537617d556f4db0df67">TouhouFanGame::ECS::Factory::ComponentFactory::_builders</a></div><div class="ttdeci">static const std::map&lt; std::string, std::function&lt; Component *(Game &amp;, std::istream &amp;)&gt; &gt; _builders</div><div class="ttdoc">Maps a Component name to it's builder.</div><div class="ttdef"><b>Definition:</b> <a href="ComponentFactory_8hpp_source.html#l00027">ComponentFactory.hpp:27</a></div></div>
+<div class="ttc" id="aclassTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory_html_a78563fbaea23bb81d639146637ae674e"><div class="ttname"><a href="classTouhouFanGame_1_1ECS_1_1Factory_1_1ComponentFactory.html#a78563fbaea23bb81d639146637ae674e">TouhouFanGame::ECS::Factory::ComponentFactory::_basicBuilders</a></div><div class="ttdeci">static const std::map&lt; std::string, std::function&lt; Component *(Game &amp;)&gt; &gt; _basicBuilders</div><div class="ttdoc">Maps a Component name to it's builder.</div><div class="ttdef"><b>Definition:</b> <a href="ComponentFactory_8hpp_source.html#l00030">ComponentFactory.hpp:30</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

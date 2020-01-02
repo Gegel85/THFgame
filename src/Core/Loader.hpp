@@ -22,10 +22,11 @@ namespace TouhouFanGame
 		static bool loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path);
 
 		//! @brief Load a music file.
+		//! @param settings The settings of the game.
 		//! @param music Buffer to load the file in.
 		//! @param obj Object containing the path to the file and the loop points.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(Settings &, std::pair<sf::Music, std::string> &music, nlohmann::json &obj);
+		static bool loadFile(Settings &settings, std::pair<sf::Music, std::string> &music, nlohmann::json &obj);
 
 		//! @brief Load a texture file.
 		//! @param texture Buffer to load the file in.
@@ -51,6 +52,7 @@ namespace TouhouFanGame
 
 		template<typename dataType>
 		//! @brief Load assets from a json array.
+		//! @param settings The settings to pass to the loader.
 		//! @param dataName The name of the data that are currently loaded.
 		//! @param paths Array of json paths.
 		//! @param data Map of buffers to load the files in.

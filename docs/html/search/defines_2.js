@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['player_5fsize_712',['PLAYER_SIZE',['../Map_8hpp.html#a5fac8f2cc29ea5bde30c8fa4a4daa306',1,'Map.hpp']]]
+  ['mb_5ficonerror_1115',['MB_ICONERROR',['../Utils_8hpp.html#a7e609c781963fa58288a51823a054641',1,'Utils.hpp']]],
+  ['mb_5fyesno_1116',['MB_YESNO',['../Utils_8hpp.html#a6864b816a964ce67558520dbff0c3aa1',1,'Utils.hpp']]]
 ];

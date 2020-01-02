@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['menu_674',['Menu',['../classTouhouFanGame_1_1MenuMgr.html#ad6d2626217eb7aaa5c173b8195c7a835',1,'TouhouFanGame::MenuMgr']]]
+  ['type_1077',['Type',['../structTouhouFanGame_1_1Input_1_1Event.html#af159d23ed9d82cdca19085f438f43bf7',1,'TouhouFanGame::Input::Event']]]
 ];

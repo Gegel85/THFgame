@@ -169,6 +169,11 @@ namespace TouhouFanGame::ECS
 		if (str != "THFG_ECS_Core_End")
 			throw InvalidSerializedString("Unexpected EOF");
 	}
+
+	const std::vector<std::unique_ptr<Entity>> &Core::getEntities() const
+	{
+		return this->_entities;
+	}
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Core &core)

@@ -520,7 +520,7 @@ namespace TouhouFanGame
 			coords.y / this->_map._tileSize
 		);
 
-		if (real.x < this->_map._size.x && real.y < this->_map._size.y && this->_pressed && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (0 <= real.x && real.x < this->_map._size.x && 0 <= real.y && real.y < this->_map._size.y && (this->_pressed & (1U << sf::Mouse::Left)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			this->_map._objects[real.x + this->_map._size.x * real.y] = this->_selected;
 	}
 
@@ -548,19 +548,26 @@ namespace TouhouFanGame
 					this->_game.resources.screen->setView(sf::View{sf::FloatRect(0, 0, event.size.width, event.size.height)});
 					this->_gui->setView(sf::View{sf::FloatRect(0, 0, event.size.width, event.size.height)});
 					break;
-				default:
-					break;
 				case sf::Event::MouseButtonPressed:
-					if (event.mouseButton.button == sf::Mouse::Left)
-						this->_pressed = true;
+					this->_pressed |= 1U << event.mouseButton.button;
+					if (event.mouseButton.button == sf::Mouse::Right) {
+						this->_startPos = {event.mouseButton.x, event.mouseButton.y};
+						this->_oldCam = this->_cameraPos;
+					}
 					this->_changeObject(event.mouseButton.x, event.mouseButton.y);
 					break;
 				case sf::Event::MouseButtonReleased:
-					if (event.mouseButton.button == sf::Mouse::Left)
-						this->_pressed = false;
+					this->_pressed &= ~(1U << event.mouseButton.button);
 					break;
 				case sf::Event::MouseMoved:
-					this->_changeObject(event.mouseMove.x,event.mouseMove.y);
+					this->_changeObject(event.mouseMove.x, event.mouseMove.y);
+					if (this->_pressed & (1U << sf::Mouse::Right) && sf::Mouse::isButtonPressed(sf::Mouse::Right))
+						this->_cameraPos = {
+							this->_oldCam.x + event.mouseMove.x - this->_startPos.x,
+							this->_oldCam.y + event.mouseMove.y - this->_startPos.y
+						};
+					break;
+				default:
 					break;
 				}
 			}

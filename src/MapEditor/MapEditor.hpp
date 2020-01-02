@@ -27,11 +27,13 @@ namespace TouhouFanGame
 		Map _map;
 		Game _game;
 		sf::Font _font;
-		bool _pressed = false;
 		bool _deleting = false;
 		unsigned _loaded;
 		MapParams _params;
+		sf::Vector2i _startPos;
 		sf::Vector2f _cameraPos;
+		sf::Vector2f _oldCam;
+		unsigned char _pressed = 0;
 		unsigned char _selected = 0;
 		std::unique_ptr<tgui::Gui> _gui;
 

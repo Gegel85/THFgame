@@ -71,6 +71,10 @@ namespace TouhouFanGame::ECS
 		//! @return A list of all the Entity matching this name.
 		std::vector<std::reference_wrapper<Entity>> getEntityByComponent(const std::string &name);
 
+		//! @brief Get all Entity.
+		//! @return A list of all the Entity created.
+		const std::vector<std::unique_ptr<Entity>> &getEntities() const;
+
 		//! @brief Get a System by it's name.
 		//! @param name The name of the Entity to fetch.
 		//! @return The System requested.
@@ -97,7 +101,7 @@ namespace TouhouFanGame::ECS
 		//! @brief Delete an Entity.
 		void deleteEntity(unsigned entityID);
 
-		//! @brief Deletes all the Entity in the Core besides the the Entity
+		//! @brief Deletes all the Entity in the Core besides any Entity
 		//! with an ID contained in the whitelist.
 		//! @param whitelist A list of Entity's ID to leave in the Core.
 		void clear(std::vector<unsigned int> whitelist = {});

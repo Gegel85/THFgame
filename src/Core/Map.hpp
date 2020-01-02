@@ -31,8 +31,14 @@ namespace TouhouFanGame
 			//! @brief Where to place the player after teleporting it.
 			sf::Vector2<unsigned short> mapSpawn;
 
+			//! @brief Serialize to a stream.
+			void serialize(std::ostream &stream) const;
+
 			//! @brief Loads a trigger from the stream.
 			TpTrigger(std::istream &stream);
+
+			// @brief Default constructor.
+			TpTrigger() = default;
 		};
 
 		friend MapEditor;
@@ -85,21 +91,21 @@ namespace TouhouFanGame
 		unsigned int _id;
 
 		template<typename type>
-		//! @brief Reads an integer MSB from a stream.
+		//! @brief Reads an integer MSBF from a stream.
 		static type _readInteger(std::istream &stream) {
-			char byte;
-			type result = 0;
+			unsigned char byte;
+			typename std::make_unsigned<type>::type result = 0;
 
 			for (size_t i = 0; i < sizeof(result); i++) {
 				if (stream.eof())
 					throw CorruptedMapException("EOF reached");
-				stream.read(&byte, 1);
+				stream.read(reinterpret_cast<char *>(&byte), 1);
 				result = result << 8U | byte;
 			}
 			return result;
 		}
 
-		//! @brief Reads an integer MSB from a stream.
+		//! @brief Reads a string from a stream.
 		static std::string _readString(std::istream &stream) {
 			char byte;
 			std::string result;
@@ -115,17 +121,17 @@ namespace TouhouFanGame
 		}
 
 		template<typename type>
-		//! @brief Writes an integer MSB from a stream.
+		//! @brief Writes an integer MSBF to a stream.
 		static void _writeInteger(std::ostream &stream, type value) {
-			char val;
+			unsigned char val;
 
 			for (size_t i = sizeof(value); i > 0; i--) {
 				val = value >> 8 * (i - 1);
-				stream.write(&val, 1);
+				stream.write(reinterpret_cast<char *>(&val), 1);
 			}
 		}
 
-		//! @brief Writes an integer MSB from a stream.
+		//! @brief Writes a string to a stream.
 		static void _writeString(std::ostream &stream, const std::string &str) {
 			stream << str << '\0';
 		}

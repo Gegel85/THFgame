@@ -18,11 +18,22 @@ namespace TouhouFanGame
 	{
 	}
 
-	Map::TpTrigger::TpTrigger(std::istream &stream) :
-		location(_readInteger<unsigned short>(stream), _readInteger<unsigned short>(stream)),
-		mapId(_readInteger<unsigned short>(stream)),
-		mapSpawn(_readInteger<unsigned short>(stream), _readInteger<unsigned short>(stream))
+	Map::TpTrigger::TpTrigger(std::istream &stream)
 	{
+		this->location.x = _readInteger<unsigned short>(stream);
+		this->location.y = _readInteger<unsigned short>(stream);
+		this->mapId = _readInteger<unsigned short>(stream);
+		this->mapSpawn.x = _readInteger<unsigned short>(stream);
+		this->mapSpawn.y = _readInteger<unsigned short>(stream);
+	}
+
+	void Map::TpTrigger::serialize(std::ostream &stream) const
+	{
+		Map::_writeInteger(stream, this->location.x);
+		Map::_writeInteger(stream, this->location.y);
+		Map::_writeInteger(stream, this->mapId);
+		Map::_writeInteger(stream, this->mapSpawn.x);
+		Map::_writeInteger(stream, this->mapSpawn.x);
 	}
 
 	void Map::_serialize(std::ostream &stream) const
@@ -302,10 +313,10 @@ namespace TouhouFanGame
 			auto &result = this->_tpTriggers.emplace_back(stream);
 
 			logger.debug(
-				std::to_string(len) + " teleporters remaining ->"
-				"Position: " + Utils::toString(result.location) +
-				"Map: " + std::to_string(result.mapId) +
-				"Spawn: " + Utils::toString(result.mapSpawn)
+				std::to_string(len - 1) + " teleporters remaining -> "
+				" Position: " + Utils::toString(result.location) +
+				" Map: " + std::to_string(result.mapId) +
+				" Spawn: " + Utils::toString(result.mapSpawn)
 			);
 		}
 
@@ -446,10 +457,6 @@ namespace TouhouFanGame
 
 std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::Map::TpTrigger &trigger)
 {
-	stream.write(reinterpret_cast<const char *>(&trigger.location.x), sizeof(trigger.location.x));
-	stream.write(reinterpret_cast<const char *>(&trigger.location.y), sizeof(trigger.location.y));
-	stream.write(reinterpret_cast<const char *>(&trigger.mapId), sizeof(trigger.mapId));
-	stream.write(reinterpret_cast<const char *>(&trigger.mapSpawn.x), sizeof(trigger.mapSpawn.x));
-	stream.write(reinterpret_cast<const char *>(&trigger.mapSpawn.y), sizeof(trigger.mapSpawn.y));
+	trigger.serialize(stream);
 	return stream;
 }

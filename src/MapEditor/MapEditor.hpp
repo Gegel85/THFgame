@@ -6,7 +6,7 @@
 #define THFGAME_MAPEDITOR_HPP
 
 
-#include <TGUI/Gui.hpp>
+#include <TGUI/TGUI.hpp>
 #include "../Core/Game.hpp"
 
 namespace TouhouFanGame
@@ -36,6 +36,7 @@ namespace TouhouFanGame
 		unsigned char _pressed = 0;
 		unsigned char _selected = 0;
 		std::unique_ptr<tgui::Gui> _gui;
+		sf::Vector2<std::shared_ptr<tgui::Label>> _posLabels;
 
 		void _makeAllWidgets();
 		void _displaySettings();
@@ -46,7 +47,7 @@ namespace TouhouFanGame
 		void _showNewEntityBox();
 		void _changeObject(sf::Vector2i pixels);
 		void _changeObject(int x, int y);
-		void _showNewTeleporterBox();
+		void _showNewTeleporterBox(Map::TpTrigger &trigger);
 		void _showEntityProperties(ECS::Entity &entity);
 		void _removeComponentFromEntity(ECS::Entity &entity, const std::string &name);
 	public:

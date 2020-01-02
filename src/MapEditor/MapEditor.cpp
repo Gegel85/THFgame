@@ -252,7 +252,7 @@ namespace TouhouFanGame
 			this->_showNewEntityBox();
 		});
 		menuBar->connectMenuItem({"New", "Teleporter"}, [this]{
-			this->_showNewTeleporterBox();
+			this->_showNewTeleporterBox(this->_map._tpTriggers.emplace_back());
 		});
 	}
 
@@ -376,11 +376,43 @@ namespace TouhouFanGame
 		});
 	}
 
-	void MapEditor::_showNewTeleporterBox()
+	void MapEditor::_showNewTeleporterBox(Map::TpTrigger &trigger)
 	{
 		auto window = openWindowWithFocus(*this->_gui);
 
 		window->setTitle("New teleporter");
+		window->setSize({240, 190});
+		window->loadWidgetsFromFile("assets/gui/windows/tp.txt");
+
+		auto cancel = window->get<tgui::Button>("Cancel");
+		auto ok = window->get<tgui::Button>("OK");
+		auto map = window->get<tgui::EditBox>("DestMap");
+		auto mapDX = window->get<tgui::EditBox>("XDestPos");
+		auto mapDY = window->get<tgui::EditBox>("YDestPos");
+		auto mapX = window->get<tgui::EditBox>("XPos");
+		auto mapY = window->get<tgui::EditBox>("YPos");
+
+		map->setText(std::to_string(trigger.mapId));
+		mapDX->setText(std::to_string(trigger.mapSpawn.x));
+		mapDY->setText(std::to_string(trigger.mapSpawn.y));
+		mapX->setText(std::to_string(trigger.location.x));
+		mapY->setText(std::to_string(trigger.location.y));
+		cancel->connect("Pressed", [this, window, &trigger] {
+			for (auto tp = this->_map._tpTriggers.begin(); tp < this->_map._tpTriggers.end(); tp++)
+				if (&*tp == &trigger) {
+					this->_map._tpTriggers.erase(tp);
+					break;
+				}
+			window->close();
+		});
+		ok->connect("Pressed", [this, window, &trigger, map, mapDX, mapDY, mapX, mapY]{
+			trigger.mapId = std::stol(map->getText().toAnsiString());
+			trigger.mapSpawn.x = std::stol(mapDX->getText().toAnsiString());
+			trigger.mapSpawn.y = std::stol(mapDY->getText().toAnsiString());
+			trigger.location.x = std::stol(mapX->getText().toAnsiString());
+			trigger.location.y = std::stol(mapY->getText().toAnsiString());
+			window->close();
+		});
 	}
 
 	void MapEditor::_showToolBox(bool openWindow)
@@ -405,6 +437,8 @@ namespace TouhouFanGame
 			auto zoomPButton = window->get<tgui::BitmapButton>("Zoom+");
 			auto zoomMButton = window->get<tgui::BitmapButton>("Zoom-");
 
+			this->_posLabels.x = window->get<tgui::Label>("PosX");
+			this->_posLabels.y = window->get<tgui::Label>("PosY");
 			solidButton->getRenderer()->setBackgroundColor((this->_selected & 0x80U) ? "#888888" : "white");
 			solidButton->connect("Pressed", [solidButton, this]{
 				auto renderer = tgui::RendererData::create({
@@ -413,6 +447,10 @@ namespace TouhouFanGame
 
 				solidButton->setRenderer(renderer);
 				this->_selected = (this->_selected | 0x80U) & ~(this->_selected & 0x80U);
+			});
+			window->connect("Closed", [this]{
+				this->_posLabels.x = nullptr;
+				this->_posLabels.y = nullptr;
 			});
 		} else if (!window)
 			return;
@@ -475,6 +513,13 @@ namespace TouhouFanGame
 					rect.setPosition(i * this->_map._tileSize, j * this->_map._tileSize);
 					static_cast<sf::RenderWindow &>(*this->_game.resources.screen).draw(rect);
 				}
+		rect.setFillColor(sf::Color{
+			0, 0, 255, 100
+		});
+		for (auto &tp : this->_map._tpTriggers) {
+			rect.setPosition(tp.location.x, tp.location.y);
+			static_cast<sf::RenderWindow &>(*this->_game.resources.screen).draw(rect);
+		}
 	}
 
 	void MapEditor::_resetMap()
@@ -520,6 +565,10 @@ namespace TouhouFanGame
 			coords.y / this->_map._tileSize
 		);
 
+		if (this->_posLabels.x)
+			this->_posLabels.x->setText("X: "+ std::to_string(static_cast<int>(coords.x)));
+		if (this->_posLabels.y)
+			this->_posLabels.y->setText("Y: "+ std::to_string(static_cast<int>(coords.y)));
 		if (0 <= real.x && real.x < this->_map._size.x && 0 <= real.y && real.y < this->_map._size.y && (this->_pressed & (1U << sf::Mouse::Left)) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			this->_map._objects[real.x + this->_map._size.x * real.y] = this->_selected;
 	}

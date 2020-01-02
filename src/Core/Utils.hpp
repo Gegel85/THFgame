@@ -22,7 +22,7 @@ namespace TouhouFanGame::Utils
 	//! @param vec The vector to serialize.
 	//! @return The serialized string.
 	template<typename type>
-	std::string toString(sf::Vector2<type> &vec)
+	std::string toString(const sf::Vector2<type> &vec)
 	{
 		return "(" + std::to_string(vec.x) + ", " + std::to_string(vec.y) + ")";
 	}

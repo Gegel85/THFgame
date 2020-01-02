@@ -41,30 +41,10 @@ Label.Label1 {
 EditBox.DestMap {
     InputValidator = UInt;
     Position = (160, 8);
-    Size = (110, 22);
+    Size = (70, 22);
+    Text = 0;
     TextSize = 13;
-
-    Renderer {
-        backgroundcolor = #F5F5F5;
-        backgroundcolordisabled = #E6E6E6;
-        backgroundcolorhover = white;
-        bordercolor = #3C3C3C;
-        bordercolordisabled = #7D7D7D;
-        bordercolorhover = black;
-        borders = (1, 1, 1, 1);
-        caretcolor = black;
-        caretwidth = 1;
-        defaulttextcolor = #A0A0A0;
-        padding = (0, 0, 0, 0);
-        selectedtextbackgroundcolor = #006EFF;
-        selectedtextcolor = white;
-        textcolor = #3C3C3C;
-        textcolordisabled = #7D7D7D;
-        texture = None;
-        texturedisabled = None;
-        texturefocused = None;
-        texturehover = None;
-    }
+    renderer = &2;
 }
 
 Label.Label2 {
@@ -80,7 +60,8 @@ Label.Label2 {
 EditBox.XDestPos {
     InputValidator = Float;
     Position = (160, 38);
-    Size = (110, 22);
+    Size = (70, 22);
+    Text = 0;
     TextSize = 13;
     renderer = &2;
 }
@@ -88,7 +69,8 @@ EditBox.XDestPos {
 EditBox.YDestPos {
     InputValidator = Float;
     Position = (160, 68);
-    Size = (110, 22);
+    Size = (70, 22);
+    Text = 0;
     TextSize = 13;
     renderer = &2;
 }
@@ -100,14 +82,7 @@ Label.Label3 {
     Size = (142.2, 18);
     Text = "Destination position Y";
     TextSize = 13;
-
-    Renderer {
-        backgroundcolor = transparent;
-        bordercolor = #3C3C3C;
-        borders = (0, 0, 0, 0);
-        textcolor = #3C3C3C;
-        texturebackground = None;
-    }
+    renderer = &1;
 }
 
 Label.Label4 {
@@ -123,7 +98,8 @@ Label.Label4 {
 EditBox.XPos {
     InputValidator = Float;
     Position = (160, 98);
-    Size = (110, 22);
+    Size = (70, 22);
+    Text = 0;
     TextSize = 13;
     renderer = &2;
 }
@@ -135,20 +111,70 @@ Label.Label5 {
     Size = (65.2, 18);
     Text = "Position Y";
     TextSize = 13;
-
-    Renderer {
-        backgroundcolor = transparent;
-        bordercolor = #3C3C3C;
-        borders = (0, 0, 0, 0);
-        textcolor = #3C3C3C;
-        texturebackground = None;
-    }
+    renderer = &1;
 }
 
 EditBox.YPos {
     InputValidator = Float;
     Position = (160, 128);
-    Size = (110, 22);
+    Size = (70, 22);
+    Text = 0;
     TextSize = 13;
     renderer = &2;
+}
+
+Button.OK {
+    Position = (194, 160);
+    Text = OK;
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
+}
+
+Button.Cancel {
+    Position = (124, 160);
+    Text = Delete;
+    TextSize = 13;
+
+    Renderer {
+        backgroundcolor = #F5F5F5;
+        backgroundcolordisabled = #E6E6E6;
+        backgroundcolordown = #EBEBEB;
+        backgroundcolorhover = white;
+        bordercolor = #3C3C3C;
+        bordercolordisabled = #7D7D7D;
+        bordercolordown = black;
+        bordercolorfocused = #1E1EB4;
+        bordercolorhover = black;
+        borders = (1, 1, 1, 1);
+        textcolor = #3C3C3C;
+        textcolordisabled = #7D7D7D;
+        textcolordown = black;
+        textcolorhover = black;
+        texture = None;
+        texturedisabled = None;
+        texturedown = None;
+        texturefocused = None;
+        texturehover = None;
+    }
 }

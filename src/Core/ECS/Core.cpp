@@ -166,8 +166,10 @@ namespace TouhouFanGame::ECS
 			}
 		}
 
-		if (str != "THFG_ECS_Core_End")
+		if (str.empty())
 			throw InvalidSerializedString("Unexpected EOF");
+		if (str != "THFG_ECS_Core_End")
+			throw InvalidSerializedString("Malformed footer (" + str + ")");
 	}
 
 	const std::vector<std::unique_ptr<Entity>> &Core::getEntities() const

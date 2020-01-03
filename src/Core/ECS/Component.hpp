@@ -36,7 +36,7 @@ namespace TouhouFanGame::ECS
 		//! If it isn't, it will cast it anyway and won't report any error.
 		type &to()
 		{
-			return reinterpret_cast<type &>(*this);
+			return dynamic_cast<type &>(*this);
 		}
 	};
 }

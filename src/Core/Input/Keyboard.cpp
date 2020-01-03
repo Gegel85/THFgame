@@ -139,7 +139,7 @@ namespace TouhouFanGame::Inputs
 
 	bool Keyboard::actionPressed(Action action)
 	{
-		return sf::Keyboard::isKeyPressed(this->_keys[action]);
+		return sf::Keyboard::isKeyPressed(this->_keys[action]) && (!this->_window || this->_window->hasFocus());
 	}
 
 	bool Keyboard::changeKeyFor(Action action)

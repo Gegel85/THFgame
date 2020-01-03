@@ -16,7 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 
 	void ManaSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
 	{
-		auto &mana = entity.getComponent("Health").to<Components::ManaComponent>();
+		auto &mana = entity.getComponent("Mana").to<Components::ManaComponent>();
 
 		if (mana.mana > mana.maxMana)
 			mana.mana = mana.maxMana;

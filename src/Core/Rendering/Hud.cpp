@@ -74,6 +74,20 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		30
 	});
 
+	screen.fillColor(sf::Color{50, 50, 50});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 10),
+		static_cast<int>(camera.y + screenSize.y / 2. - 30),
+		static_cast<int>(200),
+		20
+	});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x + screenSize.x / 2. - 210),
+		static_cast<int>(camera.y + screenSize.y / 2. - 30),
+		static_cast<int>(200),
+		20
+	});
+
 	screen.fillColor(sf::Color{255, 0, 0});
 	screen.draw(sf::IntRect{
 		static_cast<int>(camera.x - screenSize.x / 2. + 10),

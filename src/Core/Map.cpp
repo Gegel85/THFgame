@@ -36,6 +36,11 @@ namespace TouhouFanGame
 		Map::_writeInteger(stream, this->mapSpawn.x);
 	}
 
+	ECS::Core &Map::getECSCore()
+	{
+		return this->_core;
+	}
+
 	void Map::_serialize(std::ostream &stream) const
 	{
 		if (this->_path.empty()) {
@@ -188,6 +193,7 @@ namespace TouhouFanGame
 		std::ifstream stream{"saves/map_player.sav"};
 
 		logger.info("Loading game");
+		this->reset();
 		if (stream.fail()) {
 			logger.error("Couldn't load map at saves/map_player.sav: " + std::string(strerror(errno)));
 			if (errno != ENOENT)
@@ -197,7 +203,6 @@ namespace TouhouFanGame
 				this->_core.makeEntity("Player");
 			return;
 		}
-		this->reset();
 
 		ECS::Entity &player = this->_core.registerEntity(new ECS::Entity(0));
 

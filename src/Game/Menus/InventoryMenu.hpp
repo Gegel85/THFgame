@@ -17,8 +17,10 @@ namespace TouhouFanGame
 	private:
 		Map &_map;
 		MenuMgr &_menu;
+		unsigned _selectedEntry = 0;
 		Rendering::HUD &_hud;
 		Rendering::Screen &_screen;
+		sf::ConvexShape _triangle{3};
 		std::map<std::string, sf::Texture> &_textures;
 
 	public:

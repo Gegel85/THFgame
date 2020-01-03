@@ -192,13 +192,16 @@ namespace TouhouFanGame
 		//! @brief Get the object at position x y.
 		//! @param x Horizontal position.
 		//! @param y Vertical position.
-		//! @return The object or 00 if out of bound.
+		//! @return The object or 0x00/0x80 if out of bound (depending if the border is solid or not).
 		unsigned char getObjectAt(int x, int y) const;
 
 		//! @brief Get the object at position pos.
 		//! @param pos Position.
 		//! @return The object or 00 if out of bound.
 		unsigned char getObjectAt(sf::Vector2f pos) const;
+
+		//! @brief Return the ECS::Core in this Map.
+		ECS::Core &getECSCore();
 
 		//! @return Returns the player.
 		//! @warning Throws if no player or multiple players are found.

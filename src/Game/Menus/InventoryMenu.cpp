@@ -14,6 +14,11 @@ namespace TouhouFanGame
 		_screen(screen),
 		_textures(textures)
 	{
+		this->_triangle.setPoint(0, sf::Vector2f(0, 0));
+		this->_triangle.setPoint(1, sf::Vector2f(15, 10));
+		this->_triangle.setPoint(2, sf::Vector2f(0, 20));
+		this->_triangle.setFillColor(sf::Color::Black);
+		this->_triangle.setOutlineThickness(0);
 	}
 
 	void InventoryMenu::render()
@@ -35,7 +40,7 @@ namespace TouhouFanGame
 		this->_screen.textSize(16);
 		this->_screen.fillColor();
 
-		for (unsigned i = 0; i < inventory.items.size(); i++) {
+		for (size_t i = 0; i < inventory.items.size(); i++) {
 			auto &item = inventory.items[i];
 
 			try {
@@ -52,17 +57,46 @@ namespace TouhouFanGame
 				}
 			);
 		}
+
+		if (!inventory.items.empty()) {
+			this->_triangle.setPosition(camera.x - screenSize.x / 2.f + 40, camera.y - screenSize.y / 2.f + 48 + this->_selectedEntry * 32.f);
+			static_cast<sf::RenderWindow &>(this->_screen).draw(this->_triangle);
+		}
 	}
 
 	void InventoryMenu::switched(bool)
-	{}
+	{
+		this->_selectedEntry = 0;
+	}
 
 	void InventoryMenu::handleEvent(const TouhouFanGame::Input::Event &event)
 	{
+		auto &player = this->_map.getPlayer();
+		auto &inventory = player.getComponent("Inventory").to<ECS::Components::InventoryComponent>();
+
 		if (event.type == Input::Event::EVENT_TRIGGERED) {
 			switch (event.action) {
 			case Input::INVENTORY:
 				this->_menu.changeMenu("in_game");
+				break;
+			case Input::DOWN:
+				this->_selectedEntry += 1;
+				this->_selectedEntry %= inventory.items.size() ?: 1;
+				break;
+			case Input::UP:
+				if (this->_selectedEntry)
+					this->_selectedEntry -= 1;
+				else
+					this->_selectedEntry = inventory.items.size() - 1;
+				break;
+			case Input::INTERACT:
+				if (!inventory.items.empty()) {
+					inventory.items[this->_selectedEntry]->use(this->_map.getPlayer());
+					inventory.items.erase(inventory.items.begin() + this->_selectedEntry);
+					if (this->_selectedEntry == inventory.items.size() && !inventory.items.empty())
+						this->_selectedEntry--;
+					this->_map.getECSCore().getSystemByName("PlayerHUD").updateEntity(player);
+				}
 				break;
 			default:
 				break;

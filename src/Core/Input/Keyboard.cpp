@@ -185,6 +185,8 @@ namespace TouhouFanGame::Inputs
 
 	void Keyboard::_updateState()
 	{
+		if (this->_window && !this->_window->hasFocus())
+			return;
 		for (unsigned i = 0; i < NB_OF_ACTION; i++) {
 			bool press = this->actionPressed(static_cast<Action>(i));
 

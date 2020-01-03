@@ -193,6 +193,8 @@ namespace TouhouFanGame
 
 					this->_map.loadFromFile("assets/maps/map_" + std::to_string(id) + ".map");
 					this->_showToolBox(false);
+					this->_showAllEntities(false);
+					this->_showAllTeleporters(false);
 					this->_loaded = id;
 					menuBar->setMenuItemEnabled({"File", "Save"}, true);
 				} catch (std::exception &e) {
@@ -248,11 +250,19 @@ namespace TouhouFanGame
 		menuBar->connectMenuItem({"Windows", "Tools"}, [this]{
 			this->_showToolBox();
 		});
+		menuBar->connectMenuItem({"Windows", "Teleporters"}, [this]{
+			this->_showAllTeleporters();
+		});
+		menuBar->connectMenuItem({"Windows", "Entities"}, [this]{
+			this->_showAllEntities();
+		});
 		menuBar->connectMenuItem({"New", "Entity"}, [this]{
 			this->_showNewEntityBox();
+			this->_showAllEntities(false);
 		});
 		menuBar->connectMenuItem({"New", "Teleporter"}, [this]{
 			this->_showNewTeleporterBox(this->_map._tpTriggers.emplace_back());
+			this->_showAllTeleporters(false);
 		});
 	}
 
@@ -372,6 +382,7 @@ namespace TouhouFanGame
 		);
 		deleteButton->connect("Pressed", [window, &entity, this]{
 			this->_map._core.deleteEntity(entity);
+			this->_showAllEntities(false);
 			window->close();
 		});
 	}
@@ -403,6 +414,7 @@ namespace TouhouFanGame
 					this->_map._tpTriggers.erase(tp);
 					break;
 				}
+			this->_showAllTeleporters(false);
 			window->close();
 		});
 		ok->connect("Pressed", [this, window, &trigger, map, mapDX, mapDY, mapX, mapY]{
@@ -411,8 +423,87 @@ namespace TouhouFanGame
 			trigger.mapSpawn.y = std::stol(mapDY->getText().toAnsiString());
 			trigger.location.x = std::stol(mapX->getText().toAnsiString());
 			trigger.location.y = std::stol(mapY->getText().toAnsiString());
+			this->_showAllTeleporters(false);
 			window->close();
 		});
+	}
+
+	void MapEditor::_showAllTeleporters(bool openWindow)
+	{
+		auto window = this->_gui->get<tgui::ChildWindow>("TpWindow");
+
+		if (!window && openWindow) {
+			auto panel = tgui::ScrollablePanel::create({"parent.w - 20", "parent.h - 20"});
+
+			panel->setPosition(10, 10);
+			window = tgui::ChildWindow::create();
+			window->add(panel, "Panel");
+			this->_gui->add(window, "TpWindow");
+			window->connect({"Closed", "EscapeKeyPressed"}, [this, window] {
+				this->_gui->remove(window);
+			});
+			window->setTitle("Teleporters");
+			window->setSize({160, 340});
+			window->setPosition("&.w - w - 110", 20);
+		} else if (!window)
+			return;
+
+		auto panel = window->get<tgui::ScrollablePanel>("Panel");
+
+		panel->removeAllWidgets();
+		for (size_t i = 0; i < this->_map._tpTriggers.size(); i++) {
+			auto &trigger = this->_map._tpTriggers[i];
+			auto button = tgui::Button::create();
+
+			panel->add(button);
+			button->setPosition(2, i * 40);
+			button->setSize({"parent.w - 4", 32});
+			button->setText(
+				Utils::toString(trigger.location) + " ->\n" +
+				std::to_string(trigger.mapId) + " " + Utils::toString(trigger.mapSpawn)
+			);
+			button->connect("Pressed", [this, &trigger]{
+				this->_showNewTeleporterBox(trigger);
+			});
+		}
+	}
+
+	void MapEditor::_showAllEntities(bool openWindow)
+	{
+		auto window = this->_gui->get<tgui::ChildWindow>("EntitiesWindow");
+
+		if (!window && openWindow) {
+			auto panel = tgui::ScrollablePanel::create({"parent.w - 20", "parent.h - 20"});
+
+			panel->setPosition(10, 10);
+			window = tgui::ChildWindow::create();
+			window->add(panel, "Panel");
+			this->_gui->add(window, "EntitiesWindow");
+			window->connect({"Closed", "EscapeKeyPressed"}, [this, window] {
+				this->_gui->remove(window);
+			});
+			window->setTitle("Entities");
+			window->setSize({110, 240});
+			window->setPosition("&.w - w", 380);
+		} else if (!window)
+			return;
+
+		auto panel = window->get<tgui::ScrollablePanel>("Panel");
+		const auto &entities = this->_map._core.getEntities();
+
+		panel->removeAllWidgets();
+		for (size_t i = 0; i < entities.size(); i++) {
+			auto &entity = *entities[i];
+			auto button = tgui::BitmapButton::create();
+
+			panel->add(button);
+			button->setPosition(4, i * 40);
+			button->setSize({"parent.w - 4", 32});
+			button->setText("Entity " + std::to_string(entity.getID()) + " (" + entity.getName() + ")");
+			button->connect("Pressed", [this, &entity]{
+				this->_showEntityProperties(entity);
+			});
+		}
 	}
 
 	void MapEditor::_showToolBox(bool openWindow)
@@ -550,6 +641,8 @@ namespace TouhouFanGame
 
 		this->_resetMap();
 		this->_showToolBox();
+		this->_showAllEntities();
+		this->_showAllTeleporters();
 	}
 
 	void MapEditor::_changeObject(int x, int y)

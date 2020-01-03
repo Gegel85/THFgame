@@ -52,6 +52,6 @@ MenuBar.main_bar {
 
     Menu {
         Text = Windows;
-        Items = [Tools, View];
+        Items = [Tools, Entities, Teleporters];
     }
 }

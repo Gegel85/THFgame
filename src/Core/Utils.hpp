@@ -7,6 +7,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <string>
+#include <iomanip>
 
 #ifndef _WIN32
 #define MB_ICONERROR 1
@@ -25,6 +26,20 @@ namespace TouhouFanGame::Utils
 	std::string toString(const sf::Vector2<type> &vec)
 	{
 		return "(" + std::to_string(vec.x) + ", " + std::to_string(vec.y) + ")";
+	}
+
+	//! @brief Return the hexadecimal representation of a number.
+	//! @details It will serialize the vector in a string like this "({x_value}, {y_value})".
+	//! @param vec The vector to serialize.
+	//! @return The serialized string.
+	template<typename type>
+	std::string toHex(type nb)
+	{
+		unsigned long long n = static_cast<typename std::make_unsigned<type>::type>(nb);
+		std::stringstream s;
+
+		s << std::setfill ('0') << std::setw(sizeof(nb) * 2) << std::hex << std::uppercase << n;
+		return s.str();
 	}
 
 	//! @brief Display a Windows dialog box.

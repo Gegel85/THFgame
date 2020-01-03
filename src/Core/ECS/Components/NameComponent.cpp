@@ -11,12 +11,17 @@ namespace TouhouFanGame::ECS::Components
 		Component("Name")
 	{
 		std::getline(stream, this->name, '\0');
+		while (!this->name.empty() && std::isspace(this->name[0]))
+			this->name = this->name.substr(1);
 	}
 
 	NameComponent::NameComponent(const std::string &name) :
 		Component("Name"),
 		name(name)
-	{}
+	{
+		while (!this->name.empty() && std::isspace(this->name[0]))
+			this->name = this->name.substr(1);
+	}
 
 	void NameComponent::serialize(std::ostream &stream) const
 	{

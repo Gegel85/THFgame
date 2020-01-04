@@ -10,6 +10,7 @@
 
 
 #include "Screen.hpp"
+#include "../Dialogs/DialogMgr.hpp"
 
 #define HUD_VERTICAL_SIZE 54
 #define HUD_HORIZONTAL_SIZE 0
@@ -44,6 +45,9 @@ namespace TouhouFanGame::Rendering
 
 		//! @brief The current player name.
 		std::string _playerName = "";
+
+		//! @brief The dialog curently on screen
+		DialogMgr *_dialog = nullptr;
 
 		//! @brief Renders the player HUD on screen.
 		void _renderPlayerHUD(Screen &screen);

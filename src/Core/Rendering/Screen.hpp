@@ -112,7 +112,7 @@ namespace TouhouFanGame::Rendering
 		//! @param texture The texture to use
 		//! @param pos The position on the screen (relative to the camera)
 		//! @param rect The transformation rect to apply on the texture
-		void	draw(sf::Texture &texture, sf::Vector2f pos, sf::IntRect rect = {0, 0, 0, 0});
+		void	draw(sf::Texture &texture, sf::Vector2f pos, sf::Vector2u size = {0, 0}, sf::IntRect rect = {0, 0, 0, 0});
 
 		//! @brief Get the current FPS
 		double	getFPS();

@@ -9,7 +9,7 @@
 
 namespace TouhouFanGame
 {
-	//! @brief The base exception
+	//! @brief The base exception.
 	class BaseException : public std::exception {
 	private:
 		std::string _msg;
@@ -23,7 +23,7 @@ namespace TouhouFanGame
 		};
 	};
 
-	//! @brief The assets list is corrupted or invalid
+	//! @brief The assets list is corrupted or invalid.
 	class CorruptedAssetsListException : public BaseException {
 	public:
 		explicit CorruptedAssetsListException(const std::string &&msg) :
@@ -31,7 +31,7 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief The map is corrupted
+	//! @brief The map is corrupted.
 	class CorruptedMapException : public BaseException {
 	public:
 		explicit CorruptedMapException(const std::string &&msg) :
@@ -39,7 +39,7 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief The map is not loaded
+	//! @brief The map is not loaded.
 	class MapNotLoadedException : public BaseException {
 	public:
 		explicit MapNotLoadedException() :
@@ -47,7 +47,7 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief The map couldn't be saved
+	//! @brief The map couldn't be saved.
 	class MapSavingFailureException : public BaseException {
 	public:
 		explicit MapSavingFailureException(const std::string &&msg) :
@@ -55,7 +55,7 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief This file is not a valid saved map
+	//! @brief This file is not a valid saved map.
 	class InvalidSavedMap : public BaseException {
 	public:
 		explicit InvalidSavedMap(const std::string &&msg) :
@@ -63,7 +63,7 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief The folder couldn't be created
+	//! @brief The folder couldn't be created.
 	class FolderCreationErrorException : public BaseException {
 	public:
 		explicit FolderCreationErrorException(const std::string &&msg) :
@@ -75,6 +75,54 @@ namespace TouhouFanGame
 	class ItemNotFoundException : public BaseException {
 	public:
 		explicit ItemNotFoundException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief This dialog wasn't found.
+	class DialogNotFoundException : public BaseException {
+	public:
+		explicit DialogNotFoundException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief Dialog file is invalid.
+	class InvalidDialogFileException : public BaseException {
+	public:
+		explicit InvalidDialogFileException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief Dialog string is invalid.
+	class InvalidDialogStringException : public BaseException {
+	public:
+		explicit InvalidDialogStringException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief A dialog command has no end.
+	class UnfinishedCommandException : public BaseException {
+	public:
+		explicit UnfinishedCommandException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief A string literal has no end.
+	class UnfinishedStringLiteralException : public BaseException {
+	public:
+		explicit UnfinishedStringLiteralException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief A string literal has no end.
+	class BadCommandException : public BaseException {
+	public:
+		explicit BadCommandException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};

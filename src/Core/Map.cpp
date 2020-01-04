@@ -388,6 +388,7 @@ namespace TouhouFanGame
 						static_cast<float>(x * this->_tileSize),
 						static_cast<float>(y * this->_tileSize)
 					},
+					{0, 0},
 					{
 						static_cast<int>((this->_objects[x + y * this->_size.x] & 0x7F) * this->_tileSize),
 						0,

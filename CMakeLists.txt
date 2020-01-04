@@ -107,6 +107,8 @@ add_executable(
 	src/Game/Menus/InventoryMenu.hpp
 	src/Game/Menus/MainMenu.cpp
 	src/Game/Menus/MainMenu.hpp
+	src/Core/Dialogs/DialogMgr.cpp
+	src/Core/Dialogs/DialogMgr.hpp
 )
 
 target_link_libraries(
@@ -215,7 +217,9 @@ add_executable(
 	src/MapEditor/Menus/MainMenu.hpp
 	src/MapEditor/GuiUtils.cpp
 	src/MapEditor/GuiUtils.hpp
-	src/MapEditor/ComponentGui.cpp src/MapEditor/ComponentGui.hpp)
+	src/MapEditor/ComponentGui.cpp
+	src/MapEditor/ComponentGui.hpp
+)
 
 target_link_libraries(
 	map_editor

@@ -73,16 +73,28 @@ namespace TouhouFanGame::Rendering
 		sf::RenderWindow::draw(sprite);
 	}
 
-	void	Screen::draw(sf::Texture &texture, sf::Vector2f pos, sf::IntRect rect)
+	void	Screen::draw(sf::Texture &texture, sf::Vector2f pos, sf::Vector2u size, sf::IntRect rect)
 	{
+		auto textureSize = texture.getSize();
+
 		if (!rect.width)
-			rect.width = texture.getSize().x - rect.left;
+			rect.width = textureSize.x - rect.left;
 
 		if (!rect.height)
-			rect.height = texture.getSize().y - rect.top;
+			rect.height = textureSize.y - rect.top;
+
+		if (!size.x)
+			size.x = rect.width;
+
+		if (!size.y)
+			size.y = rect.height;
 
 		this->_sprite.setTexture(texture, true);
 		this->_sprite.setTextureRect(rect);
+		this->_sprite.setScale({
+		       static_cast<float>(size.x) / rect.width,
+		       static_cast<float>(size.y) / rect.height
+		});
 		this->draw(this->_sprite, pos);
 	}
 

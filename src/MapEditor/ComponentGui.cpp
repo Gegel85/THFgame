@@ -18,16 +18,14 @@
 namespace TouhouFanGame
 {
 	std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Component &component)>> ComponentGui::_builders{
-		{"Movable",          [](Game &game, ECS::Component &component){ return MovableGui(game, component);          }},
-		{"Position",         [](Game &game, ECS::Component &component){ return PositionGui(game, component);         }},
-		{"Controllable",     [](Game &game, ECS::Component &component){ return ControllableGui(game, component);     }},
-		{"Displayable",      [](Game &game, ECS::Component &component){ return DisplayableGui(game, component);      }},
-		{"BlockedByTerrain", [](Game &game, ECS::Component &component){ return BlockedByTerrainGui(game, component); }},
-		{"Mana",             [](Game &game, ECS::Component &component){ return ManaGui(game, component);             }},
-		{"Health",           [](Game &game, ECS::Component &component){ return HealthGui(game, component);           }},
-		{"Name",             [](Game &game, ECS::Component &component){ return NameGui(game, component);             }},
-		{"PlayerHUD",        [](Game &game, ECS::Component &component){ return PlayerHUDGui(game, component);        }},
-		{"Inventory",        [](Game &game, ECS::Component &component){ return InventoryGui(game, component);        }},
+		{"Movable",          [](Game &game, ECS::Component &component){ return MovableGui(game, component);      }},
+		{"Position",         [](Game &game, ECS::Component &component){ return PositionGui(game, component);     }},
+		{"Controllable",     [](Game &game, ECS::Component &component){ return ControllableGui(game, component); }},
+		{"Displayable",      [](Game &game, ECS::Component &component){ return DisplayableGui(game, component);  }},
+		{"Mana",             [](Game &game, ECS::Component &component){ return ManaGui(game, component);         }},
+		{"Health",           [](Game &game, ECS::Component &component){ return HealthGui(game, component);       }},
+		{"Name",             [](Game &game, ECS::Component &component){ return NameGui(game, component);         }},
+		{"Inventory",        [](Game &game, ECS::Component &component){ return InventoryGui(game, component);    }},
 	};
 	
 	tgui::Panel::Ptr ComponentGui::MovableGui(Game &, ECS::Component &component)
@@ -203,11 +201,6 @@ namespace TouhouFanGame
 		return panel;
 	}
 	
-	tgui::Panel::Ptr ComponentGui::BlockedByTerrainGui(Game &, ECS::Component &)
-	{
-		return tgui::Panel::create({0, 0});
-	}
-	
 	tgui::Panel::Ptr ComponentGui::ManaGui(Game &, ECS::Component &component)
 	{
 		auto &manaComp = component.to<ECS::Components::ManaComponent>();
@@ -313,7 +306,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::PlayerHUDGui(Game &, ECS::Component &)
+	tgui::Panel::Ptr ComponentGui::EmptyGui(Game &, ECS::Component &)
 	{
 		return tgui::Panel::create({0, 0});
 	}
@@ -376,7 +369,7 @@ namespace TouhouFanGame
 		try {
 			return _builders[component.getName()](game, component);
 		} catch (std::out_of_range &) {
-			return tgui::Panel::create();
+			return EmptyGui(game, component);
 		}
 	}
 }

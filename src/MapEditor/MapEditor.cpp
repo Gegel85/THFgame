@@ -304,7 +304,7 @@ namespace TouhouFanGame
 		}
 	}
 
-	void MapEditor::_showEntityProperties(TouhouFanGame::ECS::Entity &entity)
+	void MapEditor::_showEntityProperties(std::shared_ptr<ECS::Entity> entity)
 	{
 		auto window = openWindowWithFocus(*this->_gui);
 
@@ -319,20 +319,20 @@ namespace TouhouFanGame
 		const auto basePos = name->getSize().y + name->getPosition().y;
 		unsigned pos = 0;
 
-		name->setText(entity.getName());
+		name->setText(entity->getName());
 		window->setSize({350, 250});
 		panel->setSize({350, 250});
-		window->setTitle("Entity " + std::to_string(entity.getID()));
+		window->setTitle("Entity " + std::to_string(entity->getID()));
 
-		for (auto &componentName : entity.getComponentsNames()) {
-			auto pan = ComponentGui::build(this->_game, entity.getComponent(componentName));
+		for (auto &componentName : entity->getComponentsNames()) {
+			auto pan = ComponentGui::build(this->_game, entity->getComponent(componentName));
 			auto label = makeLabel(componentName, 10, basePos + pos);
 			auto button = tgui::Button::create("X");
 
 			button->setPosition("parent.w - 40", basePos + pos);
 			button->setSize({20, 20});
 			button->connect("Pressed", [window, this, componentName, &entity]{
-				this->_removeComponentFromEntity(entity, componentName);
+				this->_removeComponentFromEntity(*entity, componentName);
 				window->close();
 				this->_showEntityProperties(entity);
 			});
@@ -349,7 +349,7 @@ namespace TouhouFanGame
 		);
 		componentBox->removeAllItems();
 		for (auto &val : ECS::Factory::ComponentFactory::getItemList())
-			if (!entity.hasComponent(val)) {
+			if (!entity->hasComponent(val)) {
 				componentBox->addItem(val);
 				componentBox->setSelectedItem(val);
 			}
@@ -369,9 +369,9 @@ namespace TouhouFanGame
 			newButton->getPosition().y + pos
 		);
 		newButton->connect("Pressed", [window, &entity, componentBox, this]{
-			entity.addComponent(ECS::Factory::ComponentFactory::build(this->_game, componentBox->getSelectedItem()));
+			entity->addComponent(ECS::Factory::ComponentFactory::build(this->_game, componentBox->getSelectedItem()));
 			for (const auto &dep : this->_map._core.getSystemByName(componentBox->getSelectedItem()).getDependencies())
-				entity.addComponent(ECS::Factory::ComponentFactory::build(this->_game, dep));
+				entity->addComponent(ECS::Factory::ComponentFactory::build(this->_game, dep));
 			window->close();
 			this->_showEntityProperties(entity);
 		});
@@ -493,13 +493,13 @@ namespace TouhouFanGame
 
 		panel->removeAllWidgets();
 		for (size_t i = 0; i < entities.size(); i++) {
-			auto &entity = *entities[i];
+			auto &entity = entities[i];
 			auto button = tgui::BitmapButton::create();
 
 			panel->add(button);
 			button->setPosition(4, i * 40);
 			button->setSize({"parent.w - 4", 32});
-			button->setText("Entity " + std::to_string(entity.getID()) + " (" + entity.getName() + ")");
+			button->setText("Entity " + std::to_string(entity->getID()) + " (" + entity->getName() + ")");
 			button->connect("Pressed", [this, &entity]{
 				this->_showEntityProperties(entity);
 			});
@@ -588,7 +588,7 @@ namespace TouhouFanGame
 		sf::RectangleShape rect;
 
 		for (auto &entity : this->_map._core.getEntityByComponent("Displayable"))
-			system.updateEntity(entity);
+			system.updateEntity(*entity);
 		this->_map.render();
 
 		rect.setFillColor(sf::Color{

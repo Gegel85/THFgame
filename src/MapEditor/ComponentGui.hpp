@@ -21,11 +21,10 @@ namespace TouhouFanGame
 		static tgui::Panel::Ptr PositionGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr ControllableGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr DisplayableGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr BlockedByTerrainGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr ManaGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr HealthGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr NameGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr PlayerHUDGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr EmptyGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr InventoryGui(Game &, ECS::Component &);
 
 	public:

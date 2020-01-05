@@ -34,10 +34,10 @@ namespace TouhouFanGame::ECS
 		std::vector<std::unique_ptr<System>> _systems;
 
 		//! @brief All the Entity to be updated.
-		std::vector<std::unique_ptr<Entity>> _entities;
+		std::vector<std::shared_ptr<Entity>> _entities;
 
 		//! @brief Entities sorted by Component
-		std::map<std::string, std::vector<std::reference_wrapper<Entity>>> _entitiesByComponent;
+		std::map<std::string, std::vector<std::shared_ptr<Entity>>> _entitiesByComponent;
 
 	public:
 		Core(Game &game);
@@ -46,34 +46,34 @@ namespace TouhouFanGame::ECS
 		//! @param typeName The name of the Entity to build. This will be given to the EntityFactory.
 		//! @return The newly created Entity.
 		//! @throw NoSuchEntityException If the Entity cannot be built.
-		Entity &makeEntity(const std::string &typeName);
+		std::shared_ptr<Entity> makeEntity(const std::string &typeName);
 
 		//! @brief Registers an Entity in the Core. Will throw if the ID is already taken.
 		//! @param entity The Entity to register.
 		//! @return The Entity registered;.
 		//! @throw UpdateErrorException If the Entity's ID is already taken.
 		//! @note The Entity must have been built using new and will be deleted by the Core.
-		Entity &registerEntity(Entity *entity);
+		std::shared_ptr<Entity> registerEntity(std::shared_ptr<Entity> entity);
 
 		//! @brief Get and Entity using it's ID.
 		//! @param id The ID of the Entity to fetch.
 		//! @return The Entity requested.
 		//! @throw NoSuchEntityException
-		Entity &getEntityByID(unsigned id) const;
+		std::shared_ptr<Entity> getEntityByID(unsigned id) const;
 
 		//! @brief Get all Entity with this name.
 		//! @param name The name of the entities to return.
 		//! @return A list of all the Entity matching this name.
-		std::vector<std::reference_wrapper<Entity>> getEntityByName(const std::string &name);
+		std::vector<std::shared_ptr<Entity>> getEntityByName(const std::string &name);
 
 		//! @brief Get all Entity containing this Component.
 		//! @param name The name of the Component requested.
 		//! @return A list of all the Entity matching this name.
-		std::vector<std::reference_wrapper<Entity>> getEntityByComponent(const std::string &name);
+		std::vector<std::shared_ptr<Entity>> getEntityByComponent(const std::string &name);
 
 		//! @brief Get all Entity.
 		//! @return A list of all the Entity created.
-		const std::vector<std::unique_ptr<Entity>> &getEntities() const;
+		std::vector<std::shared_ptr<Entity>> getEntities() const;
 
 		//! @brief Get a System by it's name.
 		//! @param name The name of the Entity to fetch.
@@ -93,10 +93,7 @@ namespace TouhouFanGame::ECS
 		void update();
 
 		//! @brief Delete an Entity.
-		void deleteEntity(Entity &entity);
-
-		//! @brief Delete an Entity.
-		void deleteEntity(Entity *entity);
+		void deleteEntity(const std::shared_ptr<Entity> &entity);
 
 		//! @brief Delete an Entity.
 		void deleteEntity(unsigned entityID);

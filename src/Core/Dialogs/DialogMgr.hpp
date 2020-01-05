@@ -8,6 +8,7 @@
 
 #include <string>
 #include <vector>
+#include "../ECS/Entity.hpp"
 
 namespace TouhouFanGame
 {
@@ -16,6 +17,9 @@ namespace TouhouFanGame
 	//! @brief Manages dialogs.
 	class DialogMgr {
 	private:
+		//! @brief The holder of this Dialog.
+		ECS::Entity &_holder;
+
 		//! @brief Whether this manager is waiting for the a user action.
 		bool _waiting = false;
 
@@ -46,6 +50,9 @@ namespace TouhouFanGame
 		void _consumeCharacter(Game &game);
 
 	public:
+		//! @brief Constructor.
+		DialogMgr(ECS::Entity &holder);
+
 		//! @brief Select a previously loaded dialog.
 		//! @param dialog The dialog to select.
 		void select(unsigned dialog);

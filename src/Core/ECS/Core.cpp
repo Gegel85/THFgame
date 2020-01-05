@@ -17,16 +17,17 @@ namespace TouhouFanGame::ECS
 		Factory::SystemFactory::buildAll(*this, this->_systems);
 	}
 
-	Entity &Core::makeEntity(const std::string &typeName)
+	std::shared_ptr<Entity> Core::makeEntity(const std::string &typeName)
 	{
 		try {
 			while (true) this->getEntityByID(++this->_lastGivenID);
 		} catch (NoSuchEntityException &) {}
+		this->_entities.push_back(Factory::EntityFactory::build(this->_game, typeName, this->_lastGivenID));
 
-		Entity &entity = *this->_entities.emplace_back(Factory::EntityFactory::build(this->_game, typeName, this->_lastGivenID));
+		auto entity = this->_entities.back();
 
-		for (auto &comp : entity.getComponentsNames())
-			this->_entitiesByComponent[comp].emplace_back(entity);
+		for (auto &comp : entity->getComponentsNames())
+			this->_entitiesByComponent[comp].push_back(entity);
 		return entity;
 	}
 
@@ -49,15 +50,10 @@ namespace TouhouFanGame::ECS
 				}
 	}
 
-	void Core::deleteEntity(Entity &entity)
-	{
-		this->deleteEntity(&entity);
-	}
-
-	void Core::deleteEntity(Entity *entity)
+	void Core::deleteEntity(const std::shared_ptr<Entity> &entity)
 	{
 		for (size_t i = 0; i < this->_entities.size(); i++)
-			if (&*this->_entities[i] == entity) {
+			if (this->_entities[i] == entity) {
 				this->_entities.erase(this->_entities.begin() + i);
 				return;
 			}
@@ -81,7 +77,7 @@ namespace TouhouFanGame::ECS
 			if (this->_lastGivenID < entity->getID())
 				this->_lastGivenID = entity->getID();
 			for (auto &comp : entity->getComponentsNames())
-				this->_entitiesByComponent[comp].emplace_back(*entity);
+				this->_entitiesByComponent[comp].push_back(entity);
 		}
 	}
 
@@ -93,17 +89,17 @@ namespace TouhouFanGame::ECS
 		throw NoSuchSystemException("Cannot find any System called \"" + name + "\"");
 	}
 
-	std::vector<std::reference_wrapper<Entity>> Core::getEntityByName(const std::string &name)
+	std::vector<std::shared_ptr<Entity>> Core::getEntityByName(const std::string &name)
 	{
-		std::vector<std::reference_wrapper<Entity>> found;
+		std::vector<std::shared_ptr<Entity>> found;
 
 		for (auto &entity : this->_entities)
 			if (entity->getName() == name)
-				found.emplace_back(*entity);
+				found.push_back(entity);
 		return found;
 	}
 
-	std::vector<std::reference_wrapper<Entity>> Core::getEntityByComponent(const std::string &name)
+	std::vector<std::shared_ptr<Entity>> Core::getEntityByComponent(const std::string &name)
 	{
 		try {
 			return this->_entitiesByComponent.at(name);
@@ -112,23 +108,24 @@ namespace TouhouFanGame::ECS
 		}
 	}
 
-	Entity& Core::registerEntity(TouhouFanGame::ECS::Entity *entity)
+	std::shared_ptr<Entity> Core::registerEntity(std::shared_ptr<Entity> entity)
 	{
 		try {
 			this->getEntityByID(entity->getID());
 			throw UpdateErrorException("An entity already have ID " + std::to_string(entity->getID()));
 		} catch (NoSuchEntityException &) {
 			for (auto &comp : entity->getComponentsNames())
-				this->_entitiesByComponent[comp].emplace_back(*entity);
-			return *this->_entities.emplace_back(entity);
+				this->_entitiesByComponent[comp].push_back(entity);
+			this->_entities.push_back(entity);
+			return entity;
 		}
 	}
 
-	Entity &Core::getEntityByID(unsigned id) const
+	std::shared_ptr<Entity> Core::getEntityByID(unsigned id) const
 	{
 		for (auto &entity : this->_entities)
 			if (entity->getID() == id)
-				return *entity;
+				return entity;
 		throw NoSuchEntityException("Cannot find any entity with ID " + std::to_string(id));
 	}
 
@@ -149,7 +146,7 @@ namespace TouhouFanGame::ECS
 				while (true) this->getEntityByID(++this->_lastGivenID);
 			} catch (NoSuchEntityException &) {}
 
-			auto *entity = new Entity(this->_lastGivenID);
+			auto entity = std::make_shared<Entity>(this->_lastGivenID);
 
 			if (str != "Entity")
 				throw InvalidSerializedString("Invalid Entity header");
@@ -157,12 +154,11 @@ namespace TouhouFanGame::ECS
 			entity->unserialize(this->_game, stream);
 			try {
 				this->getEntityByID(entity->getID());
-				delete entity;
 				throw InvalidSerializedString("Two entities have ID " + std::to_string(entity->getID()));
 			} catch (NoSuchEntityException &) {
 				for (auto &comp : entity->getComponentsNames())
-					this->_entitiesByComponent[comp].emplace_back(*entity);
-				this->_entities.emplace_back(entity);
+					this->_entitiesByComponent[comp].push_back(entity);
+				this->_entities.push_back(entity);
 			}
 		}
 
@@ -172,7 +168,7 @@ namespace TouhouFanGame::ECS
 			throw InvalidSerializedString("Malformed footer (" + str + ")");
 	}
 
-	const std::vector<std::unique_ptr<Entity>> &Core::getEntities() const
+	std::vector<std::shared_ptr<Entity>> Core::getEntities() const
 	{
 		return this->_entities;
 	}

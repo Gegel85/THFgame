@@ -10,6 +10,11 @@
 
 namespace TouhouFanGame
 {
+	DialogMgr::DialogMgr(TouhouFanGame::ECS::Entity &holder) :
+		_holder(holder)
+	{
+	}
+
 	void DialogMgr::select(unsigned dialog)
 	{
 		this->_displayed = "";
@@ -162,6 +167,8 @@ namespace TouhouFanGame
 	{
 		if (cmd == "playerName")
 			this->_left += game.state.map.getPlayer().getComponent("Name").to<ECS::Components::NameComponent>().name;
+		else if (cmd == "holderName")
+			this->_left += this->_holder.getComponent("Name").to<ECS::Components::NameComponent>().name;
 		else
 			throw BadCommandException("No command named \"" + cmd + "\"");
 	}

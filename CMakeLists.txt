@@ -109,6 +109,10 @@ add_executable(
 	src/Game/Menus/MainMenu.hpp
 	src/Core/Dialogs/DialogMgr.cpp
 	src/Core/Dialogs/DialogMgr.hpp
+	src/Core/ECS/Components/InteractComponent.cpp
+	src/Core/ECS/Components/InteractComponent.hpp
+	src/Core/ECS/Components/CollisionComponent.cpp
+	src/Core/ECS/Components/CollisionComponent.hpp
 )
 
 target_link_libraries(
@@ -219,6 +223,10 @@ add_executable(
 	src/MapEditor/GuiUtils.hpp
 	src/MapEditor/ComponentGui.cpp
 	src/MapEditor/ComponentGui.hpp
+	src/Core/ECS/Components/InteractComponent.cpp
+	src/Core/ECS/Components/InteractComponent.hpp
+	src/Core/ECS/Components/CollisionComponent.cpp
+	src/Core/ECS/Components/CollisionComponent.hpp
 )
 
 target_link_libraries(

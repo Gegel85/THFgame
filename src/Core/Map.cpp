@@ -204,12 +204,12 @@ namespace TouhouFanGame
 			return;
 		}
 
-		ECS::Entity &player = this->_core.registerEntity(new ECS::Entity(0));
+		std::shared_ptr<ECS::Entity> player = this->_core.registerEntity(std::make_shared<ECS::Entity>(0));
 
-		player.unserialize(this->_game, stream);
+		player->unserialize(this->_game, stream);
 		stream >> this->_id;
 		stream.close();
-		player.setSerializable(false);
+		player->setSerializable(false);
 		this->loadMap(this->_id);
 	}
 
@@ -434,7 +434,7 @@ namespace TouhouFanGame
 
 	ECS::Entity &Map::getPlayer()
 	{
-		std::vector<std::reference_wrapper<ECS::Entity>> players = this->_core.getEntityByName("Player");
+		std::vector<std::shared_ptr<ECS::Entity>> players = this->_core.getEntityByName("Player");
 
 		if (players.size() != 1)
 			throw CorruptedMapException(
@@ -442,7 +442,7 @@ namespace TouhouFanGame
 				std::to_string(players.size()) + " were found"
 			);
 
-		return players.back().get();
+		return *players.back();
 	}
 
 	sf::Vector2u &Map::_getPlayerSize()

@@ -38,10 +38,10 @@ namespace TouhouFanGame::ECS::Factory
 		}}
 	};
 
-	Entity	*EntityFactory::build(Game &game, const std::string &name, unsigned int id)
+	std::shared_ptr<Entity> EntityFactory::build(Game &game, const std::string &name, unsigned int id)
 	{
 		try {
-			return _builders.at(name)(game, id);
+			return std::shared_ptr<Entity>(_builders.at(name)(game, id));
 		} catch (std::out_of_range &) {
 			throw NoSuchEntityException("Cannot find any way to build a " + name);
 		}

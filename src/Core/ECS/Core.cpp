@@ -121,6 +121,21 @@ namespace TouhouFanGame::ECS
 		}
 	}
 
+	void Core::entityComponentChanged(const std::shared_ptr<Entity> &entity, const std::string &compName)
+	{
+		auto &array = this->_entitiesByComponent[compName];
+
+		if (entity->hasComponent(compName)) {
+			if (std::find(array.begin(), array.end(), entity) == array.end())
+				array.push_back(entity);
+		} else {
+			auto it = std::find(array.begin(), array.end(), entity);
+
+			if (it != array.end())
+				array.erase(it);
+		}
+	}
+
 	std::shared_ptr<Entity> Core::getEntityByID(unsigned id) const
 	{
 		for (auto &entity : this->_entities)

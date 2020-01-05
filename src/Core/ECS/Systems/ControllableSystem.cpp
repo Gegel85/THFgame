@@ -10,7 +10,7 @@
 namespace TouhouFanGame::ECS::Systems
 {
 	ControllableSystem::ControllableSystem(TouhouFanGame::ECS::Core &core) :
-		System(core, "Controllable", {"Movable", "Position", "Displayable"})
+		System(core, "Controllable", {"Movable", "Position", "Displayable", "Collision"})
 	{
 	}
 

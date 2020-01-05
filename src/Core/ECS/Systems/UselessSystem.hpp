@@ -16,7 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 	public:
 		//! @param core The Core the System is in.
 		//! @param fakeName The name this System should have.
-		UselessSystem(Core &core, const std::string &fakeName);
+		UselessSystem(Core &core, const std::string &fakeName, const std::vector<std::string> &&dependencies = {});
 		void updateEntity(Entity &) override;
 	};
 }

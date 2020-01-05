@@ -15,12 +15,14 @@
 #include "../Components/NameComponent.hpp"
 #include "../Components/PlayerHudComponent.hpp"
 #include "../Components/InventoryComponent.hpp"
+#include "../Components/CollisionComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
 	const std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> EntityFactory::_builders = {
 		{"Player", [](Game &game, unsigned int id){
 			return new Entity(id, "Player", {
+				new Components::CollisionComponent(),
 				new Components::ControllableComponent(*game.state.settings.input, 2, 4),
 				new Components::BlockedByTerrainComponent(game.state.map),
 				new Components::MovableComponent(),

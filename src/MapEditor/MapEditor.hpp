@@ -48,10 +48,11 @@ namespace TouhouFanGame
 		void _changeObject(sf::Vector2i pixels);
 		void _changeObject(int x, int y);
 		void _showNewTeleporterBox(Map::TpTrigger &trigger);
-		void _showEntityProperties(std::shared_ptr<ECS::Entity> entity);
+		void _showEntityProperties(const std::shared_ptr<ECS::Entity> &entity);
 		void _showAllEntities(bool openWindow = true);
 		void _showAllTeleporters(bool openWindow = true);
-		void _removeComponentFromEntity(ECS::Entity &entity, const std::string &name);
+		void _removeComponentFromEntity(std::shared_ptr<ECS::Entity> entity, const std::string &name);
+		void _addComponentToEntity(std::shared_ptr<ECS::Entity> entity, const std::string &name);
 	public:
 		MapEditor();
 		~MapEditor();

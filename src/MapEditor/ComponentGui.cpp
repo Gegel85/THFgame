@@ -55,7 +55,8 @@ namespace TouhouFanGame
 		);
 
 		speedEditBox->connect("TextChanged", [&movable, speedEditBox]{
-			movable.speed = std::stof(speedEditBox->getText().toAnsiString());
+			if (!speedEditBox->getText().isEmpty())
+				movable.speed = std::stof(speedEditBox->getText().toAnsiString());
 		});
 		dirEditBox->connect("TextChanged", [&movable, dirEditBox]{
 			movable.dir = std::stol(dirEditBox->getText().toAnsiString());
@@ -113,16 +114,20 @@ namespace TouhouFanGame
 		);
 
 		xEditBox->connect("TextChanged", [&position, xEditBox]{
-			position.position.x = std::stof(xEditBox->getText().toAnsiString());
+			if (!xEditBox->getText().isEmpty())
+				position.position.x = std::stof(xEditBox->getText().toAnsiString());
 		});
 		yEditBox->connect("TextChanged", [&position, yEditBox]{
-			position.position.y = std::stof(yEditBox->getText().toAnsiString());
+			if (!yEditBox->getText().isEmpty())
+				position.position.y = std::stof(yEditBox->getText().toAnsiString());
 		});
 		xSizeEditBox->connect("TextChanged", [&position, xSizeEditBox]{
-			position.size.x = std::stof(xSizeEditBox->getText().toAnsiString());
+			if (!xSizeEditBox->getText().isEmpty())
+				position.size.x = std::stof(xSizeEditBox->getText().toAnsiString());
 		});
 		ySizeEditBox->connect("TextChanged", [&position, ySizeEditBox]{
-			position.size.y = std::stof(ySizeEditBox->getText().toAnsiString());
+			if (!ySizeEditBox->getText().isEmpty())
+				position.size.y = std::stof(ySizeEditBox->getText().toAnsiString());
 		});
 		panel->setRenderer(render);
 		panel->add(xLabel);
@@ -163,10 +168,12 @@ namespace TouhouFanGame
 		);
 
 		speedEditBox->connect("TextChanged", [&controllable, speedEditBox]{
-			controllable.regularSpeed = std::stof(speedEditBox->getText().toAnsiString());
+			if (!speedEditBox->getText().isEmpty())
+				controllable.regularSpeed = std::stof(speedEditBox->getText().toAnsiString());
 		});
 		sprintEditBox->connect("TextChanged", [&controllable, sprintEditBox]{
-			controllable.sprintSpeed = std::stof(sprintEditBox->getText().toAnsiString());
+			if (!sprintEditBox->getText().isEmpty())
+				controllable.sprintSpeed = std::stof(sprintEditBox->getText().toAnsiString());
 		});
 		panel->setRenderer(render);
 		panel->add(speedLabel);
@@ -228,10 +235,12 @@ namespace TouhouFanGame
 		);
 
 		maxManaEditBox->connect("TextChanged", [&manaComp, maxManaEditBox]{
-			manaComp.maxMana = std::stof(maxManaEditBox->getText().toAnsiString());
+			if (!maxManaEditBox->getText().isEmpty())
+				manaComp.maxMana = std::stof(maxManaEditBox->getText().toAnsiString());
 		});
 		manaEditBox->connect("TextChanged", [&manaComp, manaEditBox]{
-			manaComp.mana = std::stof(manaEditBox->getText().toAnsiString());
+			if (!manaEditBox->getText().isEmpty())
+				manaComp.mana = std::stof(manaEditBox->getText().toAnsiString());
 		});
 		panel->setRenderer(render);
 		panel->add(maxManaLabel);
@@ -268,10 +277,12 @@ namespace TouhouFanGame
 		);
 
 		maxHealthEditBox->connect("TextChanged", [&healthComp, maxHealthEditBox]{
-			healthComp.maxHealth = std::stof(maxHealthEditBox->getText().toAnsiString());
+			if (!maxHealthEditBox->getText().isEmpty())
+				healthComp.maxHealth = std::stof(maxHealthEditBox->getText().toAnsiString());
 		});
 		healthEditBox->connect("TextChanged", [&healthComp, healthEditBox]{
-			healthComp.health = std::stof(healthEditBox->getText().toAnsiString());
+			if (!healthEditBox->getText().isEmpty())
+				healthComp.health = std::stof(healthEditBox->getText().toAnsiString());
 		});
 		panel->setRenderer(render);
 		panel->add(maxHealthLabel);
@@ -367,7 +378,7 @@ namespace TouhouFanGame
 	tgui::Panel::Ptr ComponentGui::build(Game &game, TouhouFanGame::ECS::Component &component)
 	{
 		try {
-			return _builders[component.getName()](game, component);
+			return _builders.at(component.getName())(game, component);
 		} catch (std::out_of_range &) {
 			return EmptyGui(game, component);
 		}

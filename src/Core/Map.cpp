@@ -106,7 +106,7 @@ namespace TouhouFanGame
 
 	void Map::_saveMapToStream(std::ostream &stream)
 	{
-		logger.debug("Loading map");
+		logger.debug("Saving map");
 
 		_writeString(stream, this->_music);
 		_writeString(stream, this->_tileMap);
@@ -174,7 +174,7 @@ namespace TouhouFanGame
 
 		std::ofstream stream{path};
 
-		logger.info("Loading game");
+		logger.info("Saving map to " + path);
 		if (stream.fail()) {
 			logger.error("Couldn't load map at " + path + ": " + std::string(strerror(errno)));
 			throw MapSavingFailureException(path + ": " + std::string(strerror(errno)));

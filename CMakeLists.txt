@@ -113,6 +113,10 @@ add_executable(
 	src/Core/ECS/Components/InteractComponent.hpp
 	src/Core/ECS/Components/CollisionComponent.cpp
 	src/Core/ECS/Components/CollisionComponent.hpp
+	src/Core/ECS/Systems/CollisionSystem.cpp
+	src/Core/ECS/Systems/CollisionSystem.hpp
+	src/Core/ECS/Components/ColliderComponent.cpp
+	src/Core/ECS/Components/ColliderComponent.hpp
 )
 
 target_link_libraries(
@@ -227,6 +231,10 @@ add_executable(
 	src/Core/ECS/Components/InteractComponent.hpp
 	src/Core/ECS/Components/CollisionComponent.cpp
 	src/Core/ECS/Components/CollisionComponent.hpp
+	src/Core/ECS/Systems/CollisionSystem.cpp
+	src/Core/ECS/Systems/CollisionSystem.hpp
+	src/Core/ECS/Components/ColliderComponent.cpp
+	src/Core/ECS/Components/ColliderComponent.hpp
 )
 
 target_link_libraries(

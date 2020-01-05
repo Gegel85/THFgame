@@ -115,7 +115,7 @@ namespace TouhouFanGame::Rendering
 		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));
 		this->_sprite.setScale({
 			this->_size.x / static_cast<float>(this->_configs.tileSize.x),
-			this->_size.x / static_cast<float>(this->_configs.tileSize.y)
+			this->_size.y / static_cast<float>(this->_configs.tileSize.y)
 		});
 		this->_sprite.setTextureRect({
 			static_cast<int>(pos.x),

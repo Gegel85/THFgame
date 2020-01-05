@@ -20,6 +20,7 @@
 #include "../Components/InventoryComponent.hpp"
 #include "../Components/InteractComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
+#include "../Components/ColliderComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -35,7 +36,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &game, std::istream &stream){ return new Components::InventoryComponent(stream, game.resources.items); }},
 		{"Interact",         [](Game &    , std::istream &      ){ return new Components::InteractComponent(); }},
-		{"Collision",        [](Game &    , std::istream &      ){ return new Components::CollisionComponent(); }}
+		{"Collision",        [](Game &    , std::istream &      ){ return new Components::CollisionComponent(); }},
+		{"Collider",         [](Game &    , std::istream &      ){ return new Components::ColliderComponent(); }}
 	};
 	const std::map<std::string, std::function<Component *(Game &)>> ComponentFactory::_basicBuilders{
 		{"Movable",          [](Game &    ){ return new Components::MovableComponent(); }},
@@ -49,7 +51,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &    ){ return new Components::InventoryComponent(16); }},
 		{"Interact",         [](Game &    ){ return new Components::InteractComponent(); }},
-		{"Collision",        [](Game &    ){ return new Components::CollisionComponent(); }}
+		{"Collision",        [](Game &    ){ return new Components::CollisionComponent(); }},
+		{"Collider",         [](Game &    ){ return new Components::ColliderComponent(); }}
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

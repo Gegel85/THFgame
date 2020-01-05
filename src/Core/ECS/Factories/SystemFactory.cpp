@@ -12,6 +12,7 @@
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/ManaSystem.hpp"
 #include "../Systems/PlayerHudSystem.hpp"
+#include "../Systems/CollisionSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -25,8 +26,10 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Name"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Inventory"); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Interact"); },
+		[](Core &core){ return new Systems::UselessSystem(core, "Interact", {"Collider"}); },
 		[](Core &core){ return new Systems::PlayerHUDSystem(core); },
+		[](Core &core){ return new Systems::CollisionSystem(core); },
+		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 
 	void SystemFactory::buildAll(TouhouFanGame::ECS::Core &core, std::vector<std::unique_ptr<System>> &buffer)

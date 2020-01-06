@@ -6,6 +6,7 @@
 */
 
 #include "Hud.hpp"
+#include "../Game.hpp"
 
 void TouhouFanGame::Rendering::HUD::setBossLife(float bossLife)
 {
@@ -169,18 +170,25 @@ void TouhouFanGame::Rendering::HUD::_renderMusic(TouhouFanGame::Rendering::Scree
 	this->_musicNamePos--;
 }
 
-void TouhouFanGame::Rendering::HUD::draw(TouhouFanGame::Rendering::Screen &screen)
+void TouhouFanGame::Rendering::HUD::setDialogManager(TouhouFanGame::DialogMgr *manager)
+{
+	this->_dialog = manager;
+}
+
+void TouhouFanGame::Rendering::HUD::draw(TouhouFanGame::Game &game)
 {
 	if (this->_dispPlayer)
-		this->_renderPlayerHUD(screen);
+		this->_renderPlayerHUD(*game.resources.screen);
 
 	if (this->_dispBoss)
-		this->_renderBossHUD(screen);
+		this->_renderBossHUD(*game.resources.screen);
 
 	if (this->_musicNamePos)
-		this->_renderMusic(screen);
+		this->_renderMusic(*game.resources.screen);
 
-	screen.fillColor(sf::Color{255, 255, 255});
+	game.resources.screen->fillColor(sf::Color{255, 255, 255});
+	if (this->_dialog)
+		this->_dialog->render(game);
 }
 
 void TouhouFanGame::Rendering::HUD::setDispBossHUD(bool dispBoss)

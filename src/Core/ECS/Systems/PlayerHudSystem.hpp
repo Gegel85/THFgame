@@ -14,7 +14,7 @@ namespace TouhouFanGame::ECS::Systems
 	class PlayerHUDSystem : public System {
 	public:
 		PlayerHUDSystem(Core &core);
-		void updateEntity(Entity &) override;
+		void updateEntity(const std::shared_ptr<Entity> &) override;
 	};
 }
 

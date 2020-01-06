@@ -15,16 +15,16 @@ namespace TouhouFanGame::ECS::Systems
 	{
 	}
 
-	void DisplayableSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
+	void DisplayableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity.getComponent("Position").to<Components::PositionComponent>();
-		auto &disp = entity.getComponent("Displayable").to<Components::DisplayableComponent>();
+		auto &pos = entity->getComponent("Position").to<Components::PositionComponent>();
+		auto &disp = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
 
 		disp.renderEntity.setSize(pos.size);
 		disp.renderEntity.setPosition(pos.position);
 		disp.renderEntity.setAnimation(disp.animation, false);
-		if (entity.hasComponent("Movable")) {
-			unsigned dir = entity.getComponent("Movable").to<Components::MovableComponent>().dir;
+		if (entity->hasComponent("Movable")) {
+			unsigned dir = entity->getComponent("Movable").to<Components::MovableComponent>().dir;
 
 			if (dir & TO_DIR(Input::LEFT) && dir & TO_DIR(Input::UP))
 				disp.renderEntity.setDirection(Rendering::NORTH_WEST);

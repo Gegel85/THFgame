@@ -16,12 +16,13 @@ namespace TouhouFanGame
 	class InGameMenu : public Menu {
 	private:
 		Map &_map;
+		Game &_game;
 		MenuMgr &_menu;
 		Rendering::HUD &_hud;
 		Rendering::Screen &_screen;
 
 	public:
-		InGameMenu(MenuMgr &menu, Map &map, Rendering::HUD &hud, Rendering::Screen &screen);
+		InGameMenu(MenuMgr &menu, Game &game, Map &map, Rendering::HUD &hud, Rendering::Screen &screen);
 		void render() override;
 		void switched(bool isActive) override;
 		void handleEvent(const Input::Event &event) override;

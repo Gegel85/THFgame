@@ -11,6 +11,6 @@ namespace TouhouFanGame::ECS::Systems
 	{
 	}
 
-	void UselessSystem::updateEntity(TouhouFanGame::ECS::Entity &)
+	void UselessSystem::updateEntity(const std::shared_ptr<Entity> &)
 	{}
 }

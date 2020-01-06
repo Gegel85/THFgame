@@ -17,7 +17,7 @@ namespace TouhouFanGame::ECS::Systems
 	class ManaSystem : public System {
 	public:
 		ManaSystem(Core &parent);
-		void updateEntity(Entity &entity) override;
+		void updateEntity(const std::shared_ptr<Entity> &entity) override;
 	};
 }
 

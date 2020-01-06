@@ -206,7 +206,7 @@ namespace TouhouFanGame
 		//! @return Returns the player.
 		//! @warning Throws if no player or multiple players are found.
 		//! @throw CorruptedMapException
-		ECS::Entity &getPlayer();
+		std::shared_ptr<ECS::Entity> getPlayer();
 
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.

@@ -6,8 +6,9 @@
 
 namespace TouhouFanGame
 {
-	InGameMenu::InGameMenu(MenuMgr &menu, Map &map, Rendering::HUD &hud, Rendering::Screen &screen) :
+	InGameMenu::InGameMenu(MenuMgr &menu, Game &game, Map &map, Rendering::HUD &hud, Rendering::Screen &screen) :
 		_map(map),
+		_game(game),
 		_menu(menu),
 		_hud(hud),
 		_screen(screen)
@@ -18,7 +19,7 @@ namespace TouhouFanGame
 	{
 		this->_map.update();
 		this->_map.render();
-		this->_hud.draw(this->_screen);
+		this->_hud.draw(this->_game);
 	}
 
 	void InGameMenu::switched(bool isActive)

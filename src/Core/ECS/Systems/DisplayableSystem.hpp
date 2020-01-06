@@ -15,7 +15,7 @@ namespace TouhouFanGame::ECS::Systems
 	public:
 		//! @param _parent The Core the System is in.
 		explicit DisplayableSystem(Core &_parent);
-		void updateEntity(Entity &) override;
+		void updateEntity(const std::shared_ptr<Entity> &) override;
 	};
 }
 

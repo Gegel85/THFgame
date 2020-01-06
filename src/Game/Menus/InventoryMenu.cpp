@@ -7,8 +7,9 @@
 
 namespace TouhouFanGame
 {
-	InventoryMenu::InventoryMenu(MenuMgr &menu, Map &map, Rendering::HUD &hud, Rendering::Screen &screen, std::map<std::string, sf::Texture> &textures) :
+	InventoryMenu::InventoryMenu(MenuMgr &menu, Game &game, Map &map, Rendering::HUD &hud, Rendering::Screen &screen, std::map<std::string, sf::Texture> &textures) :
 		_map(map),
+		_game(game),
 		_menu(menu),
 		_hud(hud),
 		_screen(screen),
@@ -23,13 +24,13 @@ namespace TouhouFanGame
 
 	void InventoryMenu::render()
 	{
-		auto &player = this->_map.getPlayer();
-		auto &inventory = player.getComponent("Inventory").to<ECS::Components::InventoryComponent>();
+		auto player = this->_map.getPlayer();
+		auto &inventory = player->getComponent("Inventory").to<ECS::Components::InventoryComponent>();
 		auto camera = this->_screen.getCameraCenter();
 		auto screenSize = this->_screen.getSize();
 
 		this->_map.render();
-		this->_hud.draw(this->_screen);
+		this->_hud.draw(this->_game);
 		this->_screen.fillColor({120, 120, 120});
 		this->_screen.draw({
 			static_cast<int>(camera.x - screenSize.x / 2. + 32),
@@ -71,8 +72,8 @@ namespace TouhouFanGame
 
 	void InventoryMenu::handleEvent(const TouhouFanGame::Input::Event &event)
 	{
-		auto &player = this->_map.getPlayer();
-		auto &inventory = player.getComponent("Inventory").to<ECS::Components::InventoryComponent>();
+		auto player = this->_map.getPlayer();
+		auto &inventory = player->getComponent("Inventory").to<ECS::Components::InventoryComponent>();
 
 		if (event.type == Input::Event::EVENT_TRIGGERED) {
 			switch (event.action) {
@@ -91,7 +92,7 @@ namespace TouhouFanGame
 				break;
 			case Input::INTERACT:
 				if (!inventory.items.empty()) {
-					inventory.items[this->_selectedEntry]->use(this->_map.getPlayer());
+					inventory.items[this->_selectedEntry]->use(*player);
 					inventory.items.erase(inventory.items.begin() + this->_selectedEntry);
 					if (this->_selectedEntry == inventory.items.size() && !inventory.items.empty())
 						this->_selectedEntry--;

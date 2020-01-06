@@ -26,8 +26,8 @@ namespace TouhouFanGame
 		game.resources.screen.reset(new Rendering::Screen{game.resources, "THFgame"});
 
 		game.state.menuMgr.addMenu<MainMenu>("main_menu", game.state.map, game.resources, game.state.hud);
-		game.state.menuMgr.addMenu<InGameMenu>("in_game", game.state.map, game.state.hud, *game.resources.screen);
-		game.state.menuMgr.addMenu<InventoryMenu>("inventory", game.state.map, game.state.hud, *game.resources.screen, game.resources.textures);
+		game.state.menuMgr.addMenu<InGameMenu>("in_game", game, game.state.map, game.state.hud, *game.resources.screen);
+		game.state.menuMgr.addMenu<InventoryMenu>("inventory", game, game.state.map, game.state.hud, *game.resources.screen, game.resources.textures);
 	}
 
 	//! @brief The game loop

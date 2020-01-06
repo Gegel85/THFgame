@@ -14,12 +14,12 @@ namespace TouhouFanGame::ECS::Systems
 		System(core, "PlayerHUD", {"Name", "Mana", "Health"})
 	{}
 
-	void PlayerHUDSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
+	void PlayerHUDSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &health = entity.getComponent("Health").to<Components::HealthComponent>();
-		auto &mana = entity.getComponent("Mana").to<Components::ManaComponent>();
-		auto &name = entity.getComponent("Name").to<Components::NameComponent>();
-		auto &hud = entity.getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
+		auto &health = entity->getComponent("Health").to<Components::HealthComponent>();
+		auto &mana = entity->getComponent("Mana").to<Components::ManaComponent>();
+		auto &name = entity->getComponent("Name").to<Components::NameComponent>();
+		auto &hud = entity->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
 
 		hud.hud.setPlayerName(name.name);
 		hud.hud.setPlayerLife(health.health * 100 / health.maxHealth);

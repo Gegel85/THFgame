@@ -63,7 +63,6 @@ namespace TouhouFanGame::Rendering
 
 		void setDispPlayerHUD(bool dispPlayer);
 
-	public:
 		//! @brief Set music name.
 		//! @param musicName New name.
 		void setMusicName(const std::string &musicName);
@@ -88,8 +87,11 @@ namespace TouhouFanGame::Rendering
 		//! @param playerName The name the player has.
 		void setPlayerName(const std::string &playerName);
 
-		//! @brief Display the HUD on a Screen.
-		void draw(Screen &screen);
+		//! @brief Changes the dialog currently displayed.
+		void setDialogManager(DialogMgr *manager);
+
+		//! @brief Display the HUD.
+		void draw(TouhouFanGame::Game &game);
 	};
 }
 

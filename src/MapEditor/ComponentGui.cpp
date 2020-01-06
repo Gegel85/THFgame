@@ -14,6 +14,7 @@
 #include "../Core/ECS/Components/HealthComponent.hpp"
 #include "../Core/ECS/Components/NameComponent.hpp"
 #include "../Core/ECS/Components/InventoryComponent.hpp"
+#include "../Core/ECS/Components/DialogComponent.hpp"
 
 namespace TouhouFanGame
 {
@@ -26,6 +27,7 @@ namespace TouhouFanGame
 		{"Health",           [](Game &game, ECS::Component &component){ return HealthGui(game, component);       }},
 		{"Name",             [](Game &game, ECS::Component &component){ return NameGui(game, component);         }},
 		{"Inventory",        [](Game &game, ECS::Component &component){ return InventoryGui(game, component);    }},
+		{"Dialog",           [](Game &game, ECS::Component &component){ return DialogGui(game, component);       }},
 	};
 	
 	tgui::Panel::Ptr ComponentGui::MovableGui(Game &, ECS::Component &component)
@@ -314,6 +316,45 @@ namespace TouhouFanGame
 		panel->setRenderer(render);
 		panel->add(nameLabel);
 		panel->add(nameEditBox);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::DialogGui(TouhouFanGame::Game &, TouhouFanGame::ECS::Component &component)
+	{
+		auto &dialog = component.to<ECS::Components::DialogComponent>();
+		auto panel = tgui::Panel::create({300, 70});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Dialog path", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			160,
+			speedLabel->getSize().y,
+			dialog.getDialogPath()
+		);
+		auto errorLabel = makeLabel("", 0, speedLabel->getSize().y);
+
+		try {
+			dialog.setDialogPath(dialog.getDialogPath());
+			errorLabel->setText("");
+		} catch (std::exception &e) {
+			errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+		}
+		errorLabel->getRenderer()->setTextColor("red");
+		speedEditBox->connect("TextChanged", [&dialog, speedEditBox, errorLabel]{
+			try {
+				dialog.setDialogPath(speedEditBox->getText());
+				errorLabel->setText("");
+			} catch (std::exception &e) {
+				errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+			}
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		panel->add(errorLabel);
 		return panel;
 	}
 

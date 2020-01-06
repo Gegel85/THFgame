@@ -14,10 +14,10 @@ namespace TouhouFanGame::ECS::Systems
 		System(core, "Movable", {"Position"})
 	{}
 
-	void MovableSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
+	void MovableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity.getComponent("Position").to<Components::PositionComponent>();
-		auto &mov = entity.getComponent("Movable").to<Components::MovableComponent>();
+		auto &pos = entity->getComponent("Position").to<Components::PositionComponent>();
+		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
 
 		pos.position.x += mov.speed * (((mov.dir & TO_DIR(Input::RIGHT)) != 0) - ((mov.dir & TO_DIR(Input::LEFT)) != 0));
 		pos.position.y += mov.speed * (((mov.dir & TO_DIR(Input::DOWN)) != 0) - ((mov.dir & TO_DIR(Input::UP)) != 0));

@@ -6,6 +6,9 @@
 #include "../Components/ControllableComponent.hpp"
 #include "../Components/MovableComponent.hpp"
 #include "../Components/DisplayableComponent.hpp"
+#include "../Core.hpp"
+#include "../Components/CollisionComponent.hpp"
+#include "../Components/InteractComponent.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -14,15 +17,16 @@ namespace TouhouFanGame::ECS::Systems
 	{
 	}
 
-	void ControllableSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
+	void ControllableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &co = entity.getComponent("Controllable").to<Components::ControllableComponent>();
+		auto &co = entity->getComponent("Controllable").to<Components::ControllableComponent>();
 
 		if (co.disabled)
 			return;
 
-		auto &mov = entity.getComponent("Movable").to<Components::MovableComponent>();
-		auto &dis = entity.getComponent("Displayable").to<Components::DisplayableComponent>();
+		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
+		auto &dis = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
+		auto &col = entity->getComponent("Collision").to<Components::CollisionComponent>();
 		unsigned char dir = 0;
 		bool sprinting = false;
 
@@ -37,6 +41,9 @@ namespace TouhouFanGame::ECS::Systems
 			case Input::ATTACK:
 				break;
 			case Input::INTERACT:
+				for (auto &ent : col.collided)
+					if (ent->hasComponent("Interact"))
+						ent->getComponent("Interact").to<Components::InteractComponent>().interactedWith = entity;
 				break;
 			case Input::SPRINT:
 				sprinting = true;

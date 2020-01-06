@@ -10,20 +10,16 @@
 
 namespace TouhouFanGame
 {
-	DialogMgr::DialogMgr(TouhouFanGame::ECS::Entity &holder) :
-		_holder(holder)
-	{
-	}
-
 	void DialogMgr::select(unsigned dialog)
 	{
 		this->_displayed = "";
 		this->_waiting = false;
 		try {
 			this->_left = this->_dialogs.at(dialog);
+			this->_selected = dialog;
 		} catch (std::out_of_range &e) {
 			this->_left = "";
-			throw DialogNotFoundException("Invalid dialog number (" + std::to_string(dialog) + ") for file " + this->_loaded + ": " + e.what());
+			throw DialogNotFoundException("Invalid dialog number (" + std::to_string(dialog) + ") for file \"" + this->_loaded + "\": " + e.what());
 		}
 	}
 
@@ -32,9 +28,17 @@ namespace TouhouFanGame
 		return this->_waiting;
 	}
 
-	bool DialogMgr::finished() const
+	bool DialogMgr::finish()
 	{
-		return this->_left.empty() && this->_displayed.empty();
+		if (this->_left.empty() && this->_displayed.empty()) {
+			try {
+				this->select(this->_selected + 1);
+			} catch (DialogNotFoundException &) {
+				this->select(0);
+			}
+			return true;
+		}
+		return false;
 	}
 
 	void DialogMgr::render(TouhouFanGame::Game &game) const
@@ -45,18 +49,27 @@ namespace TouhouFanGame
 		auto &screen = *game.resources.screen;
 		auto camera = screen.getCameraCenter();
 		auto screenSize = screen.getSize();
-		sf::Sprite sprite;
 
-		screen.fillColor({0, 0, 0, 120});
 		screen.draw(game.resources.textures["dialog_box"], {
-			camera.x - screenSize.x / 2.f + 5,
-			camera.y + screenSize.y / 2.f - 35,
+			camera.x - screenSize.x / 2.f,
+			camera.y + 2.f * screenSize.y / 6.f,
+		}, {
+			screenSize.x,
+			screenSize.y / 6
 		});
 		screen.fillColor({255, 255, 255, 120});
+		screen.fillColor();
+	}
+
+	unsigned DialogMgr::getSelected() const
+	{
+		return this->_selected;
 	}
 
 	void DialogMgr::update(Game &game, bool skip, bool fast)
 	{
+		if (!this->_holder)
+			return;
 		if (this->waiting()) {
 			this->_waiting = !skip;
 			return;
@@ -69,10 +82,8 @@ namespace TouhouFanGame
 	{
 		std::ifstream fstream{file};
 
-		if (fstream.fail()) {
-			logger.error(file + ": " + strerror(errno));
-			throw InvalidDialogFileException(file + ": " + strerror(errno));
-		}
+		if (fstream.fail())
+			throw InvalidDialogFileException("\"" + file + "\": " + strerror(errno));
 		this->loadFromStream(fstream);
 		fstream.close();
 	}
@@ -166,9 +177,9 @@ namespace TouhouFanGame
 	void DialogMgr::_executeCommand(Game &game, const std::string &cmd, const std::vector<std::string> args)
 	{
 		if (cmd == "playerName")
-			this->_left += game.state.map.getPlayer().getComponent("Name").to<ECS::Components::NameComponent>().name;
+			this->_left += game.state.map.getPlayer()->getComponent("Name").to<ECS::Components::NameComponent>().name;
 		else if (cmd == "holderName")
-			this->_left += this->_holder.getComponent("Name").to<ECS::Components::NameComponent>().name;
+			this->_left += this->_holder ? this->_holder->getComponent("Name").to<ECS::Components::NameComponent>().name : "(NULL)";
 		else
 			throw BadCommandException("No command named \"" + cmd + "\"");
 	}

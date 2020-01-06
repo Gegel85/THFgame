@@ -14,10 +14,10 @@ namespace TouhouFanGame::ECS::Systems
 	{
 	}
 
-	void CollisionSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
+	void CollisionSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity.getComponent("Position").to<Components::PositionComponent &>();
-		auto &collision = entity.getComponent("Collision").to<Components::CollisionComponent &>();
+		auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
+		auto &collision = entity->getComponent("Collision").to<Components::CollisionComponent &>();
 
 		collision.collided.clear();
 		for (auto &e : this->_core.getEntityByComponent("Collider")) {

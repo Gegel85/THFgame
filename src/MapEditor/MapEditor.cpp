@@ -598,7 +598,7 @@ namespace TouhouFanGame
 		sf::RectangleShape rect;
 
 		for (auto &entity : this->_map._core.getEntityByComponent("Displayable"))
-			system.updateEntity(*entity);
+			system.updateEntity(entity);
 		this->_map.render();
 
 		rect.setFillColor(sf::Color{

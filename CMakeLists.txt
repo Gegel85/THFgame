@@ -117,6 +117,10 @@ add_executable(
 	src/Core/ECS/Systems/CollisionSystem.hpp
 	src/Core/ECS/Components/ColliderComponent.cpp
 	src/Core/ECS/Components/ColliderComponent.hpp
+	src/Core/ECS/Components/DialogComponent.cpp
+	src/Core/ECS/Components/DialogComponent.hpp
+	src/Core/ECS/Systems/DialogSystem.cpp
+	src/Core/ECS/Systems/DialogSystem.hpp
 )
 
 target_link_libraries(
@@ -235,6 +239,12 @@ add_executable(
 	src/Core/ECS/Systems/CollisionSystem.hpp
 	src/Core/ECS/Components/ColliderComponent.cpp
 	src/Core/ECS/Components/ColliderComponent.hpp
+	src/Core/ECS/Components/DialogComponent.cpp
+	src/Core/ECS/Components/DialogComponent.hpp
+	src/Core/ECS/Systems/DialogSystem.cpp
+	src/Core/ECS/Systems/DialogSystem.hpp
+	src/Core/Dialogs/DialogMgr.cpp
+	src/Core/Dialogs/DialogMgr.hpp
 )
 
 target_link_libraries(

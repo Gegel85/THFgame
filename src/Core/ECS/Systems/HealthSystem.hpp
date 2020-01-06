@@ -17,7 +17,7 @@ namespace TouhouFanGame::ECS::Systems
 	class HealthSystem : public System {
 	public:
 		HealthSystem(Core &parent);
-		void updateEntity(Entity &entity) override;
+		void updateEntity(const std::shared_ptr<Entity> &entity) override;
 	};
 }
 

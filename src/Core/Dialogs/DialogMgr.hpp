@@ -18,7 +18,10 @@ namespace TouhouFanGame
 	class DialogMgr {
 	private:
 		//! @brief The holder of this Dialog.
-		ECS::Entity &_holder;
+		std::shared_ptr<ECS::Entity> _holder;
+
+		//! @brief The dialog currently selected.
+		unsigned _selected = 0;
 
 		//! @brief Whether this manager is waiting for the a user action.
 		bool _waiting = false;
@@ -50,9 +53,6 @@ namespace TouhouFanGame
 		void _consumeCharacter(Game &game);
 
 	public:
-		//! @brief Constructor.
-		DialogMgr(ECS::Entity &holder);
-
 		//! @brief Select a previously loaded dialog.
 		//! @param dialog The dialog to select.
 		void select(unsigned dialog);
@@ -60,8 +60,15 @@ namespace TouhouFanGame
 		//! @brief Whether this manager is waiting for the a user action.
 		bool waiting() const;
 
-		//! @brief Whether this manager has finished his job (The dialog has come to an end).
-		bool finished() const;
+		//! @brief If this manager has finished it's job, it will return true and go to the next dialog available or loop back at the start.
+		//!        If the manager hasn't finished, then it only returns false.
+		bool finish();
+
+		//! @brief Change the holder of this Dialog.
+		void setHolder(const std::shared_ptr<ECS::Entity> &entity);
+
+		//! @brief Get the currently selected dialog.
+		unsigned getSelected() const;
 
 		//! @brief Load dialogs from a stream.
 		//! @throw InvalidDialogStringException

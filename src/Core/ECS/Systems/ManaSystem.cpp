@@ -14,9 +14,9 @@ namespace TouhouFanGame::ECS::Systems
 		System(parent, "Mana", {})
 	{}
 
-	void ManaSystem::updateEntity(TouhouFanGame::ECS::Entity &entity)
+	void ManaSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &mana = entity.getComponent("Mana").to<Components::ManaComponent>();
+		auto &mana = entity->getComponent("Mana").to<Components::ManaComponent>();
 
 		if (mana.mana > mana.maxMana)
 			mana.mana = mana.maxMana;

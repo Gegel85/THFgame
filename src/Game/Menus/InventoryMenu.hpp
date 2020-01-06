@@ -16,6 +16,7 @@ namespace TouhouFanGame
 	class InventoryMenu : public Menu {
 	private:
 		Map &_map;
+		Game &_game;
 		MenuMgr &_menu;
 		unsigned _selectedEntry = 0;
 		Rendering::HUD &_hud;
@@ -24,7 +25,7 @@ namespace TouhouFanGame
 		std::map<std::string, sf::Texture> &_textures;
 
 	public:
-		InventoryMenu(MenuMgr &menu, Map &map, Rendering::HUD &hud, Rendering::Screen &screen, std::map<std::string, sf::Texture> &textures);
+		InventoryMenu(MenuMgr &menu, Game &game, Map &map, Rendering::HUD &hud, Rendering::Screen &screen, std::map<std::string, sf::Texture> &textures);
 		void render() override;
 		void switched(bool isActive) override;
 		void handleEvent(const Input::Event &event) override;

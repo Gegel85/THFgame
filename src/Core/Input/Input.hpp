@@ -25,6 +25,7 @@ namespace TouhouFanGame
 			INTERACT,
 			INVENTORY,
 			PAUSE,
+			DIALOG,
 			NB_OF_ACTION
 		};
 

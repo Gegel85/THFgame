@@ -55,22 +55,19 @@ namespace TouhouFanGame
 	{
 		Game game;
 		//TODO: Add proper font loading.
-		sf::Font font;
 
 		try {
 			logger.info("Setting up...");
 			setup(game);
 
-			font.loadFromFile("assets/arial.ttf");
-			game.resources.screen->setFont(font);
+			game.resources.font.loadFromFile("assets/arial.ttf");
+			game.resources.screen->setFont(game.resources.font);
 
 			logger.info("Loading assets...");
 			Loader::loadAssets(game);
 
 			logger.info("Starting game.");
 			gameLoop(game);
-
-			game.resources.screen->setFont(font);
 		} catch (std::exception &e) {
 			logger.fatal(getLastExceptionName() + ": " + e.what());
 			Utils::dispMsg(

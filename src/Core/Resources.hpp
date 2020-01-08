@@ -39,6 +39,9 @@ namespace TouhouFanGame
 		//! @brief The items JSON file loaded.
 		std::vector<std::shared_ptr<Item>> items;
 
+		//! @brief The global font
+		sf::Font font;
+
 		//! @brief Plays a sound effect
 		//! @param id The id of the sound effect to play
 		//! @return The sound index assigned to this sfx

@@ -6,6 +6,8 @@
 #include "../Components/InteractComponent.hpp"
 #include "../Components/DialogComponent.hpp"
 #include "../Components/PlayerHudComponent.hpp"
+#include "../Exceptions.hpp"
+#include "../Components/ControllableComponent.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -19,6 +21,19 @@ namespace TouhouFanGame::ECS::Systems
 		auto &dialog = entity->getComponent("Dialog").to<Components::DialogComponent>();
 		auto &interact = entity->getComponent("Interact").to<Components::InteractComponent>();
 
+		if (dialog.triggered) {
+			if (dialog.manager.finish()) {
+				auto &hud = dialog.triggered->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
+
+				hud.hud.setDialogManager(nullptr);
+				try {
+					dialog.triggered->getComponent("Controllable").to<Components::ControllableComponent>().disabled = false;
+				} catch (NoSuchComponentException &) {}
+				dialog.triggered = nullptr;
+			}
+			return;
+		}
+
 		if (
 			interact.interactedWith &&
 			interact.interactedWith->hasComponent("PlayerHUD") &&
@@ -26,7 +41,12 @@ namespace TouhouFanGame::ECS::Systems
 		) {
 			auto &hud = interact.interactedWith->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
 
+			dialog.triggered = interact.interactedWith;
+			dialog.manager.setHolder(entity);
 			hud.hud.setDialogManager(&dialog.manager);
+			try {
+				interact.interactedWith->getComponent("Controllable").to<Components::ControllableComponent>().disabled = true;
+			} catch (NoSuchComponentException &) {}
 			interact.interactedWith = nullptr;
 		}
 	}

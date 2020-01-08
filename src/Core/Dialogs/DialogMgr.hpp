@@ -83,9 +83,7 @@ namespace TouhouFanGame
 
 		//! @brief Updates the manager's state, advancing in the currently displayed dialog if needed.
 		//! @param game Game state and resources.
-		//! @param skip Is the skip key pressed ?
-		//! @param fast Is the faster dialog key pressed ?
-		void update(Game &game, bool skip, bool fast);
+		void update(Game &game);
 	};
 }
 

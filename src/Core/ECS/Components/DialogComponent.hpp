@@ -18,6 +18,9 @@ namespace TouhouFanGame::ECS::Components
 		std::string _dialogPath;
 
 	public:
+		//! @brief Is this dialog triggered.
+		std::shared_ptr<Entity> triggered;
+
 		//! @brief The dialog manager.
 		DialogMgr manager;
 

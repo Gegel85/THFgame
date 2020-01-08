@@ -187,8 +187,10 @@ void TouhouFanGame::Rendering::HUD::draw(TouhouFanGame::Game &game)
 		this->_renderMusic(*game.resources.screen);
 
 	game.resources.screen->fillColor(sf::Color{255, 255, 255});
-	if (this->_dialog)
+	if (this->_dialog) {
 		this->_dialog->render(game);
+		this->_dialog->update(game);
+	}
 }
 
 void TouhouFanGame::Rendering::HUD::setDispBossHUD(bool dispBoss)

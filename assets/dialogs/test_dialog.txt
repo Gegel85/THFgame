@@ -2,3 +2,4 @@ Bonjour %playerName%.\
 Je m'appelle %holderName%. Comment vas-tu ?
 Il y a 100\% de chance que ça marche pas mais dans le doute\
 c'est possible que ça marche !
+%setMusic satori_maiden%

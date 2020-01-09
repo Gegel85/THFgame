@@ -20,12 +20,15 @@ namespace TouhouFanGame::ECS::Systems
 	void ControllableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
 		auto &co = entity->getComponent("Controllable").to<Components::ControllableComponent>();
-
-		if (co.disabled)
-			return;
-
 		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
 		auto &dis = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
+
+		if (co.disabled) {
+			mov.speed = 0;
+			dis.animation = Rendering::IDLE;
+			return;
+		}
+
 		auto &col = entity->getComponent("Collision").to<Components::CollisionComponent>();
 		unsigned char dir = 0;
 		bool sprinting = false;

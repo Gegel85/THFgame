@@ -133,9 +133,10 @@ namespace TouhouFanGame
 
 			elems.erase(elems.begin());
 			this->_executeCommand(game, cmd, elems);
-			this->_consumeCharacter(game);
+			if (!this->_left.empty())
+				this->_consumeCharacter(game);
 		}
-		this->_waiting |= this->_left.empty();
+		this->_waiting |= this->_left.empty() && !this->_displayed.empty();
 	}
 
 	std::vector<std::string> DialogMgr::_parseCommand()
@@ -188,13 +189,28 @@ namespace TouhouFanGame
 		return result;
 	}
 
-	void DialogMgr::_executeCommand(Game &game, const std::string &cmd, const std::vector<std::string> args)
+	void DialogMgr::_executeCommand(Game &game, const std::string &cmdName, const std::vector<std::string> &args)
 	{
-		if (cmd == "playerName")
-			this->_left = game.state.map.getPlayer()->getComponent("Name").to<ECS::Components::NameComponent>().name + this->_left;
-		else if (cmd == "holderName")
-			this->_left = (this->_holder ? this->_holder->getComponent("Name").to<ECS::Components::NameComponent>().name : "(NULL)") + this->_left;
-		else
-			throw BadCommandException("No command named \"" + cmd + "\"");
+		const std::map<std::string, std::pair<unsigned, std::function<void(const std::vector<std::string> &)>>> cmds{
+			{"playerName", {0, [this, &game](const std::vector<std::string> &){
+				this->_left = game.state.map.getPlayer()->getComponent("Name").to<ECS::Components::NameComponent>().name + this->_left;
+			}}},
+			{"holderName", {0, [this](const std::vector<std::string> &){
+				this->_left = (this->_holder ? this->_holder->getComponent("Name").to<ECS::Components::NameComponent>().name : "(NULL)") + this->_left;
+			}}},
+			{"setMusic", {1, [&game](const std::vector<std::string> &args){
+				game.resources.playMusic(args[0]);
+			}}}
+		};
+
+		try {
+			auto cmd = cmds.at(cmdName);
+
+			if (cmd.first != args.size())
+				throw InvalidArgumentsException("Expected " + std::to_string(cmd.first) + " argument for " + cmdName + " but " + std::to_string(args.size()) + " given.");
+			cmd.second(args);
+		} catch (std::out_of_range &) {
+			throw BadCommandException("No command named \"" + cmdName + "\"");
+		}
 	}
 }

@@ -8,6 +8,8 @@
 
 #include <string>
 #include <vector>
+#include <functional>
+#include <map>
 #include "../ECS/Entity.hpp"
 
 namespace TouhouFanGame
@@ -42,7 +44,7 @@ namespace TouhouFanGame
 		//! @param cmd The command to execute.
 		//! @param args The arguments given to the command.
 		//! @throw BadCommandException, BadArgumentsException
-		void _executeCommand(Game &game, const std::string &cmd, const std::vector<std::string> args);
+		void _executeCommand(Game &game, const std::string &cmd, const std::vector<std::string> &args);
 
 		//! @brief Parse a command.
 		//! @return A vector containing the command at first position and then it's arguments.

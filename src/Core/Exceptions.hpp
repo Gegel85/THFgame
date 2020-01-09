@@ -119,10 +119,18 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief A string literal has no end.
+	//! @brief An unknown command was requested.
 	class BadCommandException : public BaseException {
 	public:
 		explicit BadCommandException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief A command had invalid arguments.
+	class InvalidArgumentsException : public BaseException {
+	public:
+		explicit InvalidArgumentsException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};

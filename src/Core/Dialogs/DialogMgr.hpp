@@ -10,7 +10,10 @@
 #include <vector>
 #include <functional>
 #include <map>
+#include <TGUI/Vector2f.hpp>
 #include "../ECS/Entity.hpp"
+
+#define DIALOG_SPRITE_SIZE sf::Vector2f{150, 300}
 
 namespace TouhouFanGame
 {
@@ -39,6 +42,26 @@ namespace TouhouFanGame
 
 		//! @brief All the dialogs loaded.
 		std::vector<std::string> _dialogs;
+
+		std::string _holderSprite;
+
+		std::string _otherSprite;
+
+		unsigned char _holderAnims = 0;
+
+		unsigned char _otherAnims = 0;
+
+		sf::Vector2f _holderPos = {25, 140};
+
+		sf::Vector2f _otherPos = {25, 140};
+
+		char _holderTimer = 0;
+
+		char _otherTimer = 0;
+
+		bool _holderFocus = false;
+
+		bool _otherFocus = false;
 
 		//! @brief Executes a command.
 		//! @param cmd The command to execute.
@@ -86,6 +109,8 @@ namespace TouhouFanGame
 		//! @brief Updates the manager's state, advancing in the currently displayed dialog if needed.
 		//! @param game Game state and resources.
 		void update(Game &game);
+
+		void resetSprites();
 	};
 }
 

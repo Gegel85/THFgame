@@ -1,5 +1,12 @@
-Bonjour %playerName%.\
-Je m'appelle %holderName%. Comment vas-tu ?
-Il y a 100\% de chance que ça marche pas mais dans le doute\
-c'est possible que ça marche !
+%setPlayerSprite test_character1%%setHolderSprite test_character2%%toggleHolderFocus%
+Bonjour %playerName%. Je m'appelle %holderName%.\
+Et les pommes de terre sont allignées.
+%toggleHolderFocus%%togglePlayerFocus%
+En effet, les nuages naviguent au\
+fil de l'eau !
+%toggleHolderFocus%%togglePlayerFocus%%setHolderAnim 1%
+blablabla\
+oui oui
+%setHolderAnim 0%
+plus de blabla
 %setMusic satori_maiden%

@@ -25,6 +25,7 @@ namespace TouhouFanGame::ECS::Systems
 			if (dialog.manager.finish()) {
 				auto &hud = dialog.triggered->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
 
+				dialog.manager.resetSprites();
 				hud.hud.setDialogManager(nullptr);
 				try {
 					dialog.triggered->getComponent("Controllable").to<Components::ControllableComponent>().disabled = false;

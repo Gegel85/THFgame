@@ -41,6 +41,20 @@ namespace TouhouFanGame
 		return false;
 	}
 
+	void DialogMgr::resetSprites()
+	{
+		this->_holderSprite.clear();
+		this->_otherSprite.clear();
+		this->_holderAnims = 0;
+		this->_otherAnims = 0;
+		this->_holderPos = {25, 140};
+		this->_otherPos = {25, 140};
+		this->_holderTimer = 0;
+		this->_otherTimer = 0;
+		this->_holderFocus = false;
+		this->_otherFocus = false;
+	}
+
 	void DialogMgr::render(TouhouFanGame::Game &game) const
 	{
 		if (!game.resources.screen)
@@ -50,6 +64,60 @@ namespace TouhouFanGame
 		auto camera = screen.getCameraCenter();
 		auto screenSize = screen.getSize();
 		sf::Text text;
+
+		if (!this->_holderSprite.empty()) {
+			screen.fillColor({
+				255,
+				255,
+				255,
+				static_cast<sf::Uint8>(this->_holderFocus ? 255 -  this->_holderTimer * 4 : 95 - this->_holderTimer * 4)
+			});
+			screen.draw(
+				game.resources.textures[this->_holderSprite],
+				{
+					camera.x + screenSize.x / 2.f - this->_holderPos.x - DIALOG_SPRITE_SIZE.x,
+					camera.y - screenSize.y / 2.f + this->_holderPos.y
+				},
+				{
+					static_cast<unsigned>(DIALOG_SPRITE_SIZE.x * screenSize.x / 640),
+					static_cast<unsigned>(DIALOG_SPRITE_SIZE.y * screenSize.y / 480)
+				},
+				{
+					static_cast<int>(this->_holderAnims * DIALOG_SPRITE_SIZE.x),
+					0,
+					static_cast<int>(DIALOG_SPRITE_SIZE.x),
+					static_cast<int>(DIALOG_SPRITE_SIZE.y)
+				}
+			);
+		}
+
+		if (!this->_otherSprite.empty()) {
+			screen.fillColor({
+				255,
+				255,
+				255,
+				static_cast<sf::Uint8>(this->_otherFocus ? 255 - this->_otherTimer * 4 : 95 - this->_otherTimer * 4)
+			});
+			screen.draw(
+				game.resources.textures[this->_otherSprite],
+				{
+					camera.x - screenSize.x / 2.f + this->_otherPos.x,
+					camera.y - screenSize.y / 2.f + this->_otherPos.y
+				},
+				{
+					static_cast<unsigned>(DIALOG_SPRITE_SIZE.x * screenSize.x / 640),
+					static_cast<unsigned>(DIALOG_SPRITE_SIZE.y * screenSize.y / 480)
+				},
+				{
+					static_cast<int>(this->_otherAnims * DIALOG_SPRITE_SIZE.x),
+					0,
+					static_cast<int>(DIALOG_SPRITE_SIZE.x),
+					static_cast<int>(DIALOG_SPRITE_SIZE.y)
+				}
+			);
+		}
+
+		screen.fillColor();
 
 		screen.draw(game.resources.textures["dialog_box"], {
 			camera.x - screenSize.x / 2.f,
@@ -87,6 +155,26 @@ namespace TouhouFanGame
 			return;
 		for (int i = game.state.settings.input->actionPressed(Input::SPRINT) * 2 + 1; i != 0 && !this->waiting(); i--)
 			this->_consumeCharacter(game);
+
+		if (this->_holderTimer > 0) {
+			this->_holderTimer--;
+			this->_holderPos.x += 3;
+			this->_holderPos.y -= 3;
+		} else if (this->_holderTimer < 0) {
+			this->_holderTimer++;
+			this->_holderPos.x -= 3;
+			this->_holderPos.y += 3;
+		}
+
+		if (this->_otherTimer < 0) {
+			this->_otherTimer++;
+			this->_otherPos.x -= 3;
+			this->_otherPos.y += 3;
+		} else if (this->_otherTimer > 0) {
+			this->_otherTimer--;
+			this->_otherPos.x += 3;
+			this->_otherPos.y -= 3;
+		}
 	}
 
 	void DialogMgr::loadFromFile(const std::string &file)
@@ -125,7 +213,7 @@ namespace TouhouFanGame
 			this->_displayed += c;
 			break;
 		case '\n':
-			this->_waiting = true;
+			this->_waiting = !this->_displayed.empty();
 			break;
 		case '%':
 			auto elems = this->_parseCommand();
@@ -200,6 +288,28 @@ namespace TouhouFanGame
 			}}},
 			{"setMusic", {1, [&game](const std::vector<std::string> &args){
 				game.resources.playMusic(args[0]);
+			}}},
+			{"setHolderSprite", {1, [this](const std::vector<std::string> &args){
+				this->_holderSprite = args[0];
+			}}},
+			{"setPlayerSprite", {1, [this](const std::vector<std::string> &args){
+				this->_otherSprite = args[0];
+			}}},
+			{"setHolderAnim", {1, [this](const std::vector<std::string> &args){
+				this->_holderAnims = std::stol(args[0]);
+			}}},
+			{"setPlayerAnim", {1, [this](const std::vector<std::string> &args){
+				this->_otherAnims = std::stol(args[0]);
+			}}},
+			{"toggleHolderFocus", {0, [this](const std::vector<std::string> &){
+				this->_holderFocus = !this->_holderFocus;
+				if (abs(this->_holderTimer + 10 * (this->_holderFocus ? 1 : -1)) <= 10)
+					this->_holderTimer += 10 * (this->_holderFocus ? 1 : -1);
+			}}},
+			{"togglePlayerFocus", {0, [this](const std::vector<std::string> &){
+				this->_otherFocus = !this->_otherFocus;
+				if (abs(this->_otherTimer + 10 * (this->_otherFocus ? 1 : -1)) <= 10)
+					this->_otherTimer += 10 * (this->_otherFocus ? 1 : -1);
 			}}}
 		};
 

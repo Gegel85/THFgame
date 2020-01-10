@@ -23,7 +23,9 @@
 		"testEntity": "entities/test.png",
 		"heal_potion": "items/heal_potion.png",
 		"mana_potion": "items/mana_potion.png",
-		"dialog_box": "dialogs/dialog_box.png"
+		"dialog_box": "dialogs/dialog_box.png",
+		"test_character1": "dialogs/test_character1.png",
+		"test_character2": "dialogs/test_character2.png"
 	},
 	"icon": "icon.png"
 }

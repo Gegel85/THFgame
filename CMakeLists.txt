@@ -121,6 +121,11 @@ add_executable(
 	src/Core/ECS/Components/DialogComponent.hpp
 	src/Core/ECS/Systems/DialogSystem.cpp
 	src/Core/ECS/Systems/DialogSystem.hpp
+	src/Core/ECS/Components/ShootComponent.cpp
+	src/Core/ECS/Components/ShootComponent.hpp
+	src/Core/ExternalCode/ExternalCode.hpp
+	src/Core/ExternalCode/DynamicLibrary.cpp
+	src/Core/ExternalCode/DynamicLibrary.hpp
 )
 
 target_link_libraries(
@@ -129,6 +134,7 @@ target_link_libraries(
 	sfml-system
 	sfml-graphics
 	sfml-audio
+	dl
 )
 
 add_executable(
@@ -245,6 +251,11 @@ add_executable(
 	src/Core/ECS/Systems/DialogSystem.hpp
 	src/Core/Dialogs/DialogMgr.cpp
 	src/Core/Dialogs/DialogMgr.hpp
+	src/Core/ECS/Components/ShootComponent.cpp
+	src/Core/ECS/Components/ShootComponent.hpp
+	src/Core/ExternalCode/ExternalCode.hpp
+	src/Core/ExternalCode/DynamicLibrary.cpp
+	src/Core/ExternalCode/DynamicLibrary.hpp
 )
 
 target_link_libraries(
@@ -254,4 +265,5 @@ target_link_libraries(
 	sfml-graphics
 	sfml-audio
 	tgui
+	dl
 )

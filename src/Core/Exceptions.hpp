@@ -127,10 +127,26 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief A command had invalid arguments.
+	//! @brief Invalid arguments were given.
 	class InvalidArgumentsException : public BaseException {
 	public:
 		explicit InvalidArgumentsException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief This object cannot find this procedure.
+	class ProcedureNotFoundException : public BaseException {
+	public:
+		explicit ProcedureNotFoundException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief The dynamic library wasn't valid.
+	class InvalidDllException : public BaseException {
+	public:
+		explicit InvalidDllException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};

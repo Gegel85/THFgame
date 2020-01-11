@@ -128,15 +128,6 @@ add_executable(
 	src/Core/ExternalCode/DynamicLibrary.hpp
 )
 
-target_link_libraries(
-	THFgame
-	sfml-window
-	sfml-system
-	sfml-graphics
-	sfml-audio
-	dl
-)
-
 add_executable(
 	map_editor
 	src/Core/ECS/Component.cpp
@@ -258,12 +249,40 @@ add_executable(
 	src/Core/ExternalCode/DynamicLibrary.hpp
 )
 
-target_link_libraries(
-	map_editor
-	sfml-window
-	sfml-system
-	sfml-graphics
-	sfml-audio
-	tgui
-	dl
-)
+if (WIN32)
+	target_link_libraries(
+		THFgame
+		sfml-window
+		sfml-system
+		sfml-graphics
+		sfml-audio
+	)
+
+	target_link_libraries(
+		map_editor
+		sfml-window
+		sfml-system
+		sfml-graphics
+		sfml-audio
+		tgui
+	)
+else (WIN32)
+	target_link_libraries(
+		THFgame
+		sfml-window
+		sfml-system
+		sfml-graphics
+		sfml-audio
+		dl
+	)
+
+	target_link_libraries(
+		map_editor
+		sfml-window
+		sfml-system
+		sfml-graphics
+		sfml-audio
+		tgui
+		dl
+	)
+endif (WIN32)

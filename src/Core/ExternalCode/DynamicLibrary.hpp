@@ -10,12 +10,17 @@
 
 
 #include "ExternalCode.hpp"
+#ifndef _WIN32
+#define void * HMODULE
+#else
+#include <windows.h>
+#endif
 
 namespace TouhouFanGame
 {
 	class DynamicLibrary : public ExternalCode {
 	private:
-		void *_handler;
+		HMODULE _handler;
 
 		void *_call(const std::string &procName, std::vector<void *> args) override;
 

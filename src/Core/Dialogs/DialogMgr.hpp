@@ -13,7 +13,7 @@
 #include <TGUI/Vector2f.hpp>
 #include "../ECS/Entity.hpp"
 
-#define DIALOG_SPRITE_SIZE sf::Vector2f{150, 300}
+#define DIALOG_SPRITE_SIZE this->_dialogSpriteSize
 
 namespace TouhouFanGame
 {
@@ -24,6 +24,8 @@ namespace TouhouFanGame
 	private:
 		//! @brief The holder of this Dialog.
 		std::shared_ptr<ECS::Entity> _holder;
+
+		sf::Vector2f _dialogSpriteSize;
 
 		//! @brief The dialog currently selected.
 		unsigned _selected = 0;
@@ -78,6 +80,8 @@ namespace TouhouFanGame
 		void _consumeCharacter(Game &game);
 
 	public:
+		DialogMgr();
+
 		//! @brief Select a previously loaded dialog.
 		//! @param dialog The dialog to select.
 		void select(unsigned dialog);

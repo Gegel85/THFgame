@@ -10,6 +10,14 @@
 
 namespace TouhouFanGame
 {
+	DialogMgr::DialogMgr()
+	{
+		std::ifstream stream{"assets/dialogSize.txt"};
+
+		stream >> this->_dialogSpriteSize.x >> this->_dialogSpriteSize.y,
+		stream.close();
+	}
+
 	void DialogMgr::select(unsigned dialog)
 	{
 		this->_displayed = "";

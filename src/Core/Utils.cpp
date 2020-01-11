@@ -11,7 +11,7 @@
 #include <vector>
 #include <sys/stat.h>
 #include <SFML/Graphics.hpp>
-#include "Core/Game.hpp"
+#include "Game.hpp"
 
 #define ICON_ERROR_PATH "assets/box/error.png"
 #else

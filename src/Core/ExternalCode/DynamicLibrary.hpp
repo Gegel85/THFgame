@@ -11,7 +11,7 @@
 
 #include "ExternalCode.hpp"
 #ifndef _WIN32
-#define void * HMODULE
+typedef void * HMODULE;
 #define DLL_EXTENSION ".so"
 #else
 #include <windows.h>

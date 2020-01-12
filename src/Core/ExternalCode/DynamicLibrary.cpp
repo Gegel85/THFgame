@@ -7,10 +7,10 @@
 
 #ifndef _WIN32
 #include <dlfcn.h>
-#include <cstring>
 #else
 #include <windows.h>
 
+#define RTLD_LAZY 0
 #define dlopen(str, _) LoadLibraryA(str)
 #define dlclose(handle) FreeLibrary(handle)
 #define dlsym(handle, sym) reinterpret_cast<void *>(GetProcAddress(handle, sym))
@@ -22,7 +22,7 @@ namespace TouhouFanGame
 	std::string getError()
 	{
 #ifndef _WIN32
-		return strerror(errno);
+		return dlerror();
 #else
 		char *s = nullptr;
 
@@ -42,7 +42,7 @@ namespace TouhouFanGame
 
 	DynamicLibrary::DynamicLibrary(const std::string &path)
 	{
-		this->_handler = dlopen(path.c_str(), 0);
+		this->_handler = dlopen(path.c_str(), RTLD_LAZY);
 		if (!this->_handler)
 			throw InvalidDllException(path + ": " + getError());
 	}

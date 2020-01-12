@@ -5,12 +5,6 @@
 #include "MapEditor.hpp"
 #include "../Core/Utils.hpp"
 
-namespace TouhouFanGame
-{
-	//! @brief The global logger
-	Logger logger{"./latest.log", Logger::DEBUG};
-}
-
 int main()
 {
 	TouhouFanGame::MapEditor editor;

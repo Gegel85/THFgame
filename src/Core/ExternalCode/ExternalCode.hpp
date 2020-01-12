@@ -30,6 +30,8 @@ namespace TouhouFanGame
 			}
 		}
 
+		virtual void update() = 0;
+
 		virtual ~ExternalCode() = default;
 	};
 }

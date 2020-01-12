@@ -55,6 +55,9 @@ namespace TouhouFanGame::Rendering
 			//! @return The position on the sprite sheet of that tile.
 			sf::Vector2u getPositionFromAnimationIndex(unsigned index);
 
+			//! @brief Loads a file.
+			void loadFile(Resources &resources, const std::string &path);
+
 			//! @brief The texture index.
 			std::string	texture;
 
@@ -134,6 +137,9 @@ namespace TouhouFanGame::Rendering
 
 		//! @brief Updates the entity's state.
 		void update();
+
+		//! @brief Loads a new config file to replace the old configs.
+		void setConfigs(Resources &resources, const std::string &path);
 	};
 }
 

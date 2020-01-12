@@ -26,7 +26,7 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::ControllableComponent(*game.state.settings.input, 2, 4),
 				new Components::BlockedByTerrainComponent(game.state.map),
 				new Components::MovableComponent(),
-				new Components::DisplayableComponent(game, "assets/entities/test.json"),
+				new Components::DisplayableComponent(game.resources, "assets/entities/test.json"),
 				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
 				new Components::HealthComponent(20),
 				new Components::ManaComponent(20),

@@ -202,7 +202,7 @@ namespace TouhouFanGame
 		);
 
 		speedEditBox->connect("TextChanged", [&displayable, speedEditBox]{
-			displayable._configPath = speedEditBox->getText().toAnsiString();
+			displayable.setConfigs(speedEditBox->getText().toAnsiString());
 		});
 		panel->setRenderer(render);
 		panel->add(speedLabel);

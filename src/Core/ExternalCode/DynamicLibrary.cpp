@@ -60,4 +60,12 @@ namespace TouhouFanGame
 			throw ProcedureNotFoundException("Error when trying to fetch " + procName + ": " + getError());
 		return func(args);
 	}
+
+	void DynamicLibrary::update()
+	{
+		auto func = reinterpret_cast<void (*)()>(dlsym(this->_handler, "update"));
+
+		if (func)
+			func();
+	}
 }

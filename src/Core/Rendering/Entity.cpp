@@ -13,6 +13,11 @@ namespace TouhouFanGame::Rendering
 {
 	Entity::Config::Config(Resources &resources, const std::string &path)
 	{
+		this->loadFile(resources, path);
+	}
+
+	void Entity::Config::loadFile(Resources &resources, const std::string &path)
+	{
 		std::ifstream stream{path};
 		nlohmann::json value;
 
@@ -75,6 +80,11 @@ namespace TouhouFanGame::Rendering
 		_resources(resources),
 		_configs(resources, configPath)
 	{
+	}
+
+	void Entity::setConfigs(Resources &resources, const std::string &path)
+	{
+		this->_configs.loadFile(resources, path);
 	}
 
 	void Entity::setAnimation(Animation newAnimation, bool forceReset)

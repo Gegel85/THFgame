@@ -24,7 +24,7 @@ namespace TouhouFanGame
 		returnType *call(const std::string &procName, argsTypes *...args)
 		{
 			try {
-				return dynamic_cast<returnType *>(this->_call(procName, {args...}));
+				return reinterpret_cast<returnType *>(this->_call(procName, std::vector<void*>{args...}));
 			} catch (std::bad_cast &) {
 				throw InvalidArgumentsException("An invalid argument was given to external procedure " + procName);
 			}

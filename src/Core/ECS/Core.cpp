@@ -33,7 +33,9 @@ namespace TouhouFanGame::ECS
 
 	void Core::update()
 	{
-		for (auto &entity : this->_entities)
+		auto entities = this->_entities;
+
+		for (auto &entity : entities)
 			for (auto &component : entity->getComponentsNames())
 				try {
 					System &system = this->getSystemByName(component);
@@ -48,6 +50,11 @@ namespace TouhouFanGame::ECS
 						getLastExceptionName() + ": " + e.what()
 					);
 				}
+	}
+
+	void Core::registerEntity(TouhouFanGame::ECS::Entity *entity)
+	{
+		this->registerEntity(std::shared_ptr<Entity>(entity));
 	}
 
 	void Core::deleteEntity(const std::shared_ptr<Entity> &entity)
@@ -112,13 +119,15 @@ namespace TouhouFanGame::ECS
 	{
 		try {
 			this->getEntityByID(entity->getID());
-			throw UpdateErrorException("An entity already have ID " + std::to_string(entity->getID()));
-		} catch (NoSuchEntityException &) {
-			for (auto &comp : entity->getComponentsNames())
-				this->_entitiesByComponent[comp].push_back(entity);
-			this->_entities.push_back(entity);
-			return entity;
-		}
+			try {
+				while (true) this->getEntityByID(++this->_lastGivenID);
+			} catch (NoSuchEntityException &) {}
+			entity->_id = this->_lastGivenID;
+		} catch (NoSuchEntityException &) {}
+		for (auto &comp : entity->getComponentsNames())
+			this->_entitiesByComponent[comp].push_back(entity);
+		this->_entities.push_back(entity);
+		return entity;
 	}
 
 	void Core::entityComponentChanged(const std::shared_ptr<Entity> &entity, const std::string &compName)

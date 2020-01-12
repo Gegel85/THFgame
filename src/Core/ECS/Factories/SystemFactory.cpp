@@ -14,6 +14,7 @@
 #include "../Systems/PlayerHudSystem.hpp"
 #include "../Systems/CollisionSystem.hpp"
 #include "../Systems/DialogSystem.hpp"
+#include "../Systems/ShootSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -31,6 +32,7 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::PlayerHUDSystem(core); },
 		[](Core &core){ return new Systems::CollisionSystem(core); },
 		[](Core &core){ return new Systems::DialogSystem(core); },
+		[](Core &core){ return new Systems::ShootSystem(core); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 

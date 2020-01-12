@@ -200,7 +200,7 @@ namespace TouhouFanGame
 				throw InvalidSavedMap("saves/map_player.sav: " + std::string(strerror(errno)));
 			this->loadMap(0);
 			if (this->_core.getEntityByName("Player").empty())
-				this->_core.makeEntity("Player");
+				this->_core.makeEntity("TestPlayer");
 			return;
 		}
 

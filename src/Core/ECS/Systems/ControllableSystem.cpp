@@ -9,6 +9,7 @@
 #include "../Core.hpp"
 #include "../Components/CollisionComponent.hpp"
 #include "../Components/InteractComponent.hpp"
+#include "../Components/ShootComponent.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -22,7 +23,9 @@ namespace TouhouFanGame::ECS::Systems
 		auto &co = entity->getComponent("Controllable").to<Components::ControllableComponent>();
 		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
 		auto &dis = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
+		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
 
+		shoot.shooting = false;
 		if (co.disabled) {
 			mov.speed = 0;
 			dis.animation = Rendering::IDLE;
@@ -42,6 +45,7 @@ namespace TouhouFanGame::ECS::Systems
 				dir |= 1U << action;
 				break;
 			case Input::ATTACK:
+				shoot.shooting = true;
 				break;
 			case Input::INTERACT:
 				for (auto &ent : col.collided)
@@ -69,5 +73,7 @@ namespace TouhouFanGame::ECS::Systems
 			mov.speed = 0;
 			dis.animation = Rendering::IDLE;
 		}
+		if (shoot.shooting)
+			dis.animation = Rendering::ATTACKING;
 	}
 }

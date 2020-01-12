@@ -16,11 +16,12 @@
 #include "../Components/PlayerHudComponent.hpp"
 #include "../Components/InventoryComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
+#include "../Components/ShootComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
 	const std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> EntityFactory::_builders = {
-		{"Player", [](Game &game, unsigned int id){
+		{"TestPlayer", [](Game &game, unsigned int id){
 			return new Entity(id, "Player", {
 				new Components::CollisionComponent(),
 				new Components::ControllableComponent(*game.state.settings.input, 2, 4),
@@ -32,7 +33,8 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::ManaComponent(20),
 				new Components::NameComponent("Test Character"),
 				new Components::PlayerHUDComponent(game.state.hud),
-				new Components::InventoryComponent(16)
+				new Components::InventoryComponent(16),
+				new Components::ShootComponent(game.resources, "assets/battle_scripts/test_attack")
 			}, false);
 		}},
 		{"Entity", [](Game &, unsigned int id) {

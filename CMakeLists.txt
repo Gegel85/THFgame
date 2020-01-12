@@ -120,7 +120,7 @@ add_library(
 	src/Core/ExternalCode/DynamicLibrary.cpp
 	src/Core/ExternalCode/DynamicLibrary.hpp
 	src/Core/Game.cpp
-)
+	src/Core/ECS/Systems/ShootSystem.cpp src/Core/ECS/Systems/ShootSystem.hpp)
 
 if (WIN32)
 	target_link_libraries(

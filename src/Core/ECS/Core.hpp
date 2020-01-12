@@ -48,12 +48,19 @@ namespace TouhouFanGame::ECS
 		//! @throw NoSuchEntityException If the Entity cannot be built.
 		std::shared_ptr<Entity> makeEntity(const std::string &typeName);
 
-		//! @brief Registers an Entity in the Core. Will throw if the ID is already taken.
+		//! @brief Registers an Entity in the Core. Will change the Entity ID if the ID is already taken.
 		//! @param entity The Entity to register.
-		//! @return The Entity registered;.
-		//! @throw UpdateErrorException If the Entity's ID is already taken.
-		//! @note The Entity must have been built using new and will be deleted by the Core.
+		//! @return The Entity registered.
+		//! @warning NEVER USE THIS IN DYNAMIC MODULES (DLL, SO) !
+		//! Also, avoid sharing shared_ptr with the core because you might have double free.
+		//! If you are doing a projectile/shared library and want to register new entities that cannot
+		//! be built by the EntityFactory, allocate the Entity using new and use the classic pointer version instead.
 		std::shared_ptr<Entity> registerEntity(std::shared_ptr<Entity> entity);
+
+		//! @brief Registers an Entity in the Core. Will change the Entity ID if the ID is already taken.
+		//! @param entity The Entity to register.
+		//! @note The Entity must have been built using new and will be deleted by the Core.
+		void registerEntity(Entity *entity);
 
 		//! @brief Get and Entity using it's ID.
 		//! @param id The ID of the Entity to fetch.

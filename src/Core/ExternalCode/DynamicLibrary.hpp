@@ -12,8 +12,10 @@
 #include "ExternalCode.hpp"
 #ifndef _WIN32
 #define void * HMODULE
+#define DLL_EXTENSION ".so"
 #else
 #include <windows.h>
+#define DLL_EXTENSION ".dll"
 #endif
 
 namespace TouhouFanGame

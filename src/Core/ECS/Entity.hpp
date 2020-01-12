@@ -18,6 +18,8 @@ namespace TouhouFanGame
 
 namespace TouhouFanGame::ECS
 {
+	class Core;
+
 	//! @brief Entity containing Component and updated by System
 	class Entity {
 	private:
@@ -35,6 +37,8 @@ namespace TouhouFanGame::ECS
 
 		//! @brief All the Components the Entity.
 		std::vector<std::unique_ptr<Component>> _components;
+
+		friend Core;
 
 	public:
 		Entity(unsigned id);

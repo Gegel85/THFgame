@@ -11,30 +11,43 @@
 
 unsigned int timer = 0;
 
-std::shared_ptr<TouhouFanGame::ECS::Entity> makeProjectile(TouhouFanGame::Resources &resources, sf::Vector2f pos, unsigned char dir)
+TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Resources &resources, sf::Vector2f pos, unsigned char dir)
 {
 	auto *p = new TouhouFanGame::ECS::Components::PositionComponent({12, 12});
 	auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
+	auto *d = new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json");
 
 	p->position = pos;
 	m->speed = 10;
 	m->dir = dir;
+	d->animation = TouhouFanGame::Rendering::ATTACKING;
 
-	return std::make_shared<TouhouFanGame::ECS::Entity>(0, "PlayerProjectile", std::vector<TouhouFanGame::ECS::Component *>{
+	return new TouhouFanGame::ECS::Entity(0, "PlayerProjectile", std::vector<TouhouFanGame::ECS::Component *>{
 		m,
-		new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json"),
+		d,
 		p
 	}, false);
 }
 
 extern "C"
 {
+	void update()
+	{
+		if (timer != 0)
+			timer--;
+	}
+
 	void attackDefault(std::vector<void *> args)
 	{
+		if (timer != 0)
+			return;
+
 		if (args.size() != 3)
 			throw std::bad_cast();
 
-		auto entity = *reinterpret_cast<std::shared_ptr<TouhouFanGame::ECS::Entity> *>(args[0]);
+		timer = 30;
+
+		auto &entity = *reinterpret_cast<std::shared_ptr<TouhouFanGame::ECS::Entity> *>(args[0]);
 		auto &core = *reinterpret_cast<TouhouFanGame::ECS::Core *>(args[1]);
 		auto &resources = *reinterpret_cast<TouhouFanGame::Resources *>(args[2]);
 		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();

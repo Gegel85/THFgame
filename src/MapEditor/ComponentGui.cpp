@@ -52,8 +52,8 @@ namespace TouhouFanGame
 			0,
 			60,
 			speedLabel->getSize().y,
-			std::to_string(movable.dir),
-			R"(0|[1-9]\d{0,1}|[1-2]\d{2}|2[0-4]\d|25[0-5])"
+			Utils::floatToString(movable.angleDir),
+			"[+-]?[0-9]*\\.?[0-9]*"
 		);
 
 		speedEditBox->connect("TextChanged", [&movable, speedEditBox]{
@@ -61,7 +61,7 @@ namespace TouhouFanGame
 				movable.speed = std::stof(speedEditBox->getText().toAnsiString());
 		});
 		dirEditBox->connect("TextChanged", [&movable, dirEditBox]{
-			movable.dir = std::stol(dirEditBox->getText().toAnsiString());
+			movable.angleDir = std::stof(dirEditBox->getText().toAnsiString());
 		});
 		panel->setRenderer(render);
 		panel->add(speedLabel);

@@ -11,6 +11,8 @@
 #include "../Components/InteractComponent.hpp"
 #include "../Components/ShootComponent.hpp"
 
+#define TO_DIR(val) (1U << val)
+
 namespace TouhouFanGame::ECS::Systems
 {
 	ControllableSystem::ControllableSystem(TouhouFanGame::ECS::Core &core) :
@@ -33,8 +35,8 @@ namespace TouhouFanGame::ECS::Systems
 		}
 
 		auto &col = entity->getComponent("Collision").to<Components::CollisionComponent>();
-		unsigned char dir = 0;
 		bool sprinting = false;
+		bool moving = false;
 
 		for (auto &action : co.input.getActions()) {
 			switch (action) {
@@ -42,7 +44,7 @@ namespace TouhouFanGame::ECS::Systems
 			case Input::RIGHT:
 			case Input::DOWN:
 			case Input::LEFT:
-				dir |= 1U << action;
+				moving = true;
 				break;
 			case Input::ATTACK:
 				shoot.shooting = true;
@@ -60,15 +62,10 @@ namespace TouhouFanGame::ECS::Systems
 			}
 		}
 
-		if (dir & TO_DIR(Input::LEFT) && dir & TO_DIR(Input::RIGHT))
-			dir &= ~TO_DIR(Input::LEFT) & ~TO_DIR(Input::RIGHT);
-		if (dir & TO_DIR(Input::DOWN) && dir & TO_DIR(Input::UP))
-			dir &= ~TO_DIR(Input::DOWN) & ~TO_DIR(Input::UP);
-
-		if (dir) {
-			mov.dir = dir;
+		if (moving) {
+			mov.angleDir = co.input.getDirectionAngle();
 			mov.speed = sprinting ? co.sprintSpeed : co.regularSpeed;
-			dis.animation = static_cast<Rendering::Animation>(Rendering::WALK + sprinting);
+			dis.animation = sprinting ? Rendering::RUN : Rendering::WALK;
 		} else {
 			mov.speed = 0;
 			dis.animation = Rendering::IDLE;

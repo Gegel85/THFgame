@@ -45,12 +45,13 @@ namespace TouhouFanGame::Inputs
 		Keyboard(sf::RenderWindow *window);
 		bool changeKeyFor(Action) override;
 		void cancelChangeKey() override;
-		bool actionPressed(Action) override;
+		bool actionPressed(Action) const override;
 		void handleEvent(sf::Event) override;
 		//! @note If the reference window (if any) doesn't have focus, all key presses are ignored
 		std::vector<Action> getActions() override;
 		std::optional<Event> pollEvent() override;
 		void unserialize(std::istream &) override;
+		double getDirectionAngle() const override;
 		void serialize(std::ostream &) const override;
 		std::string getEnumControlString(Action code) override;
 	};

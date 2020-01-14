@@ -62,7 +62,7 @@ namespace TouhouFanGame
 		//! @brief Tell if the action is currently triggered.
 		//! @param action The action to check.
 		//! @return Whether the action is triggered or not.
-		virtual bool actionPressed(Action action) = 0;
+		virtual bool actionPressed(Action action) const = 0;
 
 		//! @brief Consumes an event. Will try to change the key if in change key mode.
 		virtual void handleEvent(sf::Event) = 0;
@@ -70,6 +70,11 @@ namespace TouhouFanGame
 		//! @brief Tell all the actions currently triggered.
 		//! @return All the action currently triggered.
 		virtual std::vector<Action> getActions() = 0;
+
+		//! @brief Get the direction angle formed by the pressed inputs.
+		//! @note This will always return 0 if no input is pressed.
+		//! @return The angle formed by the input in radian.
+		virtual double getDirectionAngle() const = 0;
 
 		//! @brief Unserialize from a stream.
 		//! @param stream to load from.

@@ -133,11 +133,17 @@ namespace TouhouFanGame::Rendering
 			static_cast<int>(this->_configs.tileSize.x),
 			static_cast<int>(this->_configs.tileSize.y)
 		});
+		this->_sprite.setRotation(this->_angle);
 		screen.fillColor();
 		screen.draw(
 			this->_sprite,
 			this->_pos
 		);
+	}
+
+	void Entity::setSpriteAngle(float newAngle)
+	{
+		this->_angle = newAngle;
 	}
 
 	void Entity::update()

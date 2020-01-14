@@ -9,15 +9,13 @@
 #include "../Component.hpp"
 #include "../../Rendering/Entity.hpp"
 
-#define TO_DIR(dir) (1U << dir)
-
 namespace TouhouFanGame::ECS::Components
 {
 	//! @brief Given to Entity that can move.
 	class MovableComponent : public Component {
 	public:
 		//! @brief The direction to move to.
-		unsigned char	dir = 0;
+		float	angleDir = 0;
 
 		//! @brief The speed moving at.
 		float	speed = 0; //I AM SPEEEEEEEEEEEED

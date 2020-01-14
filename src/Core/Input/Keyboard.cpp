@@ -3,6 +3,8 @@
 //
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <math.h>
+#include <iostream>
 #include "Keyboard.hpp"
 
 namespace TouhouFanGame::Inputs
@@ -138,7 +140,27 @@ namespace TouhouFanGame::Inputs
 		}
 	}
 
-	bool Keyboard::actionPressed(Action action)
+	double Keyboard::getDirectionAngle() const
+	{
+		bool dirs[4] = {
+			this->actionPressed(UP),
+			this->actionPressed(DOWN),
+			this->actionPressed(LEFT),
+			this->actionPressed(RIGHT),
+		};
+
+		reinterpret_cast<short *>(dirs)[0] *= dirs[0] != dirs[1];
+		reinterpret_cast<short *>(dirs)[1] *= dirs[2] != dirs[3];
+
+		if (*reinterpret_cast<unsigned *>(dirs) == 0)
+			return 0;
+
+		if (dirs[0] + dirs[1] + dirs[2] + dirs[3] == 1)
+			return (dirs[0] * -M_PI_2 + dirs[1] * M_PI_2 + dirs[2] * M_PI);
+		return (M_PI_2 + dirs[2] * M_PI_4 - dirs[3] * M_PI_4) * (dirs[1] - dirs[0]);
+	}
+
+	bool Keyboard::actionPressed(Action action) const
 	{
 		return sf::Keyboard::isKeyPressed(this->_keys[action]) && (!this->_window || this->_window->hasFocus());
 	}

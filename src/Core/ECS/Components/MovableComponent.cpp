@@ -10,10 +10,7 @@ namespace TouhouFanGame::ECS::Components
 	MovableComponent::MovableComponent(std::istream &stream) :
 		Component("Movable")
 	{
-		int _dir;
-
-		stream >> this->speed >> _dir;
-		this->dir = _dir;
+		stream >> this->speed >> this->angleDir;
 		if (stream.fail())
 			throw InvalidSerializedString("Invalid MovableComponent");
 	}
@@ -24,6 +21,6 @@ namespace TouhouFanGame::ECS::Components
 
 	void MovableComponent::serialize(std::ostream &stream) const
 	{
-		stream << this->speed << " " << static_cast<int>(this->dir);
+		stream << this->speed << " " << this->angleDir;
 	}
 }

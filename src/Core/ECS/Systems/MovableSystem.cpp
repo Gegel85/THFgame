@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <cmath>
 #include "MovableSystem.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/MovableComponent.hpp"
@@ -19,7 +20,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto &pos = entity->getComponent("Position").to<Components::PositionComponent>();
 		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
 
-		pos.position.x += mov.speed * (((mov.dir & TO_DIR(Input::RIGHT)) != 0) - ((mov.dir & TO_DIR(Input::LEFT)) != 0));
-		pos.position.y += mov.speed * (((mov.dir & TO_DIR(Input::DOWN)) != 0) - ((mov.dir & TO_DIR(Input::UP)) != 0));
+		pos.position.x += mov.speed * cos(mov.angleDir);
+		pos.position.y += mov.speed * sin(mov.angleDir);
 	}
 }

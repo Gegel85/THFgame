@@ -22,7 +22,7 @@ namespace TouhouFanGame::ECS::Systems
 		//! @param tileSize The size of a single tile.
 		//! @param dir The direction of the Entity to update.
 		//! @param speed The speed
-		static void _pushEntity(Components::PositionComponent &pos, float x, float y, unsigned char tileSize, unsigned char &dir, float speed);
+		static void _pushEntity(Components::PositionComponent &pos, float x, float y, unsigned char tileSize, float &dir, float &speed);
 
 	public:
 		//! @param core The Core the System is in.

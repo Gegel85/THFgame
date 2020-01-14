@@ -104,6 +104,9 @@ namespace TouhouFanGame::Rendering
 		//! @brief The current tile used of this animation.
 		unsigned int	_animationState{0};
 
+		//! @brief The sprite orientation.
+		float		_angle = 0;
+
 		//! @brief The configs for this entity.
 		Config		_configs;
 
@@ -128,6 +131,9 @@ namespace TouhouFanGame::Rendering
 
 		//! @brief Sets the size of the entity.
 		void setSize(sf::Vector2u newSize);
+
+		//! @brief Set the sprite orientation (in radian).
+		void setSpriteAngle(float newAngle);
 
 		//! @brief Sets the facing direction of the entity.
 		void setDirection(Direction newDir);

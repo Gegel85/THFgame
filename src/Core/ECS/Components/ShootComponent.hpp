@@ -14,6 +14,7 @@
 #include "../Component.hpp"
 #include "../../ExternalCode/ExternalCode.hpp"
 #include "../../Resources.hpp"
+#include "../../Map.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
@@ -24,6 +25,8 @@ namespace TouhouFanGame::ECS::Components
 	public:
 		std::unique_ptr<ExternalCode> handler;
 
+		Map &map;
+
 		bool shooting = false;
 
 		Resources &resources;
@@ -31,9 +34,9 @@ namespace TouhouFanGame::ECS::Components
 		void setHandlerPath(const std::string &path);
 
 		//! @brief Unserializer constructor.
-		ShootComponent(std::istream &stream, Resources &resources);
-		ShootComponent(Resources &resources);
-		ShootComponent(Resources &resources, const std::string &handlePath);
+		ShootComponent(std::istream &stream, Map &map, Resources &resources);
+		ShootComponent(Resources &resources, Map &map);
+		ShootComponent(Resources &resources, Map &map, const std::string &handlePath);
 		~ShootComponent() override = default;
 		void serialize(std::ostream &) const override;
 	};

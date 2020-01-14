@@ -99,11 +99,14 @@ namespace TouhouFanGame::ECS
 		//! @brief Used to notify the Core that an Entity has More/less Component than before.
 		//!        Therefore, it needs to update it's Component to Entity list.
 		//! @param entity The entity that has its Component change.
-		//! @param compName The name of the component added/deleted
+		//! @param compName The name of the component added/deleted.
 		void entityComponentChanged(const std::shared_ptr<Entity> &entity, const std::string &compName);
 
-		//! @brief Updates all the Entity in the Core
+		//! @brief Updates all the Entity in the Core.
 		void update();
+
+		//! @brief Returns the Game object bound to this Core.
+		Game &getGame();
 
 		//! @brief Delete an Entity.
 		void deleteEntity(const std::shared_ptr<Entity> &entity);

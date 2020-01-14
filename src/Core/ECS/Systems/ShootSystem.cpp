@@ -18,7 +18,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto ent = entity;
 
 		if (shoot.shooting)
-			shoot.handler->call<void>("attackDefault", &ent, &this->_core, &shoot.resources);
+			shoot.handler->call<void>("attackDefault", &ent, &this->_core, &shoot.resources, &shoot.map);
 		shoot.handler->update();
 	}
 }

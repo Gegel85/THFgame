@@ -34,7 +34,7 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::NameComponent("Test Character"),
 				new Components::PlayerHUDComponent(game.state.hud),
 				new Components::InventoryComponent(16),
-				new Components::ShootComponent(game.resources, "assets/battle_scripts/test_attack")
+				new Components::ShootComponent(game.resources, game.state.map, "assets/battle_scripts/test_attack")
 			}, false);
 		}},
 		{"Entity", [](Game &, unsigned int id) {

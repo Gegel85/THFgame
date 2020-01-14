@@ -31,6 +31,11 @@ namespace TouhouFanGame::ECS
 		return entity;
 	}
 
+	Game &Core::getGame()
+	{
+		return this->_game;
+	}
+
 	void Core::update()
 	{
 		auto entities = this->_entities;
@@ -50,6 +55,24 @@ namespace TouhouFanGame::ECS
 						getLastExceptionName() + ": " + e.what()
 					);
 				}
+
+		this->_entities.erase(
+			std::remove_if(
+				this->_entities.begin(),
+				this->_entities.end(),
+				[](std::shared_ptr<Entity> &ent) { return ent->toBeDestroyed(); }
+			),
+			this->_entities.end()
+		);
+		for (auto &vec : this->_entitiesByComponent)
+			vec.second.erase(
+				std::remove_if(
+					vec.second.begin(),
+					vec.second.end(),
+					[](std::shared_ptr<Entity> &ent) { return ent->toBeDestroyed(); }
+				),
+				vec.second.end()
+			);
 	}
 
 	void Core::registerEntity(TouhouFanGame::ECS::Entity *entity)

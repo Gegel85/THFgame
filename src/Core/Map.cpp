@@ -283,6 +283,19 @@ namespace TouhouFanGame
 		return this->_objects[this->_size.x * (y / this->_tileSize) + (x / this->_tileSize)];
 	}
 
+	sf::Vector2<unsigned short> Map::getSize() const
+	{
+		return this->_size;
+	}
+
+	sf::Vector2u Map::getPixelSize() const
+	{
+		return {
+			static_cast<unsigned int>(this->_size.x * this->_tileSize),
+			static_cast<unsigned int>(this->_size.y * this->_tileSize)
+		};
+	}
+
 	unsigned char Map::getTileSize() const
 	{
 		return this->_tileSize;

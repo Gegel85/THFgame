@@ -189,6 +189,12 @@ namespace TouhouFanGame
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;
 
+		//! @brief Get the size of the map in pixel.
+		sf::Vector2u getPixelSize() const;
+
+		//! @brief Get the size of the map in tile.
+		sf::Vector2<unsigned short> getSize() const;
+
 		//! @brief Get the object at position x y.
 		//! @param x Horizontal position.
 		//! @param y Vertical position.

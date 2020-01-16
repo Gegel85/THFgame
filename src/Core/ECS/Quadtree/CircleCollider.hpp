@@ -13,6 +13,9 @@ namespace TouhouFanGame::ECS
 {
 	class CircleCollider : public ICollider {
 	public:
+		bool collideWith(CircleCollider &col) override;
+		bool collideWith(RectangleCollider &col) override;
+		float getSize() override;
 		float size;
 		Vector2f center;
 		float angle;

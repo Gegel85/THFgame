@@ -12,6 +12,14 @@ namespace TouhouFanGame {
 		T y;
 		T w;
 		T h;
+
+		Rect(T x, T y, T w, T h)
+		{
+			this->x = x;
+			this->y = y;
+			this->w = w;
+			this->h = h;
+		}
 	};
 
 	typedef Rect<int> IntRect;

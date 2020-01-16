@@ -1,4 +1,4 @@
-//
+/
 // Created by anonymus-raccoon on 1/14/20.
 //
 
@@ -8,9 +8,9 @@
 
 #include <vector>
 #include <memory>
-#include "QuadEntity.hpp"
 #include "../Entity.hpp"
 #include "../../DataType/Rect.hpp"
+#include "RectangleCollider.hpp"
 
 namespace TouhouFanGame::ECS::Quadtree
 {
@@ -19,12 +19,13 @@ namespace TouhouFanGame::ECS::Quadtree
 	private:
 		std::vector<Quadtree> _children;
 		unsigned _entityCount;
-		std::vector<std::shared_ptr<QuadEntity>> _entities;
-		IntRect _rect;
+		std::vector<std::shared_ptr<Entity>> _entities;
+		RectangleCollider _quadCollider;
 
 	public:
-		Quadtree(unsigned entityCount);
+		Quadtree(unsigned entityCount, float x, float y, float w, float h);
 		void add(const std::shared_ptr<Entity>& entity);
+		void split();
 		void remove();
 	};
 

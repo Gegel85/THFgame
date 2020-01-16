@@ -8,12 +8,15 @@
 
 #include "../System.hpp"
 #include "BasicSerializeComponent.hpp"
+#include "../Quadtree/ICollider.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
-	class ColliderComponent : public BasicSerializeComponent {
+	class ColliderComponent : public Component {
 	public:
-		ColliderComponent();
+		std::vector<std::unique_ptr<ICollider>> colliders;
+
+		ColliderComponent(std::vector<ICollider *> &colliders);
 		~ColliderComponent() override = default;
 	};
 }

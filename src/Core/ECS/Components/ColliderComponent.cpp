@@ -3,11 +3,17 @@
 //
 
 #include "ColliderComponent.hpp"
+#include <algorithm>
 
 namespace TouhouFanGame::ECS::Components
 {
-	ColliderComponent::ColliderComponent() :
-		BasicSerializeComponent("Collider")
+	ColliderComponent::ColliderComponent(std::vector<ICollider *> &colliders) :
+		Component("Collider")
 	{
+		for (auto col : colliders)
+			this->colliders.emplace_back(col);
+		std::sort(this->colliders.begin(), this->colliders.end(), [](ICollider &a, ICollider &b) {
+			return a.getSize() > b.getSize();
+		});
 	}
 }

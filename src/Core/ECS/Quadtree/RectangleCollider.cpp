@@ -3,8 +3,18 @@
 //
 
 #include "RectangleCollider.hpp"
+#include "../../DataType/Rect.hpp"
 
-namespace TouhouFanGame::ECS {
+namespace TouhouFanGame::ECS
+{
+	RectangleCollider::RectangleCollider(float x, float y, float w, float h)
+			: size(x, y, w, h)
+	{}
+
+	RectangleCollider::RectangleCollider(FloatRect rect)
+		: rect(rect)
+	{}
+
 	bool RectangleCollider::collideWith(CircleCollider &col)
 	{
 		return col.collideWith((this);

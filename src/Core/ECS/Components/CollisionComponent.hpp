@@ -9,15 +9,16 @@
 #include <memory>
 #include "BasicSerializeComponent.hpp"
 #include "../Entity.hpp"
+#include "../Quadtree/ICollider.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
-	class CollisionComponent : public BasicSerializeComponent {
+	class CollisionComponent : public Component {
 	public:
-		std::vector<std::shared_ptr<ICollider>> colliders;
+		std::unique_ptr<ICollider> colliders;
 		std::vector<std::pair<std::shared_ptr<ECS::Entity>, unsigned>> collided;
 
-		CollisionComponent();
+		CollisionComponent(ICollider *colliders);
 		~CollisionComponent() override = default;
 	};
 }

@@ -5,14 +5,17 @@
 #ifndef THFGAME_ICOLLIDER_HPP
 #define THFGAME_ICOLLIDER_HPP
 
-#include "CircleCollider.hpp"
+
+#include "../Entity.hpp"
 
 namespace TouhouFanGame::ECS {
 
 	class ICollider {
 	public:
-		virtual bool collideWith(CircleCollider &col) = 0;
-		virtual bool collideWith(RectangleCollider &col) = 0;
+		virtual bool collideWith(class CircleCollider &col) = 0;
+		virtual bool collideWith(class RectangleCollider &col) = 0;
+		virtual bool collideWith(Entity &entity) = 0;
+		virtual float getSize() = 0;
 	};
 }
 

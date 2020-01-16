@@ -12,6 +12,8 @@ namespace TouhouFanGame::ECS::Systems
 {
 	//! @brief Updates Entity having a CollisionComponent
 	class CollisionSystem : public System {
+	private:
+
 	public:
 		//! @param core The Core the System is in.
 		CollisionSystem(Core &core);

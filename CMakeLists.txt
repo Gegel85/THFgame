@@ -126,7 +126,10 @@ add_library(
 	src/Core/ECS/Components/OobDieComponent.hpp
 	src/Core/ECS/Systems/OobDieSystem.cpp
 	src/Core/ECS/Systems/OobDieSystem.hpp
-)
+	src/Core/ECS/Quadtree/Quadtree.cpp
+	src/Core/ECS/Quadtree/Quadtree.hpp
+	src/Core/DataType/Rect.hpp
+	src/Core/ECS/Quadtree/CircleCollider.cpp src/Core/ECS/Quadtree/CircleCollider.hpp src/Core/ECS/Quadtree/RectangleCollider.cpp src/Core/ECS/Quadtree/RectangleCollider.hpp src/Core/ECS/Quadtree/ICollider.hpp src/Core/ECS/Quadtree/QuadEntity.cpp src/Core/ECS/Quadtree/QuadEntity.hpp)
 
 if (WIN32)
 	target_link_libraries(
@@ -178,7 +181,7 @@ add_executable(
 	src/MapEditor/GuiUtils.hpp
 	src/MapEditor/ComponentGui.cpp
 	src/MapEditor/ComponentGui.hpp
-)
+	src/Core/DataType/Vector.hpp)
 
 target_link_libraries(
 	map_editor

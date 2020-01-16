@@ -8,14 +8,14 @@
 #include "CircleCollider.hpp"
 #include "../../DataType/Rect.hpp"
 
-namespace TouhouFanGame::ECS
+namespace TouhouFanGame::ECS::Quadtree
 {
 	class RectangleCollider : public ICollider {
 	public:
+		bool collideWith(Entity &ent) override;
 		bool collideWith(CircleCollider &col) override;
 		bool collideWith(RectangleCollider &col) override;
 		float getSize() override;
-		bool collideWith(Entity &entity) override;
 		FloatRect rect;
 
 		RectangleCollider(float x, float y, float w, float h);

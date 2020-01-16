@@ -9,10 +9,11 @@
 #include "../../DataType/Vector.hpp"
 #include "ICollider.hpp"
 
-namespace TouhouFanGame::ECS
+namespace TouhouFanGame::ECS::Quadtree
 {
 	class CircleCollider : public ICollider {
 	public:
+		bool collideWith(Entity &entity) override;
 		bool collideWith(CircleCollider &col) override;
 		bool collideWith(RectangleCollider &col) override;
 		float getSize() override;

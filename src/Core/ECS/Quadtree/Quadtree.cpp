@@ -6,12 +6,12 @@
 #include "Quadtree.hpp"
 #include "../Components/PositionComponent.hpp"
 
-namespace TouhouFanGame::ECS
+namespace TouhouFanGame::ECS::Quadtree
 {
-	Quadtree::Quadtree::Quadtree(unsigned entityCount, float x, float y, float w, float h)
+	Quadtree::Quadtree(unsigned entityCount, float x, float y, float w, float h)
 		: _entityCount(entityCount), _quadCollider(x, y, w, h) {}
 
-	void Quadtree::Quadtree::add(const std::shared_ptr<Entity> &entity)
+	void Quadtree::add(const std::shared_ptr<Entity> &entity)
 	{
 		if (this->_entities.size() <= this->_entityCount)
 			this->_entities.push_back(entity);
@@ -24,7 +24,7 @@ namespace TouhouFanGame::ECS
 		}
 	}
 
-	void Quadtree::Quadtree::split()
+	void Quadtree::split()
 	{
 		for (int i = 0; i < 4; i++) {
 			Quadtree child(this->_entityCount,
@@ -47,7 +47,7 @@ namespace TouhouFanGame::ECS
 		this->_entityCount = 0;
 	}
 
-	void Quadtree::Quadtree::remove()
+	void Quadtree::remove()
 	{
 
 	}

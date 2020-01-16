@@ -8,7 +8,8 @@
 #include <ostream>
 #include <cmath>
 
-namespace TouhouFanGame {
+namespace TouhouFanGame
+{
 	template<typename T>
 	class Vector2 {
 	public:

@@ -7,12 +7,12 @@
 
 namespace TouhouFanGame::ECS::Components
 {
-	ColliderComponent::ColliderComponent(std::vector<ICollider *> &colliders) :
+	ColliderComponent::ColliderComponent(std::vector<Quadtree::ICollider *> &colliders) :
 		Component("Collider")
 	{
 		for (auto col : colliders)
 			this->colliders.emplace_back(col);
-		std::sort(this->colliders.begin(), this->colliders.end(), [](ICollider &a, ICollider &b) {
+		std::sort(this->colliders.begin(), this->colliders.end(), [](Quadtree::ICollider &a, Quadtree::ICollider &b) {
 			return a.getSize() > b.getSize();
 		});
 	}

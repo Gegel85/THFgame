@@ -14,9 +14,9 @@ namespace TouhouFanGame::ECS::Components
 {
 	class ColliderComponent : public Component {
 	public:
-		std::vector<std::unique_ptr<ICollider>> colliders;
+		std::vector<std::unique_ptr<Quadtree::ICollider>> colliders;
 
-		ColliderComponent(std::vector<ICollider *> &colliders);
+		ColliderComponent(std::vector<Quadtree::ICollider *> &colliders);
 		~ColliderComponent() override = default;
 	};
 }

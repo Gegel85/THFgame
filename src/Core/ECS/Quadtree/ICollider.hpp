@@ -8,13 +8,13 @@
 
 #include "../Entity.hpp"
 
-namespace TouhouFanGame::ECS {
-
+namespace TouhouFanGame::ECS::Quadtree
+{
 	class ICollider {
 	public:
+		virtual bool collideWith(Entity &entity) = 0;
 		virtual bool collideWith(class CircleCollider &col) = 0;
 		virtual bool collideWith(class RectangleCollider &col) = 0;
-		virtual bool collideWith(Entity &entity) = 0;
 		virtual float getSize() = 0;
 	};
 }

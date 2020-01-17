@@ -37,4 +37,13 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		return 0;
 	}
+
+	CircleCollider::CircleCollider(float x, float y, float size)
+		: size(size), center(x, y)
+	{}
+
+	void CircleCollider::serialize(std::ostream &stream) const
+	{
+
+	}
 }

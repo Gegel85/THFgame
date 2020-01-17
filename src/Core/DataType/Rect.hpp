@@ -23,6 +23,16 @@ namespace TouhouFanGame {
 		{}
 	};
 
+	template<typename T>
+	std::ostream &operator<<(std::ostream &s, const Rect<T> &r)
+	{
+		s << "(" << r.pt1.x << ", "
+		<< r.pt1.y << ", "
+		<< r.pt1.distance(r.pt2) << ", "
+		<< r.pt1.distance(r.pt3) << ", "
+		<< r.pt1.angle(r.pt2) << ")";
+	}
+
 	typedef Rect<int> IntRect;
 	typedef Rect<float> FloatRect;
 }

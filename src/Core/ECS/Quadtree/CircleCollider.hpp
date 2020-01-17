@@ -16,10 +16,12 @@ namespace TouhouFanGame::ECS::Quadtree
 		bool collideWith(Entity &entity) override;
 		bool collideWith(CircleCollider &col) override;
 		bool collideWith(RectangleCollider &col) override;
+		void serialize(std::ostream &stream) const override;
 		float getSize() override;
 		float size;
 		Vector2f center;
-		float angle;
+
+		CircleCollider(float x, float y, float size);
 	};
 }
 

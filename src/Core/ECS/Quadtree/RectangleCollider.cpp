@@ -66,4 +66,9 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		return 0;
 	}
+
+	void RectangleCollider::serialize(std::ostream &stream) const
+	{
+		stream << "1 " << this->rect << '\0'
+	}
 }

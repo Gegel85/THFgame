@@ -19,7 +19,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		bool collideWith(RectangleCollider &col) override;
 		float getSize() override;
 		FloatRect rect;
-		float angle;
+		void serialize(std::ostream &stream) const override;
 
 		RectangleCollider(float x, float y, float w, float h, float angle);
 		RectangleCollider(FloatRect rect);

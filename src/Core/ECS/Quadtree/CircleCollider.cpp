@@ -10,7 +10,7 @@ namespace TouhouFanGame::ECS::Quadtree
 {
 	bool CircleCollider::collideWith(CircleCollider &col)
 	{
-		return this->center.Distance(col.center) <= this->size + col.size;
+		return this->center.distance(col.center) <= this->size + col.size;
 	}
 
 	bool CircleCollider::collideWith(Entity &entity)
@@ -26,9 +26,15 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	bool CircleCollider::collideWith(RectangleCollider &col)
 	{
-		int x = abs(this->center.x - col.rect.x);
-		int y = abs(this->center.y - col.rect.y);
+//		float x = std::abs(this->center.x - col.rect.pt1.x);
+//		float y = std::abs(this->center.y - col.rect.pt1.x);
+//
+//		return x <= this->size + col.rect.w && y <= this->size + col.rect.h;
+		return true;
+	}
 
-		return x <= this->size + col.rect.w && y <= this->size + col.rect.h;
+	float CircleCollider::getSize()
+	{
+		return 0;
 	}
 }

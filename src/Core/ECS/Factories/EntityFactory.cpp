@@ -23,7 +23,7 @@ namespace TouhouFanGame::ECS::Factory
 	const std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> EntityFactory::_builders = {
 		{"TestPlayer", [](Game &game, unsigned int id){
 			return new Entity(id, "Player", {
-				new Components::CollisionComponent(),
+				new Components::CollisionComponent(NULL),
 				new Components::ControllableComponent(*game.state.settings.input, 2, 4),
 				new Components::BlockedByTerrainComponent(game.state.map),
 				new Components::MovableComponent(),

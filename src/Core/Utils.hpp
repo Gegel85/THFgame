@@ -8,6 +8,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <string>
 #include <iomanip>
+#include <cmath>
 
 #ifndef _WIN32
 #define MB_ICONERROR 1
@@ -60,6 +61,22 @@ namespace TouhouFanGame::Utils
 	//! @param nb The number to convert to string.
 	//! @return The string representation of the number given.
 	std::string floatToString(float nb);
+
+	//! @brief Simply return the number given as parameter.
+	double min(double v1);
+
+	//! @brief Return the lowest number given as an argument.
+	//! @param Numbers to process.
+	//! @return The minimum of the args.
+	double min(double v1, double args...);
+
+	//! @brief Simply return the number given as parameter.
+	double max(double v1);
+
+	//! @brief Return the higher number given as an argument.
+	//! @param Numbers to process.
+	//! @return The maximum of the args.
+	double max(double v1, double args...);
 }
 
 #endif //THFGAME_UTILS_HPP

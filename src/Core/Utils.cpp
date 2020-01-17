@@ -122,4 +122,24 @@ namespace TouhouFanGame::Utils
 		stream << nb;
 		return stream.str();
 	}
+
+	double min(double v)
+	{
+		return v;
+	}
+
+	double min(double v1, double args...)
+	{
+		return std::fmin(v1, min(args));
+	}
+
+	double max(double v)
+	{
+		return v;
+	}
+
+	double max(double v1, double args...)
+	{
+		return std::fmax(v1, max(args));
+	}
 }

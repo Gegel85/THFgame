@@ -14,9 +14,12 @@ namespace TouhouFanGame::ECS::Components
 {
 	class ColliderComponent : public Component {
 	public:
+		ColliderComponent(std::istream &istream);
+
 		std::vector<std::unique_ptr<Quadtree::ICollider>> colliders;
 
-		ColliderComponent(std::vector<Quadtree::ICollider *> &colliders);
+		void serialize(std::ostream &stream) const override;
+		ColliderComponent(const std::vector<Quadtree::ICollider *> &colliders);
 		~ColliderComponent() override = default;
 	};
 }

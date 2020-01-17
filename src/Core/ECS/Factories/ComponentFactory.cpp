@@ -39,8 +39,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &game, std::istream &stream){ return new Components::InventoryComponent(stream, game.resources.items); }},
 		{"Interact",         [](Game &    , std::istream &      ){ return new Components::InteractComponent(); }},
-		{"Collision",        [](Game &    , std::istream &      ){ return new Components::CollisionComponent(); }},
-		{"Collider",         [](Game &    , std::istream &      ){ return new Components::ColliderComponent(); }},
+		{"Collision",        [](Game &    , std::istream &      ){ return new Components::CollisionComponent(nullptr); }},
+		{"Collider",         [](Game &    , std::istream &stream){ return new Components::ColliderComponent(stream); }},
 		{"Dialog",           [](Game &    , std::istream &stream){ return new Components::DialogComponent(stream); }},
 		{"Shoot",            [](Game &game, std::istream &stream){ return new Components::ShootComponent(stream, game.state.map, game.resources); }},
 		{"OOBDie",           [](Game &game, std::istream &      ){ return new Components::OOBDieComponent(game.state.map); }}
@@ -57,8 +57,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &    ){ return new Components::InventoryComponent(16); }},
 		{"Interact",         [](Game &    ){ return new Components::InteractComponent(); }},
-		{"Collision",        [](Game &    ){ return new Components::CollisionComponent(); }},
-		{"Collider",         [](Game &    ){ return new Components::ColliderComponent(); }},
+		{"Collision",        [](Game &    ){ return new Components::CollisionComponent(nullptr); }},
+		{"Collider",         [](Game &    ){ return new Components::ColliderComponent({}); }},
 		{"Dialog",           [](Game &    ){ return new Components::DialogComponent(); }},
 		{"Shoot",            [](Game &game){ return new Components::ShootComponent(game.resources, game.state.map); }},
 		{"OOBDie",           [](Game &game){ return new Components::OOBDieComponent(game.state.map); }}

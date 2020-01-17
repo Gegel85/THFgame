@@ -51,8 +51,8 @@ namespace TouhouFanGame::ECS::Systems
 				break;
 			case Input::INTERACT:
 				for (auto &ent : col.collided)
-					if (ent->hasComponent("Interact"))
-						ent->getComponent("Interact").to<Components::InteractComponent>().interactedWith = entity;
+					if (ent.first->hasComponent("Interact"))
+						ent.first->getComponent("Interact").to<Components::InteractComponent>().interactedWith = entity;
 				break;
 			case Input::SPRINT:
 				sprinting = true;

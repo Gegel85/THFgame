@@ -133,6 +133,10 @@ namespace TouhouFanGame::Rendering
 			static_cast<int>(this->_configs.tileSize.x),
 			static_cast<int>(this->_configs.tileSize.y)
 		});
+		this->_sprite.setOrigin({
+			this->_configs.tileSize.x / 2.f,
+			this->_configs.tileSize.y / 2.f,
+		});
 		this->_sprite.setRotation(this->_angle);
 		screen.fillColor();
 		screen.draw(
@@ -143,7 +147,7 @@ namespace TouhouFanGame::Rendering
 
 	void Entity::setSpriteAngle(float newAngle)
 	{
-		this->_angle = newAngle;
+		this->_angle = newAngle * 180 / M_PI;
 	}
 
 	void Entity::update()

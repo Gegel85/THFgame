@@ -3,6 +3,8 @@
 //
 
 #include <vector>
+#include <iostream>
+#include <cmath>
 #include "../Core/ECS/Entity.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
 #include "../Core/ECS/Components/MovableComponent.hpp"
@@ -22,6 +24,7 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 	p->position = pos;
 	m->speed = 10;
 	m->angleDir = dir;
+	d->spriteAngle = dir + M_PI_2;
 	d->animation = TouhouFanGame::Rendering::ATTACKING;
 
 	return new TouhouFanGame::ECS::Entity(0, "PlayerProjectile", std::vector<TouhouFanGame::ECS::Component *>{
@@ -57,6 +60,6 @@ extern "C"
 		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
 		auto &mov = entity->getComponent("Movable").to<TouhouFanGame::ECS::Components::MovableComponent>();
 
-		core.registerEntity(makeProjectile(map, resources, {pos.position.x + 8, pos.position.y + 8}, mov.angleDir));
+		core.registerEntity(makeProjectile(map, resources, {pos.position.x + pos.size.x / 2 - 12, pos.position.y + pos.size.y / 2 - 12}, mov.angleDir));
 	}
 }

@@ -18,6 +18,7 @@ namespace TouhouFanGame
 		virtual void _specialEffect(ECS::Entity &entity) = 0;
 
 	protected:
+		bool _usable;
 		std::string _name;
 		std::string _texture;
 		std::string _description;
@@ -28,6 +29,7 @@ namespace TouhouFanGame
 		int _maxLife;
 
 	public:
+		bool isUsable() const;
 		unsigned getIndex() const;
 		const std::string &getName() const;
 		const std::string &getTexture() const;
@@ -38,8 +40,7 @@ namespace TouhouFanGame
 		int getLife() const;
 		int getMaxLife() const;
 
-	public:
-		Item(unsigned index, nlohmann::json obj);
+		Item(unsigned index, nlohmann::json obj, bool usable);
 		void use(ECS::Entity &entity);
 	};
 }

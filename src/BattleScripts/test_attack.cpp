@@ -14,7 +14,7 @@
 
 unsigned int timer = 0;
 
-TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGame::Resources &resources, sf::Vector2f pos, float dir)
+TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGame::Resources &resources, sf::Vector2f pos, double dir)
 {
 	auto *p = new TouhouFanGame::ECS::Components::PositionComponent({12, 12});
 	auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
@@ -25,7 +25,14 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 	m->speed = 10;
 	m->angleDir = dir;
 	d->spriteAngle = dir + M_PI_2;
-	d->animation = TouhouFanGame::Rendering::ATTACKING;
+	/*p->position = {
+		static_cast<float>(map.getPixelSize().x),
+		pos.y
+	};
+	m->speed = 10;
+	m->angleDir = M_PI;
+	d->spriteAngle = M_PI_2;
+	d->animation = TouhouFanGame::Rendering::ATTACKING;*/
 
 	return new TouhouFanGame::ECS::Entity(0, "PlayerProjectile", std::vector<TouhouFanGame::ECS::Component *>{
 		m,
@@ -59,7 +66,28 @@ extern "C"
 		auto &map = *reinterpret_cast<TouhouFanGame::Map *>(args[3]);
 		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
 		auto &mov = entity->getComponent("Movable").to<TouhouFanGame::ECS::Components::MovableComponent>();
+		sf::Vector2<double> vec = {
+			cos(mov.angleDir + M_PI_2),
+			sin(mov.angleDir + M_PI_2),
+		};
+		auto diff = std::fmod(mov.angleDir, M_PI_4);
+		auto angle = mov.angleDir;
 
-		core.registerEntity(makeProjectile(map, resources, {pos.position.x + pos.size.x / 2 - 12, pos.position.y + pos.size.y / 2 - 12}, mov.angleDir));
+		if (diff > M_PI_4 / 2)
+			angle += M_PI_4 - diff;
+		else
+			angle -= diff;
+
+		auto projectile1 = makeProjectile(map, resources, {
+			static_cast<float>(pos.position.x + vec.x * 6),
+			static_cast<float>(pos.position.y + vec.y * 6),
+		}, angle);
+		auto projectile2 = makeProjectile(map, resources, {
+			static_cast<float>(pos.position.x - vec.x * 6),
+			static_cast<float>(pos.position.y - vec.y * 6),
+		}, angle);
+
+		core.registerEntity(projectile1);
+		core.registerEntity(projectile2);
 	}
 }

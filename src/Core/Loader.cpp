@@ -4,9 +4,10 @@
 
 #include "Loader.hpp"
 #include "Exceptions.hpp"
-#include "Input/Keyboard.hpp"
+#include "Input/SFMLKeyboard.hpp"
 #include "Inventory/ItemFactory.hpp"
 #include "Utils.hpp"
+#include "Input/SFMLJoypad.hpp"
 
 namespace TouhouFanGame
 {
@@ -52,7 +53,7 @@ namespace TouhouFanGame
 		std::ifstream stream("saves/settings.sav");
 
 		logger.info("Loading settings");
-		game.state.settings.input.reset(new Inputs::Keyboard(&*game.resources.screen));
+		game.state.settings.input.reset(new Inputs::SFMLJoypad(&*game.resources.screen));
 		if (stream.fail()) {
 			logger.error("Cannot open file save/settings.sav " + std::string(strerror(errno)));
 			game.state.settings.musicVolume = 100;

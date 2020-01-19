@@ -5,11 +5,11 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <math.h>
 #include <iostream>
-#include "Keyboard.hpp"
+#include "SFMLKeyboard.hpp"
 
 namespace TouhouFanGame::Inputs
 {
-	const std::map<sf::Keyboard::Key, std::string> Keyboard::_keysToString{
+	const std::map<sf::Keyboard::Key, std::string> SFMLKeyboard::_keysToString{
 		{sf::Keyboard::Unknown,   "Unknown"},
 		{sf::Keyboard::A,         "A"},
 		{sf::Keyboard::B,         "B"},
@@ -114,7 +114,7 @@ namespace TouhouFanGame::Inputs
 		{sf::Keyboard::Pause,     "Pause"},
 	};
 
-	Keyboard::Keyboard(sf::RenderWindow *window) :
+	SFMLKeyboard::SFMLKeyboard(sf::RenderWindow *window) :
 		_keys{
 			sf::Keyboard::Z,
 			sf::Keyboard::D,
@@ -131,7 +131,7 @@ namespace TouhouFanGame::Inputs
 		_state(NB_OF_ACTION)
 	{}
 
-	void Keyboard::handleEvent(sf::Event event)
+	void SFMLKeyboard::handleEvent(sf::Event event)
 	{
 		if (this->_keyChanging && event.type == sf::Event::KeyPressed) {
 			this->_keys[*this->_keyChanging] = event.key.code;
@@ -140,7 +140,7 @@ namespace TouhouFanGame::Inputs
 		}
 	}
 
-	double Keyboard::getDirectionAngle() const
+	double SFMLKeyboard::getDirectionAngle() const
 	{
 		bool dirs[4] = {
 			this->actionPressed(UP),
@@ -160,12 +160,12 @@ namespace TouhouFanGame::Inputs
 		return (M_PI_2 + dirs[2] * M_PI_4 - dirs[3] * M_PI_4) * (dirs[1] - dirs[0]);
 	}
 
-	bool Keyboard::actionPressed(Action action) const
+	bool SFMLKeyboard::actionPressed(Action action) const
 	{
 		return sf::Keyboard::isKeyPressed(this->_keys[action]) && (!this->_window || this->_window->hasFocus());
 	}
 
-	bool Keyboard::changeKeyFor(Action action)
+	bool SFMLKeyboard::changeKeyFor(Action action)
 	{
 		if (this->_keyChanged) {
 			this->_keyChanged = false;
@@ -176,13 +176,13 @@ namespace TouhouFanGame::Inputs
 		return false;
 	}
 
-	void Keyboard::cancelChangeKey()
+	void SFMLKeyboard::cancelChangeKey()
 	{
 		this->_keyChanged = false;
 		this->_keyChanging.reset();
 	}
 
-	std::vector<TouhouFanGame::Input::Action> Keyboard::getActions()
+	std::vector<TouhouFanGame::Input::Action> SFMLKeyboard::getActions()
 	{
 		std::vector<Action> actions;
 
@@ -195,18 +195,18 @@ namespace TouhouFanGame::Inputs
 		return actions;
 	}
 
-	std::string Keyboard::getEnumControlString(TouhouFanGame::Input::Action code)
+	std::string SFMLKeyboard::getEnumControlString(TouhouFanGame::Input::Action code)
 	{
-		return _keysToString.at(this->_keys[code]);
+		return SFMLKeyboard::_keysToString.at(this->_keys[code]);
 	}
 
-	void Keyboard::serialize(std::ostream &) const
+	void SFMLKeyboard::serialize(std::ostream &) const
 	{}
 
-	void Keyboard::unserialize(std::istream &)
+	void SFMLKeyboard::unserialize(std::istream &)
 	{}
 
-	void Keyboard::_updateState()
+	void SFMLKeyboard::_updateState()
 	{
 		if (this->_window && !this->_window->hasFocus())
 			return;
@@ -223,7 +223,7 @@ namespace TouhouFanGame::Inputs
 		}
 	}
 
-	std::optional<Keyboard::Event> Keyboard::pollEvent()
+	std::optional<Input::Event> SFMLKeyboard::pollEvent()
 	{
 		if (this->_events.empty())
 			this->_updateState();

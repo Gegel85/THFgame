@@ -69,8 +69,8 @@ add_library(
 	src/Core/Game.hpp
 	src/Core/Input/Input.cpp
 	src/Core/Input/Input.hpp
-	src/Core/Input/Keyboard.cpp
-	src/Core/Input/Keyboard.hpp
+	src/Core/Input/SFMLKeyboard.cpp
+	src/Core/Input/SFMLKeyboard.hpp
 	src/Core/Inventory/ClassicItem.cpp
 	src/Core/Inventory/ClassicItem.hpp
 	src/Core/Inventory/Item.cpp
@@ -126,7 +126,7 @@ add_library(
 	src/Core/ECS/Components/OobDieComponent.hpp
 	src/Core/ECS/Systems/OobDieSystem.cpp
 	src/Core/ECS/Systems/OobDieSystem.hpp
-)
+	src/Core/Input/SFMLJoypad.cpp src/Core/Input/SFMLJoypad.hpp)
 
 if (WIN32)
 	target_link_libraries(

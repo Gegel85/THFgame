@@ -2,8 +2,8 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
-#ifndef THFGAME_KEYBOARD_HPP
-#define THFGAME_KEYBOARD_HPP
+#ifndef THFGAME_SFMLKEYBOARD_HPP
+#define THFGAME_SFMLKEYBOARD_HPP
 
 
 #include <map>
@@ -15,7 +15,7 @@
 namespace TouhouFanGame::Inputs
 {
 	//! @brief An input method using the keyboard
-	class Keyboard : public Input {
+	class SFMLKeyboard : public Input {
 	private:
 		//! @brief Used to know if the key has just been changed or not
 		bool _keyChanged = false;
@@ -42,7 +42,7 @@ namespace TouhouFanGame::Inputs
 		void _updateState();
 	public:
 		//! @param window The reference window (if any)
-		Keyboard(sf::RenderWindow *window);
+		SFMLKeyboard(sf::RenderWindow *window);
 		bool changeKeyFor(Action) override;
 		void cancelChangeKey() override;
 		bool actionPressed(Action) const override;
@@ -58,4 +58,4 @@ namespace TouhouFanGame::Inputs
 }
 
 
-#endif //THFGAME_KEYBOARD_HPP
+#endif //THFGAME_SFMLKEYBOARD_HPP

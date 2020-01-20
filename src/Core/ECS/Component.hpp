@@ -41,6 +41,7 @@ namespace TouhouFanGame::ECS
 	};
 }
 
+std::ostream &test(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
 
 #endif //THFGAME_COMPONENT_HPP

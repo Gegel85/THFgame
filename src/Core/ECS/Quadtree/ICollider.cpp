@@ -9,20 +9,21 @@
 #include "CircleCollider.hpp"
 #include "../Exceptions.hpp"
 
+
+std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::ECS::Quadtree::ICollider &collider)
+{
+	collider.serialize(stream);
+	return stream;
+}
+
+std::istream &operator>>(std::istream &stream, std::unique_ptr<TouhouFanGame::ECS::Quadtree::ICollider> &collider)
+{
+	collider = TouhouFanGame::ECS::Quadtree::ICollider::deserialize(stream);
+	return stream;
+}
+
 namespace TouhouFanGame::ECS::Quadtree
 {
-	std::ostream &operator<<(std::ostream &stream, const ICollider &collider)
-	{
-		collider.serialize(stream);
-		return stream;
-	}
-
-	std::istream &operator>>(std::istream &stream, std::unique_ptr<ICollider> &collider)
-	{
-		collider = ICollider::deserialize(stream);
-		return stream;
-	}
-
 	std::unique_ptr<ICollider> ICollider::deserialize(std::istream &stream)
 	{
 		int colliderType;
@@ -43,5 +44,10 @@ namespace TouhouFanGame::ECS::Quadtree
 		default:
 			throw InvalidSerializedString("Invalid Collision Component collider type");
 		}
+	}
+
+	bool ICollider::collideWithEntity(const std::shared_ptr<Entity> &entity) const
+	{
+		return this->getCollisionLayer(entity) > 0;
 	}
 }

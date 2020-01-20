@@ -12,16 +12,17 @@ namespace TouhouFanGame::ECS::Quadtree
 {
 	class ICollider {
 	public:
-		virtual bool collideWith(Entity &entity) = 0;
-		virtual bool collideWith(class CircleCollider &col) = 0;
-		virtual bool collideWith(class RectangleCollider &col) = 0;
-		virtual float getSize() = 0;
+		virtual bool collideWithEntity(const std::shared_ptr<Entity> &entity) const;
+		virtual bool collideWith(const class CircleCollider &col) const = 0;
+		virtual bool collideWith(const class RectangleCollider &col) const = 0;
+		virtual int getCollisionLayer(const std::shared_ptr<Entity> &entity) const = 0;
+		virtual float getSize() const = 0;
 		virtual void serialize(std::ostream &stream) const = 0;
 		static std::unique_ptr<ICollider> deserialize(std::istream &stream);
 	};
-
-	std::ostream &operator<<(std::ostream &stream, const ICollider &collider);
-	std::istream &operator>>(std::istream &stream, std::unique_ptr<ICollider> &collider);
 }
+
+std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::ECS::Quadtree::ICollider &collider);
+std::istream &operator>>(std::istream &stream, std::unique_ptr<TouhouFanGame::ECS::Quadtree::ICollider> &collider);
 
 #endif //THFGAME_ICOLLIDER_HPP

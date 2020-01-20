@@ -17,7 +17,7 @@
 
 namespace TouhouFanGame
 {
-	class Game;
+	struct Game;
 
 	//! @brief Manages dialogs.
 	class DialogMgr {

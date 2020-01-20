@@ -16,7 +16,8 @@ namespace TouhouFanGame::ECS::Quadtree
 			this->_entities.push_back(entity);
 		else if (this->_entityCount == 0) {
 			for (auto &child : this->_children)
-				child.add(entity);
+				if (this->_quadCollider.collideWithEntity(entity))
+					child.add(entity);
 		} else {
 			this->split();
 			this->add(entity);
@@ -44,7 +45,7 @@ namespace TouhouFanGame::ECS::Quadtree
 			}
 			this->_children.push_back(child);
 			for (auto &ent : this->_entities) {
-				if (child._quadCollider.collideWith(*ent))
+				if (child._quadCollider.collideWithEntity(ent))
 					child.add(ent);
 			}
 		}
@@ -52,8 +53,39 @@ namespace TouhouFanGame::ECS::Quadtree
 		this->_entityCount = 0;
 	}
 
-	void Quadtree::remove()
+	void Quadtree::remove(const std::shared_ptr<Entity> &entity)
 	{
+		if (this->_entityCount == 0) {
+			for (auto &child : this->_children)
+				child.remove(entity);
+			return;
+		}
+		this->_entities.erase(std::remove(this->_entities.begin(), this->_entities.end(), entity), this->_entities.end());
+	}
 
+	void Quadtree::update(const std::shared_ptr<Entity> &entity)
+	{
+		this->remove(entity);
+		this->add(entity);
+	}
+
+	std::vector<std::pair<std::shared_ptr<Entity>, unsigned>> Quadtree::checkCollisions(const ICollider &collider)
+	{
+		std::vector<std::pair<std::shared_ptr<Entity>, unsigned int>> ret;
+		int collisionLayer;
+
+		if (this->_entityCount == 0) {
+			for (auto &child : this->_children) {
+				const auto &cols = child.checkCollisions(collider);
+				ret.insert(ret.end(), cols.begin(), cols.end());
+			}
+		} else {
+			for (auto &obj : this->_entities) {
+				collisionLayer = collider.getCollisionLayer(obj);
+				if (collisionLayer >= 0)
+					ret.emplace_back(obj, collisionLayer);
+			}
+		}
+		return ret;
 	}
 }

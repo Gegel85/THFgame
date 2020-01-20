@@ -18,23 +18,12 @@ namespace TouhouFanGame::ECS::Quadtree
 		: rect(rect)
 	{}
 
-	bool RectangleCollider::collideWith(Entity &entity)
-	{
-		auto &col = entity.getComponent("Collider").to<Components::ColliderComponent>();
-
-		for (auto &collider : col.colliders) {
-			if (collider->collideWith(*this))
-				return true;
-		}
-		return false;
-	}
-
-	bool RectangleCollider::collideWith(CircleCollider &col)
+	bool RectangleCollider::collideWith(const CircleCollider &col) const
 	{
 		return col.collideWith(*this);
 	}
 
-	bool RectangleCollider::collideWith(RectangleCollider &col)
+	bool RectangleCollider::collideWith(const RectangleCollider &col) const
 	{
 		std::vector<Vector2f> axes;
 
@@ -62,7 +51,20 @@ namespace TouhouFanGame::ECS::Quadtree
 		return true;
 	}
 
-	float RectangleCollider::getSize()
+	int RectangleCollider::getCollisionLayer(const std::shared_ptr<Entity> &entity) const
+	{
+		auto &col = entity->getComponent("Collider").to<Components::ColliderComponent>();
+		int layer = 0;
+
+		for (auto &collider : col.colliders) {
+			if (collider->collideWith(*this))
+				return layer;
+			layer++;
+		}
+		return -1;
+	}
+
+	float RectangleCollider::getSize() const
 	{
 		return 0;
 	}

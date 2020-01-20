@@ -13,16 +13,15 @@ namespace TouhouFanGame::ECS::Quadtree
 {
 	class RectangleCollider : public ICollider {
 	public:
-
-		bool collideWith(Entity &ent) override;
-		bool collideWith(class CircleCollider &col) override;
-		bool collideWith(RectangleCollider &col) override;
-		float getSize() override;
-		FloatRect rect;
+		bool collideWith(const class CircleCollider &col) const override;
+		bool collideWith(const RectangleCollider &col) const override;
+		int getCollisionLayer(const std::shared_ptr<Entity> &entity) const override;
+		float getSize() const override;
 		void serialize(std::ostream &stream) const override;
+		FloatRect rect;
 
 		RectangleCollider(float x, float y, float w, float h, float angle);
-		RectangleCollider(FloatRect rect);
+		explicit RectangleCollider(FloatRect rect);
 	};
 }
 

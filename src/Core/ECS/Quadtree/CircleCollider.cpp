@@ -8,23 +8,16 @@
 
 namespace TouhouFanGame::ECS::Quadtree
 {
-	bool CircleCollider::collideWith(CircleCollider &col)
+	CircleCollider::CircleCollider(float x, float y, float size)
+			: size(size), center(x, y)
+	{}
+
+	bool CircleCollider::collideWith(const CircleCollider &col) const
 	{
 		return this->center.distance(col.center) <= this->size + col.size;
 	}
 
-	bool CircleCollider::collideWith(Entity &entity)
-	{
-		auto &col = entity.getComponent("Collider").to<Components::ColliderComponent>();
-
-		for (auto &collider : col.colliders) {
-			if (collider->collideWith(*this))
-				return true;
-		}
-		return false;
-	}
-
-	bool CircleCollider::collideWith(RectangleCollider &col)
+	bool CircleCollider::collideWith(const RectangleCollider &col) const
 	{
 //		float x = std::abs(this->center.x - col.rect.pt1.x);
 //		float y = std::abs(this->center.y - col.rect.pt1.x);
@@ -33,14 +26,23 @@ namespace TouhouFanGame::ECS::Quadtree
 		return true;
 	}
 
-	float CircleCollider::getSize()
+	int CircleCollider::getCollisionLayer(const std::shared_ptr<Entity> &entity) const
+	{
+		auto &col = entity->getComponent("Collider").to<Components::ColliderComponent>();
+		int layer = 0;
+
+		for (auto &collider : col.colliders) {
+			if (collider->collideWith(*this))
+				return layer;
+			layer++;
+		}
+		return -1;
+	}
+
+	float CircleCollider::getSize() const
 	{
 		return 0;
 	}
-
-	CircleCollider::CircleCollider(float x, float y, float size)
-		: size(size), center(x, y)
-	{}
 
 	void CircleCollider::serialize(std::ostream &stream) const
 	{

@@ -93,14 +93,14 @@ namespace TouhouFanGame
 		}
 	};
 
-	template<typename T>
-	std::ostream &operator<<(std::ostream &s, const Vector2<T> &v)
-	{
-		s << "(" << v.x << ", " << v.y << ")";
-		return s;
-	}
-
 	typedef Vector2<float> Vector2f;
+}
+
+template<typename T>
+std::ostream &operator<<(std::ostream &s, const TouhouFanGame::Vector2<T> &v)
+{
+	s << "(" << v.x << ", " << v.y << ")";
+	return s;
 }
 
 #endif //THFGAME_VECTOR_HPP

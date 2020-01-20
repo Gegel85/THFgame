@@ -40,7 +40,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game, std::istream &      ){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &game, std::istream &stream){ return new Components::InventoryComponent(stream, game.resources.items); }},
 		{"Interact",         [](Game &    , std::istream &      ){ return new Components::InteractComponent(); }},
-		{"Collision",        [](Game &    , std::istream &      ){ return new Components::CollisionComponent(nullptr); }},
+		{"Collision",        [](Game &    , std::istream &stream){ return new Components::CollisionComponent(stream); }},
 		{"Collider",         [](Game &    , std::istream &stream){ return new Components::ColliderComponent(stream); }},
 		{"Dialog",           [](Game &    , std::istream &stream){ return new Components::DialogComponent(stream); }},
 		{"Experience",       [](Game &    , std::istream &stream){ return new Components::ExperienceComponent(stream); }},

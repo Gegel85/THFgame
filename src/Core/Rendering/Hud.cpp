@@ -57,8 +57,12 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 	screen.fillColor(sf::Color{120, 120, 120});
 	screen.textSize(15);
 	screen.draw(this->_playerName, {
+		camera.x - screenSize.x / 2.f + 115,
+		camera.y + screenSize.y / 2.f - 57,
+	});
+	screen.draw("Level " + std::to_string(this->_level), {
 		camera.x - screenSize.x / 2.f + 5,
-		camera.y + screenSize.y / 2.f - 53,
+		camera.y + screenSize.y / 2.f - 69,
 	});
 
 	screen.fillColor(sf::Color{200, 200, 200});
@@ -73,6 +77,14 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		static_cast<int>(camera.y + screenSize.y / 2. - 35),
 		210,
 		30
+	});
+
+	screen.fillColor(sf::Color{100, 100, 100});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 5),
+		static_cast<int>(camera.y + screenSize.y / 2. - 50),
+		100,
+		10
 	});
 
 	screen.fillColor(sf::Color{50, 50, 50});
@@ -102,6 +114,14 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		static_cast<int>(camera.y + screenSize.y / 2. - 30),
 		static_cast<int>(this->_playerMana * 2),
 		20
+	});
+
+	screen.fillColor(sf::Color{0, 255, 0});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 5),
+		static_cast<int>(camera.y + screenSize.y / 2. - 50),
+		static_cast<int>(this->_exp),
+		10
 	});
 }
 
@@ -201,4 +221,14 @@ void TouhouFanGame::Rendering::HUD::setDispBossHUD(bool dispBoss)
 void TouhouFanGame::Rendering::HUD::setDispPlayerHUD(bool dispPlayer)
 {
 	this->_dispPlayer = dispPlayer;
+}
+
+void TouhouFanGame::Rendering::HUD::setExpLevel(float exp)
+{
+	this->_exp = exp;
+}
+
+void TouhouFanGame::Rendering::HUD::setCurrentLevel(unsigned int level)
+{
+	this->_level = level;
 }

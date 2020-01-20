@@ -53,7 +53,7 @@ namespace TouhouFanGame
 		std::ifstream stream("saves/settings.sav");
 
 		logger.info("Loading settings");
-		game.state.settings.input.reset(new Inputs::SFMLJoypad(&*game.resources.screen));
+		game.state.settings.input.reset(new Inputs::SFMLKeyboard(&*game.resources.screen));
 		if (stream.fail()) {
 			logger.error("Cannot open file save/settings.sav " + std::string(strerror(errno)));
 			game.state.settings.musicVolume = 100;

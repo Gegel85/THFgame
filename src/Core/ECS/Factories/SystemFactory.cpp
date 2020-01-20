@@ -16,6 +16,7 @@
 #include "../Systems/DialogSystem.hpp"
 #include "../Systems/ShootSystem.hpp"
 #include "../Systems/OobDieSystem.hpp"
+#include "../Systems/ExperienceSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -35,6 +36,7 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::DialogSystem(core); },
 		[](Core &core){ return new Systems::ShootSystem(core); },
 		[](Core &core){ return new Systems::OOBDieSystem(core); },
+		[](Core &core){ return new Systems::ExperienceSystem(core); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 

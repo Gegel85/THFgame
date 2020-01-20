@@ -17,6 +17,7 @@
 #include "../Components/InventoryComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
 #include "../Components/ShootComponent.hpp"
+#include "../Components/ExperienceComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -32,6 +33,7 @@ namespace TouhouFanGame::ECS::Factory
 				new Components::HealthComponent(20),
 				new Components::ManaComponent(20),
 				new Components::NameComponent("Test Character"),
+				new Components::ExperienceComponent(),
 				new Components::PlayerHUDComponent(game.state.hud),
 				new Components::InventoryComponent(16),
 				new Components::ShootComponent(game.resources, game.state.map, "assets/battle_scripts/test_attack")

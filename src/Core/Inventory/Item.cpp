@@ -8,8 +8,9 @@
 
 namespace TouhouFanGame
 {
-	Item::Item(unsigned index, nlohmann::json obj) :
+	Item::Item(unsigned index, nlohmann::json obj, bool usable) :
 		_index(index),
+		_usable(usable),
 		_name(         obj["name"].is_null()                  ? "" : obj["name"]),
 		_texture(      obj["icon"].is_null()                  ? "" : obj["icon"]),
 		_description(  obj["description"].is_null()           ? "" : obj["description"]),

@@ -31,10 +31,10 @@ namespace TouhouFanGame
 
 		public:
 			//! @brief The Rendering::Entity bound to this Entity.
-			Rendering::Entity	&renderEntity;
+			Rendering::Entity &renderEntity;
 
 			//! @brief The current Animation of the Entity.
-			Rendering::Animation	animation{Rendering::IDLE};
+			Rendering::Animation animation{Rendering::IDLE};
 
 			//! @brief Facing direction.
 			Rendering::Direction dir = Rendering::NORTH;

@@ -31,6 +31,12 @@ namespace TouhouFanGame::Rendering
 		//! @brief The current player life %.
 		float _playerLife = 0;
 
+		//! @brief The current player EXP %.
+		float _exp = 0;
+
+		//! @brief The current player level.
+		unsigned _level = 0;
+
 		//! @brief The current player mana %.
 		float _playerMana = 0;
 
@@ -89,6 +95,10 @@ namespace TouhouFanGame::Rendering
 
 		//! @brief Changes the dialog currently displayed.
 		void setDialogManager(DialogMgr *manager);
+
+		void setExpLevel(float exp);
+
+		void setCurrentLevel(unsigned int level);
 
 		//! @brief Display the HUD.
 		void draw(TouhouFanGame::Game &game);

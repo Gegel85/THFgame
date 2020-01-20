@@ -69,6 +69,7 @@ namespace TouhouFanGame::Rendering
 
 	void	Screen::draw(sf::Sprite &sprite, sf::Vector2f pos)
 	{
+		this->_sprite.setOrigin({0, 0});
 		sprite.setPosition(pos);
 		sf::RenderWindow::draw(sprite);
 	}

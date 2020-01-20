@@ -2,6 +2,7 @@
 // Created by Gegel85 on 28/09/2019.
 //
 
+#include <iostream>
 #include "DisplayableSystem.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/DisplayableComponent.hpp"

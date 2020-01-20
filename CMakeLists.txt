@@ -69,8 +69,8 @@ add_library(
 	src/Core/Game.hpp
 	src/Core/Input/Input.cpp
 	src/Core/Input/Input.hpp
-	src/Core/Input/Keyboard.cpp
-	src/Core/Input/Keyboard.hpp
+	src/Core/Input/SFMLKeyboard.cpp
+	src/Core/Input/SFMLKeyboard.hpp
 	src/Core/Inventory/ClassicItem.cpp
 	src/Core/Inventory/ClassicItem.hpp
 	src/Core/Inventory/Item.cpp
@@ -129,7 +129,19 @@ add_library(
 	src/Core/ECS/Quadtree/Quadtree.cpp
 	src/Core/ECS/Quadtree/Quadtree.hpp
 	src/Core/DataType/Rect.hpp
-	src/Core/ECS/Quadtree/CircleCollider.cpp src/Core/ECS/Quadtree/CircleCollider.hpp src/Core/ECS/Quadtree/RectangleCollider.cpp src/Core/ECS/Quadtree/RectangleCollider.hpp src/Core/ECS/Quadtree/ICollider.hpp src/Core/ECS/Quadtree/ICollider.cpp)
+	src/Core/ECS/Quadtree/CircleCollider.cpp
+	src/Core/ECS/Quadtree/CircleCollider.hpp
+	src/Core/ECS/Quadtree/RectangleCollider.cpp
+	src/Core/ECS/Quadtree/RectangleCollider.hpp
+	src/Core/ECS/Quadtree/ICollider.hpp
+	src/Core/ECS/Quadtree/ICollider.cpp
+	src/Core/Input/SFMLJoypad.cpp
+	src/Core/Input/SFMLJoypad.hpp
+	src/Core/ECS/Components/ExperienceComponent.cpp
+	src/Core/ECS/Components/ExperienceComponent.hpp
+	src/Core/ECS/Systems/ExperienceSystem.cpp
+	src/Core/ECS/Systems/ExperienceSystem.hpp
+)
 
 if (WIN32)
 	target_link_libraries(

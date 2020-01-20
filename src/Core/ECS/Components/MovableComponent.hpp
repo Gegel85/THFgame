@@ -15,7 +15,7 @@ namespace TouhouFanGame::ECS::Components
 	class MovableComponent : public Component {
 	public:
 		//! @brief The direction to move to.
-		float	angleDir = 0;
+		double	angleDir = 0;
 
 		//! @brief The speed moving at.
 		float	speed = 0; //I AM SPEEEEEEEEEEEED

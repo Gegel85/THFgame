@@ -4,6 +4,7 @@
 
 #include "Quadtree.hpp"
 #include "../Components/PositionComponent.hpp"
+#include "../Components/ColliderComponent.hpp"
 
 namespace TouhouFanGame::ECS::Quadtree
 {
@@ -81,7 +82,10 @@ namespace TouhouFanGame::ECS::Quadtree
 			}
 		} else {
 			for (auto &obj : this->_entities) {
-				collisionLayer = collider.getCollisionLayer(obj);
+				if (!obj->hasComponent("Collider"))
+					continue;
+				auto &col = obj->getComponent("Collider").to<Components::ColliderComponent>();
+				collisionLayer = collider.getCollisionLayer(col.colliders);
 				if (collisionLayer >= 0)
 					ret.emplace_back(obj, collisionLayer);
 			}

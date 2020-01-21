@@ -51,12 +51,18 @@ namespace TouhouFanGame::ECS::Quadtree
 		return true;
 	}
 
-	int RectangleCollider::getCollisionLayer(const std::shared_ptr<Entity> &entity) const
+	int RectangleCollider::getCollisionLayer(const ICollider &collider) const
 	{
-		auto &col = entity->getComponent("Collider").to<Components::ColliderComponent>();
+		if (collider.collideWith(*this))
+			return 0;
+		return -1;
+	}
+
+	int RectangleCollider::getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const
+	{
 		int layer = 0;
 
-		for (auto &collider : col.colliders) {
+		for (auto &collider : colliders) {
 			if (collider->collideWith(*this))
 				return layer;
 			layer++;

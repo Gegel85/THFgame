@@ -8,6 +8,8 @@
 #include "RectangleCollider.hpp"
 #include "CircleCollider.hpp"
 #include "../Exceptions.hpp"
+#include "../Components/CollisionComponent.hpp"
+#include "../Components/ColliderComponent.hpp"
 
 
 std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::ECS::Quadtree::ICollider &collider)
@@ -48,6 +50,12 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	bool ICollider::collideWithEntity(const std::shared_ptr<Entity> &entity) const
 	{
-		return this->getCollisionLayer(entity) > 0;
+		if (entity->hasComponent("Collision")) {
+			auto &col = entity->getComponent("Collision").to<Components::CollisionComponent>();
+			return this->getCollisionLayer(*col.collider) > 0;
+		} else {
+			auto &col = entity->getComponent("Collider").to<Components::ColliderComponent>();
+			return this->getCollisionLayer(col.colliders) > 0;
+		}
 	}
 }

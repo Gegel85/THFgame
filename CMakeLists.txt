@@ -4,7 +4,7 @@ project(THFgame)
 set(CMAKE_CXX_STANDARD 17)
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
-	add_compile_options(-Wall -Wextra -W -g)
+	add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
 endif ()
 
 include_directories(nlohmann)
@@ -129,7 +129,9 @@ add_library(
 	src/Core/Input/SFMLJoypad.cpp src/Core/Input/SFMLJoypad.hpp
 	src/Core/ECS/Components/ExperienceComponent.cpp
 	src/Core/ECS/Components/ExperienceComponent.hpp
-	src/Core/ECS/Systems/ExperienceSystem.cpp src/Core/ECS/Systems/ExperienceSystem.hpp)
+	src/Core/ECS/Systems/ExperienceSystem.cpp
+	src/Core/ECS/Systems/ExperienceSystem.hpp
+)
 
 if (WIN32)
 	target_link_libraries(

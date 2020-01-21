@@ -50,9 +50,12 @@ namespace TouhouFanGame::ECS::Factory
 			if (stream.fail())
 				throw InvalidPrefabException("assets/" + this->_builders.at(name) + ": " + strerror(errno));
 
+			bool serializable;
 			auto entity = std::make_shared<Entity>(id);
 
 			entity->unserialize(game, stream);
+			stream >> serializable;
+			entity->setSerializable(serializable);
 			stream.close();
 			return entity;
 		} catch (std::out_of_range &) {

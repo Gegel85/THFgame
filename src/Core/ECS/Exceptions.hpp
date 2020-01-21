@@ -65,6 +65,14 @@ namespace TouhouFanGame::ECS
 			BaseException("This object is not serializable")
 		{};
 	};
+
+	//! @brief The prefab file was invalid
+	class InvalidPrefabException : public BaseException {
+	public:
+		explicit InvalidPrefabException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
 }
 
 

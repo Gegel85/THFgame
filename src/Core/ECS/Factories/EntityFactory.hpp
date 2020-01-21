@@ -18,20 +18,24 @@ namespace TouhouFanGame
 		//! @brief Builds Entity
 		class EntityFactory {
 		private:
-			//! @brief Maps an Entity name to it's builder
-			const static std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> _builders;
+			//! @brief Maps an Entity name to it's builder file path
+			std::map<std::string, std::string> _builders;
 
 		public:
+			//! @brief Builds the factory by giving it all prefabs.
+			//! @param prefabsPath The path to the prefab json file.
+			EntityFactory(const std::string &path);
+
 			//! @brief Builds an Entity and assign it an ID.
 			//! @param game Game resources and state.
 			//! @param name The name of the Entity to build.
 			//! @param id The ID of the new Entity.
 			//! @return The requested Entity.
 			//! @throw NoSuchEntityException
-			static std::shared_ptr<Entity> build(Game &game, const std::string &name, unsigned int id);
+			std::shared_ptr<Entity> build(Game &game, const std::string &name, unsigned int id) const;
 
 			//! @brief Returns a list of all the Entity this factory can build.
-			static std::vector<std::string> getItemList();
+			std::vector<std::string> getItemList() const;
 		};
 	}
 }

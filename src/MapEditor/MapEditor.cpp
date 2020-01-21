@@ -279,7 +279,7 @@ namespace TouhouFanGame
 		window->setTitle("New entity");
 		window->setSize({140, 70});
 		box->removeAllItems();
-		for (auto &val : ECS::Factory::EntityFactory::getItemList())
+		for (auto &val : this->_map._core.getFactory().getItemList())
 			box->addItem(val);
 		box->setSelectedItem("Entity");
 		okButton->connect("Pressed", [this, box, window]{

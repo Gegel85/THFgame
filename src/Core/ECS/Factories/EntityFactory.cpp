@@ -2,6 +2,7 @@
 // Created by Gegel85 on 26/09/2019.
 //
 
+#include <iostream>
 #include "EntityFactory.hpp"
 #include "../Exceptions.hpp"
 #include "../Components/PositionComponent.hpp"
@@ -17,48 +18,56 @@
 #include "../Components/InventoryComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
 #include "../Components/ShootComponent.hpp"
-#include "../Components/ExperienceComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
-	const std::map<std::string, std::function<ECS::Entity *(Game &, unsigned int)>> EntityFactory::_builders = {
-		{"TestPlayer", [](Game &game, unsigned int id){
-			return new Entity(id, "Player", {
-				new Components::CollisionComponent(),
-				new Components::ControllableComponent(*game.state.settings.input, 2, 4),
-				new Components::BlockedByTerrainComponent(game.state.map),
-				new Components::MovableComponent(),
-				new Components::DisplayableComponent(game.resources, "assets/entities/test.json"),
-				new Components::PositionComponent({PLAYER_SIZE, PLAYER_SIZE}),
-				new Components::HealthComponent(20),
-				new Components::ManaComponent(20),
-				new Components::NameComponent("Test Character"),
-				new Components::ExperienceComponent(),
-				new Components::PlayerHUDComponent(game.state.hud),
-				new Components::InventoryComponent(16),
-				new Components::ShootComponent(game.resources, game.state.map, "assets/battle_scripts/test_attack")
-			}, false);
-		}},
-		{"Entity", [](Game &, unsigned int id) {
-			return new Entity(id, "Entity", {});
-		}}
-	};
-
-	std::shared_ptr<Entity> EntityFactory::build(Game &game, const std::string &name, unsigned int id)
+	EntityFactory::EntityFactory(const std::string &path)
 	{
+		std::ifstream stream{path};
+
+		if (stream.fail())
+			throw InvalidPrefabException(this->_builders.at(path) + ": " + strerror(errno));
+
 		try {
-			return std::shared_ptr<Entity>(_builders.at(name)(game, id));
-		} catch (std::out_of_range &) {
-			throw NoSuchEntityException("Cannot find any way to build a " + name);
+			nlohmann::json j;
+
+			stream >> j;
+			this->_builders = j.get<std::map<std::string, std::string>>();
+			stream.close();
+		} catch (std::exception &e) {
+			throw InvalidPrefabException(getLastExceptionName() + ":\n" + e.what());
 		}
 	}
 
-	std::vector<std::string> EntityFactory::getItemList()
+	std::shared_ptr<Entity> EntityFactory::build(Game &game, const std::string &name, unsigned int id) const
 	{
-		std::vector<std::string> list;
+		if (name == "Entity")
+			return std::make_shared<Entity>(id);
 
-		list.reserve(_builders.size());
-		for (auto &builder : _builders)
+		try {
+			std::ifstream stream{"assets/" + this->_builders.at(name)};
+
+			if (stream.fail())
+				throw InvalidPrefabException("assets/" + this->_builders.at(name) + ": " + strerror(errno));
+
+			auto entity = std::make_shared<Entity>(id);
+
+			entity->unserialize(game, stream);
+			stream.close();
+			return entity;
+		} catch (std::out_of_range &) {
+			throw NoSuchEntityException("Cannot find any way to build a " + name);
+		} catch (std::exception &e) {
+			throw InvalidPrefabException(getLastExceptionName() + ":\n" + e.what());
+		}
+	}
+
+	std::vector<std::string> EntityFactory::getItemList() const
+	{
+		std::vector<std::string> list{"Entity"};
+
+		list.reserve(this->_builders.size() + 1);
+		for (auto &builder : this->_builders)
 			list.push_back(builder.first);
 		return list;
 	}

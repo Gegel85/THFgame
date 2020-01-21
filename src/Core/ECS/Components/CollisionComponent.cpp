@@ -18,7 +18,7 @@ namespace TouhouFanGame::ECS::Components
 
 	void CollisionComponent::serialize(std::ostream &stream) const
 	{
-		stream << this->collider.get();
+		stream << *this->collider;
 	}
 
 	CollisionComponent::CollisionComponent(std::istream &stream)

@@ -2,6 +2,7 @@
 // Created by Gegel85 on 05/01/2020.
 //
 
+#include <iostream>
 #include "CollisionSystem.hpp"
 #include "../Core.hpp"
 #include "../Components/CollisionComponent.hpp"
@@ -28,5 +29,11 @@ namespace TouhouFanGame::ECS::Systems
 
 		quadtree->update(entity);
 		collision.collided = this->quadtree->checkCollisions(*collision.collider);
+		if (!collision.collided.empty()) {
+			std::cout << "Entity " << entity->getName() << " collided with: {" << std::endl;
+			for (auto &col : collision.collided)
+				std::cout << "\t" << col.first << ", " << col.second << std::endl;
+			std::cout << "}" << std::endl;
+		}
 	}
 }

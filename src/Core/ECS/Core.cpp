@@ -38,6 +38,9 @@ namespace TouhouFanGame::ECS
 
 	void Core::update()
 	{
+		std::for_each(this->_systems.begin(), this->_systems.end(), [](std::unique_ptr<System> &x){
+			x->update();
+		});
 		auto entities = this->_entities;
 
 		for (auto &entity : entities)

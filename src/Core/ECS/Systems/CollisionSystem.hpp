@@ -14,11 +14,12 @@ namespace TouhouFanGame::ECS::Systems
 	//! @brief Updates Entity having a CollisionComponent
 	class CollisionSystem : public System {
 	private:
-		std::shared_ptr<Quadtree::Quadtree> quadtree;
+		Quadtree::Quadtree _quadtree;
 	public:
 		//! @param core The Core the System is in.
 		explicit CollisionSystem(Core &core);
 		void updateEntity(const std::shared_ptr<Entity> &entity) override;
+		void update() override;
 	};
 }
 

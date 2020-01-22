@@ -2,6 +2,7 @@
 // Created by anonymus-raccoon on 1/14/20.
 //
 
+#include <iostream>
 #include "Quadtree.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/ColliderComponent.hpp"
@@ -68,6 +69,11 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		this->remove(entity);
 		this->add(entity);
+
+		std::cout << "Quadtree content: " << std::endl;
+		for (auto &ent : this->_entities)
+			std::cout << "\tEntity: " << ent->getComponent("Position") << std::endl;
+		std::cout << std::endl;
 	}
 
 	std::vector<std::pair<std::shared_ptr<Entity>, unsigned>> Quadtree::checkCollisions(const ICollider &collider)

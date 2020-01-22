@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['hud_5fhorizontal_5fsize_1112',['HUD_HORIZONTAL_SIZE',['../Hud_8hpp.html#a56ad2f0ab5419af3d38cffd69779524e',1,'Hud.hpp']]],
-  ['hud_5fvertical_5fsize_1113',['HUD_VERTICAL_SIZE',['../Hud_8hpp.html#a75c731b1cf6e3ad8d595a0f51fc6fd19',1,'Hud.hpp']]]
+  ['activation_5fthreshold_1571',['ACTIVATION_THRESHOLD',['../SFMLJoypad_8hpp.html#ab04f685e26a29b32fd50369b1b15dfec',1,'SFMLJoypad.hpp']]]
 ];

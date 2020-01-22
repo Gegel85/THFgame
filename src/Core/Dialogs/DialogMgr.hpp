@@ -10,8 +10,8 @@
 #include <vector>
 #include <functional>
 #include <map>
-#include <TGUI/Vector2f.hpp>
 #include "../ECS/Entity.hpp"
+#include "../DataType/Vector.hpp"
 
 #define DIALOG_SPRITE_SIZE this->_dialogSpriteSize
 
@@ -25,7 +25,7 @@ namespace TouhouFanGame
 		//! @brief The holder of this Dialog.
 		std::shared_ptr<ECS::Entity> _holder;
 
-		sf::Vector2f _dialogSpriteSize;
+		Vector2f _dialogSpriteSize;
 
 		//! @brief The dialog currently selected.
 		unsigned _selected = 0;
@@ -53,9 +53,9 @@ namespace TouhouFanGame
 
 		unsigned char _otherAnims = 0;
 
-		sf::Vector2f _holderPos = {25, 140};
+		Vector2f _holderPos = {25, 140};
 
-		sf::Vector2f _otherPos = {25, 140};
+		Vector2f _otherPos = {25, 140};
 
 		char _holderTimer = 0;
 

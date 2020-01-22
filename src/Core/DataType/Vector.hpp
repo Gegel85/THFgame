@@ -7,17 +7,31 @@
 
 #include <ostream>
 #include <cmath>
+#include <SFML/System/Vector2.hpp>
 
 namespace TouhouFanGame
 {
 	template<typename T>
-	class Vector2 {
+	class Vector2
+	{
 	public:
 		T x;
 		T y;
 
+		Vector2<T>()
+			: x(0), y(0) {}
+
 		Vector2<T>(T x, T y)
 			: x(x), y(y) {}
+
+		Vector2<T>(sf::Vector2<T> v)
+			: x(v.x), y(v.y) {}
+
+		template <typename T2>
+		operator sf::Vector2<T2>()
+		{
+			return sf::Vector2<T2>(this->x, this->y);
+		}
 
 		template<typename T2>
 		Vector2<T> &operator+=(const Vector2<T2> &vec)
@@ -25,6 +39,12 @@ namespace TouhouFanGame
 			this->x += vec.x;
 			this->y += vec.y;
 			return *this;
+		}
+
+		template<typename T2>
+		Vector2<T> operator+(const Vector2<T2> &vec) const
+		{
+			return Vector2<T>(this->x + vec.x, this->y + vec.y);
 		}
 
 		template<typename T2>
@@ -53,6 +73,34 @@ namespace TouhouFanGame
 		T operator*(Vector2<T2> &b) const
 		{
 			return this->x * b.x + this->y * b.y;
+		}
+
+		template<typename T2>
+		Vector2<T> operator/=(Vector2<T2> &b)
+		{
+			this->x /= b.x;
+			this->y /= b.y;
+			return this;
+		}
+
+		template<typename T2>
+		Vector2<T> operator/(Vector2<T2> &b) const
+		{
+			return Vector2<T>(this->x / b.x, this->y / b.y);
+		}
+
+		template<typename T2>
+		Vector2<T> operator/=(T2 b)
+		{
+			this->x /= b;
+			this->y /= b;
+			return this;
+		}
+
+		template<typename T2>
+		Vector2<T> operator/(T2 b) const
+		{
+			return Vector2<T>(this->x / b, this->y / b);
 		}
 
 		template<typename T2>
@@ -94,6 +142,8 @@ namespace TouhouFanGame
 	};
 
 	typedef Vector2<float> Vector2f;
+	typedef Vector2<unsigned> Vector2u;
+	typedef Vector2<int> Vector2i;
 }
 
 template<typename T>

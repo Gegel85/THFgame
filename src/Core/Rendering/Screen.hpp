@@ -18,7 +18,7 @@ namespace TouhouFanGame::Rendering
 		Resources &_resources;
 
 		//! @brief The top left position of the camera.
-		sf::Vector2f _cameraCenter{0, 0};
+		Vector2f _cameraCenter{0, 0};
 
 		//! @brief The view attached to the window, controlling the camera.
 		sf::View _view;
@@ -88,7 +88,7 @@ namespace TouhouFanGame::Rendering
 		void	renderEntities();
 
 		//! @brief Change the current camera center
-		void	setCameraCenter(sf::Vector2f);
+		void	setCameraCenter(Vector2f);
 
 		//! @brief Draw a rectangle on the screen
 		//! @param rect The position and size of the rectangle (relative to the camera)
@@ -97,22 +97,22 @@ namespace TouhouFanGame::Rendering
 		//! @brief Draw some text on the screen
 		//! @param str The string to draw
 		//! @param pos The position on the screen (relative to the camera)
-		void	draw(const std::string &str, sf::Vector2f pos);
+		void	draw(const std::string &str, Vector2f pos);
 
 		//! @brief Draw a sprite on the screen
 		//! @param sprite The sprite to use
 		//! @param pos The position on the screen (relative to the camera)
-		void	draw(sf::Sprite &sprite, sf::Vector2f pos);
+		void	draw(sf::Sprite &sprite, Vector2f pos);
 
 		//! @brief Get the camera center.
 		//! @brief The current camera center.
-		sf::Vector2f getCameraCenter() const;
+		Vector2f getCameraCenter() const;
 
 		//! @brief Draw a texture on the screen
 		//! @param texture The texture to use
 		//! @param pos The position on the screen (relative to the camera)
 		//! @param rect The transformation rect to apply on the texture
-		void	draw(sf::Texture &texture, sf::Vector2f pos, sf::Vector2u size = {0, 0}, sf::IntRect rect = {0, 0, 0, 0});
+		void	draw(sf::Texture &texture, Vector2f pos, Vector2u size = {0, 0}, sf::IntRect rect = {0, 0, 0, 0});
 
 		//! @brief Get the current FPS
 		double	getFPS();

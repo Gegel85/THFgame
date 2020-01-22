@@ -8,6 +8,7 @@
 #include "Exceptions.hpp"
 #include "json.hpp"
 #include "../Game.hpp"
+#include "../DataType/Vector.hpp"
 
 namespace TouhouFanGame::Rendering
 {
@@ -68,7 +69,7 @@ namespace TouhouFanGame::Rendering
 			);
 	}
 
-	sf::Vector2u Entity::Config::getPositionFromAnimationIndex(unsigned index)
+	Vector2u Entity::Config::getPositionFromAnimationIndex(unsigned index)
 	{
 		return {
 			(this->tileSize.x * index) % this->textureSize.x,
@@ -101,12 +102,12 @@ namespace TouhouFanGame::Rendering
 		this->_delay = this->_configs.delays[newAnimation];
 	}
 
-	void Entity::setSize(sf::Vector2u newSize)
+	void Entity::setSize(Vector2u newSize)
 	{
 		this->_size = newSize;
 	}
 
-	void Entity::setPosition(sf::Vector2f newPos)
+	void Entity::setPosition(Vector2f newPos)
 	{
 		this->_pos = newPos;
 	}
@@ -120,7 +121,7 @@ namespace TouhouFanGame::Rendering
 	{
 		unsigned char	dir = (this->_animation != DEAD) * this->_dir;
 		unsigned char	animation = this->_animation * 8 + dir;
-		sf::Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
+		Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
 
 		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));
 		this->_sprite.setScale({
@@ -141,8 +142,24 @@ namespace TouhouFanGame::Rendering
 		screen.fillColor();
 		screen.draw(
 			this->_sprite,
-			this->_pos
+			{
+				this->_pos.x + this->_size.x / 2.f,
+				this->_pos.y + this->_size.y / 2.f,
+			}
 		);
+
+#ifdef _DEBUG
+		screen.fillColor({0, 255, 0, 120});
+		screen.draw({
+			static_cast<int>(this->_pos.x),
+			static_cast<int>(this->_pos.y),
+			static_cast<int>(this->_size.x),
+			static_cast<int>(this->_size.y),
+		});
+#endif
+
+		screen.fillColor();
+		this->_sprite.setOrigin({0, 0});
 	}
 
 	void Entity::setSpriteAngle(float newAngle)

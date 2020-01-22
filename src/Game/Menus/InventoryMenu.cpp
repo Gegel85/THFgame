@@ -15,9 +15,9 @@ namespace TouhouFanGame
 		_screen(screen),
 		_textures(textures)
 	{
-		this->_triangle.setPoint(0, sf::Vector2f(0, 0));
-		this->_triangle.setPoint(1, sf::Vector2f(15, 10));
-		this->_triangle.setPoint(2, sf::Vector2f(0, 20));
+		this->_triangle.setPoint(0, Vector2f(0, 0));
+		this->_triangle.setPoint(1, Vector2f(15, 10));
+		this->_triangle.setPoint(2, Vector2f(0, 20));
 		this->_triangle.setFillColor(sf::Color::Black);
 		this->_triangle.setOutlineThickness(0);
 	}

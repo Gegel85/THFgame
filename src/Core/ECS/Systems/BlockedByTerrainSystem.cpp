@@ -18,11 +18,11 @@ namespace TouhouFanGame::ECS::Systems
 
 	void BlockedByTerrainSystem::_pushEntity(TouhouFanGame::ECS::Components::PositionComponent &pos, float x, float y, unsigned char tileSize, double &dir, float &speed)
 	{
-		sf::Vector2<double> wallPos{
+		Vector2<double> wallPos{
 			pos.position.x + x - std::fmod(pos.position.x + x, tileSize),
 			pos.position.y + y - std::fmod(pos.position.y + x, tileSize),
 		};
-		sf::Vector2<double> vec{
+		Vector2<double> vec{
 			cos(dir),
 			sin(dir),
 		};

@@ -23,13 +23,13 @@ namespace TouhouFanGame
 		//! @brief A trigger that teleports the player to another Map.
 		struct TpTrigger {
 			//! @brief The position of the trigger on the Map.
-			sf::Vector2<unsigned short> location;
+			Vector2<unsigned short> location;
 
 			//! @brief The Map to warp to.
 			unsigned short mapId;
 
 			//! @brief Where to place the player after teleporting it.
-			sf::Vector2<unsigned short> mapSpawn;
+			Vector2<unsigned short> mapSpawn;
 
 			//! @brief Serialize to a stream.
 			void serialize(std::ostream &stream) const;
@@ -64,7 +64,7 @@ namespace TouhouFanGame
 		std::string _music;
 
 		//! @brief The size of map (in tiles).
-		sf::Vector2<unsigned short> _size = {0, 0};
+		Vector2<unsigned short> _size = {0, 0};
 
 		//! @brief The size in pixel of a single square tile.
 		unsigned char _tileSize = 16;
@@ -85,7 +85,7 @@ namespace TouhouFanGame
 		ECS::Core _core;
 
 		//! @brief The center of the camera.
-		sf::Vector2f _cameraCenter;
+		Vector2f _cameraCenter;
 
 		//! @brief The ID of the currently loaded map
 		unsigned int _id;
@@ -146,12 +146,12 @@ namespace TouhouFanGame
 		//! @return The current position of the player on the map.
 		//! @warning Throws if no player or multiple players are found.
 		//! @throw CorruptedMapException
-		sf::Vector2f &_getPlayerPosition();
+		Vector2f &_getPlayerPosition();
 
 		//! @return The current size of the player on the map.
 		//! @warning Throws if no player or multiple players are found.
 		//! @throw CorruptedMapException
-		sf::Vector2u &_getPlayerSize();
+		Vector2u &_getPlayerSize();
 
 		//! @brief Loads the map from the stream given.
 		//! @param stream The stream to load the map from.
@@ -190,10 +190,10 @@ namespace TouhouFanGame
 		unsigned char getTileSize() const;
 
 		//! @brief Get the size of the map in pixel.
-		sf::Vector2u getPixelSize() const;
+		Vector2u getPixelSize() const;
 
 		//! @brief Get the size of the map in tile.
-		sf::Vector2<unsigned short> getSize() const;
+		Vector2<unsigned short> getSize() const;
 
 		//! @brief Get the object at position x y.
 		//! @param x Horizontal position.
@@ -204,7 +204,7 @@ namespace TouhouFanGame
 		//! @brief Get the object at position pos.
 		//! @param pos Position.
 		//! @return The object or 00 if out of bound.
-		unsigned char getObjectAt(sf::Vector2f pos) const;
+		unsigned char getObjectAt(Vector2f pos) const;
 
 		//! @brief Return the ECS::Core in this Map.
 		ECS::Core &getECSCore();
@@ -216,7 +216,7 @@ namespace TouhouFanGame
 
 		//! @brief Updates the camera center from the focus point.
 		//! @param center Focus point of the camera.
-		void updateCameraPosition(sf::Vector2f center);
+		void updateCameraPosition(Vector2f center);
 
 		//! @brief Sets the borders solid or not.
 		//! @param solid New value.

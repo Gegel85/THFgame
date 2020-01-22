@@ -15,12 +15,17 @@ namespace TouhouFanGame {
 		Vector2<T> pt3;
 		Vector2<T> pt4;
 
-		Rect(T x, T y, float w, float h, float angle)
+		template <typename T2>
+		Rect(T x, T y, T2 w, T2 h, float angle)
 			: pt1(x, y),
 			pt2(x + w / std::cos(angle), y),
 			pt3(x, y + h / std::cos(angle)),
 			pt4(x + w / std::cos(angle), y + h / std::cos(angle))
 		{}
+
+		template <typename T2>
+		Rect(Vector2<T> pos, Vector2<T2> size, float angle)
+			: Rect(pos.x, pos.y, size.x, size.y, angle) {}
 	};
 
 	typedef Rect<int> IntRect;

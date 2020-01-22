@@ -25,7 +25,7 @@ namespace TouhouFanGame::ECS::Systems
 		disp.renderEntity.setPosition(pos.position);
 		disp.renderEntity.setAnimation(disp.animation, false);
 		disp.renderEntity.setDirection(disp.dir);
-		disp.renderEntity.setSpriteAngle(disp.spriteAngle);
+		disp.renderEntity.setSpriteAngle(pos.angle);
 		disp.renderEntity.update();
 	}
 }

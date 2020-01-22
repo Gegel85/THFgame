@@ -8,13 +8,14 @@
 
 #include <TGUI/TGUI.hpp>
 #include "../Core/Game.hpp"
+#include "../Core/DataType/Vector.hpp"
 
 namespace TouhouFanGame
 {
 	class MapEditor {
 	private:
 		struct MapParams {
-			sf::Vector2<unsigned short> size;
+			Vector2<unsigned short> size;
 			bool solid;
 			std::string music;
 			std::string tilemap;
@@ -30,13 +31,13 @@ namespace TouhouFanGame
 		bool _deleting = false;
 		unsigned _loaded;
 		MapParams _params;
-		sf::Vector2i _startPos;
-		sf::Vector2f _cameraPos;
-		sf::Vector2f _oldCam;
+		Vector2i _startPos;
+		Vector2f _cameraPos;
+		Vector2f _oldCam;
 		unsigned char _pressed = 0;
 		unsigned char _selected = 0;
 		std::unique_ptr<tgui::Gui> _gui;
-		sf::Vector2<std::shared_ptr<tgui::Label>> _posLabels;
+		Vector2<std::shared_ptr<tgui::Label>> _posLabels;
 
 		void _makeAllWidgets();
 		void _displaySettings();
@@ -45,7 +46,7 @@ namespace TouhouFanGame
 		void _showMapEditWindow();
 		void _showToolBox(bool openWindow = true);
 		void _showNewEntityBox();
-		void _changeObject(sf::Vector2i pixels);
+		void _changeObject(Vector2i pixels);
 		void _changeObject(int x, int y);
 		void _showNewTeleporterBox(Map::TpTrigger &trigger);
 		void _showEntityProperties(const std::shared_ptr<ECS::Entity> &entity);

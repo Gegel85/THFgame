@@ -279,7 +279,7 @@ namespace TouhouFanGame
 		window->setTitle("New entity");
 		window->setSize({140, 70});
 		box->removeAllItems();
-		for (auto &val : ECS::Factory::EntityFactory::getItemList())
+		for (auto &val : this->_map._core.getFactory().getItemList())
 			box->addItem(val);
 		box->setSelectedItem("Entity");
 		okButton->connect("Pressed", [this, box, window]{
@@ -604,7 +604,7 @@ namespace TouhouFanGame
 		rect.setFillColor(sf::Color{
 			255, 0, 0, 100
 		});
-		rect.setSize(sf::Vector2f(
+		rect.setSize(Vector2f(
 			this->_map._tileSize,
 			this->_map._tileSize
 		));
@@ -660,10 +660,10 @@ namespace TouhouFanGame
 		this->_changeObject({x, y});
 	}
 
-	void MapEditor::_changeObject(sf::Vector2i pixels)
+	void MapEditor::_changeObject(Vector2i pixels)
 	{
 		auto coords = this->_game.resources.screen->mapPixelToCoords(pixels);
-		sf::Vector2i real(
+		Vector2i real(
 			coords.x / this->_map._tileSize,
 			coords.y / this->_map._tileSize
 		);

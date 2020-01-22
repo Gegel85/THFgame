@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Component.hpp"
+#include "../../DataType/Vector.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
@@ -15,14 +16,17 @@ namespace TouhouFanGame::ECS::Components
 	class PositionComponent : public ECS::Component {
 	public:
 		//! @brief The position of the Entity
-		sf::Vector2f	position{0, 0};
+		Vector2f	position{0, 0};
 
 		//! @brief The size of the Entity
-		sf::Vector2u	size;
+		Vector2u	size;
+
+		//! @brief The rotation of the Entity
+		float angle;
 
 		//! @brief Unserializer constructor.
 		PositionComponent(std::istream &stream);
-		PositionComponent(sf::Vector2u size);
+		PositionComponent(Vector2u size);
 		~PositionComponent() override = default;
 		void serialize(std::ostream &) const override;
 	};

@@ -22,6 +22,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		int getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const override;
 		void serialize(std::ostream &stream) const override;
 		float getSize() const override;
+		void setOrigin(const Components::PositionComponent &pos) override;
 
 		CircleCollider(float x, float y, float size);
 	};

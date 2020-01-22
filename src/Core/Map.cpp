@@ -251,7 +251,7 @@ namespace TouhouFanGame
 				pos.y < trigger.location.y + this->_tileSize && trigger.location.y < size.y + pos.y
 			) {
 				this->loadMap(trigger.mapId);
-				pos = sf::Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
+				pos = Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
 			}
 	}
 
@@ -283,12 +283,12 @@ namespace TouhouFanGame
 		return this->_objects[this->_size.x * (y / this->_tileSize) + (x / this->_tileSize)];
 	}
 
-	sf::Vector2<unsigned short> Map::getSize() const
+	Vector2<unsigned short> Map::getSize() const
 	{
 		return this->_size;
 	}
 
-	sf::Vector2u Map::getPixelSize() const
+	Vector2u Map::getPixelSize() const
 	{
 		return {
 			static_cast<unsigned int>(this->_size.x * this->_tileSize),
@@ -301,7 +301,7 @@ namespace TouhouFanGame
 		return this->_tileSize;
 	}
 
-	unsigned char Map::getObjectAt(sf::Vector2f pos) const
+	unsigned char Map::getObjectAt(Vector2f pos) const
 	{
 		return this->getObjectAt(pos.x, pos.y);
 	}
@@ -375,15 +375,15 @@ namespace TouhouFanGame
 	void Map::render()
 	{
 		if (!this->_cameraUpdated) {
-			sf::Vector2f pos = this->_getPlayerPosition();
+			Vector2f pos = this->_getPlayerPosition();
 
 			pos.x += PLAYER_SIZE / 2;
 			pos.y += PLAYER_SIZE / 2;
 			this->updateCameraPosition(pos);
 		}
 
-		sf::Vector2u size = this->_game.resources.screen->getSize();
-		sf::Vector2f pos = this->_cameraCenter;
+		Vector2u size = this->_game.resources.screen->getSize();
+		Vector2f pos = this->_cameraCenter;
 
 		this->_game.resources.screen->setCameraCenter(pos);
 		pos.x -= size.x / 2.;
@@ -416,7 +416,7 @@ namespace TouhouFanGame
 		this->_game.resources.screen->renderEntities();
 	}
 
-	void Map::updateCameraPosition(sf::Vector2f focusPoint)
+	void Map::updateCameraPosition(Vector2f focusPoint)
 	{
 		this->_cameraUpdated = true;
 		this->_cameraCenter.x = Map::_getCameraCenter(
@@ -458,12 +458,12 @@ namespace TouhouFanGame
 		return players.back();
 	}
 
-	sf::Vector2u &Map::_getPlayerSize()
+	Vector2u &Map::_getPlayerSize()
 	{
 		return this->getPlayer()->getComponent("Position").to<ECS::Components::PositionComponent>().size;
 	}
 
-	sf::Vector2f &Map::_getPlayerPosition()
+	Vector2f &Map::_getPlayerPosition()
 	{
 		return this->getPlayer()->getComponent("Position").to<ECS::Components::PositionComponent>().position;
 	}

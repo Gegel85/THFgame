@@ -79,4 +79,9 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		stream << "1 " << this->rect;
 	}
+
+	void RectangleCollider::setOrigin(const Components::PositionComponent &pos)
+	{
+		this->rect = FloatRect(pos.position, pos.size, pos.angle);
+	}
 }

@@ -19,6 +19,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		int getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const override;
 		float getSize() const override;
 		void serialize(std::ostream &stream) const override;
+		void setOrigin(const Components::PositionComponent &pos) override;
 		FloatRect rect;
 
 		RectangleCollider(float x, float y, float w, float h, float angle);

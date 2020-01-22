@@ -7,6 +7,7 @@
 #include "../Core.hpp"
 #include "../Components/CollisionComponent.hpp"
 #include "../../Game.hpp"
+#include "../Components/PositionComponent.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -26,7 +27,9 @@ namespace TouhouFanGame::ECS::Systems
 	void CollisionSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
 		auto &collision = entity->getComponent("Collision").to<Components::CollisionComponent &>();
+		auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
 
+		collision.collider->setOrigin(pos);
 		quadtree->update(entity);
 		collision.collided = this->quadtree->checkCollisions(*collision.collider);
 		if (!collision.collided.empty()) {

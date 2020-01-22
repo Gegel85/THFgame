@@ -74,7 +74,7 @@ namespace TouhouFanGame
 	tgui::Panel::Ptr ComponentGui::PositionGui(Game &, ECS::Component &component)
 	{
 		auto &position = component.to<ECS::Components::PositionComponent>();
-		auto panel = tgui::Panel::create({300, 50});
+		auto panel = tgui::Panel::create({300, 70});
 		auto render = tgui::RendererData::create({
 			{"backgroundcolor", "transparent"}
 		});
@@ -114,6 +114,15 @@ namespace TouhouFanGame
 			Utils::floatToString(position.size.y),
 			"[+-]?[0-9]*\\.?[0-9]*"
 		);
+		auto angleLabel = makeLabel("Rotation", 0, xLabel->getSize().y * 2);
+		auto angleBox = makeTypeBox(
+			xLabel->getSize().x,
+			xLabel->getSize().y * 2,
+			60,
+			xLabel->getSize().y,
+			Utils::floatToString(position.angle),
+			"[+-]?[0-9]*\\.?[0-9]*"
+		);
 
 		xEditBox->connect("TextChanged", [&position, xEditBox]{
 			if (!xEditBox->getText().isEmpty())
@@ -131,6 +140,10 @@ namespace TouhouFanGame
 			if (!ySizeEditBox->getText().isEmpty())
 				position.size.y = std::stof(ySizeEditBox->getText().toAnsiString());
 		});
+		angleBox->connect("TextChanged", [&position, angleBox]{
+			if (!angleBox->getText().isEmpty())
+				position.angle = std::stof(angleBox->getText().toAnsiString());
+		});
 		panel->setRenderer(render);
 		panel->add(xLabel);
 		panel->add(xEditBox);
@@ -140,6 +153,8 @@ namespace TouhouFanGame
 		panel->add(xSizeEditBox);
 		panel->add(ySizeLabel);
 		panel->add(ySizeEditBox);
+		panel->add(angleLabel);
+		panel->add(angleBox);
 		return panel;
 	}
 	

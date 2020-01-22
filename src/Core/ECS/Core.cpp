@@ -22,7 +22,7 @@ namespace TouhouFanGame::ECS
 		try {
 			while (true) this->getEntityByID(++this->_lastGivenID);
 		} catch (NoSuchEntityException &) {}
-		this->_entities.push_back(Factory::EntityFactory::build(this->_game, typeName, this->_lastGivenID));
+		this->_entities.push_back(this->_factory.build(this->_game, typeName, this->_lastGivenID));
 
 		auto entity = this->_entities.back();
 
@@ -218,6 +218,11 @@ namespace TouhouFanGame::ECS
 	std::vector<std::shared_ptr<Entity>> Core::getEntities() const
 	{
 		return this->_entities;
+	}
+
+	const Factory::EntityFactory &Core::getFactory() const
+	{
+		return this->_factory;
 	}
 }
 

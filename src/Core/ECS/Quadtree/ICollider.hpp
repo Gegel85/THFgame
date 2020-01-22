@@ -7,6 +7,7 @@
 
 
 #include "../Entity.hpp"
+#include "../Components/PositionComponent.hpp"
 
 namespace TouhouFanGame::ECS::Quadtree
 {
@@ -18,6 +19,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		virtual int getCollisionLayer(const ICollider &colliders) const = 0;
 		virtual int getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const = 0;
 		virtual float getSize() const = 0;
+		virtual void setOrigin(const Components::PositionComponent &pos) = 0;
 		virtual void serialize(std::ostream &stream) const = 0;
 		static std::unique_ptr<ICollider> deserialize(std::istream &stream);
 	};

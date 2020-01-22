@@ -39,9 +39,6 @@ namespace TouhouFanGame
 			//! @brief Facing direction.
 			Rendering::Direction dir = Rendering::NORTH;
 
-			//! @brief The entity sprite orientation in radian.
-			float spriteAngle = 0;
-
 			//! @brief Change the configs of this entity.
 			void setConfigs(const std::string &path);
 

@@ -7,6 +7,7 @@
 
 
 #include <SFML/Graphics.hpp>
+#include "../DataType/Vector.hpp"
 
 namespace TouhouFanGame
 {
@@ -53,7 +54,7 @@ namespace TouhouFanGame::Rendering
 			//! @brief Fetch the position on the sprite sheet of a tile.
 			//! @param index The index of the tile.
 			//! @return The position on the sprite sheet of that tile.
-			sf::Vector2u getPositionFromAnimationIndex(unsigned index);
+			Vector2u getPositionFromAnimationIndex(unsigned index);
 
 			//! @brief Loads a file.
 			void loadFile(Resources &resources, const std::string &path);
@@ -62,10 +63,10 @@ namespace TouhouFanGame::Rendering
 			std::string	texture;
 
 			//! @brief The texture size.
-			sf::Vector2u	textureSize;
+			Vector2u	textureSize;
 
 			//! @brief The size of a single tile in pixel.
-			sf::Vector2u	tileSize;
+			Vector2u	tileSize;
 
 			//! @brief The number of tiles for each animation.
 			std::vector<unsigned>	animations;
@@ -84,10 +85,10 @@ namespace TouhouFanGame::Rendering
 		sf::Sprite	_sprite;
 
 		//! @brief The current position oon the Screen.
-		sf::Vector2f	_pos{0, 0};
+		Vector2f	_pos{0, 0};
 
 		//! @brief The current size.
-		sf::Vector2u	_size{0, 0};
+		Vector2u	_size{0, 0};
 
 		//! @brief The current animation.
 		Animation	_animation{IDLE};
@@ -127,10 +128,10 @@ namespace TouhouFanGame::Rendering
 		void setAnimation(Animation newAnimation, bool forceReset = true);
 
 		//! @brief Change the position of the entity on the Screen.
-		void setPosition(sf::Vector2f newPos);
+		void setPosition(Vector2f newPos);
 
 		//! @brief Sets the size of the entity.
-		void setSize(sf::Vector2u newSize);
+		void setSize(Vector2u newSize);
 
 		//! @brief Set the sprite orientation (in radian).
 		void setSpriteAngle(float newAngle);

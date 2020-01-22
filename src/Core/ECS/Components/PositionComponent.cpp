@@ -8,21 +8,22 @@
 namespace TouhouFanGame::ECS::Components
 {
 	PositionComponent::PositionComponent(std::istream &stream) :
-		Component("Position")
+		Component("Position"),
+		angle(0)
 	{
-		stream >> this->position.x >> this->position.y >> this->size.x >> this->size.y;
+		stream >> this->position.x >> this->position.y >> this->size.x >> this->size.y >> this->angle;
 		if (stream.fail())
 			throw InvalidSerializedString("Invalid PositionComponent");
 	}
 
-	PositionComponent::PositionComponent(sf::Vector2u size) :
+	PositionComponent::PositionComponent(Vector2u size) :
 		Component("Position"),
-		size(size)
-	{
-	}
+		size(size),
+		angle(0)
+	{}
 
 	void PositionComponent::serialize(std::ostream &stream) const
 	{
-		stream << this->position.x << " " << this->position.y << " " << this->size.x << " " << this->size.y;
+		stream << this->position.x << " " << this->position.y << " " << this->size.x << " " << this->size.y << " " << this->angle;
 	}
 }

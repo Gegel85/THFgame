@@ -55,26 +55,25 @@ namespace TouhouFanGame::Rendering
 
 	void	Screen::draw(sf::IntRect rect)
 	{
-		this->_rect.setPosition(sf::Vector2f(rect.left, rect.top));
-		this->_rect.setSize(sf::Vector2f(rect.width, rect.height));
+		this->_rect.setPosition(Vector2f(rect.left, rect.top));
+		this->_rect.setSize(Vector2f(rect.width, rect.height));
 		sf::RenderWindow::draw(this->_rect);
 	}
 
-	void	Screen::draw(const std::string &str, sf::Vector2f pos)
+	void	Screen::draw(const std::string &str, Vector2f pos)
 	{
 		this->_text.setPosition(pos);
 		this->_text.setString(str);
 		sf::RenderWindow::draw(this->_text);
 	}
 
-	void	Screen::draw(sf::Sprite &sprite, sf::Vector2f pos)
+	void	Screen::draw(sf::Sprite &sprite, Vector2f pos)
 	{
-		this->_sprite.setOrigin({0, 0});
 		sprite.setPosition(pos);
 		sf::RenderWindow::draw(sprite);
 	}
 
-	void	Screen::draw(sf::Texture &texture, sf::Vector2f pos, sf::Vector2u size, sf::IntRect rect)
+	void	Screen::draw(sf::Texture &texture, Vector2f pos, Vector2u size, sf::IntRect rect)
 	{
 		auto textureSize = texture.getSize();
 
@@ -105,7 +104,7 @@ namespace TouhouFanGame::Rendering
 		return *this->_entities.emplace_back(new Entity(this->_resources, configFile));
 	}
 
-	sf::Vector2f Screen::getCameraCenter() const
+	Vector2f Screen::getCameraCenter() const
 	{
 		return this->_cameraCenter;
 	}
@@ -135,7 +134,7 @@ namespace TouhouFanGame::Rendering
 		sf::RenderWindow::display();
 	}
 
-	void Screen::setCameraCenter(sf::Vector2f newCamera)
+	void Screen::setCameraCenter(Vector2f newCamera)
 	{
 		this->_cameraCenter = newCamera;
 		this->_view.setCenter(this->_cameraCenter.x, this->_cameraCenter.y);

@@ -51,6 +51,9 @@ namespace TouhouFanGame::ECS
 		//! @brief Applies the System logic to the entity
 		//! @param entity Entity to update
 		virtual void	updateEntity(const std::shared_ptr<Entity> &entity) = 0;
+
+		//! @brief Updates the System components if needed.
+		virtual void	update();
 	};
 }
 

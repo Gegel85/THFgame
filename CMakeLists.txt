@@ -126,10 +126,13 @@ add_library(
 	src/Core/ECS/Components/OobDieComponent.hpp
 	src/Core/ECS/Systems/OobDieSystem.cpp
 	src/Core/ECS/Systems/OobDieSystem.hpp
-	src/Core/Input/SFMLJoypad.cpp src/Core/Input/SFMLJoypad.hpp
+	src/Core/Input/SFMLJoypad.cpp
+	src/Core/Input/SFMLJoypad.hpp
 	src/Core/ECS/Components/ExperienceComponent.cpp
 	src/Core/ECS/Components/ExperienceComponent.hpp
-	src/Core/ECS/Systems/ExperienceSystem.cpp src/Core/ECS/Systems/ExperienceSystem.hpp)
+	src/Core/ECS/Systems/ExperienceSystem.cpp
+	src/Core/ECS/Systems/ExperienceSystem.hpp
+)
 
 if (WIN32)
 	target_link_libraries(

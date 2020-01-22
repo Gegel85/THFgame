@@ -141,8 +141,24 @@ namespace TouhouFanGame::Rendering
 		screen.fillColor();
 		screen.draw(
 			this->_sprite,
-			this->_pos
+			{
+				this->_pos.x + this->_size.x / 2.f,
+				this->_pos.y + this->_size.y / 2.f,
+			}
 		);
+
+#ifdef _DEBUG
+		screen.fillColor({0, 255, 0, 120});
+		screen.draw({
+			static_cast<int>(this->_pos.x),
+			static_cast<int>(this->_pos.y),
+			static_cast<int>(this->_size.x),
+			static_cast<int>(this->_size.y),
+		});
+#endif
+
+		screen.fillColor();
+		this->_sprite.setOrigin({0, 0});
 	}
 
 	void Entity::setSpriteAngle(float newAngle)

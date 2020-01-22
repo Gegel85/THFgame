@@ -12,6 +12,7 @@
 #include "Entity.hpp"
 #include "System.hpp"
 #include "../Rendering/Screen.hpp"
+#include "Factories/EntityFactory.hpp"
 
 namespace TouhouFanGame
 {
@@ -24,6 +25,9 @@ namespace TouhouFanGame::ECS
 	//! @brief The core of an ECS. It holds the System and Entity and make them interact with each other.
 	class Core {
 	private:
+		//! @brief The factory used to build entities
+		Factory::EntityFactory _factory{"assets/entity_prefab.json"};
+
 		//! @brief The Game this ECS is in.
 		Game &_game;
 
@@ -113,6 +117,9 @@ namespace TouhouFanGame::ECS
 
 		//! @brief Delete an Entity.
 		void deleteEntity(unsigned entityID);
+
+		//! @brief Returns the factory this Core is using.
+		const Factory::EntityFactory &getFactory() const;
 
 		//! @brief Deletes all the Entity in the Core besides any Entity
 		//! with an ID contained in the whitelist.

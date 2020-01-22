@@ -66,25 +66,26 @@ extern "C"
 		auto &map = *reinterpret_cast<TouhouFanGame::Map *>(args[3]);
 		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
 		auto &mov = entity->getComponent("Movable").to<TouhouFanGame::ECS::Components::MovableComponent>();
-		sf::Vector2<double> vec = {
-			cos(mov.angleDir + M_PI_2),
-			sin(mov.angleDir + M_PI_2),
-		};
-		auto diff = std::fmod(mov.angleDir, M_PI_4);
 		auto angle = mov.angleDir;
+		auto diff = std::fmod(mov.angleDir, M_PI_4);
 
 		if (diff > M_PI_4 / 2)
 			angle += M_PI_4 - diff;
 		else
 			angle -= diff;
 
+		sf::Vector2<double> vec = {
+			cos(angle + M_PI_2),
+			sin(angle + M_PI_2),
+		};
+
 		auto projectile1 = makeProjectile(map, resources, {
-			static_cast<float>(pos.position.x + vec.x * 6),
-			static_cast<float>(pos.position.y + vec.y * 6),
+			static_cast<float>(pos.position.x + pos.size.x / 2 + vec.x * 6 - 6),
+			static_cast<float>(pos.position.y + pos.size.y / 2 + vec.y * 6 - 6),
 		}, angle);
 		auto projectile2 = makeProjectile(map, resources, {
-			static_cast<float>(pos.position.x - vec.x * 6),
-			static_cast<float>(pos.position.y - vec.y * 6),
+			static_cast<float>(pos.position.x + pos.size.x / 2 - vec.x * 6 - 6),
+			static_cast<float>(pos.position.y + pos.size.y / 2 - vec.y * 6 - 6),
 		}, angle);
 
 		core.registerEntity(projectile1);

@@ -21,7 +21,8 @@ namespace TouhouFanGame::ECS::Systems
 
 		collision.collided.clear();
 		for (auto &e : this->_core.getEntityByComponent("Collider")) {
-			auto &ePos = e.lock()->getComponent("Position").to<Components::PositionComponent &>();
+			auto ent = e.lock();
+			auto &ePos = ent->getComponent("Position").to<Components::PositionComponent &>();
 
 			if (
 				pos.position.x < ePos.position.x + ePos.size.x &&
@@ -29,7 +30,7 @@ namespace TouhouFanGame::ECS::Systems
 				pos.position.x + pos.size.x > ePos.position.x &&
 				pos.position.y + pos.size.y > ePos.position.y
 			)
-				collision.collided.push_back(e);
+				collision.collided.push_back(ent);
 		}
 	}
 }

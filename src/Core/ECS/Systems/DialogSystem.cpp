@@ -36,20 +36,24 @@ namespace TouhouFanGame::ECS::Systems
 			return;
 		}
 
-		if (
-			interact.interactedWith &&
-			interact.interactedWith->hasComponent("PlayerHUD") &&
-			interact.interactedWith->hasComponent("Name")
-		) {
-			auto &hud = interact.interactedWith->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
+		if (interact.interactedWith.expired())
+			return;
 
-			dialog.triggered = interact.interactedWith;
+		auto interactedWith = interact.interactedWith.lock();
+
+		if (
+			interactedWith->hasComponent("PlayerHUD") &&
+			interactedWith->hasComponent("Name")
+		) {
+			auto &hud = interactedWith->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
+
+			dialog.triggered = interactedWith;
 			dialog.manager.setHolder(entity);
 			hud.hud.setDialogManager(&dialog.manager);
 			try {
-				interact.interactedWith->getComponent("Controllable").to<Components::ControllableComponent>().disabled = true;
+				interactedWith->getComponent("Controllable").to<Components::ControllableComponent>().disabled = true;
 			} catch (NoSuchComponentException &) {}
-			interact.interactedWith = nullptr;
+			interact.interactedWith.reset();
 		}
 	}
 }

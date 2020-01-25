@@ -41,7 +41,7 @@ namespace TouhouFanGame::ECS
 		std::vector<std::shared_ptr<Entity>> _entities;
 
 		//! @brief Entities sorted by Component
-		std::map<std::string, std::vector<std::shared_ptr<Entity>>> _entitiesByComponent;
+		std::map<std::string, std::vector<std::weak_ptr<Entity>>> _entitiesByComponent;
 
 	public:
 		Core(Game &game);
@@ -50,7 +50,7 @@ namespace TouhouFanGame::ECS
 		//! @param typeName The name of the Entity to build. This will be given to the EntityFactory.
 		//! @return The newly created Entity.
 		//! @throw NoSuchEntityException If the Entity cannot be built.
-		std::shared_ptr<Entity> makeEntity(const std::string &typeName);
+		std::weak_ptr<Entity> makeEntity(const std::string &typeName);
 
 		//! @brief Registers an Entity in the Core. Will change the Entity ID if the ID is already taken.
 		//! @param entity The Entity to register.
@@ -59,7 +59,7 @@ namespace TouhouFanGame::ECS
 		//! Also, avoid sharing shared_ptr with the core because you might have double free.
 		//! If you are doing a projectile/shared library and want to register new entities that cannot
 		//! be built by the EntityFactory, allocate the Entity using new and use the classic pointer version instead.
-		std::shared_ptr<Entity> registerEntity(std::shared_ptr<Entity> entity);
+		std::weak_ptr<Entity> registerEntity(std::shared_ptr<Entity> entity);
 
 		//! @brief Registers an Entity in the Core. Will change the Entity ID if the ID is already taken.
 		//! @param entity The Entity to register.
@@ -70,21 +70,21 @@ namespace TouhouFanGame::ECS
 		//! @param id The ID of the Entity to fetch.
 		//! @return The Entity requested.
 		//! @throw NoSuchEntityException
-		std::shared_ptr<Entity> getEntityByID(unsigned id) const;
+		std::weak_ptr<Entity> getEntityByID(unsigned id) const;
 
 		//! @brief Get all Entity with this name.
 		//! @param name The name of the entities to return.
 		//! @return A list of all the Entity matching this name.
-		std::vector<std::shared_ptr<Entity>> getEntityByName(const std::string &name);
+		std::vector<std::weak_ptr<Entity>> getEntityByName(const std::string &name);
 
 		//! @brief Get all Entity containing this Component.
 		//! @param name The name of the Component requested.
 		//! @return A list of all the Entity matching this name.
-		std::vector<std::shared_ptr<Entity>> getEntityByComponent(const std::string &name);
+		std::vector<std::weak_ptr<Entity>> getEntityByComponent(const std::string &name);
 
 		//! @brief Get all Entity.
 		//! @return A list of all the Entity created.
-		std::vector<std::shared_ptr<Entity>> getEntities() const;
+		std::vector<std::weak_ptr<Entity>> getEntities() const;
 
 		//! @brief Get a System by it's name.
 		//! @param name The name of the Entity to fetch.

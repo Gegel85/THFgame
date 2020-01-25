@@ -50,9 +50,12 @@ namespace TouhouFanGame::ECS::Systems
 				shoot.shooting = true;
 				break;
 			case Input::INTERACT:
-				for (auto &ent : col.collided)
-					if (ent->hasComponent("Interact"))
-						ent->getComponent("Interact").to<Components::InteractComponent>().interactedWith = entity;
+				for (auto &ent : col.collided) {
+					auto e = ent.lock();
+
+					if (e->hasComponent("Interact"))
+						e->getComponent("Interact").to<Components::InteractComponent>().interactedWith = entity;
+				}
 				break;
 			case Input::SPRINT:
 				sprinting = true;

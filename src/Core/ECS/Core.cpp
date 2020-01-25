@@ -17,7 +17,7 @@ namespace TouhouFanGame::ECS
 		Factory::SystemFactory::buildAll(*this, this->_systems);
 	}
 
-	std::shared_ptr<Entity> Core::makeEntity(const std::string &typeName)
+	std::weak_ptr<Entity> Core::makeEntity(const std::string &typeName)
 	{
 		try {
 			while (true) this->getEntityByID(++this->_lastGivenID);
@@ -69,7 +69,7 @@ namespace TouhouFanGame::ECS
 				std::remove_if(
 					vec.second.begin(),
 					vec.second.end(),
-					[](std::shared_ptr<Entity> &ent) { return ent->toBeDestroyed(); }
+					[](std::weak_ptr<Entity> &ent) { return ent.expired(); }
 				),
 				vec.second.end()
 			);
@@ -91,7 +91,7 @@ namespace TouhouFanGame::ECS
 
 	void Core::deleteEntity(unsigned entityID)
 	{
-		this->deleteEntity(this->getEntityByID(entityID));
+		this->deleteEntity(this->getEntityByID(entityID).lock());
 	}
 
 	void Core::clear(std::vector<unsigned int> whitelist)
@@ -119,9 +119,9 @@ namespace TouhouFanGame::ECS
 		throw NoSuchSystemException("Cannot find any System called \"" + name + "\"");
 	}
 
-	std::vector<std::shared_ptr<Entity>> Core::getEntityByName(const std::string &name)
+	std::vector<std::weak_ptr<Entity>> Core::getEntityByName(const std::string &name)
 	{
-		std::vector<std::shared_ptr<Entity>> found;
+		std::vector<std::weak_ptr<Entity>> found;
 
 		for (auto &entity : this->_entities)
 			if (entity->getName() == name)
@@ -129,7 +129,7 @@ namespace TouhouFanGame::ECS
 		return found;
 	}
 
-	std::vector<std::shared_ptr<Entity>> Core::getEntityByComponent(const std::string &name)
+	std::vector<std::weak_ptr<Entity>> Core::getEntityByComponent(const std::string &name)
 	{
 		try {
 			return this->_entitiesByComponent.at(name);
@@ -138,7 +138,7 @@ namespace TouhouFanGame::ECS
 		}
 	}
 
-	std::shared_ptr<Entity> Core::registerEntity(std::shared_ptr<Entity> entity)
+	std::weak_ptr<Entity> Core::registerEntity(std::shared_ptr<Entity> entity)
 	{
 		try {
 			this->getEntityByID(entity->getID());
@@ -158,17 +158,21 @@ namespace TouhouFanGame::ECS
 		auto &array = this->_entitiesByComponent[compName];
 
 		if (entity->hasComponent(compName)) {
-			if (std::find(array.begin(), array.end(), entity) == array.end())
+			if (std::find_if(array.begin(), array.end(), [&entity](const std::weak_ptr<Entity> &ent){
+				return ent.lock() == entity;
+			}) == array.end())
 				array.push_back(entity);
 		} else {
-			auto it = std::find(array.begin(), array.end(), entity);
+			auto it = std::find_if(array.begin(), array.end(), [&entity](const std::weak_ptr<Entity> &ent){
+				return ent.lock() == entity;
+			});
 
 			if (it != array.end())
 				array.erase(it);
 		}
 	}
 
-	std::shared_ptr<Entity> Core::getEntityByID(unsigned id) const
+	std::weak_ptr<Entity> Core::getEntityByID(unsigned id) const
 	{
 		for (auto &entity : this->_entities)
 			if (entity->getID() == id)
@@ -215,9 +219,14 @@ namespace TouhouFanGame::ECS
 			throw InvalidSerializedString("Malformed footer (" + str + ")");
 	}
 
-	std::vector<std::shared_ptr<Entity>> Core::getEntities() const
+	std::vector<std::weak_ptr<Entity>> Core::getEntities() const
 	{
-		return this->_entities;
+		std::vector<std::weak_ptr<Entity>> entities;
+
+		std::for_each(this->_entities.begin(), this->_entities.end(), [&entities](const std::shared_ptr<Entity> &entity){
+			entities.emplace_back(entity);
+		});
+		return entities;
 	}
 
 	const Factory::EntityFactory &Core::getFactory() const

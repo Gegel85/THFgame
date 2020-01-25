@@ -284,7 +284,7 @@ namespace TouhouFanGame
 		box->setSelectedItem("Entity");
 		okButton->connect("Pressed", [this, box, window]{
 			this->_showEntityProperties(
-				this->_map._core.makeEntity(box->getSelectedItem())
+				this->_map._core.makeEntity(box->getSelectedItem()).lock()
 			);
 			window->close();
 		});
@@ -503,7 +503,7 @@ namespace TouhouFanGame
 
 		panel->removeAllWidgets();
 		for (size_t i = 0; i < entities.size(); i++) {
-			auto entity = entities[i];
+			auto entity = entities[i].lock();
 			auto button = tgui::BitmapButton::create();
 
 			panel->add(button);
@@ -598,7 +598,7 @@ namespace TouhouFanGame
 		sf::RectangleShape rect;
 
 		for (auto &entity : this->_map._core.getEntityByComponent("Displayable"))
-			system.updateEntity(entity);
+			system.updateEntity(entity.lock());
 		this->_map.render();
 
 		rect.setFillColor(sf::Color{

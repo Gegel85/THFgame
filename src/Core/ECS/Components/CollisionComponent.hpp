@@ -14,7 +14,7 @@ namespace TouhouFanGame::ECS::Components
 {
 	class CollisionComponent : public BasicSerializeComponent {
 	public:
-		std::vector<std::shared_ptr<ECS::Entity>> collided;
+		std::vector<std::weak_ptr<ECS::Entity>> collided;
 
 		CollisionComponent();
 		~CollisionComponent() override = default;

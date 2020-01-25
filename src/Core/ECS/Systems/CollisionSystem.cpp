@@ -21,7 +21,7 @@ namespace TouhouFanGame::ECS::Systems
 
 		collision.collided.clear();
 		for (auto &e : this->_core.getEntityByComponent("Collider")) {
-			auto &ePos = e->getComponent("Position").to<Components::PositionComponent &>();
+			auto &ePos = e.lock()->getComponent("Position").to<Components::PositionComponent &>();
 
 			if (
 				pos.position.x < ePos.position.x + ePos.size.x &&

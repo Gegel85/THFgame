@@ -33,9 +33,7 @@ namespace TouhouFanGame::ECS::Components
 		map(map),
 		resources(resources)
 	{
-		std::getline(stream, this->_handlerPath, '\0');
-		while (!this->_handlerPath.empty() && std::isspace(this->_handlerPath[0]))
-			this->_handlerPath = this->_handlerPath.substr(1);
+		stream >> this->_handlerPath;
 		this->handler = std::make_unique<DynamicLibrary>(this->_handlerPath + DLL_EXTENSION);
 	}
 
@@ -47,6 +45,6 @@ namespace TouhouFanGame::ECS::Components
 
 	void ShootComponent::serialize(std::ostream &stream) const
 	{
-		stream << this->_handlerPath << '\0';
+		stream << this->_handlerPath;
 	}
 }

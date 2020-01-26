@@ -30,6 +30,7 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Name"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Inventory"); },
+		[](Core &core){ return new Systems::UselessSystem(core, "Deck"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Interact", {"Collider"}); },
 		[](Core &core){ return new Systems::PlayerHUDSystem(core); },
 		[](Core &core){ return new Systems::CollisionSystem(core); },

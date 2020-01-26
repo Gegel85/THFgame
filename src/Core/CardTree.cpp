@@ -14,7 +14,7 @@ namespace TouhouFanGame
 		texture(card.texture),
 		description(card.description),
 		handlerPath(card.handlerPath),
-		handler(std::make_unique<DynamicLibrary>(this->handlerPath))
+		handler(std::make_unique<DynamicLibrary>("assets/" + this->handlerPath + DLL_EXTENSION))
 	{
 	}
 
@@ -24,7 +24,7 @@ namespace TouhouFanGame
 		texture(value["texture"]),
 		description(value["description"]),
 		handlerPath(value["handler"]),
-		handler(std::make_unique<DynamicLibrary>(this->handlerPath))
+		handler(std::make_unique<DynamicLibrary>("assets/" + this->handlerPath + DLL_EXTENSION))
 	{
 	}
 
@@ -33,10 +33,18 @@ namespace TouhouFanGame
 		std::ifstream stream{filePath};
 		nlohmann::json json;
 
-		stream >> json;
-		stream.close();
-		for (auto &val : json)
-			this->_cards.emplace_back(val);
+		if (stream.fail())
+			throw CorruptedCardTreeException(filePath + ": " + strerror(errno));
+
+		try {
+			stream >> json;
+			stream.close();
+			for (auto &val : json)
+				this->_cards.emplace_back(val);
+		} catch (std::exception &e) {
+			stream.close();
+			throw CorruptedCardTreeException(filePath + ": " + getLastExceptionName() + "\n" + e.what());
+		}
 	}
 
 	const std::vector<Card> &CardTree::getUnlockedCards(unsigned int level)
@@ -47,7 +55,7 @@ namespace TouhouFanGame
 				this->_cards.begin(),
 				this->_cards.end(),
 				[level](Card &card){
-					return level > card.neededLevel;
+					return level < card.neededLevel;
 				}
 			)
 		);

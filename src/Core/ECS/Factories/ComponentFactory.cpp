@@ -25,6 +25,7 @@
 #include "../Components/ShootComponent.hpp"
 #include "../Components/OobDieComponent.hpp"
 #include "../Components/ExperienceComponent.hpp"
+#include "../Components/DeckComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -44,6 +45,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"Collider",         [](Game &    , std::istream &      ){ return new Components::ColliderComponent(); }},
 		{"Dialog",           [](Game &    , std::istream &stream){ return new Components::DialogComponent(stream); }},
 		{"Experience",       [](Game &    , std::istream &stream){ return new Components::ExperienceComponent(stream); }},
+		{"Deck",             [](Game &    , std::istream &stream){ return new Components::DeckComponent(stream); }},
 		{"Shoot",            [](Game &game, std::istream &stream){ return new Components::ShootComponent(stream, game.state.map, game.resources); }},
 		{"OOBDie",           [](Game &game, std::istream &      ){ return new Components::OOBDieComponent(game.state.map); }}
 	};
@@ -63,6 +65,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"Collider",         [](Game &    ){ return new Components::ColliderComponent(); }},
 		{"Dialog",           [](Game &    ){ return new Components::DialogComponent(); }},
 		{"Experience",       [](Game &    ){ return new Components::ExperienceComponent(); }},
+		{"Deck",             [](Game &    ){ return new Components::DeckComponent("assets/spell_cards/test/test_tree.json"); }},
 		{"Shoot",            [](Game &game){ return new Components::ShootComponent(game.resources, game.state.map); }},
 		{"OOBDie",           [](Game &game){ return new Components::OOBDieComponent(game.state.map); }}
 	};

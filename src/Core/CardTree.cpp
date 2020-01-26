@@ -28,6 +28,18 @@ namespace TouhouFanGame
 	{
 	}
 
+	Card &Card::operator=(const Card &card)
+	{
+		if (card.handlerPath != this->handlerPath)
+			this->handler = std::make_unique<DynamicLibrary>("assets/" + this->handlerPath + DLL_EXTENSION);
+		this->neededLevel = card.neededLevel;
+		this->name = card.name;
+		this->texture = card.texture;
+		this->description = card.description;
+		this->handlerPath = card.handlerPath;
+		return *this;
+	}
+
 	CardTree::CardTree(const std::string &filePath)
 	{
 		std::ifstream stream{filePath};
@@ -45,6 +57,9 @@ namespace TouhouFanGame
 			stream.close();
 			throw CorruptedCardTreeException(filePath + ": " + getLastExceptionName() + "\n" + e.what());
 		}
+		std::sort(this->_cards.begin(), this->_cards.end(), [](Card &c1, Card &c2){
+			return c1.neededLevel < c2.neededLevel;
+		});
 	}
 
 	const std::vector<Card> &CardTree::getUnlockedCards(unsigned int level)

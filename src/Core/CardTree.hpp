@@ -25,6 +25,7 @@ namespace TouhouFanGame
 
 		Card(const Card &card);
 		Card(nlohmann::json value);
+		Card &operator=(const Card &);
 	};
 
 	struct CardTree {

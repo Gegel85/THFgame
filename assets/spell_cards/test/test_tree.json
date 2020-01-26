@@ -1,0 +1,23 @@
+[
+    {
+        "level": 1,
+        "name": "Test spell card 1",
+        "texture": "test_spell_card1",
+        "description": "The first spell card used to test",
+        "handler": "battle_scripts/test/test_card1"
+    },
+    {
+        "level": 2,
+        "name": "Test spell card 2",
+        "texture": "test_spell_card2",
+        "description": "The second spell card used to test",
+        "handler": "battle_scripts/test/test_card2"
+    },
+    {
+        "level": 3,
+        "name": "Test spell card 3",
+        "texture": "test_spell_card3",
+        "description": "The third spell card used to test",
+        "handler": "battle_scripts/test_card3"
+    }
+]

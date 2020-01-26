@@ -26,6 +26,8 @@ namespace TouhouFanGame
 			INVENTORY,
 			PAUSE,
 			DIALOG,
+			USE_CARD,
+			SWAP_CARD,
 			NB_OF_ACTION
 		};
 

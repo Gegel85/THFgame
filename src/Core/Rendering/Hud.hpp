@@ -60,11 +60,7 @@ namespace TouhouFanGame::Rendering
 		DialogMgr *_dialog = nullptr;
 
 		//! @brief The deck of the player.
-		std::vector<std::string> _playerDeck{
-			"test_spell_card1",
-			"test_spell_card2",
-			"test_spell_card3"
-		};
+		std::vector<std::string> _playerDeck;
 
 		//! @brief The selected player card.
 		unsigned _selectedCard = 0;

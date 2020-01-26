@@ -40,7 +40,7 @@ namespace TouhouFanGame
 		//! @brief Settings of the game
 		Settings settings;
 
-		GameState(Game &game) : map(game) {};
+		GameState(Game &game);
 	};
 
 	//! @brief The game state and resources
@@ -51,7 +51,7 @@ namespace TouhouFanGame
 		//! @brief The current game state
 		GameState state;
 
-		Game() : state(*this) {};
+		Game();
 	};
 
 	extern Logger logger;

@@ -25,7 +25,10 @@
 		"mana_potion": "items/mana_potion.png",
 		"dialog_box": "dialogs/dialog_box.png",
 		"test_character1": "dialogs/test_character1.png",
-		"test_character2": "dialogs/test_character2.png"
+		"test_character2": "dialogs/test_character2.png",
+		"test_spell_card1": "spell_cards/test_spell_card1.png",
+		"test_spell_card2": "spell_cards/test_spell_card2.png",
+		"test_spell_card3": "spell_cards/test_spell_card3.png"
 	},
 	"icon": "icon.png"
 }

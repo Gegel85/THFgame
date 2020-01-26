@@ -17,6 +17,7 @@ namespace TouhouFanGame
 	struct Card
 	{
 		unsigned neededLevel;
+		unsigned manaCost;
 		std::string name;
 		std::string texture;
 		std::string description;
@@ -30,12 +31,16 @@ namespace TouhouFanGame
 
 	struct CardTree {
 	private:
+		unsigned _lastLevelRequested = 0;
 		std::vector<Card> _unlockedCards;
 		std::vector<Card> _cards;
 
 	public:
 		CardTree(const std::string &filePath);
 
+		void updateCards();
+		Card &getCard(unsigned index);
+		const std::vector<Card> &getCards() const;
 		const std::vector<Card> &getUnlockedCards(unsigned level);
 	};
 }

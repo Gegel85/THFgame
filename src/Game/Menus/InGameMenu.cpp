@@ -3,6 +3,8 @@
 //
 
 #include "InGameMenu.hpp"
+#include "../../Core/Game.hpp"
+#include "../../Core/ECS/Components/DeckComponent.hpp"
 
 namespace TouhouFanGame
 {
@@ -41,6 +43,10 @@ namespace TouhouFanGame
 				break;
 			default:
 				break;
+			case Input::SWAP_CARD:
+				auto &deck = this->_game.state.map.getPlayer()->getComponent("Deck").to<ECS::Components::DeckComponent>();
+
+				deck.selectedCard++;
 			}
 		}
 	}

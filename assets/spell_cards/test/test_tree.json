@@ -3,21 +3,24 @@
         "level": 1,
         "name": "Test spell card 1",
         "texture": "test_spell_card1",
+        "cost": 1,
         "description": "The first spell card used to test",
-        "handler": "battle_scripts/test_card1"
+        "handler": "battle_scripts/test_attack"
     },
     {
         "level": 2,
         "name": "Test spell card 2",
         "texture": "test_spell_card2",
+        "cost": 5,
         "description": "The second spell card used to test",
-        "handler": "battle_scripts/test_card2"
+        "handler": "battle_scripts/test_attack"
     },
     {
         "level": 3,
         "name": "Test spell card 3",
         "texture": "test_spell_card3",
+        "cost": 10,
         "description": "The third spell card used to test",
-        "handler": "battle_scripts/test_card3"
+        "handler": "battle_scripts/test_attack"
     }
 ]

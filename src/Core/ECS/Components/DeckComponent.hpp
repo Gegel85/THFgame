@@ -24,6 +24,9 @@ namespace TouhouFanGame::ECS::Components
 		//! @brief The currently selected card.
 		unsigned selectedCard = 0;
 
+		//! @brief Is the card currently being used.
+		bool used = false;
+
 		//! @brief Unserializer constructor.
 		DeckComponent(std::istream &stream);
 		DeckComponent(const std::string &path);

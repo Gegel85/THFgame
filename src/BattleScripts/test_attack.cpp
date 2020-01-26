@@ -50,10 +50,25 @@ extern "C"
 			timer--;
 	}
 
-	void attackDefault(std::vector<void *> args)
+	void *spellCard0(std::vector<void *> args)
+	{
+		return nullptr;
+	}
+
+	void *spellCard1(std::vector<void *> args)
+	{
+		return nullptr;
+	}
+
+	void *spellCard2(std::vector<void *> args)
+	{
+		return nullptr;
+	}
+
+	void *attackDefault(std::vector<void *> args)
 	{
 		if (timer != 0)
-			return;
+			return nullptr;
 
 		if (args.size() != 4)
 			throw std::bad_cast();
@@ -90,5 +105,6 @@ extern "C"
 
 		core.registerEntity(projectile1);
 		core.registerEntity(projectile2);
+		return &timer;
 	}
 }

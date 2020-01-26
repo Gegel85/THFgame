@@ -132,7 +132,7 @@ add_library(
 	src/Core/ECS/Components/ExperienceComponent.hpp
 	src/Core/ECS/Systems/ExperienceSystem.cpp
 	src/Core/ECS/Systems/ExperienceSystem.hpp
-	src/Core/CardTree.cpp src/Core/CardTree.hpp src/Core/ECS/Components/DeckComponent.cpp src/Core/ECS/Components/DeckComponent.hpp)
+	src/Core/CardTree.cpp src/Core/CardTree.hpp src/Core/ECS/Components/DeckComponent.cpp src/Core/ECS/Components/DeckComponent.hpp src/Core/ECS/Systems/DeckSystem.cpp src/Core/ECS/Systems/DeckSystem.hpp)
 
 if (WIN32)
 	target_link_libraries(
@@ -204,42 +204,3 @@ target_link_libraries(
 	THFgame-core
 )
 set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
-
-#_____________________________________________________________
-
-add_library(
-	test_card1 MODULE
-	src/BattleScripts/test_attack.cpp
-)
-
-target_link_libraries(
-	test_card1
-	THFgame-core
-)
-set_target_properties(test_card1 PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
-
-#_____________________________________________________________
-
-add_library(
-	test_card2 MODULE
-	src/BattleScripts/test_attack.cpp
-)
-
-target_link_libraries(
-	test_card2
-	THFgame-core
-)
-set_target_properties(test_card2 PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
-
-#_____________________________________________________________
-
-add_library(
-	test_card3 MODULE
-	src/BattleScripts/test_attack.cpp
-)
-
-target_link_libraries(
-	test_card3
-	THFgame-core
-)
-set_target_properties(test_card3 PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")

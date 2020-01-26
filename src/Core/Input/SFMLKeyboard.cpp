@@ -125,7 +125,9 @@ namespace TouhouFanGame::Inputs
 			sf::Keyboard::F,
 			sf::Keyboard::E,
 			sf::Keyboard::Escape,
-			sf::Keyboard::Enter
+			sf::Keyboard::Enter,
+			sf::Keyboard::A,
+			sf::Keyboard::X,
 		},
 		_window(window),
 		_state(NB_OF_ACTION)

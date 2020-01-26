@@ -10,6 +10,7 @@ namespace TouhouFanGame
 {
 	Card::Card(const TouhouFanGame::Card &card) :
 		neededLevel(card.neededLevel),
+		manaCost(card.manaCost),
 		name(card.name),
 		texture(card.texture),
 		description(card.description),
@@ -20,6 +21,7 @@ namespace TouhouFanGame
 
 	Card::Card(nlohmann::json value) :
 		neededLevel(value["level"]),
+		manaCost(value["cost"]),
 		name(value["name"]),
 		texture(value["texture"]),
 		description(value["description"]),
@@ -31,7 +33,8 @@ namespace TouhouFanGame
 	Card &Card::operator=(const Card &card)
 	{
 		if (card.handlerPath != this->handlerPath)
-			this->handler = std::make_unique<DynamicLibrary>("assets/" + this->handlerPath + DLL_EXTENSION);
+			this->handler = std::make_unique<DynamicLibrary>("assets/" + card.handlerPath + DLL_EXTENSION);
+		this->manaCost = card.manaCost;
 		this->neededLevel = card.neededLevel;
 		this->name = card.name;
 		this->texture = card.texture;
@@ -62,8 +65,22 @@ namespace TouhouFanGame
 		});
 	}
 
+	Card &CardTree::getCard(unsigned index)
+	{
+		return this->_cards.at(index);
+	}
+
+	const std::vector<Card> & CardTree::getCards() const
+	{
+		return this->_cards;
+	}
+
 	const std::vector<Card> &CardTree::getUnlockedCards(unsigned int level)
 	{
+		if (this->_lastLevelRequested == level)
+			return this->_unlockedCards;
+
+		this->_lastLevelRequested = level;
 		this->_unlockedCards = std::vector<Card>(
 			this->_cards.begin(),
 			std::find_if(

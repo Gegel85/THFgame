@@ -17,6 +17,7 @@
 #include "../Systems/ShootSystem.hpp"
 #include "../Systems/OobDieSystem.hpp"
 #include "../Systems/ExperienceSystem.hpp"
+#include "../Systems/DeckSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -30,7 +31,6 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Name"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Inventory"); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Deck"); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Interact", {"Collider"}); },
 		[](Core &core){ return new Systems::PlayerHUDSystem(core); },
 		[](Core &core){ return new Systems::CollisionSystem(core); },
@@ -38,6 +38,7 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::ShootSystem(core); },
 		[](Core &core){ return new Systems::OOBDieSystem(core); },
 		[](Core &core){ return new Systems::ExperienceSystem(core); },
+		[](Core &core){ return new Systems::DeckSystem(core); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 

@@ -10,13 +10,14 @@
 #include "../Components/CollisionComponent.hpp"
 #include "../Components/InteractComponent.hpp"
 #include "../Components/ShootComponent.hpp"
+#include "../Components/DeckComponent.hpp"
 
 #define TO_DIR(val) (1U << val)
 
 namespace TouhouFanGame::ECS::Systems
 {
 	ControllableSystem::ControllableSystem(TouhouFanGame::ECS::Core &core) :
-		System(core, "Controllable", {"Movable", "Position", "Displayable", "Collision"})
+		System(core, "Controllable", {"Movable", "Position", "Displayable", "Collision", "Deck"})
 	{
 	}
 
@@ -26,8 +27,10 @@ namespace TouhouFanGame::ECS::Systems
 		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
 		auto &dis = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
 		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
+		auto &deck = entity->getComponent("Deck").to<Components::DeckComponent>();
 
 		shoot.shooting = false;
+		deck.used = false;
 		if (co.disabled) {
 			mov.speed = 0;
 			dis.animation = Rendering::IDLE;
@@ -57,7 +60,14 @@ namespace TouhouFanGame::ECS::Systems
 			case Input::SPRINT:
 				sprinting = true;
 				break;
-			default:
+			case Input::USE_CARD:
+				deck.used = true;
+				break;
+			case Input::SWAP_CARD:
+			case Input::DIALOG:
+			case Input::INVENTORY:
+			case Input::PAUSE:
+			case Input::NB_OF_ACTION:
 				break;
 			}
 		}

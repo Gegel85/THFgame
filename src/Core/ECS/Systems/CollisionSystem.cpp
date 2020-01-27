@@ -7,7 +7,6 @@
 #include "../Core.hpp"
 #include "../Components/CollisionComponent.hpp"
 #include "../../Game.hpp"
-#include "../Components/PositionComponent.hpp"
 #include "../Components/ColliderComponent.hpp"
 
 namespace TouhouFanGame::ECS::Systems
@@ -27,9 +26,7 @@ namespace TouhouFanGame::ECS::Systems
 	    this->_quadtree.reset();
 		for (auto &ent : _core.getEntityByComponent("Collider")) {
 			auto entity = ent.lock();
-//			if (ent.expired())
-//			    throw InvalidSavedMap("C4ETAIT BIEN CA");
-		    auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();
+			auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();
 			auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
 
 			std::for_each(collider.colliders.begin(), collider.colliders.end(), [&pos](std::unique_ptr<Quadtree::ICollider> &x) {
@@ -39,7 +36,7 @@ namespace TouhouFanGame::ECS::Systems
 		}
 
 		for (auto &ent : _core.getEntityByComponent("Collision")) {
-            auto entity = ent.lock();
+			auto entity = ent.lock();
 			auto &collider = entity->getComponent("Collision").to<Components::CollisionComponent &>();
 			auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
 

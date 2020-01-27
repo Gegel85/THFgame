@@ -41,6 +41,7 @@ namespace TouhouFanGame::ECS
 		std::for_each(this->_systems.begin(), this->_systems.end(), [](std::unique_ptr<System> &x){
 			x->update();
 		});
+
 		auto entities = this->_entities;
 
 		for (auto &entity : entities)
@@ -72,7 +73,7 @@ namespace TouhouFanGame::ECS
 				std::remove_if(
 					vec.second.begin(),
 					vec.second.end(),
-					[](std::weak_ptr<Entity> &ent) { return ent.expired(); }
+					[](std::weak_ptr<Entity> &ent) { return ent.expired() || ent.lock()->toBeDestroyed(); }
 				),
 				vec.second.end()
 			);
@@ -88,6 +89,15 @@ namespace TouhouFanGame::ECS
 		for (size_t i = 0; i < this->_entities.size(); i++)
 			if (this->_entities[i] == entity) {
 				this->_entities.erase(this->_entities.begin() + i);
+				for (auto &vec : this->_entitiesByComponent)
+					vec.second.erase(
+						std::remove_if(
+							vec.second.begin(),
+							vec.second.end(),
+							[](std::weak_ptr<Entity> &ent) { return ent.expired(); }
+						),
+						vec.second.end()
+					);
 				return;
 			}
 	}

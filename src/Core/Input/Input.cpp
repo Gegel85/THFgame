@@ -27,6 +27,12 @@ namespace TouhouFanGame
 			return "Inventory";
 		case PAUSE:
 			return "Pause";
+		case DIALOG:
+			return "Continue Dialog";
+		case USE_CARD:
+			return "Use Card";
+		case SWAP_CARD:
+			return "Swap Card";
 		default:
 			return "??";
 		}

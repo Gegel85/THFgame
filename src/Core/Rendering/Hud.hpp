@@ -19,6 +19,10 @@ namespace TouhouFanGame::Rendering
 {
 	class HUD {
 	private:
+		//! @brief All the textures
+		std::map<std::string, sf::Texture> &_textures;
+
+	private:
 		//! @brief Whether the boss HUD should be displayed.
 		bool _dispBoss = false;
 
@@ -55,6 +59,12 @@ namespace TouhouFanGame::Rendering
 		//! @brief The dialog curently on screen
 		DialogMgr *_dialog = nullptr;
 
+		//! @brief The deck of the player.
+		std::vector<std::string> _playerDeck;
+
+		//! @brief The selected player card.
+		unsigned _selectedCard = 0;
+
 		//! @brief Renders the player HUD on screen.
 		void _renderPlayerHUD(Screen &screen);
 
@@ -64,7 +74,16 @@ namespace TouhouFanGame::Rendering
 		//! @brief Renders the currently playing music's name on screen.
 		void _renderMusic(Screen &screen);
 
+		//! @brief Renders the player deck on the screen
+		void _renderPlayerDeck(Screen &screen);
+
+		void _renderExpBar(Screen &screen);
+		void _renderManaBar(Screen &screen);
+		void _renderLifeBar(Screen &screen);
+
 	public:
+		HUD(std::map<std::string, sf::Texture> &textures);
+
 		void setDispBossHUD(bool dispBoss);
 
 		void setDispPlayerHUD(bool dispPlayer);
@@ -96,9 +115,21 @@ namespace TouhouFanGame::Rendering
 		//! @brief Changes the dialog currently displayed.
 		void setDialogManager(DialogMgr *manager);
 
+		//! @brief Set the current exp level of the player.
+		//! @param exp The % of exp the player has until level up.
 		void setExpLevel(float exp);
 
+		//! @brief Changes the current level of the player.
+		//! @param level The new level.
 		void setCurrentLevel(unsigned int level);
+
+		//! @brief Changes the player spell card deck.
+		//! @param playerDeck An array of texture representing the deck of the player.
+		void setPlayerDeck(const std::vector<std::string> &playerDeck);
+
+		//! @brief Change the currently selected player card.
+		//! @param selectedCard The new selected card.
+		void setSelectedCard(unsigned int selectedCard);
 
 		//! @brief Display the HUD.
 		void draw(TouhouFanGame::Game &game);

@@ -25,8 +25,9 @@ namespace TouhouFanGame::ECS::Systems
 	void CollisionSystem::update()
 	{
 		//this->_quadtree.reset(); TO IMPLEMENT
-		for (auto &entity : _core.getEntityByComponent("Collider")) {
-			auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();
+		for (auto &ent : _core.getEntityByComponent("Collider")) {
+			auto entity = ent.lock();
+		    auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();
 			auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
 
 			std::for_each(collider.colliders.begin(), collider.colliders.end(), [&pos](std::unique_ptr<Quadtree::ICollider> &x) {
@@ -35,7 +36,8 @@ namespace TouhouFanGame::ECS::Systems
 			this->_quadtree.add(entity);
 		}
 
-		for (auto &entity : _core.getEntityByComponent("Collision")) {
+		for (auto &ent : _core.getEntityByComponent("Collision")) {
+            auto entity = ent.lock();
 			auto &collider = entity->getComponent("Collision").to<Components::CollisionComponent &>();
 			auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
 

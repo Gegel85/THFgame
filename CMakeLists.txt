@@ -141,7 +141,7 @@ add_library(
 	src/Core/ECS/Components/ExperienceComponent.hpp
 	src/Core/ECS/Systems/ExperienceSystem.cpp
 	src/Core/ECS/Systems/ExperienceSystem.hpp
-)
+	src/Core/CardTree.cpp src/Core/CardTree.hpp src/Core/ECS/Components/DeckComponent.cpp src/Core/ECS/Components/DeckComponent.hpp src/Core/ECS/Systems/DeckSystem.cpp src/Core/ECS/Systems/DeckSystem.hpp)
 
 if (WIN32)
 	target_link_libraries(

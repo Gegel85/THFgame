@@ -149,7 +149,7 @@ namespace TouhouFanGame::Rendering
 		);
 
 #ifdef _DEBUG
-		screen.fillColor({0, 255, 0, 120});
+		screen.fillColor({0, 255, 0, 40});
 		screen.draw({
 			static_cast<int>(this->_pos.x),
 			static_cast<int>(this->_pos.y),

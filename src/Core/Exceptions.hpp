@@ -31,6 +31,14 @@ namespace TouhouFanGame
 		{};
 	};
 
+	//! @brief The card tree given is corrupted or invalid.
+	class CorruptedCardTreeException : public BaseException {
+	public:
+		explicit CorruptedCardTreeException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
 	//! @brief The map is corrupted.
 	class CorruptedMapException : public BaseException {
 	public:

@@ -14,7 +14,7 @@ namespace TouhouFanGame::ECS::Components
 	//! @brief Entity you can interact with the interact key.
 	class InteractComponent : public BasicSerializeComponent {
 	public:
-		std::shared_ptr<Entity> interactedWith;
+		std::weak_ptr<Entity> interactedWith;
 
 		InteractComponent();
 		~InteractComponent() override = default;

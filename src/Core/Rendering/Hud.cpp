@@ -41,6 +41,150 @@ void TouhouFanGame::Rendering::HUD::setMusicName(const std::string &musicName)
 	this->_musicName = musicName;
 }
 
+void TouhouFanGame::Rendering::HUD::_renderPlayerDeck(TouhouFanGame::Rendering::Screen &screen)
+{
+	if (this->_playerDeck.empty())
+		return;
+
+	auto selected = this->_selectedCard % this->_playerDeck.size();
+	auto camera = screen.getCameraCenter();
+	auto screenSize = screen.getSize();
+
+	screen.fillColor(sf::Color{255, 255, 0});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x + screenSize.x / 2. - 57),
+		static_cast<int>(camera.y + screenSize.y / 2. - 124),
+		52,
+		84
+	});
+
+	screen.fillColor();
+	screen.draw(
+		this->_textures[this->_playerDeck[selected]],
+		{
+			camera.x + screenSize.x / 2.f - 55,
+			camera.y + screenSize.y / 2.f - 122
+		},
+		{
+			48,
+			80
+		}
+	);
+
+	for (size_t i = 1; i < this->_playerDeck.size(); i++) {
+		selected += 1;
+		selected %= this->_playerDeck.size();
+		screen.draw(sf::IntRect{
+			static_cast<int>(camera.x + screenSize.x / 2. - 57 - 33 * i),
+			static_cast<int>(camera.y + screenSize.y / 2. - 84),
+			28,
+			44
+		});
+
+		screen.fillColor();
+		screen.draw(
+			this->_textures[this->_playerDeck[selected]],
+			{
+				camera.x + screenSize.x / 2.f - 55 - 33 * i,
+				camera.y + screenSize.y / 2.f - 82
+			},
+			{
+				24,
+				40
+			}
+		);
+	}
+}
+
+void TouhouFanGame::Rendering::HUD::_renderExpBar(TouhouFanGame::Rendering::Screen &screen)
+{
+	auto camera = screen.getCameraCenter();
+	auto screenSize = screen.getSize();
+
+	screen.fillColor(sf::Color{120, 120, 120});
+	screen.textSize(15);
+	screen.draw("Level " + std::to_string(this->_level), {
+		camera.x - screenSize.x / 2.f + 5,
+		camera.y + screenSize.y / 2.f - 69,
+	});
+
+	screen.fillColor(sf::Color{100, 100, 100});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 5),
+		static_cast<int>(camera.y + screenSize.y / 2. - 50),
+		100,
+		10
+	});
+
+	screen.fillColor(sf::Color{0, 255, 0});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 5),
+		static_cast<int>(camera.y + screenSize.y / 2. - 50),
+		static_cast<int>(this->_exp),
+		10
+	});
+}
+
+void TouhouFanGame::Rendering::HUD::_renderManaBar(TouhouFanGame::Rendering::Screen &screen)
+{
+	auto camera = screen.getCameraCenter();
+	auto screenSize = screen.getSize();
+
+	screen.fillColor(sf::Color{200, 200, 200});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x + screenSize.x / 2. - 215),
+		static_cast<int>(camera.y + screenSize.y / 2. - 35),
+		210,
+		30
+	});
+
+	screen.fillColor(sf::Color{50, 50, 50});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x + screenSize.x / 2. - 210),
+		static_cast<int>(camera.y + screenSize.y / 2. - 30),
+		static_cast<int>(200),
+		20
+	});
+
+	screen.fillColor(sf::Color{106, 90, 205});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x + screenSize.x / 2. - 210),
+		static_cast<int>(camera.y + screenSize.y / 2. - 30),
+		static_cast<int>(this->_playerMana * 2),
+		20
+	});
+}
+
+void TouhouFanGame::Rendering::HUD::_renderLifeBar(TouhouFanGame::Rendering::Screen &screen)
+{
+	auto camera = screen.getCameraCenter();
+	auto screenSize = screen.getSize();
+
+	screen.fillColor(sf::Color{200, 200, 200});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 5),
+		static_cast<int>(camera.y + screenSize.y / 2. - 35),
+		210,
+		30
+	});
+
+	screen.fillColor(sf::Color{50, 50, 50});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 10),
+		static_cast<int>(camera.y + screenSize.y / 2. - 30),
+		static_cast<int>(200),
+		20
+	});
+
+	screen.fillColor(sf::Color{255, 0, 0});
+	screen.draw(sf::IntRect{
+		static_cast<int>(camera.x - screenSize.x / 2. + 10),
+		static_cast<int>(camera.y + screenSize.y / 2. - 30),
+		static_cast<int>(this->_playerLife * 2),
+		20
+	});
+}
+
 void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::Screen &screen)
 {
 	auto camera = screen.getCameraCenter();
@@ -60,69 +204,11 @@ void TouhouFanGame::Rendering::HUD::_renderPlayerHUD(TouhouFanGame::Rendering::S
 		camera.x - screenSize.x / 2.f + 115,
 		camera.y + screenSize.y / 2.f - 57,
 	});
-	screen.draw("Level " + std::to_string(this->_level), {
-		camera.x - screenSize.x / 2.f + 5,
-		camera.y + screenSize.y / 2.f - 69,
-	});
 
-	screen.fillColor(sf::Color{200, 200, 200});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 5),
-		static_cast<int>(camera.y + screenSize.y / 2. - 35),
-		210,
-		30
-	});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x + screenSize.x / 2. - 215),
-		static_cast<int>(camera.y + screenSize.y / 2. - 35),
-		210,
-		30
-	});
-
-	screen.fillColor(sf::Color{100, 100, 100});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 5),
-		static_cast<int>(camera.y + screenSize.y / 2. - 50),
-		100,
-		10
-	});
-
-	screen.fillColor(sf::Color{50, 50, 50});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 10),
-		static_cast<int>(camera.y + screenSize.y / 2. - 30),
-		static_cast<int>(200),
-		20
-	});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x + screenSize.x / 2. - 210),
-		static_cast<int>(camera.y + screenSize.y / 2. - 30),
-		static_cast<int>(200),
-		20
-	});
-
-	screen.fillColor(sf::Color{255, 0, 0});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 10),
-		static_cast<int>(camera.y + screenSize.y / 2. - 30),
-		static_cast<int>(this->_playerLife * 2),
-		20
-	});
-	screen.fillColor(sf::Color{106, 90, 205});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x + screenSize.x / 2. - 210),
-		static_cast<int>(camera.y + screenSize.y / 2. - 30),
-		static_cast<int>(this->_playerMana * 2),
-		20
-	});
-
-	screen.fillColor(sf::Color{0, 255, 0});
-	screen.draw(sf::IntRect{
-		static_cast<int>(camera.x - screenSize.x / 2. + 5),
-		static_cast<int>(camera.y + screenSize.y / 2. - 50),
-		static_cast<int>(this->_exp),
-		10
-	});
+	this->_renderExpBar(screen);
+	this->_renderManaBar(screen);
+	this->_renderLifeBar(screen);
+	this->_renderPlayerDeck(screen);
 }
 
 void TouhouFanGame::Rendering::HUD::_renderBossHUD(TouhouFanGame::Rendering::Screen &screen)
@@ -231,4 +317,19 @@ void TouhouFanGame::Rendering::HUD::setExpLevel(float exp)
 void TouhouFanGame::Rendering::HUD::setCurrentLevel(unsigned int level)
 {
 	this->_level = level;
+}
+
+void TouhouFanGame::Rendering::HUD::setPlayerDeck(const std::vector<std::string> &playerDeck)
+{
+	this->_playerDeck = playerDeck;
+}
+
+void TouhouFanGame::Rendering::HUD::setSelectedCard(unsigned int selectedCard)
+{
+	this->_selectedCard = selectedCard;
+}
+
+TouhouFanGame::Rendering::HUD::HUD(std::map<std::string, sf::Texture> &textures) :
+	_textures(textures)
+{
 }

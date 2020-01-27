@@ -30,7 +30,7 @@ namespace TouhouFanGame
 		void update() override;
 
 		DynamicLibrary(const std::string &path);
-		~DynamicLibrary();
+		~DynamicLibrary() override;
 	};
 }
 

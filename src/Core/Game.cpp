@@ -7,4 +7,15 @@
 namespace TouhouFanGame
 {
 	Logger logger{"./latest.log", Logger::DEBUG};
+
+	GameState::GameState(Game &game) :
+		map(game),
+		hud(game.resources.textures)
+	{
+	}
+
+	Game::Game() :
+		state(*this)
+	{
+	}
 }

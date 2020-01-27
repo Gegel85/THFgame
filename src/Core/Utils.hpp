@@ -5,10 +5,10 @@
 #ifndef THFGAME_UTILS_HPP
 #define THFGAME_UTILS_HPP
 
-#include <SFML/System/Vector2.hpp>
 #include <string>
 #include <iomanip>
 #include <cmath>
+#include "DataType/Vector.hpp"
 
 #ifndef _WIN32
 #define MB_ICONERROR 1

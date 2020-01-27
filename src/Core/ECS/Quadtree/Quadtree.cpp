@@ -69,11 +69,6 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		this->remove(entity);
 		this->add(entity);
-
-		std::cout << "Quadtree content: " << std::endl;
-		for (auto &ent : this->_entities)
-			std::cout << "\tEntity: " << ent->getComponent("Position") << std::endl;
-		std::cout << std::endl;
 	}
 
 	std::vector<std::pair<std::shared_ptr<Entity>, unsigned>> Quadtree::checkCollisions(const ICollider &collider)
@@ -98,4 +93,17 @@ namespace TouhouFanGame::ECS::Quadtree
 		}
 		return ret;
 	}
+
+    void Quadtree::reset()
+    {
+        std::cout << "Quadtree content: " << std::endl;
+        for (auto &ent : this->_entities)
+            std::cout << "\tEntity: " << ent->getComponent("Position") << std::endl;
+        std::cout << std::endl;
+
+        if (this->_entityCount == 0)
+            for (auto &child : this->_children)
+                child.reset();
+        this->_entities.clear();
+    }
 }

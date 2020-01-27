@@ -149,7 +149,7 @@ namespace TouhouFanGame
 template<typename T>
 std::ostream &operator<<(std::ostream &s, const TouhouFanGame::Vector2<T> &v)
 {
-	s << "(" << v.x << ", " << v.y << ")";
+	s << v.x << " " << v.y;
 	return s;
 }
 

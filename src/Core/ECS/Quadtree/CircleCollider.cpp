@@ -52,7 +52,7 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	void CircleCollider::serialize(std::ostream &stream) const
 	{
-
+        stream << "0 " << this->center << " " << this->size;
 	}
 
 	void CircleCollider::setOrigin(const Components::PositionComponent &pos)

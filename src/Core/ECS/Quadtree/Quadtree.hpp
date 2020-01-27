@@ -29,6 +29,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		void update(const std::shared_ptr<Entity>& entity);
 		std::vector<std::pair<std::shared_ptr<Entity>, unsigned>> checkCollisions(const ICollider &collider);
 		void split();
+        void reset();
 		void remove(const std::shared_ptr<Entity> &entity);
 	};
 

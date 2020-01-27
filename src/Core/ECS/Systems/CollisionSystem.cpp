@@ -24,9 +24,11 @@ namespace TouhouFanGame::ECS::Systems
 
 	void CollisionSystem::update()
 	{
-		//this->_quadtree.reset(); TO IMPLEMENT
+	    this->_quadtree.reset();
 		for (auto &ent : _core.getEntityByComponent("Collider")) {
 			auto entity = ent.lock();
+//			if (ent.expired())
+//			    throw InvalidSavedMap("C4ETAIT BIEN CA");
 		    auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();
 			auto &pos = entity->getComponent("Position").to<Components::PositionComponent &>();
 

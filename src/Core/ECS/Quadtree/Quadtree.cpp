@@ -96,10 +96,10 @@ namespace TouhouFanGame::ECS::Quadtree
 
     void Quadtree::reset()
     {
-		std::cout << "Quadtree content: " << std::endl;
-        for (auto &ent : this->_entities)
-			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " " << ent->getComponent("Position") << std::endl;
-		std::cout << std::endl;
+//		std::cout << "Quadtree content: " << std::endl;
+//        for (auto &ent : this->_entities)
+//			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " " << ent->getComponent("Position") << std::endl;
+//		std::cout << std::endl;
 
 		if (this->_entityCount == 0)
 			for (auto &child : this->_children)

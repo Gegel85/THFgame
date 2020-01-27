@@ -56,7 +56,9 @@ namespace TouhouFanGame
 		Game game;
 		//TODO: Add proper font loading.
 
+		#ifndef _DEBUG
 		try {
+		#endif
 			logger.info("Setting up...");
 			setup(game);
 
@@ -68,6 +70,7 @@ namespace TouhouFanGame
 
 			logger.info("Starting game.");
 			gameLoop(game);
+		#ifndef _DEBUG
 		} catch (std::exception &e) {
 			logger.fatal(getLastExceptionName() + ": " + e.what());
 			Utils::dispMsg(
@@ -79,6 +82,7 @@ namespace TouhouFanGame
 			);
 			return EXIT_FAILURE;
 		}
+		#endif
 		logger.info("Goodbye !");
 		return EXIT_SUCCESS;
 	}

@@ -27,6 +27,8 @@ namespace TouhouFanGame
 		static tgui::Panel::Ptr EmptyGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr InventoryGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr DialogGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr ColliderGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr CollisionGui(Game &, ECS::Component &);
 
 	public:
 		static tgui::Panel::Ptr build(Game &, ECS::Component &component);

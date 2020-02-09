@@ -18,7 +18,6 @@ namespace TouhouFanGame::ECS::Systems
 	{
 		auto &health = entity->getComponent("Health").to<Components::HealthComponent>();
 
-		if (health.health > health.maxHealth)
-			health.health = health.maxHealth;
+		health.health = std::min(health.health, health.maxHealth);
 	}
 }

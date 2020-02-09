@@ -61,7 +61,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"PlayerHUD",        [](Game &game){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &    ){ return new Components::InventoryComponent(16); }},
 		{"Interact",         [](Game &    ){ return new Components::InteractComponent(); }},
-		{"Collision",        [](Game &    ){ return new Components::CollisionComponent(nullptr); }},
+		{"Collision",        [](Game &    ){ return new Components::CollisionComponent(new Quadtree::RectangleCollider(0, 0, 0, 0, 0)); }},
 		{"Collider",         [](Game &    ){ return new Components::ColliderComponent({}); }},
 		{"Dialog",           [](Game &    ){ return new Components::DialogComponent(); }},
 		{"Experience",       [](Game &    ){ return new Components::ExperienceComponent(); }},

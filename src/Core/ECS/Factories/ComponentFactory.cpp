@@ -5,7 +5,7 @@
 ** ComponentFactory.cpp
 */
 
-#include "../../Game.hpp"
+#include "../../Resources/Game.hpp"
 #include "ComponentFactory.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Exceptions.hpp"

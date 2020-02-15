@@ -6,9 +6,9 @@
 #include <cstring>
 #include "Map.hpp"
 #include "Game.hpp"
-#include "Exceptions.hpp"
-#include "ECS/Components/PositionComponent.hpp"
-#include "Utils.hpp"
+#include "../Exceptions.hpp"
+#include "../ECS/Components/PositionComponent.hpp"
+#include "../Utils/Utils.hpp"
 
 namespace TouhouFanGame
 {

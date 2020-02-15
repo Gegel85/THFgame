@@ -6,7 +6,7 @@
 #include "CollisionSystem.hpp"
 #include "../Core.hpp"
 #include "../Components/CollisionComponent.hpp"
-#include "../../Game.hpp"
+#include "../../Resources/Game.hpp"
 #include "../Components/ColliderComponent.hpp"
 
 namespace TouhouFanGame::ECS::Systems

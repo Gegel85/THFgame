@@ -24,7 +24,7 @@ namespace TouhouFanGame
 	private:
 		HMODULE _handler;
 
-		void *_call(const std::string &procName, std::vector<void *> args) override;
+		void *_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args) override;
 
 	public:
 		void update() override;

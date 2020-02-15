@@ -43,6 +43,7 @@ namespace TouhouFanGame::Inputs
 	public:
 		//! @param window The reference window (if any)
 		SFMLKeyboard(sf::RenderWindow *window);
+		~SFMLKeyboard() override = default;
 		bool changeKeyFor(Action) override;
 		void cancelChangeKey() override;
 		bool actionPressed(Action) const override;

@@ -6,10 +6,11 @@
 #define THFGAME_RECT_HPP
 
 #include "Vector.hpp"
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame {
 	template<typename T>
-	struct Rect {
+	struct Rect : public BaseObject {
 		Vector2<T> pt1;
 		Vector2<T> pt2;
 		Vector2<T> pt3;
@@ -26,6 +27,8 @@ namespace TouhouFanGame {
 		template <typename T2>
 		Rect(Vector2<T> pos, Vector2<T2> size, float angle)
 			: Rect(pos.x, pos.y, size.x, size.y, angle) {}
+
+		~Rect() override = default;
 	};
 
 	typedef Rect<int> IntRect;

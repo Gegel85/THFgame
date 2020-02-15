@@ -5,17 +5,17 @@
 #ifndef THFGAME_GAME_HPP
 #define THFGAME_GAME_HPP
 
-#include "Rendering/Hud.hpp"
+#include "../Rendering/Hud.hpp"
 #include "Logger.hpp"
 #include "Resources.hpp"
-#include "Menus/MenuMgr.hpp"
+#include "../Menus/MenuMgr.hpp"
 #include "Map.hpp"
-#include "Input/Input.hpp"
+#include "../Input/Input.hpp"
 
 namespace TouhouFanGame
 {
 	//! @brief Describes the settings of the game.
-	struct Settings {
+	struct Settings : public BaseObject {
 		//! @brief The current music volume
 		float musicVolume;
 
@@ -24,10 +24,11 @@ namespace TouhouFanGame
 
 		//! @brief The current input
 		std::unique_ptr<Input> input;
+		~Settings() override = default;
 	};
 
 	//! @brief Describe the current game state
-	struct GameState {
+	struct GameState : public BaseObject {
 		//! @brief The current menu
 		MenuMgr menuMgr;
 
@@ -41,10 +42,11 @@ namespace TouhouFanGame
 		Settings settings;
 
 		GameState(Game &game);
+		~GameState() override = default;
 	};
 
 	//! @brief The game state and resources
-	struct Game {
+	struct Game : public BaseObject {
 		//! @brief The loaded resources
 		Resources resources;
 
@@ -52,6 +54,7 @@ namespace TouhouFanGame
 		GameState state;
 
 		Game();
+		~Game() override = default;
 	};
 
 	extern Logger logger;

@@ -6,7 +6,7 @@
 #include "GuiUtils.hpp"
 #include "../Core/ECS/Components/MovableComponent.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
-#include "../Core/Utils.hpp"
+#include "../Core/Utils/Utils.hpp"
 #include "../Core/ECS/Components/ControllableComponent.hpp"
 #include "../Core/ECS/Components/DisplayableComponent.hpp"
 #include "../Core/ECS/Components/BlockedByTerrainComponent.hpp"

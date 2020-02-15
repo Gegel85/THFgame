@@ -13,8 +13,8 @@
 #include <memory>
 #include "../Component.hpp"
 #include "../../ExternalCode/ExternalCode.hpp"
-#include "../../Resources.hpp"
-#include "../../Map.hpp"
+#include "../../Resources/Resources.hpp"
+#include "../../Resources/Map.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {

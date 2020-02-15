@@ -6,7 +6,7 @@
 */
 
 #include "Hud.hpp"
-#include "../Game.hpp"
+#include "../Resources/Game.hpp"
 
 void TouhouFanGame::Rendering::HUD::setBossLife(float bossLife)
 {

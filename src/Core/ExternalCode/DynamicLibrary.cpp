@@ -15,6 +15,8 @@
 #define dlclose(handle) FreeLibrary(handle)
 #define dlsym(handle, sym) reinterpret_cast<void *>(GetProcAddress(handle, sym))
 #endif
+
+#include "../Utils//BaseObject.hpp"
 #include "DynamicLibrary.hpp"
 
 namespace TouhouFanGame
@@ -52,9 +54,9 @@ namespace TouhouFanGame
 		dlclose(this->_handler);
 	}
 
-	void *DynamicLibrary::_call(const std::string &procName, std::vector<void *> args)
+	void *DynamicLibrary::_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args)
 	{
-		auto func = reinterpret_cast<void *(*)(std::vector<void *>)>(dlsym(this->_handler, procName.c_str()));
+		auto func = reinterpret_cast<void *(*)(std::vector<std::reference_wrapper<BaseObject>>)>(dlsym(this->_handler, procName.c_str()));
 
 		if (!func)
 			throw ProcedureNotFoundException("Error when trying to fetch " + procName + ": " + getError());

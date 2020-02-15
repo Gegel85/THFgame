@@ -12,6 +12,7 @@
 #include <map>
 #include "../ECS/Entity.hpp"
 #include "../DataType/Vector.hpp"
+#include "../Utils/BaseObject.hpp"
 
 #define DIALOG_SPRITE_SIZE this->_dialogSpriteSize
 
@@ -20,7 +21,7 @@ namespace TouhouFanGame
 	struct Game;
 
 	//! @brief Manages dialogs.
-	class DialogMgr {
+	class DialogMgr : public BaseObject {
 	private:
 		//! @brief The holder of this Dialog.
 		std::shared_ptr<ECS::Entity> _holder;
@@ -81,6 +82,8 @@ namespace TouhouFanGame
 
 	public:
 		DialogMgr();
+
+		~DialogMgr() override = default;
 
 		//! @brief Select a previously loaded dialog.
 		//! @param dialog The dialog to select.

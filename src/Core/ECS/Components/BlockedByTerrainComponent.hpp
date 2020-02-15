@@ -6,7 +6,7 @@
 #define THFGAME_BLOCKEDBYTERRAINCOMPONENT_HPP
 
 
-#include "../../Map.hpp"
+#include "../../Resources/Map.hpp"
 #include "BasicSerializeComponent.hpp"
 
 namespace TouhouFanGame::ECS::Components

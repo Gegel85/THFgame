@@ -16,7 +16,7 @@
 #endif
 
 #include "Utils.hpp"
-#include "Exceptions.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::Utils
 {

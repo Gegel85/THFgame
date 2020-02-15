@@ -8,6 +8,7 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 endif ()
 
 include_directories(nlohmann)
+include_directories(sol)
 
 add_library(
 	THFgame-core SHARED
@@ -66,7 +67,7 @@ add_library(
 	src/Core/ECS/Systems/UselessSystem.hpp
 	src/Core/Exceptions.cpp
 	src/Core/Exceptions.hpp
-	src/Core/Game.hpp
+	src/Core/Resources/Game.hpp
 	src/Core/Input/Input.cpp
 	src/Core/Input/Input.hpp
 	src/Core/Input/SFMLKeyboard.cpp
@@ -77,18 +78,18 @@ add_library(
 	src/Core/Inventory/Item.hpp
 	src/Core/Inventory/ItemFactory.cpp
 	src/Core/Inventory/ItemFactory.hpp
-	src/Core/Loader.cpp
-	src/Core/Loader.hpp
-	src/Core/Logger.cpp
-	src/Core/Logger.hpp
-	src/Core/Map.cpp
-	src/Core/Map.hpp
+	src/Core/Loading/Loader.cpp
+	src/Core/Loading/Loader.hpp
+	src/Core/Resources/Logger.cpp
+	src/Core/Resources/Logger.hpp
+	src/Core/Resources/Map.cpp
+	src/Core/Resources/Map.hpp
 	src/Core/Menus/Exceptions.hpp
 	src/Core/Menus/Menu.cpp
 	src/Core/Menus/Menu.hpp
 	src/Core/Menus/MenuMgr.cpp
 	src/Core/Menus/MenuMgr.hpp
-	src/Core/NotCopyable.hpp
+	src/Core/Utils/NotCopyable.hpp
 	src/Core/Rendering/Entity.cpp
 	src/Core/Rendering/Entity.hpp
 	src/Core/Rendering/Exceptions.hpp
@@ -96,10 +97,10 @@ add_library(
 	src/Core/Rendering/Hud.hpp
 	src/Core/Rendering/Screen.cpp
 	src/Core/Rendering/Screen.hpp
-	src/Core/Resources.cpp
-	src/Core/Resources.hpp
-	src/Core/Utils.cpp
-	src/Core/Utils.hpp
+	src/Core/Resources/Resources.cpp
+	src/Core/Resources/Resources.hpp
+	src/Core/Utils/Utils.cpp
+	src/Core/Utils/Utils.hpp
 	src/Core/Dialogs/DialogMgr.cpp
 	src/Core/Dialogs/DialogMgr.hpp
 	src/Core/ECS/Components/InteractComponent.cpp
@@ -119,7 +120,7 @@ add_library(
 	src/Core/ExternalCode/ExternalCode.hpp
 	src/Core/ExternalCode/DynamicLibrary.cpp
 	src/Core/ExternalCode/DynamicLibrary.hpp
-	src/Core/Game.cpp
+	src/Core/Resources/Game.cpp
 	src/Core/ECS/Systems/ShootSystem.cpp
 	src/Core/ECS/Systems/ShootSystem.hpp
 	src/Core/ECS/Components/OobDieComponent.cpp
@@ -141,7 +142,18 @@ add_library(
 	src/Core/ECS/Components/ExperienceComponent.hpp
 	src/Core/ECS/Systems/ExperienceSystem.cpp
 	src/Core/ECS/Systems/ExperienceSystem.hpp
-	src/Core/CardTree.cpp src/Core/CardTree.hpp src/Core/ECS/Components/DeckComponent.cpp src/Core/ECS/Components/DeckComponent.hpp src/Core/ECS/Systems/DeckSystem.cpp src/Core/ECS/Systems/DeckSystem.hpp)
+	src/Core/Loading/CardTree.cpp
+	src/Core/Loading/CardTree.hpp
+	src/Core/ECS/Components/DeckComponent.cpp
+	src/Core/ECS/Components/DeckComponent.hpp
+	src/Core/ECS/Systems/DeckSystem.cpp
+	src/Core/ECS/Systems/DeckSystem.hpp
+	src/Core/ExternalCode/LuaCode.cpp
+	src/Core/ExternalCode/LuaCode.hpp
+	src/Core/LuaObjects/LuaUserData.cpp
+	src/Core/LuaObjects/LuaUserData.hpp
+	src/Core/Utils/BaseObject.hpp
+)
 
 if (WIN32)
 	target_link_libraries(
@@ -150,6 +162,7 @@ if (WIN32)
 		sfml-system
 		sfml-graphics
 		sfml-audio
+		lua
 	)
 else (WIN32)
 	target_link_libraries(
@@ -159,26 +172,9 @@ else (WIN32)
 		sfml-graphics
 		sfml-audio
 		dl
+		lua
 	)
 endif (WIN32)
-
-#_____________________________________________________________
-
-add_executable(
-	THFgame
-	src/Game/main.cpp
-	src/Game/Menus/InGameMenu.cpp
-	src/Game/Menus/InGameMenu.hpp
-	src/Game/Menus/InventoryMenu.cpp
-	src/Game/Menus/InventoryMenu.hpp
-	src/Game/Menus/MainMenu.cpp
-	src/Game/Menus/MainMenu.hpp
-)
-
-target_link_libraries(
-	THFgame
-	THFgame-core
-)
 
 #_____________________________________________________________
 
@@ -213,3 +209,26 @@ target_link_libraries(
 	THFgame-core
 )
 set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
+
+#_____________________________________________________________
+
+add_executable(
+	THFgame
+	src/Game/main.cpp
+	src/Game/Menus/InGameMenu.cpp
+	src/Game/Menus/InGameMenu.hpp
+	src/Game/Menus/InventoryMenu.cpp
+	src/Game/Menus/InventoryMenu.hpp
+	src/Game/Menus/MainMenu.cpp
+	src/Game/Menus/MainMenu.hpp
+)
+
+target_link_libraries(
+	THFgame
+	THFgame-core
+)
+
+add_dependencies(
+	THFgame
+	test_attack
+)

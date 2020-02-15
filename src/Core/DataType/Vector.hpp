@@ -8,12 +8,12 @@
 #include <ostream>
 #include <cmath>
 #include <SFML/System/Vector2.hpp>
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame
 {
 	template<typename T>
-	class Vector2
-	{
+	class Vector2 : public BaseObject {
 	public:
 		T x;
 		T y;
@@ -26,6 +26,8 @@ namespace TouhouFanGame
 
 		Vector2<T>(sf::Vector2<T> v)
 			: x(v.x), y(v.y) {}
+
+		~Vector2() override = default;
 
 		template <typename T2>
 		operator sf::Vector2<T2>()

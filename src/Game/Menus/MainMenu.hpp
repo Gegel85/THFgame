@@ -8,8 +8,8 @@
 
 #include "../../Core/Menus/Menu.hpp"
 #include "../../Core/Menus/MenuMgr.hpp"
-#include "../../Core/Resources.hpp"
-#include "../../Core/Map.hpp"
+#include "../../Core/Resources/Resources.hpp"
+#include "../../Core/Resources/Map.hpp"
 #include "../../Core/Rendering/Hud.hpp"
 
 namespace TouhouFanGame

@@ -21,6 +21,8 @@ namespace TouhouFanGame
 		const char *what() const noexcept override {
 			return this->_msg.c_str();
 		};
+
+		~BaseException() override = default;
 	};
 
 	//! @brief The assets list is corrupted or invalid.
@@ -139,6 +141,14 @@ namespace TouhouFanGame
 	class InvalidArgumentsException : public BaseException {
 	public:
 		explicit InvalidArgumentsException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief An error occurred inside a procedure.
+	class ProcedureErrorException : public BaseException {
+	public:
+		explicit ProcedureErrorException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};

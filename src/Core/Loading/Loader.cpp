@@ -3,11 +3,11 @@
 //
 
 #include "Loader.hpp"
-#include "Exceptions.hpp"
-#include "Input/SFMLKeyboard.hpp"
-#include "Inventory/ItemFactory.hpp"
-#include "Utils.hpp"
-#include "Input/SFMLJoypad.hpp"
+#include "../Exceptions.hpp"
+#include "../Input/SFMLKeyboard.hpp"
+#include "../Inventory/ItemFactory.hpp"
+#include "../Utils/Utils.hpp"
+#include "../Input/SFMLJoypad.hpp"
 
 namespace TouhouFanGame
 {

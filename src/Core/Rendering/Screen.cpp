@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "../Game.hpp"
+#include "../Resources/Game.hpp"
 #include "Screen.hpp"
 
 namespace TouhouFanGame::Rendering

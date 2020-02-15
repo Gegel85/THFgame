@@ -7,11 +7,12 @@
 
 
 #include <string>
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame::ECS
 {
 	//! @brief A Component linked to a System
-	class Component {
+	class Component : public BaseObject {
 	private:
 		//! @brief The name of this Component
 		std::string _name;
@@ -20,7 +21,7 @@ namespace TouhouFanGame::ECS
 		//! @param name The name of the Component
 		Component(const std::string &name);
 
-		virtual ~Component() = default;
+		virtual ~Component() override = default;
 
 		//! @brief Fetch the name of the Entity.
 		//! @return The name of this Entity.

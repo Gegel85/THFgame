@@ -9,7 +9,7 @@
 #include <functional>
 #include <TGUI/TGUI.hpp>
 #include "../Core/ECS/Component.hpp"
-#include "../Core/Game.hpp"
+#include "../Core/Resources/Game.hpp"
 
 namespace TouhouFanGame
 {

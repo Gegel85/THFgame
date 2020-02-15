@@ -7,7 +7,7 @@
 #include "Entity.hpp"
 #include "Exceptions.hpp"
 #include "json.hpp"
-#include "../Game.hpp"
+#include "../Resources/Game.hpp"
 #include "../DataType/Vector.hpp"
 
 namespace TouhouFanGame::Rendering

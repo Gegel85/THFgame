@@ -23,7 +23,7 @@ namespace TouhouFanGame::ECS
 {
 
 	//! @brief The core of an ECS. It holds the System and Entity and make them interact with each other.
-	class Core {
+	class Core : public BaseObject {
 	private:
 		//! @brief The factory used to build entities
 		Factory::EntityFactory _factory{"assets/entity_prefab.json"};
@@ -45,6 +45,8 @@ namespace TouhouFanGame::ECS
 
 	public:
 		Core(Game &game);
+
+		~Core() override = default;
 
 		//! @brief Builds an Entity using the EntityFactory and keep it to be updated.
 		//! @param typeName The name of the Entity to build. This will be given to the EntityFactory.

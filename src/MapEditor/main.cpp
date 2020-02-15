@@ -3,7 +3,7 @@
 //
 
 #include "MapEditor.hpp"
-#include "../Core/Utils.hpp"
+#include "../Core/Utils/Utils.hpp"
 
 int main()
 {

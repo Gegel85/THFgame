@@ -6,7 +6,7 @@
 #include "CircleCollider.hpp"
 #include "../../DataType/Rect.hpp"
 #include "../Components/ColliderComponent.hpp"
-#include "../../Utils.hpp"
+#include "../../Utils/Utils.hpp"
 
 namespace TouhouFanGame::ECS::Quadtree
 {

@@ -9,7 +9,7 @@
 #define THFGAME_OOBDIECOMPONENT_HPP
 
 
-#include "../../Map.hpp"
+#include "../../Resources/Map.hpp"
 #include "BasicSerializeComponent.hpp"
 
 namespace TouhouFanGame::ECS::Components
@@ -20,6 +20,7 @@ namespace TouhouFanGame::ECS::Components
 		Map &map;
 
 		OOBDieComponent(Map &map);
+		~OOBDieComponent() override = default;
 	};
 }
 

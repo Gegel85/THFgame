@@ -41,6 +41,7 @@ namespace TouhouFanGame
 		int getMaxLife() const;
 
 		Item(unsigned index, nlohmann::json obj, bool usable);
+		virtual ~Item() = default;
 		void use(ECS::Entity &entity);
 	};
 }

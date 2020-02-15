@@ -4,7 +4,7 @@
 
 #include <stdexcept>
 #include "DialogMgr.hpp"
-#include "../Game.hpp"
+#include "../Resources/Game.hpp"
 #include "../Exceptions.hpp"
 #include "../ECS/Components/NameComponent.hpp"
 

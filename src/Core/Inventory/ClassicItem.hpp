@@ -16,6 +16,7 @@ namespace TouhouFanGame
 
 	public:
 		ClassicItem(unsigned id, const nlohmann::json &obj);
+		~ClassicItem() override = default;
 	};
 }
 

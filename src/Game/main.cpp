@@ -1,18 +1,18 @@
-#include "../Core/Game.hpp"
-#include "../Core/Logger.hpp"
-#include "../Core/Loader.hpp"
+#include "../Core/Resources/Game.hpp"
+#include "../Core/Resources/Logger.hpp"
+#include "../Core/Loading/Loader.hpp"
 #include "../Core/Menus/MenuMgr.hpp"
 #include "../Core/Exceptions.hpp"
-#include "../Core/Utils.hpp"
+#include "../Core/Utils/Utils.hpp"
 #include "Menus/MainMenu.hpp"
 #include "Menus/InGameMenu.hpp"
 #include "Menus/InventoryMenu.hpp"
 
 #ifdef _WIN32
 #include <windows.h>
+#include <direct.h>
 #else
-#include <SFML/Graphics.hpp>
-#define ICON_ERROR_PATH "assets/box/error.png"
+#include <unistd.h>
 #endif
 
 namespace TouhouFanGame
@@ -51,7 +51,7 @@ namespace TouhouFanGame
 		}
 	}
 
-	int	run()
+	void	run()
 	{
 		Game game;
 		//TODO: Add proper font loading.
@@ -59,6 +59,7 @@ namespace TouhouFanGame
 		#ifndef _DEBUG
 		try {
 		#endif
+
 			logger.info("Setting up...");
 			setup(game);
 
@@ -80,15 +81,35 @@ namespace TouhouFanGame
 				"Click OK to close the application",
 				MB_ICONERROR
 			);
-			return EXIT_FAILURE;
+			throw;
 		}
 		#endif
 		logger.info("Goodbye !");
-		return EXIT_SUCCESS;
 	}
 }
 
-int	main()
+int	main(int, char **argv)
 {
-	return TouhouFanGame::run();
+	std::string progPath = argv[0];
+	size_t occurence =
+#ifdef _WIN32
+	progPath.find_last_of('\\');
+#else
+	progPath.find_last_of('/');
+#endif
+
+	if (occurence != std::string::npos)
+		chdir(progPath.substr(0, occurence).c_str());
+	else
+		TouhouFanGame::logger.warn("Cannot find program path from argv (" + progPath + ")");
+#ifndef _DEBUG
+	try {
+#endif
+		TouhouFanGame::run();
+#ifndef _DEBUG
+	} catch (std::exception &) {
+		return EXIT_FAILURE;
+	}
+#endif
+	return EXIT_SUCCESS;
 }

@@ -15,10 +15,9 @@ namespace TouhouFanGame::ECS::Systems
 	void ShootSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
 		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
-		auto ent = entity;
 
 		if (shoot.shooting)
-			shoot.handler->call<void>("attackDefault", &ent, &this->_core, &shoot.resources, &shoot.map);
+			shoot.handler->call<void>("attackDefault", &*entity, &this->_core, &shoot.resources, &shoot.map);
 		shoot.handler->update();
 	}
 }

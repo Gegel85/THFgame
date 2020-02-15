@@ -8,7 +8,7 @@
 #include <iostream>
 #include "ShootComponent.hpp"
 #include "../../ExternalCode/DynamicLibrary.hpp"
-#include "../../Resources.hpp"
+#include "../../Resources/Resources.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {

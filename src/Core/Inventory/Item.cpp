@@ -42,41 +42,46 @@ namespace TouhouFanGame
 
 	const std::string &Item::getName() const
 	{
-		return _name;
+		return this->_name;
 	}
 
 	const std::string &Item::getTexture() const
 	{
-		return _texture;
+		return this->_texture;
 	}
 
 	const std::string &Item::getDescription() const
 	{
-		return _description;
+		return this->_description;
 	}
 
 	const std::string &Item::getAbilityScript() const
 	{
-		return _abilityScript;
+		return this->_abilityScript;
 	}
 
 	int Item::getMana() const
 	{
-		return _mana;
+		return this->_mana;
 	}
 
 	int Item::getMaxMana() const
 	{
-		return _maxMana;
+		return this->_maxMana;
 	}
 
 	int Item::getLife() const
 	{
-		return _life;
+		return this->_life;
 	}
 
 	int Item::getMaxLife() const
 	{
-		return _maxLife;
+		return this->_maxLife;
+	}
+
+	bool Item::isUsable() const
+	{
+		return this->_usable;
 	}
 }

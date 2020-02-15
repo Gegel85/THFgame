@@ -8,11 +8,12 @@
 
 #include <fstream>
 #include <string>
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame
 {
 	//! @brief Used to log messages
-	class Logger {
+	class Logger : public BaseObject {
 	public:
 		//! @brief The levels of logging available
 		enum LogLevel {
@@ -27,7 +28,7 @@ namespace TouhouFanGame
 		//! @param filepath The path to the file to log to
 		//! @param level The minimum logging level to display
 		explicit Logger(const std::string &filepath = "./latest.log", LogLevel level = INFO) noexcept;
-		~Logger() noexcept;
+		~Logger() noexcept override;
 
 		//! @brief Logs a message in the console and the log file
 		//! @param content The message to log

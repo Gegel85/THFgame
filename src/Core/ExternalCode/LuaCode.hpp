@@ -6,12 +6,19 @@
 #define THFGAME_LUACODE_HPP
 
 
+extern "C"
+{
+#include <lua.h>
+#include <lualib.h>
+#include <lauxlib.h>
+}
+
 #include <sol.hpp>
-#include "ExternalCode.hpp"
+#include "ExternalModule.hpp"
 
 namespace TouhouFanGame
 {
-	class LuaCode : public ExternalCode {
+	class LuaCode : public ExternalModule {
 	private:
 		sol::state _lua;
 		void *_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args) override;
@@ -20,7 +27,7 @@ namespace TouhouFanGame
 		void update() override;
 
 		LuaCode(const std::string &path);
-		~LuaCode() override;
+		~LuaCode() override = default;
 	};
 }
 

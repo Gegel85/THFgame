@@ -10,7 +10,7 @@
 #include <vector>
 #include <memory>
 #include <json.hpp>
-#include "../ExternalCode/ExternalCode.hpp"
+#include "../ExternalCode/ExternalModule.hpp"
 
 namespace TouhouFanGame
 {
@@ -22,7 +22,7 @@ namespace TouhouFanGame
 		std::string texture;
 		std::string description;
 		std::string handlerPath;
-		std::unique_ptr<ExternalCode> handler;
+		std::unique_ptr<ExternalModule> handler;
 
 		Card(const Card &card);
 		Card(nlohmann::json value);

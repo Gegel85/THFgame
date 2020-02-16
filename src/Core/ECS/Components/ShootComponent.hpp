@@ -12,7 +12,7 @@
 #include <string>
 #include <memory>
 #include "../Component.hpp"
-#include "../../ExternalCode/ExternalCode.hpp"
+#include "../../ExternalCode/ExternalModule.hpp"
 #include "../../Resources/Resources.hpp"
 #include "../../Resources/Map.hpp"
 
@@ -23,7 +23,7 @@ namespace TouhouFanGame::ECS::Components
 		std::string _handlerPath;
 
 	public:
-		std::unique_ptr<ExternalCode> handler;
+		std::unique_ptr<ExternalModule> handler;
 
 		Map &map;
 

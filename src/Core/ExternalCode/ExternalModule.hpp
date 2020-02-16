@@ -5,8 +5,8 @@
 ** ExternalCode.hpp
 */
 
-#ifndef THFGAME_EXTERNALCODE_HPP
-#define THFGAME_EXTERNALCODE_HPP
+#ifndef THFGAME_EXTERNALMODULE_HPP
+#define THFGAME_EXTERNALMODULE_HPP
 
 
 #include <functional>
@@ -17,7 +17,7 @@
 
 namespace TouhouFanGame
 {
-	class ExternalCode : public BaseObject {
+	class ExternalModule : public BaseObject {
 	private:
 		virtual void *_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args) = 0;
 
@@ -45,9 +45,9 @@ namespace TouhouFanGame
 
 		virtual void update() = 0;
 
-		virtual ~ExternalCode() override = default;
+		virtual ~ExternalModule() override = default;
 	};
 }
 
 
-#endif //THFGAME_EXTERNALCODE_HPP
+#endif //THFGAME_EXTERNALMODULE_HPP

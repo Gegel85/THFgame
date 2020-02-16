@@ -9,6 +9,7 @@
 #include "ShootComponent.hpp"
 #include "../../ExternalCode/DynamicLibrary.hpp"
 #include "../../Resources/Resources.hpp"
+#include "../../ExternalCode/ExternalModuleFactory.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
@@ -21,7 +22,7 @@ namespace TouhouFanGame::ECS::Components
 
 	ShootComponent::ShootComponent(Resources &resources, Map &map, const std::string &handlePath) :
 		Component("Shoot"),
-		handler(new DynamicLibrary(handlePath + DLL_EXTENSION)),
+		handler(ExternalModuleFactory::build(handlePath)),
 		map(map),
 		resources(resources)
 	{
@@ -34,12 +35,12 @@ namespace TouhouFanGame::ECS::Components
 		resources(resources)
 	{
 		stream >> this->_handlerPath;
-		this->handler = std::make_unique<DynamicLibrary>(this->_handlerPath + DLL_EXTENSION);
+		this->handler.reset(ExternalModuleFactory::build(this->_handlerPath));
 	}
 
 	void ShootComponent::setHandlerPath(const std::string &path)
 	{
-		this->handler = std::make_unique<DynamicLibrary>(path + DLL_EXTENSION);
+		this->handler.reset(ExternalModuleFactory::build(path));
 		this->_handlerPath = path;
 	}
 

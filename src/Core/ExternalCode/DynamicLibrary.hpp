@@ -9,18 +9,18 @@
 #define THFGAME_DYNAMICLIBRARY_HPP
 
 
-#include "ExternalCode.hpp"
+#include "ExternalModule.hpp"
 #ifndef _WIN32
 typedef void * HMODULE;
 #define DLL_EXTENSION ".so"
 #else
-#include <windows.h>
+#include <windef.h>
 #define DLL_EXTENSION ".dll"
 #endif
 
 namespace TouhouFanGame
 {
-	class DynamicLibrary : public ExternalCode {
+	class DynamicLibrary : public ExternalModule {
 	private:
 		HMODULE _handler;
 

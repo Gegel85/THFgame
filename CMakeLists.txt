@@ -4,8 +4,20 @@ project(THFgame)
 set(CMAKE_CXX_STANDARD 17)
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
-	add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
+	if (CMAKE_COMPILER_IS_GNUCC)
+		add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
+	endif (CMAKE_COMPILER_IS_GNUCC)
 endif ()
+if ("${CMAKE_BUILD_TYPE}" STREQUAL Release)
+	if (CMAKE_COMPILER_IS_GNUCC)
+		if (WIN32)
+			add_link_options(-mwindows)
+		endif (WIN32)
+	endif (CMAKE_COMPILER_IS_GNUCC)
+endif ()
+if (WIN32)
+	set(ICON icon.rc)
+endif (WIN32)
 
 include_directories(nlohmann)
 include_directories(sol)
@@ -117,7 +129,7 @@ add_library(
 	src/Core/ECS/Systems/DialogSystem.hpp
 	src/Core/ECS/Components/ShootComponent.cpp
 	src/Core/ECS/Components/ShootComponent.hpp
-	src/Core/ExternalCode/ExternalCode.hpp
+	src/Core/ExternalCode/ExternalModule.hpp
 	src/Core/ExternalCode/DynamicLibrary.cpp
 	src/Core/ExternalCode/DynamicLibrary.hpp
 	src/Core/Resources/Game.cpp
@@ -153,6 +165,8 @@ add_library(
 	src/Core/LuaObjects/LuaUserData.cpp
 	src/Core/LuaObjects/LuaUserData.hpp
 	src/Core/Utils/BaseObject.hpp
+	src/Core/ExternalCode/ExternalModuleFactory.cpp
+	src/Core/ExternalCode/ExternalModuleFactory.hpp
 )
 
 if (WIN32)
@@ -180,6 +194,7 @@ endif (WIN32)
 
 add_executable(
 	map_editor
+	${MAP_EDITOR_ICON}
 	src/MapEditor/main.cpp
 	src/MapEditor/MapEditor.cpp
 	src/MapEditor/MapEditor.hpp
@@ -189,7 +204,8 @@ add_executable(
 	src/MapEditor/GuiUtils.hpp
 	src/MapEditor/ComponentGui.cpp
 	src/MapEditor/ComponentGui.hpp
-	src/Core/DataType/Vector.hpp)
+	src/Core/DataType/Vector.hpp
+)
 
 target_link_libraries(
 	map_editor
@@ -214,6 +230,7 @@ set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_S
 
 add_executable(
 	THFgame
+	${GAME_ICON}
 	src/Game/main.cpp
 	src/Game/Menus/InGameMenu.cpp
 	src/Game/Menus/InGameMenu.hpp

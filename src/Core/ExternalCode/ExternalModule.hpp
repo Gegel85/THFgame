@@ -22,9 +22,18 @@ namespace TouhouFanGame
 		virtual void *_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args) = 0;
 
 	public:
-		template<typename returnType, typename ...argsTypes>
-		returnType *call(const std::string &procName, argsTypes *...args)
+		template<typename ...argsTypes>
+		void call(const std::string &procName, argsTypes *...args)
 		{
+			try {
+				this->call<int>(procName, args...);
+			} catch (NullPointerException &) {}
+		}
+
+		template<typename returnType, typename ...argsTypes>
+		returnType call(const std::string &procName, argsTypes *...args)
+		{
+			static_assert(sizeof(returnType) < sizeof(void *), "The size of the returned object must be less than size of a pointer");
 			try {
 				std::vector<BaseObject *> _args{args...};
 				std::vector<std::reference_wrapper<BaseObject>> objs;
@@ -35,7 +44,13 @@ namespace TouhouFanGame
 						throw InvalidArgumentsException("Argument " + std::to_string(i) + " to procedure " + procName + " was null, which is invalid.");
 					objs.emplace_back(*_args[i]);
 				}
-				return reinterpret_cast<returnType *>(this->_call(procName, objs));
+
+				returnType *result = reinterpret_cast<returnType *>(this->_call(procName, objs));
+
+				if (!result)
+					throw NullPointerException();
+
+				return *result;
 			} catch (std::bad_cast &) {
 				throw InvalidArgumentsException("An argument given to procedure '" + procName + "' had an invalid type.");
 			} catch (std::exception &e) {

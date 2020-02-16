@@ -184,6 +184,14 @@ namespace TouhouFanGame
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};
+
+	//! @brief A function had no choice but to dereference a null pointer.
+	class NullPointerException : public BaseException {
+	public:
+		explicit NullPointerException() :
+			BaseException("NullPointerException")
+		{};
+	};
 }
 
 std::string getLastExceptionName();

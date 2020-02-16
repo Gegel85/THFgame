@@ -17,7 +17,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
 
 		if (shoot.shooting)
-			shoot.handler->call<void>("attackDefault", &*entity, &this->_core, &shoot.resources, &shoot.map);
+			shoot.handler->call("attackDefault", &*entity, &this->_core, &shoot.resources, &shoot.map);
 		shoot.handler->update();
 	}
 }

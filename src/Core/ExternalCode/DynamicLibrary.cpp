@@ -56,11 +56,13 @@ namespace TouhouFanGame
 
 	void *DynamicLibrary::_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args)
 	{
+		static void *value;
 		auto func = reinterpret_cast<void *(*)(std::vector<std::reference_wrapper<BaseObject>>)>(dlsym(this->_handler, procName.c_str()));
 
 		if (!func)
 			throw ProcedureNotFoundException("Error when trying to fetch " + procName + ": " + getError());
-		return func(args);
+		value = func(args);
+		return &value;
 	}
 
 	void DynamicLibrary::update()

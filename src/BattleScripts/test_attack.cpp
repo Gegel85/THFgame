@@ -59,10 +59,10 @@ extern "C"
 				timer[i]--;
 	}
 
-	void *spellCard0(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int spellCard0(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
 	{
 		if (timer[1] != 0)
-			return &timer[1];
+			return timer[1];
 
 		if (args.size() != 4)
 			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
@@ -83,13 +83,13 @@ extern "C"
 				static_cast<float>(pos.position.y + std::sin(angle) * 32 + pos.size.y / 2.),
 			}, angle));
 		}
-		return nullptr;
+		return 0;
 	}
 
-	void *spellCard1(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int spellCard1(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
 	{
 		if (timer[2] != 0)
-			return &timer[2];
+			return timer[2];
 
 		if (args.size() != 4)
 			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
@@ -120,13 +120,13 @@ extern "C"
 				static_cast<float>(i),
 				static_cast<float>(map.getPixelSize().y - 16),
 			}, -M_PI_2));
-		return nullptr;
+		return 0;
 	}
 
-	void *spellCard2(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int spellCard2(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
 	{
 		if (timer[3] != 0)
-			return &timer[3];
+			return timer[3];
 
 		if (args.size() != 4)
 			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
@@ -138,13 +138,13 @@ extern "C"
 		auto &resources = dynamic_cast<TouhouFanGame::Resources &>(args[2].get());
 		auto &map = dynamic_cast<TouhouFanGame::Map &>(args[3].get());
 
-		return nullptr;
+		return 0;
 	}
 
-	void *attackDefault(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int attackDefault(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
 	{
 		if (timer[0] != 0)
-			return &timer[0];
+			return timer[0];
 
 		if (args.size() != 4)
 			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
@@ -181,6 +181,6 @@ extern "C"
 
 		core.registerEntity(projectile1);
 		core.registerEntity(projectile2);
-		return nullptr;
+		return 0;
 	}
 }

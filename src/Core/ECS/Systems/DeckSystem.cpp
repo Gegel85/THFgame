@@ -30,7 +30,7 @@ namespace TouhouFanGame::ECS::Systems
 		if (
 			deck.used &&
 			card.manaCost <= mana.mana &&
-			!card.handler->call<void>("spellCard" + std::to_string(deck.selectedCard), &*entity, &this->_core, &shoot.resources, &shoot.map)
+			!card.handler->call<int>("spellCard" + std::to_string(deck.selectedCard), &*entity, &this->_core, &shoot.resources, &shoot.map)
 		)
 			mana.mana -= card.manaCost;
 	}

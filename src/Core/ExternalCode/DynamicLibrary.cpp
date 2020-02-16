@@ -35,7 +35,7 @@ namespace TouhouFanGame
 			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
 			reinterpret_cast<LPSTR>(&s),
 			0,
-			NULL
+			nullptr
 		);
 
 		return s;

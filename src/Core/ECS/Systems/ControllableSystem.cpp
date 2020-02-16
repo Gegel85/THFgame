@@ -75,12 +75,11 @@ namespace TouhouFanGame::ECS::Systems
 		if (moving) {
 			mov.angleDir = co.input.getDirectionAngle();
 			mov.speed = sprinting ? co.sprintSpeed : co.regularSpeed;
-			dis.dir = static_cast<Rendering::Direction>(static_cast<int>(2 + std::round(std::fmod(mov.angleDir + M_PI * 2, M_PI * 2) / M_PI_4)) % 8);
-			/*static_cast<Rendering::Direction>(
+			dis.dir = static_cast<Rendering::Direction>(
 				static_cast<int>(
 					1 + std::round(std::fmod(mov.angleDir + M_PI * 2, M_PI * 2) / M_PI_2)
-				) % 4 * 2
-			);*/
+				) % 4
+			);
 			dis.animation = sprinting ? Rendering::RUN : Rendering::WALK;
 		} else {
 			mov.speed = 0;

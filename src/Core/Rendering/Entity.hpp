@@ -33,13 +33,9 @@ namespace TouhouFanGame::Rendering
 	//! @brief All the direction of an entity
 	enum Direction {
 		NORTH,
-		NORTH_EAST,
 		EAST,
-		SOUTH_EAST,
 		SOUTH,
-		SOUTH_WEST,
 		WEST,
-		NORTH_WEST,
 	};
 
 	//! @brief An entity that can be rendered on a Screen

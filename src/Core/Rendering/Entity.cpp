@@ -38,10 +38,10 @@ namespace TouhouFanGame::Rendering
 			}
 			for (auto &val : value["delays"])
 				this->delays.push_back(val);
-			for (int i = 0; i < DEAD; i++)
-				for (int j = 0; j < 8; j++) {
+			for (int i : this->animations)
+				for (int j = 0; j < 4; j++) {
 					this->animationStart.emplace_back(counter);
-					counter += this->animations[i];
+					counter += i;
 				}
 			this->animationStart.emplace_back(counter);
 			this->textureSize = resources.textures.at(this->texture).getSize();
@@ -120,7 +120,7 @@ namespace TouhouFanGame::Rendering
 	void Entity::render(Rendering::Screen &screen)
 	{
 		unsigned char	dir = (this->_animation != DEAD) * this->_dir;
-		unsigned char	animation = this->_animation * 8 + dir;
+		unsigned char	animation = this->_animation * 4 + dir;
 		Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
 
 		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));

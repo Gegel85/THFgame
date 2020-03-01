@@ -14,12 +14,12 @@ namespace TouhouFanGame
 {
 	bool Loader::loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path)
 	{
-		return buffer.loadFromFile("assets/" + static_cast<std::string>(path));
+		return buffer.loadFromFile("assets/" + path.get<std::string>());
 	}
 
 	bool Loader::loadFile(Settings &settings, std::pair<sf::Music, std::string> &music, nlohmann::json &obj)
 	{
-		bool result = music.first.openFromFile("assets/" + static_cast<std::string>(obj["path"]));
+		bool result = music.first.openFromFile("assets/" + obj["path"].get<std::string>());
 
 		music.second = obj["description"].is_null() ? "" : obj["description"];
 		music.first.setLoop(true);
@@ -35,7 +35,7 @@ namespace TouhouFanGame
 
 	bool Loader::loadFile(Settings &, sf::Texture &texture, nlohmann::json &path)
 	{
-		return texture.loadFromFile("assets/" + static_cast<std::string>(path));
+		return texture.loadFromFile("assets/" + path.get<std::string>());
 	}
 
 	void Loader::saveSettings(TouhouFanGame::Settings &settings)
@@ -107,8 +107,8 @@ namespace TouhouFanGame
 			logger.debug("Loading icon");
 			if (data["icon"].is_null())
 				logger.warn("No Icon is marked for loading");
-			else if (!game.resources.icon.loadFromFile("assets/" + static_cast<std::string>(data["icon"])))
-				logger.error("Cannot load file assets/" + static_cast<std::string>(data["icon"]));
+			else if (!game.resources.icon.loadFromFile("assets/" + data["icon"].get<std::string>()))
+				logger.error("Cannot load file assets/" + data["icon"].get<std::string>());
 			else
 				game.resources.screen->setIcon(
 					game.resources.icon.getSize().x,

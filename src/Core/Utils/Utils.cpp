@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
+#define mkdir(path) mkdir(path, 0755)
 #define ICON_ERROR_PATH "assets/box/error.png"
 #else
 #include <io.h>
@@ -116,21 +117,6 @@ namespace TouhouFanGame::Utils
 
 		return s;
 #endif
-	}
-
-	void	makeDirectoryTree(const std::string &tree)
-	{
-		for (auto it = std::find(tree.begin(), tree.end(), '/'); it < tree.end(); it = std::find(it + 1, tree.end(), '/')) {
-			if (
-#ifndef _WIN32
-				mkdir(tree.substr(0, it - tree.begin()).c_str() , 0755) < 0 &&
-#else
-				mkdir(tree.substr(0, it - tree.begin()).c_str()) < 0 &&
-#endif
-				errno != EEXIST
-			)
-				throw FolderCreationErrorException(tree.substr(0, it - tree.begin()) + ": " + strerror(errno));
-		}
 	}
 
 	std::string floatToString(float nb)

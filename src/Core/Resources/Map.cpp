@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <cstring>
+#include <filesystem>
 #include "Map.hpp"
 #include "Game.hpp"
 #include "../Exceptions.hpp"
@@ -54,7 +55,7 @@ namespace TouhouFanGame
 	void Map::_serialize(const std::string &path)
 	{
 		logger.info("Saving map to " + path);
-		Utils::makeDirectoryTree(path);
+		std::filesystem::create_directories(path.substr(0, path.find_last_of('/')));
 
 		std::ofstream stream{path};
 
@@ -140,7 +141,7 @@ namespace TouhouFanGame
 
 	void Map::_savePlayer()
 	{
-		Utils::makeDirectoryTree("saves/map_player.sav");
+		std::filesystem::create_directories("saves");
 		std::ofstream stream{"saves/map_player.sav"};
 
 		if (stream.fail()) {
@@ -170,7 +171,7 @@ namespace TouhouFanGame
 			path.c_str(),
 			(path + ".backup").c_str()
 		);
-		Utils::makeDirectoryTree(path);
+		std::filesystem::create_directories(path.substr(0, path.find_last_of('/')));
 
 		std::ofstream stream{path};
 

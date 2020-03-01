@@ -2,6 +2,7 @@
 // Created by Gegel85 on 24/09/2019.
 //
 
+#include <filesystem>
 #include "Loader.hpp"
 #include "../Exceptions.hpp"
 #include "../Input/SFMLKeyboard.hpp"
@@ -39,7 +40,7 @@ namespace TouhouFanGame
 
 	void Loader::saveSettings(TouhouFanGame::Settings &settings)
 	{
-		Utils::makeDirectoryTree("saves/settings.sav");
+		std::filesystem::create_directories("saves");
 
 		std::ofstream stream("saves/settings.sav");
 

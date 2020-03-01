@@ -12,6 +12,7 @@ end
 
 function attackDefault(entity)
 	print(entity)
+	entity.getComponentByName()
 end
 
 function update()

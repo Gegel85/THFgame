@@ -10,7 +10,7 @@
 #include "../Components/MovableComponent.hpp"
 #include "../Components/ControllableComponent.hpp"
 #include "../Components/BlockedByTerrainComponent.hpp"
-#include "../../Game.hpp"
+#include "../../Resources/Game.hpp"
 #include "../Components/HealthComponent.hpp"
 #include "../Components/ManaComponent.hpp"
 #include "../Components/NameComponent.hpp"

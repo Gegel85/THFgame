@@ -16,7 +16,7 @@ namespace TouhouFanGame
 	struct Game;
 	namespace ECS::Factory {
 		//! @brief Builds Entity
-		class EntityFactory {
+		class EntityFactory : public BaseObject {
 		private:
 			//! @brief Maps an Entity name to it's builder file path
 			std::map<std::string, std::string> _builders;
@@ -25,6 +25,8 @@ namespace TouhouFanGame
 			//! @brief Builds the factory by giving it all prefabs.
 			//! @param prefabsPath The path to the prefab json file.
 			EntityFactory(const std::string &path);
+
+			~EntityFactory() override = default;
 
 			//! @brief Builds an Entity and assign it an ID.
 			//! @param game Game resources and state.

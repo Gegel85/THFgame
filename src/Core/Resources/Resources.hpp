@@ -8,13 +8,13 @@
 #include <SFML/Audio.hpp>
 #include <random>
 #include <json.hpp>
-#include "Rendering/Screen.hpp"
-#include "Inventory/Item.hpp"
+#include "../Rendering/Screen.hpp"
+#include "../Inventory/Item.hpp"
 
 namespace TouhouFanGame
 {
 	//! @brief The main Resources needed by the game
-	struct Resources {
+	struct Resources : public BaseObject {
 		//! @brief The icon of the screen
 		sf::Image icon;
 
@@ -61,6 +61,8 @@ namespace TouhouFanGame
 		//! @brief Changes the volume of all the sounds.
 		//! @param newVolume New volume.
 		void setSoundVolume(float newVolume);
+
+		~Resources() override = default;
 	};
 }
 

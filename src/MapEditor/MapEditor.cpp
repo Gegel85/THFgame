@@ -4,10 +4,10 @@
 
 #include <TGUI/TGUI.hpp>
 #include "MapEditor.hpp"
-#include "../Core/Loader.hpp"
+#include "../Core/Loading/Loader.hpp"
 #include "Menus/MainMenu.hpp"
 #include "GuiUtils.hpp"
-#include "../Core/Utils.hpp"
+#include "../Core/Utils/Utils.hpp"
 #include "../Core/ECS/Factories/EntityFactory.hpp"
 #include "../Core/ECS/Factories/ComponentFactory.hpp"
 #include "ComponentGui.hpp"

@@ -15,7 +15,7 @@ namespace TouhouFanGame
 	struct Game;
 
 	//! @brief Manages the menus
-	class MenuMgr {
+	class MenuMgr: public BaseObject {
 	private:
 		std::string _currentMenu;
 		std::map<std::string, std::unique_ptr<Menu>> _menus;
@@ -23,6 +23,7 @@ namespace TouhouFanGame
 	public:
 		//! @brief Constructor
 		MenuMgr() = default;
+		~MenuMgr() override = default;
 
 		//! @brief Adds a menu in the manager
 		template<typename result, typename ...Args>

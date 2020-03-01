@@ -8,7 +8,7 @@
 
 #include "json.hpp"
 
-#include "Game.hpp"
+#include "../Resources/Game.hpp"
 
 namespace TouhouFanGame
 {

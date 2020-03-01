@@ -7,7 +7,7 @@
 
 
 #include <TGUI/TGUI.hpp>
-#include "../Core/Game.hpp"
+#include "../Core/Resources/Game.hpp"
 #include "../Core/DataType/Vector.hpp"
 
 namespace TouhouFanGame

@@ -8,11 +8,12 @@
 #include <vector>
 #include <string>
 #include <SFML/Window/Event.hpp>
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame
 {
 	//! @brief An input entity.
-	class Input {
+	class Input : public BaseObject {
 	public:
 		//! @brief Any action that an Input can trigger.
 		enum Action {
@@ -43,6 +44,7 @@ namespace TouhouFanGame
 			Event(Type type, Action action);
 		};
 
+		virtual ~Input() override = default;
 		//! @brief Transforms the Action enumeration into a string.
 		//! @param action The value to convert.
 		//! @return A string representing the value given.

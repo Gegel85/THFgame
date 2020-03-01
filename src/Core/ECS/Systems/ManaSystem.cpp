@@ -18,7 +18,6 @@ namespace TouhouFanGame::ECS::Systems
 	{
 		auto &mana = entity->getComponent("Mana").to<Components::ManaComponent>();
 
-		if (mana.mana > mana.maxMana)
-			mana.mana = mana.maxMana;
+		mana.mana = std::min(mana.mana, mana.maxMana);
 	}
 }

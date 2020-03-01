@@ -5,13 +5,14 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include "../Core/Utils/BaseObject.hpp"
 #include "../Core/ECS/Entity.hpp"
+#include "../Core/Resources/Resources.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
 #include "../Core/ECS/Components/MovableComponent.hpp"
 #include "../Core/ECS/Components/DisplayableComponent.hpp"
 #include "../Core/ECS/Core.hpp"
 #include "../Core/ECS/Components/OobDieComponent.hpp"
-#include "../Core/DataType/Vector.hpp"
 #include "../Core/ECS/Components/ColliderComponent.hpp"
 #include "../Core/ECS/Quadtree/RectangleCollider.hpp"
 #include "../Core/ECS/Quadtree/CircleCollider.hpp"
@@ -59,21 +60,14 @@ extern "C"
 				timer[i]--;
 	}
 
-	void *spellCard0(std::vector<void *> args)
+	int spellCard0(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[1] != 0)
-			return &timer[1];
-
-		if (args.size() != 4)
-			throw std::bad_cast();
+			return timer[1];
 
 		timer[1] = 100;
 
-		auto &entity = *reinterpret_cast<std::shared_ptr<TouhouFanGame::ECS::Entity> *>(args[0]);
-		auto &core = *reinterpret_cast<TouhouFanGame::ECS::Core *>(args[1]);
-		auto &resources = *reinterpret_cast<TouhouFanGame::Resources *>(args[2]);
-		auto &map = *reinterpret_cast<TouhouFanGame::Map *>(args[3]);
-		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
+		auto &pos = entity.getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
 
 		for (int i = 0; i < 16; i++) {
 			auto angle = i * M_PI_4 / 2;
@@ -83,23 +77,15 @@ extern "C"
 				static_cast<float>(pos.position.y + std::sin(angle) * 32 + pos.size.y / 2.),
 			}, angle));
 		}
-		return nullptr;
+		return 0;
 	}
 
-	void *spellCard1(std::vector<void *> args)
+	int spellCard1(TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[2] != 0)
-			return &timer[2];
-
-		if (args.size() != 4)
-			throw std::bad_cast();
+			return timer[2];
 
 		timer[2] = 1000;
-
-		auto &entity = *reinterpret_cast<std::shared_ptr<TouhouFanGame::ECS::Entity> *>(args[0]);
-		auto &core = *reinterpret_cast<TouhouFanGame::ECS::Core *>(args[1]);
-		auto &resources = *reinterpret_cast<TouhouFanGame::Resources *>(args[2]);
-		auto &map = *reinterpret_cast<TouhouFanGame::Map *>(args[3]);
 
 		for (size_t i = 0; i < map.getPixelSize().y - 16; i += 4)
 			core.registerEntity(makeProjectile(map, resources, {
@@ -121,44 +107,28 @@ extern "C"
 				static_cast<float>(i),
 				static_cast<float>(map.getPixelSize().y - 16),
 			}, -M_PI_2));
-		return nullptr;
+		return 0;
 	}
 
-	void *spellCard2(std::vector<void *> args)
+	int spellCard2(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[3] != 0)
-			return &timer[3];
-
-		if (args.size() != 4)
-			throw std::bad_cast();
+			return timer[3];
 
 		timer[3] = 10;
 
-		auto &entity = *reinterpret_cast<std::shared_ptr<TouhouFanGame::ECS::Entity> *>(args[0]);
-		auto &core = *reinterpret_cast<TouhouFanGame::ECS::Core *>(args[1]);
-		auto &resources = *reinterpret_cast<TouhouFanGame::Resources *>(args[2]);
-		auto &map = *reinterpret_cast<TouhouFanGame::Map *>(args[3]);
-		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
-
-		return nullptr;
+		return 0;
 	}
 
-	void *attackDefault(std::vector<void *> args)
+	int attackDefault(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[0] != 0)
-			return &timer[0];
-
-		if (args.size() != 4)
-			throw std::bad_cast();
+			return timer[0];
 
 		timer[0] = 10;
 
-		auto &entity = *reinterpret_cast<std::shared_ptr<TouhouFanGame::ECS::Entity> *>(args[0]);
-		auto &core = *reinterpret_cast<TouhouFanGame::ECS::Core *>(args[1]);
-		auto &resources = *reinterpret_cast<TouhouFanGame::Resources *>(args[2]);
-		auto &map = *reinterpret_cast<TouhouFanGame::Map *>(args[3]);
-		auto &pos = entity->getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
-		auto &mov = entity->getComponent("Movable").to<TouhouFanGame::ECS::Components::MovableComponent>();
+		auto &pos = entity.getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
+		auto &mov = entity.getComponent("Movable").to<TouhouFanGame::ECS::Components::MovableComponent>();
 		auto angle = mov.angleDir;
 		auto diff = std::fmod(mov.angleDir, M_PI_4);
 
@@ -183,6 +153,6 @@ extern "C"
 
 		core.registerEntity(projectile1);
 		core.registerEntity(projectile2);
-		return nullptr;
+		return 0;
 	}
 }

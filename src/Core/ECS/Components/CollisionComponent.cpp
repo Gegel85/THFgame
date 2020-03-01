@@ -13,13 +13,12 @@
 namespace TouhouFanGame::ECS::Components
 {
 	CollisionComponent::CollisionComponent(Quadtree::ICollider *collider) :
-			Component("Collision"), collider(collider)
+		Component("Collision"), collider(collider)
 	{}
 
 	void CollisionComponent::serialize(std::ostream &stream) const
 	{
-		if (this->collider)
-			stream << *this->collider;
+		stream << *this->collider;
 	}
 
 	CollisionComponent::CollisionComponent(std::istream &stream)

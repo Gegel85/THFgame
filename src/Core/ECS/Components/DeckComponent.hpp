@@ -7,7 +7,7 @@
 
 
 #include "../Component.hpp"
-#include "../../CardTree.hpp"
+#include "../../Loading/CardTree.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {

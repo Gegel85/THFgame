@@ -8,7 +8,9 @@
 #include <string>
 #include <iomanip>
 #include <cmath>
-#include "DataType/Vector.hpp"
+#include "../DataType/Vector.hpp"
+#include "../ExternalCode/LuaCode.hpp"
+#include "../ExternalCode/DynamicLibrary.hpp"
 
 #ifndef _WIN32
 #define MB_ICONERROR 1
@@ -52,11 +54,6 @@ namespace TouhouFanGame::Utils
 	//! @note On Non-Windows systems, it will simulate the Windows dialog box. Only only MB_YESNO, MB_ICONERROR and MB_OK are simulated on those systems.
 	int	dispMsg(const std::string &title, const std::string &content, int variate);
 
-	//! @brief Makes a whole directory tree. The last entry is supposed to be a file and isn't made as a directory.
-	//! @param tree The tree to make, folders separated by '/'.
-	//! @throw FolderCreationErrorException
-	void	makeDirectoryTree(const std::string &tree);
-
 	//! @brief Returns the floating number representation with the least number of decimals.
 	//! @param nb The number to convert to string.
 	//! @return The string representation of the number given.
@@ -77,6 +74,16 @@ namespace TouhouFanGame::Utils
 	//! @param Numbers to process.
 	//! @return The maximum of the args.
 	double max(double v1, double args...);
+
+	std::string getLastError();
+
+	template<typename resultType, typename ...argsTypes>
+	resultType callExternalModule(ExternalModule &module, const std::string &procName, argsTypes &...args)
+	{
+		if (module.is<LuaCode>())
+			return module.to<LuaCode>().call<resultType>(procName, args...);
+		return module.to<DynamicLibrary>().call<resultType>(procName, args...);
+	}
 }
 
 #endif //THFGAME_UTILS_HPP

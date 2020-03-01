@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include "Entity.hpp"
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame::ECS
 {
@@ -18,7 +19,7 @@ namespace TouhouFanGame::ECS
 	//! @brief A System, affecting Entities.
 	//! The updateEntity method is called only if this Entity has the corresponding Component
 	//! (a Component that has the same name as the System)
-	class System {
+	class System : public BaseObject {
 	private:
 		//! @brief The name of the System
 		std::string _name;
@@ -35,6 +36,8 @@ namespace TouhouFanGame::ECS
 		//! @param name The name of the System
 		//! @param dependencies All the Component required for this System to work
 		System(Core &_parent, const std::string &&name, const std::vector<std::string> &&dependencies);
+
+		virtual ~System() override = default;
 
 		//! @brief Check if the entity match the dependencies
 		//! @param entity The entity to verify

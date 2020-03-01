@@ -7,7 +7,7 @@
 #include "Exceptions.hpp"
 #include "Factories/EntityFactory.hpp"
 #include "Factories/SystemFactory.hpp"
-#include "../Game.hpp"
+#include "../Resources/Game.hpp"
 
 namespace TouhouFanGame::ECS
 {

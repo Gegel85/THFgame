@@ -9,7 +9,7 @@
 #include "OobDieSystem.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/OobDieComponent.hpp"
-#include "../../Utils.hpp"
+#include "../../Utils/Utils.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {

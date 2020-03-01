@@ -6,7 +6,7 @@
 
 namespace TouhouFanGame
 {
-	Logger logger{"./latest.log", Logger::DEBUG};
+	Logger logger{"./latest.log", Logger::LOG_DEBUG};
 
 	GameState::GameState(Game &game) :
 		map(game),

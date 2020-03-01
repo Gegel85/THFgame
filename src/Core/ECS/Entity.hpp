@@ -10,6 +10,7 @@
 #include <vector>
 #include <memory>
 #include "Component.hpp"
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame
 {
@@ -21,7 +22,7 @@ namespace TouhouFanGame::ECS
 	class Core;
 
 	//! @brief Entity containing Component and updated by System
-	class Entity {
+	class Entity : public BaseObject {
 	private:
 		//! @brief If this is the to false, the Entity will not be serialized.
 		bool _serializable = true;
@@ -50,6 +51,8 @@ namespace TouhouFanGame::ECS
 		//! @warning The components contained in the components vector needs to be allocated using new.
 		//! The will all be deleted when the Entity is destroyed.
 		Entity(unsigned id, const std::string &name, const std::vector<Component *> &&components, bool serializable = true);
+
+		~Entity() override = default;
 
 		//! @brief Fetch the ID of the Entity.
 		//! @return The ID of this Entity.

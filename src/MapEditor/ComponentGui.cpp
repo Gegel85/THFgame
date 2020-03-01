@@ -6,7 +6,7 @@
 #include "GuiUtils.hpp"
 #include "../Core/ECS/Components/MovableComponent.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
-#include "../Core/Utils.hpp"
+#include "../Core/Utils/Utils.hpp"
 #include "../Core/ECS/Components/ControllableComponent.hpp"
 #include "../Core/ECS/Components/DisplayableComponent.hpp"
 #include "../Core/ECS/Components/BlockedByTerrainComponent.hpp"
@@ -15,6 +15,8 @@
 #include "../Core/ECS/Components/NameComponent.hpp"
 #include "../Core/ECS/Components/InventoryComponent.hpp"
 #include "../Core/ECS/Components/DialogComponent.hpp"
+#include "../Core/ECS/Components/CollisionComponent.hpp"
+#include "../Core/ECS/Components/ColliderComponent.hpp"
 
 namespace TouhouFanGame
 {
@@ -28,7 +30,25 @@ namespace TouhouFanGame
 		{"Name",             [](Game &game, ECS::Component &component){ return NameGui(game, component);         }},
 		{"Inventory",        [](Game &game, ECS::Component &component){ return InventoryGui(game, component);    }},
 		{"Dialog",           [](Game &game, ECS::Component &component){ return DialogGui(game, component);       }},
+		{"Collider",         [](Game &game, ECS::Component &component){ return ColliderGui(game, component);     }},
+		{"Collision",         [](Game &game, ECS::Component &component){ return CollisionGui(game, component);     }},
 	};
+
+	tgui::Panel::Ptr ComponentGui::CollisionGui(Game &game, ECS::Component &component)
+	{
+		auto &col = component.to<ECS::Components::CollisionComponent>();
+
+		//if (!col.collider)
+		//	col.collider = std::make_unique<ECS::Quadtree::ICollider>();
+		return EmptyGui(game, component);
+	}
+
+	tgui::Panel::Ptr ComponentGui::ColliderGui(Game &game, ECS::Component &component)
+	{
+		auto &col = component.to<ECS::Components::ColliderComponent>();
+
+		return EmptyGui(game, component);
+	}
 	
 	tgui::Panel::Ptr ComponentGui::MovableGui(Game &, ECS::Component &component)
 	{

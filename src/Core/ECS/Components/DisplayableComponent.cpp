@@ -3,7 +3,7 @@
 //
 
 #include "DisplayableComponent.hpp"
-#include "../../Game.hpp"
+#include "../../Resources/Game.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {

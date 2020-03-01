@@ -9,7 +9,7 @@
 #include "../../Core/Menus/Menu.hpp"
 #include "../../Core/Menus/MenuMgr.hpp"
 #include "../../Core/Rendering/Hud.hpp"
-#include "../../Core/Map.hpp"
+#include "../../Core/Resources/Map.hpp"
 
 namespace TouhouFanGame
 {

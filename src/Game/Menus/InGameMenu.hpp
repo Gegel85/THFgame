@@ -7,7 +7,7 @@
 
 
 #include "../../Core/Menus/Menu.hpp"
-#include "../../Core/Map.hpp"
+#include "../../Core/Resources/Map.hpp"
 #include "../../Core/Rendering/Hud.hpp"
 #include "../../Core/Menus/MenuMgr.hpp"
 

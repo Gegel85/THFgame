@@ -9,25 +9,41 @@
 #define THFGAME_DYNAMICLIBRARY_HPP
 
 
-#include "ExternalCode.hpp"
+#include "ExternalModule.hpp"
+
 #ifndef _WIN32
+#include <dlfcn.h>
 typedef void * HMODULE;
 #define DLL_EXTENSION ".so"
 #else
 #include <windows.h>
+
+#define RTLD_LAZY 0
+#define dlopen(str, _) LoadLibraryA(str)
+#define dlclose(handle) FreeLibrary(handle)
+#define dlsym(handle, sym) reinterpret_cast<void *>(GetProcAddress(handle, sym))
 #define DLL_EXTENSION ".dll"
 #endif
 
 namespace TouhouFanGame
 {
-	class DynamicLibrary : public ExternalCode {
+	namespace Utils {
+		std::string getLastError();
+	}
+
+	class DynamicLibrary : public ExternalModule {
 	private:
 		HMODULE _handler;
 
-		void *_call(const std::string &procName, std::vector<void *> args) override;
-
 	public:
-		void update() override;
+		template<typename resultType, typename ...argsTypes>
+		resultType call(const std::string &procName, argsTypes &...args) {
+			auto func = reinterpret_cast<resultType (*)(argsTypes &...)>(dlsym(this->_handler, procName.c_str()));
+
+			if (!func)
+				throw ProcedureNotFoundException("Error when trying to fetch " + procName + ": " + Utils::getLastError());
+			return func(args...);
+		}
 
 		DynamicLibrary(const std::string &path);
 		~DynamicLibrary() override;

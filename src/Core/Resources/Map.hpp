@@ -7,9 +7,9 @@
 
 
 #include <SFML/Audio.hpp>
-#include "ECS/Core.hpp"
-#include "NotCopyable.hpp"
-#include "Exceptions.hpp"
+#include "../ECS/Core.hpp"
+#include "../Utils/NotCopyable.hpp"
+#include "../Exceptions.hpp"
 
 #define PLAYER_SIZE 32
 
@@ -18,7 +18,7 @@ namespace TouhouFanGame
 	class MapEditor;
 
 	//! @brief A map loaded by the game.
-	class Map {
+	class Map : public BaseObject {
 	public:
 		//! @brief A trigger that teleports the player to another Map.
 		struct TpTrigger {
@@ -185,6 +185,7 @@ namespace TouhouFanGame
 
 	public:
 		Map(Game &game);
+		~Map() override = default;
 
 		//! @return The size in pixel of a square tile
 		unsigned char getTileSize() const;

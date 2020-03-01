@@ -45,6 +45,7 @@ namespace TouhouFanGame::Inputs
 	public:
 		//! @param window The reference window (if any)
 		SFMLJoypad(sf::RenderWindow *window);
+		~SFMLJoypad() override = default;
 		bool changeKeyFor(Action) override;
 		void cancelChangeKey() override;
 		bool actionPressed(Action) const override;

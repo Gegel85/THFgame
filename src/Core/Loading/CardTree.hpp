@@ -10,11 +10,11 @@
 #include <vector>
 #include <memory>
 #include <json.hpp>
-#include "ExternalCode/ExternalCode.hpp"
+#include "../ExternalCode/ExternalModule.hpp"
 
 namespace TouhouFanGame
 {
-	struct Card
+	struct Card : public BaseObject
 	{
 		unsigned neededLevel;
 		unsigned manaCost;
@@ -22,14 +22,15 @@ namespace TouhouFanGame
 		std::string texture;
 		std::string description;
 		std::string handlerPath;
-		std::unique_ptr<ExternalCode> handler;
+		std::unique_ptr<ExternalModule> handler;
 
 		Card(const Card &card);
 		Card(nlohmann::json value);
 		Card &operator=(const Card &);
+		~Card() override = default;
 	};
 
-	struct CardTree {
+	class CardTree : public BaseObject {
 	private:
 		unsigned _lastLevelRequested = 0;
 		std::vector<Card> _unlockedCards;
@@ -37,6 +38,7 @@ namespace TouhouFanGame
 
 	public:
 		CardTree(const std::string &filePath);
+		~CardTree() override = default;
 
 		void updateCards();
 		Card &getCard(unsigned index);

@@ -21,6 +21,8 @@ namespace TouhouFanGame
 		const char *what() const noexcept override {
 			return this->_msg.c_str();
 		};
+
+		~BaseException() override = default;
 	};
 
 	//! @brief The assets list is corrupted or invalid.
@@ -143,6 +145,22 @@ namespace TouhouFanGame
 		{};
 	};
 
+	//! @brief An error occurred inside a procedure.
+	class ProcedureErrorException : public BaseException {
+	public:
+		explicit ProcedureErrorException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief The requested Module couldn't be found.
+	class ModuleNotFoundException : public BaseException {
+	public:
+		explicit ModuleNotFoundException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
 	//! @brief This object cannot find this procedure.
 	class ProcedureNotFoundException : public BaseException {
 	public:
@@ -156,6 +174,22 @@ namespace TouhouFanGame
 	public:
 		explicit InvalidDllException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief The dynamic library wasn't valid.
+	class NotImplementedException : public BaseException {
+	public:
+		explicit NotImplementedException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	//! @brief A function had no choice but to dereference a null pointer.
+	class NullPointerException : public BaseException {
+	public:
+		explicit NullPointerException() :
+			BaseException("NullPointerException")
 		{};
 	};
 }

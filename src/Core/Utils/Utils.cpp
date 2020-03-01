@@ -10,13 +10,14 @@
 #include <SFML/Graphics.hpp>
 #include "../Resources/Game.hpp"
 
+#define mkdir(path) mkdir(path, 0755)
 #define ICON_ERROR_PATH "assets/box/error.png"
 #else
 #include <io.h>
 #endif
 
 #include "Utils.hpp"
-#include "Exceptions.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::Utils
 {
@@ -97,19 +98,25 @@ namespace TouhouFanGame::Utils
 #endif
 	}
 
-	void	makeDirectoryTree(const std::string &tree)
+	std::string getLastError()
 	{
-		for (auto it = std::find(tree.begin(), tree.end(), '/'); it < tree.end(); it = std::find(it + 1, tree.end(), '/')) {
-			if (
 #ifndef _WIN32
-				mkdir(tree.substr(0, it - tree.begin()).c_str() , 0755) < 0 &&
+		return dlerror();
 #else
-				mkdir(tree.substr(0, it - tree.begin()).c_str()) < 0 &&
+		char *s = nullptr;
+
+		FormatMessageA(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+			nullptr,
+			GetLastError(),
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			reinterpret_cast<LPSTR>(&s),
+			0,
+			nullptr
+		);
+
+		return s;
 #endif
-				errno != EEXIST
-			)
-				throw FolderCreationErrorException(tree.substr(0, it - tree.begin()) + ": " + strerror(errno));
-		}
 	}
 
 	std::string floatToString(float nb)

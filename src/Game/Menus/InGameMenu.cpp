@@ -3,7 +3,7 @@
 //
 
 #include "InGameMenu.hpp"
-#include "../../Core/Game.hpp"
+#include "../../Core/Resources/Game.hpp"
 #include "../../Core/ECS/Components/DeckComponent.hpp"
 
 namespace TouhouFanGame

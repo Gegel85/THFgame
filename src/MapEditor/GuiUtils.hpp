@@ -7,7 +7,7 @@
 
 
 #include <TGUI/TGUI.hpp>
-#include "../Core/Map.hpp"
+#include "../Core/Resources/Map.hpp"
 
 namespace TouhouFanGame
 {

@@ -30,7 +30,7 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 	auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::CircleCollider(0, 0 , 12)});
 
 	p->position = pos;
-	m->speed = 0;
+	m->speed = 10;
 	m->angleDir = dir;
 	p->angle = dir + M_PI_2;
 	/*p->position = {

@@ -14,7 +14,8 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	bool CircleCollider::collideWith(const CircleCollider &col) const
 	{
-		return this->_center.distance(col._center) <= this->size.x + col.size.x;
+		return std::pow(this->_center.x - col._center.x, 2) + std::pow(this->_center.y - col._center.y, 2)  <= std::pow(this->size.x + col.size.x, 2);
+//		return this->_center.distance(col._center) <= this->size.x + col.size.x;
 	}
 
 	bool CircleCollider::collideWith(const RectangleCollider &col) const

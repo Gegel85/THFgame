@@ -13,18 +13,18 @@ namespace TouhouFanGame::ECS::Systems
 {
 	CollisionSystem::CollisionSystem(TouhouFanGame::ECS::Core &core) :
 		System(core, "Collision", {"Position"}),
-		_quadtree(25,
+		_quadtree(10,
 			0,
 			0,
-			1000
+			512
 		)
 	{}
 
 	void CollisionSystem::update()
 	{
-		std::cout << "Quadtree content: " << std::endl;
+//		std::cout << "Quadtree content: " << std::endl;
 		this->_quadtree.reset();
-		std::cout << std::endl;
+//		std::cout << std::endl;
 		for (auto &ent : _core.getEntityByComponent("Collider")) {
 			auto entity = ent.lock();
 			auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();

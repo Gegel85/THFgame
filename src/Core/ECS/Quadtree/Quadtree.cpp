@@ -89,14 +89,14 @@ namespace TouhouFanGame::ECS::Quadtree
 
     void Quadtree::reset()
     {
-        for (auto &ent : this->_entities) {
-			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " ";
-			if (ent->hasComponent("Collision"))
-				std::cout << *ent->getComponent("Collision").to<Components::CollisionComponent>().collider;
-			else
-				std::cout << *ent->getComponent("Collider").to<Components::ColliderComponent>().colliders[0];
-			std::cout << std::endl;
-		}
+//        for (auto &ent : this->_entities) {
+//			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " ";
+//			if (ent->hasComponent("Collision"))
+//				std::cout << *ent->getComponent("Collision").to<Components::CollisionComponent>().collider;
+//			else
+//				std::cout << *ent->getComponent("Collider").to<Components::ColliderComponent>().colliders[0];
+//			std::cout << std::endl;
+//		}
 		if (this->_entityCount == 0)
 			for (auto &child : this->_children)
 				child.reset();

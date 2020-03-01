@@ -16,14 +16,15 @@ namespace TouhouFanGame::ECS::Systems
 		_quadtree(25,
 			0,
 			0,
-			core.getGame().state.map.getSize().x,
-			core.getGame().state.map.getSize().y
+			std::max(core.getGame().state.map.getSize().x, core.getGame().state.map.getSize().y)
 		)
 	{}
 
 	void CollisionSystem::update()
 	{
-	    this->_quadtree.reset();
+		std::cout << "Quadtree content: " << std::endl;
+		this->_quadtree.reset();
+		std::cout << std::endl;
 		for (auto &ent : _core.getEntityByComponent("Collider")) {
 			auto entity = ent.lock();
 			auto &collider = entity->getComponent("Collider").to<Components::ColliderComponent &>();

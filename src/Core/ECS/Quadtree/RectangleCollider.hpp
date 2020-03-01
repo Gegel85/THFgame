@@ -23,7 +23,6 @@ namespace TouhouFanGame::ECS::Quadtree
 		FloatRect rect;
 
 		RectangleCollider(float x, float y, float w, float h, float angle);
-		explicit RectangleCollider(FloatRect rect);
 	};
 }
 

@@ -9,18 +9,18 @@
 namespace TouhouFanGame::ECS::Quadtree
 {
 	CircleCollider::CircleCollider(float x, float y, float size)
-			: size(size), center(x, y)
+			: ICollider(x, y, size, size), _center(0, 0)
 	{}
 
 	bool CircleCollider::collideWith(const CircleCollider &col) const
 	{
-		return this->center.distance(col.center) <= this->size + col.size;
+		return this->_center.distance(col._center) <= this->size.x + col.size.x;
 	}
 
 	bool CircleCollider::collideWith(const RectangleCollider &col) const
 	{
-//		float x = std::abs(this->center.x - col.rect.pt1.x);
-//		float y = std::abs(this->center.y - col.rect.pt1.x);
+//		float x = std::abs(this->_center.x - col.rect.pt1.x);
+//		float y = std::abs(this->_center.y - col.rect.pt1.x);
 //
 //		return x <= this->size + col.rect.w && y <= this->size + col.rect.h;
 		return true;
@@ -47,16 +47,16 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	float CircleCollider::getSize() const
 	{
-		return 0;
+		return this->size.x;
 	}
 
 	void CircleCollider::serialize(std::ostream &stream) const
 	{
-        stream << "0 " << this->center << " " << this->size;
+		stream << "0 " << this->offset << " " << this->getSize();
 	}
 
 	void CircleCollider::setOrigin(const Components::PositionComponent &pos)
 	{
-		this->center = pos.position + (pos.size / 2);
+		this->_center = pos.position + (this->size / 2) + this->offset;
 	}
 }

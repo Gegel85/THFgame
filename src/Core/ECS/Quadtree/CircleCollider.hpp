@@ -13,8 +13,7 @@ namespace TouhouFanGame::ECS::Quadtree
 {
 	class CircleCollider : public ICollider {
 	private:
-		float size;
-		Vector2f center;
+		Vector2f _center;
 	public:
 		bool collideWith(const CircleCollider &col) const override;
 		bool collideWith(const RectangleCollider &col) const override;

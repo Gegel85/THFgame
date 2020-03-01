@@ -11,11 +11,7 @@
 namespace TouhouFanGame::ECS::Quadtree
 {
 	RectangleCollider::RectangleCollider(float x, float y, float w, float h, float angle)
-			: rect(x, y, w, h, angle)
-	{}
-
-	RectangleCollider::RectangleCollider(FloatRect rect)
-		: rect(rect)
+			: ICollider(x, y, w, h), rect(0, 0, w, h, angle)
 	{}
 
 	bool RectangleCollider::collideWith(const CircleCollider &col) const
@@ -81,7 +77,7 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	void RectangleCollider::serialize(std::ostream &stream) const
 	{
-		stream << "1 " << this->rect;
+		stream << "1 " << this->offset << " " << this->size << " " << this->rect.getAngle();
 	}
 
 	void RectangleCollider::setOrigin(const Components::PositionComponent &pos)

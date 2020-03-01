@@ -14,6 +14,7 @@
 #include "../Core/DataType/Vector.hpp"
 #include "../Core/ECS/Components/ColliderComponent.hpp"
 #include "../Core/ECS/Quadtree/RectangleCollider.hpp"
+#include "../Core/ECS/Quadtree/CircleCollider.hpp"
 
 std::vector<unsigned int> timer{
 	0, 0, 0, 0
@@ -25,10 +26,10 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 	auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
 	auto *d = new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json");
 	auto *o = new TouhouFanGame::ECS::Components::OOBDieComponent(map);
-	auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(pos.x, pos.y, 12, 12, 0)});
+	auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::CircleCollider(0, 0 , 12)});
 
 	p->position = pos;
-	m->speed = 10;
+	m->speed = 0;
 	m->angleDir = dir;
 	p->angle = dir + M_PI_2;
 	/*p->position = {

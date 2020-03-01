@@ -6,11 +6,12 @@
 #include "Quadtree.hpp"
 #include "../Components/PositionComponent.hpp"
 #include "../Components/ColliderComponent.hpp"
+#include "../Components/CollisionComponent.hpp"
 
 namespace TouhouFanGame::ECS::Quadtree
 {
-	Quadtree::Quadtree(unsigned entityCount, float x, float y, float w, float h)
-		: _entityCount(entityCount), _quadCollider(x, y, w, h, 0) {}
+	Quadtree::Quadtree(unsigned entityCount, float x, float y, float s)
+		: _entityCount(entityCount), _quadCollider(x, y, s) {}
 
 	void Quadtree::add(const std::shared_ptr<Entity> &entity)
 	{
@@ -29,22 +30,13 @@ namespace TouhouFanGame::ECS::Quadtree
 	void Quadtree::split()
 	{
 		for (int i = 0; i < 4; i++) {
-			float width = this->_quadCollider.rect.pt2.distance(this->_quadCollider.rect.pt1) / 2;
-			float height = this->_quadCollider.rect.pt1.distance(this->_quadCollider.rect.pt3) / 2;
-			Quadtree child(this->_entityCount,
-						   this->_quadCollider.rect.pt1.x,
-						   this->_quadCollider.rect.pt1.y,
-						   width,
-						   height
-						   );
+			float size = this->_quadCollider.size.x / 2;
+			Quadtree child(this->_entityCount, this->_quadCollider.offset.x, this->_quadCollider.offset.y, size);
 
-			if (i % 2 == 1) {
-				child._quadCollider.rect.pt1.x += width;
-				child._quadCollider.rect.pt3.x += width;
-			} if (i > 1) {
-				child._quadCollider.rect.pt1.y += height;
-				child._quadCollider.rect.pt2.y += height;
-			}
+			if (i % 2 == 1)
+				child._quadCollider.offset.x += size;
+			if (i > 1)
+				child._quadCollider.offset.y += size;
 			this->_children.push_back(child);
 			for (auto &ent : this->_entities) {
 				if (child._quadCollider.collideWithEntity(ent))
@@ -96,14 +88,17 @@ namespace TouhouFanGame::ECS::Quadtree
 
     void Quadtree::reset()
     {
-//		std::cout << "Quadtree content: " << std::endl;
-//        for (auto &ent : this->_entities)
-//			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " " << ent->getComponent("Position") << std::endl;
-//		std::cout << std::endl;
-
+        for (auto &ent : this->_entities) {
+			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " ";
+			if (ent->hasComponent("Collision"))
+				std::cout << *ent->getComponent("Collision").to<Components::CollisionComponent>().collider;
+			else
+				std::cout << *ent->getComponent("Collider").to<Components::ColliderComponent>().colliders[0];
+			std::cout << std::endl;
+		}
 		if (this->_entityCount == 0)
 			for (auto &child : this->_children)
 				child.reset();
 		this->_entities.clear();
-    }
+	}
 }

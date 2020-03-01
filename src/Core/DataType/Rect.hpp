@@ -6,10 +6,14 @@
 #define THFGAME_RECT_HPP
 
 #include "Vector.hpp"
+#include "../Utils/BaseObject.hpp"
 
 namespace TouhouFanGame {
 	template<typename T>
-	struct Rect {
+	struct Rect : public BaseObject {
+	private:
+		float _angle;
+	public:
 		Vector2<T> pt1;
 		Vector2<T> pt2;
 		Vector2<T> pt3;
@@ -20,12 +24,20 @@ namespace TouhouFanGame {
 			: pt1(x, y),
 			pt2(x + w / std::cos(angle), y),
 			pt3(x, y + h / std::cos(angle)),
-			pt4(x + w / std::cos(angle), y + h / std::cos(angle))
+			pt4(x + w / std::cos(angle), y + h / std::cos(angle)),
+			_angle(angle)
 		{}
 
 		template <typename T2>
 		Rect(Vector2<T> pos, Vector2<T2> size, float angle)
 			: Rect(pos.x, pos.y, size.x, size.y, angle) {}
+
+		float getAngle() const
+		{
+			return this->_angle;
+		}
+
+		~Rect() override = default;
 	};
 
 	typedef Rect<int> IntRect;

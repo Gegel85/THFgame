@@ -22,6 +22,11 @@ namespace TouhouFanGame::ECS::Quadtree
 		virtual void setOrigin(const Components::PositionComponent &pos) = 0;
 		virtual void serialize(std::ostream &stream) const = 0;
 		static std::unique_ptr<ICollider> deserialize(std::istream &stream);
+
+		ICollider(float offsetX, float offsetY, float sizeX, float sizeY);
+
+		Vector2<float> offset;
+		Vector2<float> size;
 	};
 }
 

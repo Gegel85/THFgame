@@ -26,6 +26,10 @@ std::istream &operator>>(std::istream &stream, std::unique_ptr<TouhouFanGame::EC
 
 namespace TouhouFanGame::ECS::Quadtree
 {
+	ICollider::ICollider(float offsetX, float offsetY, float sizeX, float sizeY)
+		: offset(offsetX, offsetY), size(sizeX, sizeY)
+	{ }
+
 	std::unique_ptr<ICollider> ICollider::deserialize(std::istream &stream)
 	{
 		int colliderType;

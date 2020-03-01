@@ -16,7 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 		_quadtree(25,
 			0,
 			0,
-			std::max(core.getGame().state.map.getSize().x, core.getGame().state.map.getSize().y)
+			1000
 		)
 	{}
 

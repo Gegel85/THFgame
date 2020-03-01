@@ -37,6 +37,7 @@ namespace TouhouFanGame::ECS::Quadtree
 				child._quadCollider.offset.x += size;
 			if (i > 1)
 				child._quadCollider.offset.y += size;
+			child._quadCollider.computeCenter();
 			this->_children.push_back(child);
 			for (auto &ent : this->_entities) {
 				if (child._quadCollider.collideWithEntity(ent))

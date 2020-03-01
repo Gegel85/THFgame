@@ -22,6 +22,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		void serialize(std::ostream &stream) const override;
 		float getSize() const override;
 		void setOrigin(const Components::PositionComponent &pos) override;
+		void computeCenter();
 
 		CircleCollider(float x, float y, float size);
 	};

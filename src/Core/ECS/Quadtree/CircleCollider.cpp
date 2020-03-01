@@ -59,4 +59,9 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		this->_center = pos.position + (this->size / 2) + this->offset;
 	}
+
+	void CircleCollider::computeCenter()
+	{
+		this->_center = (this->size / 2) + this->offset;
+	}
 }

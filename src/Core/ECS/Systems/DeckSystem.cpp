@@ -7,6 +7,7 @@
 #include "../Components/ExperienceComponent.hpp"
 #include "../Components/ManaComponent.hpp"
 #include "../Components/ShootComponent.hpp"
+#include "../../Utils/Utils.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -30,7 +31,7 @@ namespace TouhouFanGame::ECS::Systems
 		if (
 			deck.used &&
 			card.manaCost <= mana.mana &&
-			!card.handler->call<int>("spellCard" + std::to_string(deck.selectedCard), &*entity, &this->_core, &shoot.resources, &shoot.map)
+			!Utils::callExternalModule<int>(*card.handler, "spellCard" + std::to_string(deck.selectedCard), *entity, this->_core, shoot.resources, shoot.map)
 		)
 			mana.mana -= card.manaCost;
 	}

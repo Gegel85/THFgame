@@ -5,6 +5,7 @@
 #include <fstream>
 #include "CardTree.hpp"
 #include "../ExternalCode/DynamicLibrary.hpp"
+#include "../Utils/Utils.hpp"
 
 namespace TouhouFanGame
 {
@@ -98,7 +99,7 @@ namespace TouhouFanGame
 	void CardTree::updateCards()
 	{
 		std::for_each(this->_cards.begin(), this->_cards.end(), [](Card &card){
-			card.handler->update();
+			Utils::callExternalModule<void>(*card.handler, "update");
 		});
 	}
 }

@@ -97,6 +97,27 @@ namespace TouhouFanGame::Utils
 #endif
 	}
 
+	std::string getLastError()
+	{
+#ifndef _WIN32
+		return dlerror();
+#else
+		char *s = nullptr;
+
+		FormatMessageA(
+			FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+			nullptr,
+			GetLastError(),
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			reinterpret_cast<LPSTR>(&s),
+			0,
+			nullptr
+		);
+
+		return s;
+#endif
+	}
+
 	void	makeDirectoryTree(const std::string &tree)
 	{
 		for (auto it = std::find(tree.begin(), tree.end(), '/'); it < tree.end(); it = std::find(it + 1, tree.end(), '/')) {

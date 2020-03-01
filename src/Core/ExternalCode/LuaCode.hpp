@@ -21,10 +21,12 @@ namespace TouhouFanGame
 	class LuaCode : public ExternalModule {
 	private:
 		sol::state _lua;
-		void *_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args) override;
 
 	public:
-		void update() override;
+		template<typename resultType, typename ...argsTypes>
+		resultType call(const std::string &procName, argsTypes &...args) {
+			return this->_lua[procName].call<resultType>(args...);
+		}
 
 		LuaCode(const std::string &path);
 		~LuaCode() override = default;

@@ -17,17 +17,17 @@ namespace TouhouFanGame
 	public:
 		//! @brief The levels of logging available
 		enum LogLevel {
-			DEBUG,
-			INFO,
-			WARNING,
-			ERROR,
-			CRITICAL,
-			NONE,
+			LOG_DEBUG,
+			LOG_INFO,
+			LOG_WARNING,
+			LOG_ERROR,
+			LOG_CRITICAL,
+			LOG_NONE,
 		};
 
 		//! @param filepath The path to the file to log to
 		//! @param level The minimum logging level to display
-		explicit Logger(const std::string &filepath = "./latest.log", LogLevel level = INFO) noexcept;
+		explicit Logger(const std::string &filepath = "./latest.log", LogLevel level = LOG_INFO) noexcept;
 		~Logger() noexcept override;
 
 		//! @brief Logs a message in the console and the log file

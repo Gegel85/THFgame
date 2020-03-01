@@ -9,6 +9,8 @@
 #include <iomanip>
 #include <cmath>
 #include "../DataType/Vector.hpp"
+#include "../ExternalCode/LuaCode.hpp"
+#include "../ExternalCode/DynamicLibrary.hpp"
 
 #ifndef _WIN32
 #define MB_ICONERROR 1
@@ -77,6 +79,16 @@ namespace TouhouFanGame::Utils
 	//! @param Numbers to process.
 	//! @return The maximum of the args.
 	double max(double v1, double args...);
+
+	std::string getLastError();
+
+	template<typename resultType, typename ...argsTypes>
+	resultType callExternalModule(ExternalModule &module, const std::string &procName, argsTypes &...args)
+	{
+		if (module.is<LuaCode>())
+			return module.to<LuaCode>().call<resultType>(procName, args...);
+		return module.to<DynamicLibrary>().call<resultType>(procName, args...);
+	}
 }
 
 #endif //THFGAME_UTILS_HPP

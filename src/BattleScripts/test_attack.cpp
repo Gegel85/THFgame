@@ -59,20 +59,13 @@ extern "C"
 				timer[i]--;
 	}
 
-	int spellCard0(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int spellCard0(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[1] != 0)
 			return timer[1];
 
-		if (args.size() != 4)
-			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
-
 		timer[1] = 100;
 
-		auto &entity = dynamic_cast<TouhouFanGame::ECS::Entity &>(args[0].get());
-		auto &core = dynamic_cast<TouhouFanGame::ECS::Core &>(args[1].get());
-		auto &resources = dynamic_cast<TouhouFanGame::Resources &>(args[2].get());
-		auto &map = dynamic_cast<TouhouFanGame::Map &>(args[3].get());
 		auto &pos = entity.getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
 
 		for (int i = 0; i < 16; i++) {
@@ -86,19 +79,12 @@ extern "C"
 		return 0;
 	}
 
-	int spellCard1(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int spellCard1(TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[2] != 0)
 			return timer[2];
 
-		if (args.size() != 4)
-			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
-
 		timer[2] = 1000;
-
-		auto &core = dynamic_cast<TouhouFanGame::ECS::Core &>(args[1].get());
-		auto &resources = dynamic_cast<TouhouFanGame::Resources &>(args[2].get());
-		auto &map = dynamic_cast<TouhouFanGame::Map &>(args[3].get());
 
 		for (size_t i = 0; i < map.getPixelSize().y - 16; i += 4)
 			core.registerEntity(makeProjectile(map, resources, {
@@ -123,38 +109,23 @@ extern "C"
 		return 0;
 	}
 
-	int spellCard2(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int spellCard2(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[3] != 0)
 			return timer[3];
 
-		if (args.size() != 4)
-			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
-
 		timer[3] = 10;
-
-		auto &entity = dynamic_cast<TouhouFanGame::ECS::Component &>(args[0].get());
-		auto &core = dynamic_cast<TouhouFanGame::ECS::Core &>(args[1].get());
-		auto &resources = dynamic_cast<TouhouFanGame::Resources &>(args[2].get());
-		auto &map = dynamic_cast<TouhouFanGame::Map &>(args[3].get());
 
 		return 0;
 	}
 
-	int attackDefault(std::vector<std::reference_wrapper<TouhouFanGame::BaseObject>> args)
+	int attackDefault(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
 		if (timer[0] != 0)
 			return timer[0];
 
-		if (args.size() != 4)
-			throw std::invalid_argument("Expected 4 arguments but got " + std::to_string(args.size()));
-
 		timer[0] = 10;
 
-		auto &entity = dynamic_cast<TouhouFanGame::ECS::Entity &>(args[0].get());
-		auto &core = dynamic_cast<TouhouFanGame::ECS::Core &>(args[1].get());
-		auto &resources = dynamic_cast<TouhouFanGame::Resources &>(args[2].get());
-		auto &map = dynamic_cast<TouhouFanGame::Map &>(args[3].get());
 		auto &pos = entity.getComponent("Position").to<TouhouFanGame::ECS::Components::PositionComponent>();
 		auto &mov = entity.getComponent("Movable").to<TouhouFanGame::ECS::Components::MovableComponent>();
 		auto angle = mov.angleDir;

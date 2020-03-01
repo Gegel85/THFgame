@@ -4,6 +4,7 @@
 
 #include "ShootSystem.hpp"
 #include "../Components/ShootComponent.hpp"
+#include "../../Utils/Utils.hpp"
 
 namespace TouhouFanGame::ECS::Systems
 {
@@ -17,7 +18,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
 
 		if (shoot.shooting)
-			shoot.handler->call("attackDefault", &*entity, &this->_core, &shoot.resources, &shoot.map);
-		shoot.handler->update();
+			Utils::callExternalModule<void>(*shoot.handler, "attackDefault", *entity, this->_core, shoot.resources, shoot.map);
+		Utils::callExternalModule<void>(*shoot.handler, "update");
 	}
 }

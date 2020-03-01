@@ -34,31 +34,31 @@ namespace TouhouFanGame
 
 	void Logger::debug(const std::string &content) noexcept
 	{
-		if (this->_level <= DEBUG)
+		if (this->_level <= LOG_DEBUG)
 			this->msg(content, "[DEBUG]");
 	}
 
 	void Logger::warn(const std::string &content) noexcept
 	{
-		if (this->_level <= WARNING)
+		if (this->_level <= LOG_WARNING)
 			this->msg(content, "[WARNING]");
 	}
 
 	void Logger::info(const std::string &content) noexcept
 	{
-		if (this->_level <= INFO)
+		if (this->_level <= LOG_INFO)
 			this->msg(content, "[INFO]");
 	}
 
 	void Logger::error(const std::string &content) noexcept
 	{
-		if (this->_level <= ERROR)
+		if (this->_level <= LOG_ERROR)
 			this->msg(content, "[ERROR]");
 	}
 
 	void Logger::fatal(const std::string &content) noexcept
 	{
-		if (this->_level <= CRITICAL)
+		if (this->_level <= LOG_CRITICAL)
 			this->msg(content, "[FATAL]");
 	}
 }

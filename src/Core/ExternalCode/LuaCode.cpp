@@ -24,14 +24,4 @@ namespace TouhouFanGame
 
 		this->_lua.script_file(path);
 	}
-
-	void LuaCode::update()
-	{
-		this->call("update");
-	}
-
-	void *LuaCode::_call(const std::string &procName, std::vector<std::reference_wrapper<BaseObject>> args)
-	{
-		throw NotImplementedException("LuaCode::_call(\"" + procName + "\", ...)");
-	}
 }

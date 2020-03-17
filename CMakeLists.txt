@@ -169,23 +169,34 @@ add_library(
 if (WIN32)
 	target_link_libraries(
 		THFgame-core
+		LuaLibrary
 		sfml-window
 		sfml-system
 		sfml-graphics
 		sfml-audio
-		lua
 	)
 else (WIN32)
 	target_link_libraries(
 		THFgame-core
+		LuaLibrary
 		sfml-window
 		sfml-system
 		sfml-graphics
 		sfml-audio
 		dl
-		lua
 	)
 endif (WIN32)
+
+#_____________________________________________________________
+
+add_library(
+	LuaLibrary SHARED
+	src/Lua/LuaState.cpp src/Lua/LuaState.hpp src/Lua/Exceptions.hpp src/Lua/Exceptions.cpp src/Lua/LuaStack.cpp src/Lua/LuaStack.hpp src/Lua/Values/LuaValue.hpp src/Lua/Values/LuaValue.cpp src/Lua/Values/LuaNoValue.cpp src/Lua/Values/LuaNoValue.hpp src/Lua/Values/LuaType.hpp src/Lua/Values/LuaNil.cpp src/Lua/Values/LuaNil.hpp src/Lua/Values/LuaNumber.cpp src/Lua/Values/LuaNumber.hpp src/Lua/Values/LuaString.cpp src/Lua/Values/LuaString.hpp)
+
+target_link_libraries(
+	LuaLibrary
+	lua
+)
 
 #_____________________________________________________________
 

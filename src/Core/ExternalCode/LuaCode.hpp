@@ -6,11 +6,13 @@
 #define THFGAME_LUACODE_HPP
 
 #include "ExternalModule.hpp"
+#include "../../Lua/LuaState.hpp"
 
 namespace TouhouFanGame
 {
 	class LuaCode : public ExternalModule {
 	private:
+		Lua::LuaState _state;
 
 	public:
 		template<typename resultType, typename ...argsTypes>

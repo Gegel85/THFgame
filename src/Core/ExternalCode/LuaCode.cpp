@@ -23,7 +23,7 @@ namespace TouhouFanGame
 			sol::lib::utf8
 		);
 
-		Lua::LuaUserData::init(this->_lua);
-		this->_lua.script_file(path);*/
+		Lua::LuaUserData::init(this->_lua);*/
+		this->_state.dofile(path);
 	}
 }

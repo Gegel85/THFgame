@@ -20,7 +20,6 @@ if (WIN32)
 endif (WIN32)
 
 include_directories(nlohmann)
-include_directories(sol)
 
 add_library(
 	THFgame-core SHARED
@@ -162,8 +161,6 @@ add_library(
 	src/Core/ECS/Systems/DeckSystem.hpp
 	src/Core/ExternalCode/LuaCode.cpp
 	src/Core/ExternalCode/LuaCode.hpp
-	src/Core/LuaObjects/LuaUserData.cpp
-	src/Core/LuaObjects/LuaUserData.hpp
 	src/Core/Utils/BaseObject.hpp
 	src/Core/ExternalCode/ExternalModuleFactory.cpp
 	src/Core/ExternalCode/ExternalModuleFactory.hpp

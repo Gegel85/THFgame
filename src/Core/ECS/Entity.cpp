@@ -136,6 +136,14 @@ namespace TouhouFanGame::ECS
 		if (str != "THFG_ECS_Entity_End")
 			throw InvalidSerializedString("Unexpected EOF");
 	}
+
+	std::string Entity::toString()
+	{
+		char buffer[19];
+
+		sprintf(buffer, "%#p", this);
+		return this->_name + " #" + std::to_string(this->_id) + ": Entity " + buffer;
+	}
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Entity &entity)

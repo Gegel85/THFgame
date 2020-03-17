@@ -4,12 +4,13 @@
 
 #include "LuaCode.hpp"
 #include "../Exceptions.hpp"
+//#include "../LuaObjects/LuaUserData.hpp"
 
 namespace TouhouFanGame
 {
 	LuaCode::LuaCode(const std::string &path)
 	{
-		this->_lua.open_libraries(
+		/*this->_lua.open_libraries(
 			sol::lib::base,
 			sol::lib::package,
 			sol::lib::coroutine,
@@ -22,6 +23,7 @@ namespace TouhouFanGame
 			sol::lib::utf8
 		);
 
-		this->_lua.script_file(path);
+		Lua::LuaUserData::init(this->_lua);
+		this->_lua.script_file(path);*/
 	}
 }

@@ -100,6 +100,9 @@ namespace TouhouFanGame::ECS
 
 		//! @brief Loads an Entity from a stream.
 		void unserialize(Game &game, std::istream &);
+
+		//! @brief Returns a description of the Entity
+		std::string toString();
 	};
 }
 

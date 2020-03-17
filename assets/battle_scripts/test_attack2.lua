@@ -10,9 +10,9 @@ function spellCard2()
 
 end
 
-function attackDefault(entity)
+function attackDefault(etity)
+	print(etity)
 	print(entity)
-	entity.getComponentByName()
 end
 
 function update()

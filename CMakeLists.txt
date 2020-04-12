@@ -191,7 +191,7 @@ endif (WIN32)
 
 add_library(
 	LuaLibrary SHARED
-	src/Lua/LuaState.cpp src/Lua/LuaState.hpp src/Lua/Exceptions.hpp src/Lua/Exceptions.cpp src/Lua/LuaStack.cpp src/Lua/LuaStack.hpp src/Lua/Values/LuaValue.hpp src/Lua/Values/LuaValue.cpp src/Lua/Values/LuaNoValue.cpp src/Lua/Values/LuaNoValue.hpp src/Lua/Values/LuaType.hpp src/Lua/Values/LuaNil.cpp src/Lua/Values/LuaNil.hpp src/Lua/Values/LuaNumber.cpp src/Lua/Values/LuaNumber.hpp src/Lua/Values/LuaString.cpp src/Lua/Values/LuaString.hpp)
+	src/Lua/LuaState.cpp src/Lua/LuaState.hpp src/Lua/Exceptions.hpp src/Lua/Exceptions.cpp src/Lua/LuaStack.cpp src/Lua/LuaStack.hpp src/Lua/Values/LuaValue.hpp src/Lua/Values/LuaValue.cpp src/Lua/Values/LuaNoValue.cpp src/Lua/Values/LuaNoValue.hpp src/Lua/Values/LuaType.hpp src/Lua/Values/LuaNil.cpp src/Lua/Values/LuaNil.hpp src/Lua/Values/LuaNumber.cpp src/Lua/Values/LuaNumber.hpp src/Lua/Values/LuaString.cpp src/Lua/Values/LuaString.hpp src/Lua/LuaContainer.cpp src/Lua/LuaContainer.hpp)
 
 target_link_libraries(
 	LuaLibrary

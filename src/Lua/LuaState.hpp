@@ -18,12 +18,13 @@ namespace TouhouFanGame::Lua
 
 	public:
 		LuaState();
+		LuaState(std::nullptr_t) = delete;
 		LuaState(lua_State *state);
 
 		void dofile(const std::string &path);
 		void dostring(const std::string &str);
 		std::shared_ptr<lua_State> state() const;
-		LuaStack stack() const;
+		LuaStack stack();
 	};
 }
 

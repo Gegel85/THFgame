@@ -18,7 +18,6 @@ namespace TouhouFanGame::Lua
 		LuaNumber(lua_Number value);
 
 		std::string toString() const override;
-
 		LuaType type() const override;
 	};
 }

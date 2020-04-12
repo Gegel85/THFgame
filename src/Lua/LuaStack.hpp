@@ -14,10 +14,10 @@ namespace TouhouFanGame::Lua
 {
 	class LuaStack {
 	private:
-		std::shared_ptr<lua_State> _lua;
+		LuaState &_lua;
 
 	public:
-		LuaStack(const std::shared_ptr<lua_State> &state);
+		LuaStack(LuaState &state);
 		std::shared_ptr<LuaValue> top() const;
 	};
 }

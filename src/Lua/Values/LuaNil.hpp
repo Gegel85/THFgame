@@ -15,7 +15,6 @@ namespace TouhouFanGame::Lua
 		LuaNil() = default;
 
 		std::string toString() const override;
-
 		LuaType type() const override;
 	};
 }

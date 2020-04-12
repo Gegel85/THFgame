@@ -34,8 +34,8 @@ namespace TouhouFanGame::Lua
 		return this->_lua;
 	}
 
-	LuaStack LuaState::stack() const
+	LuaStack LuaState::stack()
 	{
-		return this->_lua;
+		return *this;
 	}
 }

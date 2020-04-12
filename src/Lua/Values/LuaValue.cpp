@@ -7,23 +7,24 @@
 #include "LuaNil.hpp"
 #include "LuaNumber.hpp"
 #include "LuaString.hpp"
+#include "../LuaState.hpp"
 
 namespace TouhouFanGame::Lua
 {
-	std::shared_ptr<LuaValue> LuaValue::make(const std::shared_ptr<lua_State> &state, int index)
+	std::shared_ptr<LuaValue> LuaValue::make(LuaState &state, int index)
 	{
 		const char *cstr;
 		size_t size;
 
-		switch (lua_type(state.get(), index)) {
+		switch (lua_type(&*state.state(), index)) {
 		case LUA_TNONE:
 			return std::make_shared<LuaNoValue>();
 		case LUA_TNIL:
 			return std::make_shared<LuaNil>();
 		case LUA_TNUMBER:
-			return std::make_shared<LuaNumber>(lua_tonumber(state.get(), index));
+			return std::make_shared<LuaNumber>(lua_tonumber(&*state.state(), index));
 		case LUA_TSTRING:
-			cstr = lua_tolstring(state.get(), index, &size);
+			cstr = lua_tolstring(&*state.state(), index, &size);
 			return std::make_shared<LuaString>(std::string(cstr, size));
 		default:
 			return nullptr;
@@ -35,13 +36,38 @@ namespace TouhouFanGame::Lua
 		return std::make_shared<LuaNumber>(value);
 	}
 
+	std::shared_ptr<LuaValue> LuaValue::make(int value)
+	{
+		return LuaValue::make(static_cast<lua_Number>(value));
+	}
+
+	std::shared_ptr<LuaValue> LuaValue::make(unsigned value)
+	{
+		return LuaValue::make(static_cast<lua_Number>(value));
+	}
+
+	std::shared_ptr<LuaValue> LuaValue::make(long value)
+	{
+		return LuaValue::make(static_cast<lua_Number>(value));
+	}
+
+	std::shared_ptr<LuaValue> LuaValue::make(unsigned long value)
+	{
+		return LuaValue::make(static_cast<lua_Number>(value));
+	}
+
+	std::shared_ptr<LuaValue> LuaValue::make(float value)
+	{
+		return LuaValue::make(static_cast<lua_Number>(value));
+	}
+
 	std::shared_ptr<LuaValue> LuaValue::make(const std::string &value)
 	{
-		return std::shared_ptr<LuaValue>();
+		return std::make_shared<LuaString>(value);
 	}
 
 	std::shared_ptr<LuaValue> LuaValue::make(const char *value)
 	{
-		return std::shared_ptr<LuaValue>();
+		return std::make_shared<LuaString>(value);
 	}
 }

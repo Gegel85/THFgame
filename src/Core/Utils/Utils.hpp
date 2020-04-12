@@ -51,7 +51,7 @@ namespace TouhouFanGame::Utils
 	//! @param content The content of the box.
 	//! @param variate A bit combination of the window attributes (see Windows MessageBox function for a list of the enums).
 	//! @return The button clicked by the user.
-	//! @note On Non-Windows systems, it will simulate the Windows dialog box. Only only MB_YESNO, MB_ICONERROR and MB_OK are simulated on those systems.
+	//! @note On Non-Windows systems, it will simulate the Windows dialog box. Only MB_YESNO, MB_ICONERROR and MB_OK are simulated on those systems.
 	int	dispMsg(const std::string &title, const std::string &content, int variate);
 
 	//! @brief Returns the floating number representation with the least number of decimals.

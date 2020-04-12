@@ -3,10 +3,11 @@
 //
 
 #include "LuaStack.hpp"
+#include "LuaState.hpp"
 
 namespace TouhouFanGame::Lua
 {
-	LuaStack::LuaStack(const std::shared_ptr<lua_State> &state) :
+	LuaStack::LuaStack(LuaState &state) :
 		_lua(state)
 	{
 	}

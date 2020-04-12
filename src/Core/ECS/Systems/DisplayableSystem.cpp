@@ -18,8 +18,8 @@ namespace TouhouFanGame::ECS::Systems
 
 	void DisplayableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity->getComponent("Position").to<Components::PositionComponent>();
-		auto &disp = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
+		auto &pos = entity->getComponent(Position);
+		auto &disp = entity->getComponent(Displayable);
 
 		disp.renderEntity.setSize(pos.size);
 		disp.renderEntity.setPosition(pos.position);

@@ -17,8 +17,8 @@ namespace TouhouFanGame::ECS::Systems
 
 	void MovableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity->getComponent("Position").to<Components::PositionComponent>();
-		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
+		auto &pos = entity->getComponent(Position);
+		auto &mov = entity->getComponent(Movable);
 
 		pos.position.x += mov.speed * cos(mov.angleDir);
 		pos.position.y += mov.speed * sin(mov.angleDir);

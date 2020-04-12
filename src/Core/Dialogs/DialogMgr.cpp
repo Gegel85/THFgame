@@ -289,10 +289,10 @@ namespace TouhouFanGame
 	{
 		const std::map<std::string, std::pair<unsigned, std::function<void(const std::vector<std::string> &)>>> cmds{
 			{"playerName", {0, [this, &game](const std::vector<std::string> &){
-				this->_left = game.state.map.getPlayer()->getComponent("Name").to<ECS::Components::NameComponent>().name + this->_left;
+				this->_left = game.state.map.getPlayer()->getComponent(Name).name + this->_left;
 			}}},
 			{"holderName", {0, [this](const std::vector<std::string> &){
-				this->_left = (this->_holder ? this->_holder->getComponent("Name").to<ECS::Components::NameComponent>().name : "(NULL)") + this->_left;
+				this->_left = (this->_holder ? this->_holder->getComponent(Name).name : "(NULL)") + this->_left;
 			}}},
 			{"setMusic", {1, [&game](const std::vector<std::string> &args){
 				game.resources.playMusic(args[0]);

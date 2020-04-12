@@ -14,7 +14,7 @@ namespace TouhouFanGame::ECS::Systems
 
 	void ExperienceSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &exp = entity->getComponent("Experience").to<Components::ExperienceComponent>();
+		auto &exp = entity->getComponent(Experience);
 
 		while (exp.exp >= exp.level * EXP_NEEDED)
 			exp.exp -= exp.level++ * EXP_NEEDED;

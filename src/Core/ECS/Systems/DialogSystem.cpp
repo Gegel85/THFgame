@@ -18,18 +18,18 @@ namespace TouhouFanGame::ECS::Systems
 
 	void DialogSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &dialog = entity->getComponent("Dialog").to<Components::DialogComponent>();
-		auto &interact = entity->getComponent("Interact").to<Components::InteractComponent>();
+		auto &dialog = entity->getComponent(Dialog);
+		auto &interact = entity->getComponent(Interact);
 
 		if (dialog.triggered) {
 			if (dialog.manager.finish()) {
-				auto &hud = dialog.triggered->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
+				auto &hud = dialog.triggered->getComponent(PlayerHUD);
 
 				dialog.manager.resetSprites();
 				dialog.manager.setHolder(nullptr);
 				hud.hud.setDialogManager(nullptr);
 				try {
-					dialog.triggered->getComponent("Controllable").to<Components::ControllableComponent>().disabled = false;
+					dialog.triggered->getComponent(Controllable).disabled = false;
 				} catch (NoSuchComponentException &) {}
 				dialog.triggered = nullptr;
 			}
@@ -45,13 +45,13 @@ namespace TouhouFanGame::ECS::Systems
 			interactedWith->hasComponent("PlayerHUD") &&
 			interactedWith->hasComponent("Name")
 		) {
-			auto &hud = interactedWith->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
+			auto &hud = interactedWith->getComponent(PlayerHUD);
 
 			dialog.triggered = interactedWith;
 			dialog.manager.setHolder(entity);
 			hud.hud.setDialogManager(&dialog.manager);
 			try {
-				interactedWith->getComponent("Controllable").to<Components::ControllableComponent>().disabled = true;
+				interactedWith->getComponent(Controllable).disabled = true;
 			} catch (NoSuchComponentException &) {}
 			interact.interactedWith.reset();
 		}

@@ -19,8 +19,8 @@ namespace TouhouFanGame::ECS::Systems
 
 	void OOBDieSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity->getComponent("Position").to<ECS::Components::PositionComponent>();
-		auto size = entity->getComponent("OOBDie").to<ECS::Components::OOBDieComponent>().map.getPixelSize();
+		auto &pos = entity->getComponent(Position);
+		auto size = entity->getComponent(OOBDie).map.getPixelSize();
 
 		if (
 			pos.position.x < -static_cast<float>(pos.size.x) ||

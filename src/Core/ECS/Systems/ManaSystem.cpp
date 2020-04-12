@@ -16,7 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 
 	void ManaSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &mana = entity->getComponent("Mana").to<Components::ManaComponent>();
+		auto &mana = entity->getComponent(Mana);
 
 		mana.mana = std::min(mana.mana, mana.maxMana);
 	}

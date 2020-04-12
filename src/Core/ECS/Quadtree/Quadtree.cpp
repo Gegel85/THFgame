@@ -85,7 +85,7 @@ namespace TouhouFanGame::ECS::Quadtree
 			for (auto &obj : this->_entities) {
 				if (!obj->hasComponent("Collider"))
 					continue;
-				auto &col = obj->getComponent("Collider").to<Components::ColliderComponent>();
+				auto &col = obj->getComponent(Collider);
 				collisionLayer = collider.getCollisionLayer(col.colliders);
 				if (collisionLayer >= 0)
 					ret.emplace_back(obj, collisionLayer);

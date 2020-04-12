@@ -24,8 +24,8 @@ namespace TouhouFanGame
 
 	void Item::use(TouhouFanGame::ECS::Entity &entity)
 	{
-		auto &mana = entity.getComponent("Mana").to<ECS::Components::ManaComponent>();
-		auto &health = entity.getComponent("Health").to<ECS::Components::HealthComponent>();
+		auto &mana = entity.getComponent(Mana);
+		auto &health = entity.getComponent(Health);
 
 		mana.mana += this->_mana;
 		mana.maxMana += this->_maxMana;

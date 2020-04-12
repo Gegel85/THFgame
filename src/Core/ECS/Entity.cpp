@@ -52,14 +52,14 @@ namespace TouhouFanGame::ECS
 	bool Entity::hasComponent(const std::string &name) const
 	{
 		try {
-			this->getComponent(name);
+			this->_getComponent(name);
 		} catch (NoSuchComponentException &) {
 			return false;
 		}
 		return true;
 	}
 
-	Component &Entity::getComponent(const std::string &name) const
+	Component &Entity::_getComponent(const std::string &name) const
 	{
 		for (auto &component : this->_components)
 			if (component->getName() == name)

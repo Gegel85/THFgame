@@ -76,10 +76,12 @@ namespace TouhouFanGame::ECS
 		//! @return True if the requested Component was found. False otherwise.
 		bool hasComponent(const std::string &name) const;
 
+		#define getComponent(component) _getComponent(#component).to<TouhouFanGame::ECS::Components::component##Component>()
+
 		//! @brief Returns the Component of the Entity that has this name.
 		//! @return The requested Component.
 		//! @throw ComponentNotFoundException
-		Component &getComponent(const std::string &name) const;
+		Component &_getComponent(const std::string &name) const;
 
 		//! @brief Get all the Component's name this Entity has.
 		//! @return A collection of Component names that this Entity has.

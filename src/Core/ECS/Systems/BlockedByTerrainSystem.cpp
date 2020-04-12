@@ -65,9 +65,9 @@ namespace TouhouFanGame::ECS::Systems
 
 	void BlockedByTerrainSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &pos = entity->getComponent("Position").to<Components::PositionComponent>();
-		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
-		auto &block = entity->getComponent("BlockedByTerrain").to<Components::BlockedByTerrainComponent>();
+		auto &pos = entity->getComponent(Position);
+		auto &mov = entity->getComponent(Movable);
+		auto &block = entity->getComponent(BlockedByTerrain);
 		unsigned char tileSize = block.map.getTileSize();
 		float end = mov.speed - std::fmod(mov.speed, tileSize) + tileSize;
 

@@ -19,12 +19,12 @@ namespace TouhouFanGame::ECS::Systems
 
 	void PlayerHUDSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &health = entity->getComponent("Health").to<Components::HealthComponent>();
-		auto &mana = entity->getComponent("Mana").to<Components::ManaComponent>();
-		auto &name = entity->getComponent("Name").to<Components::NameComponent>();
-		auto &hud = entity->getComponent("PlayerHUD").to<Components::PlayerHUDComponent>();
-		auto &exp = entity->getComponent("Experience").to<Components::ExperienceComponent>();
-		auto &deck = entity->getComponent("Deck").to<Components::DeckComponent>();
+		auto &health = entity->getComponent(Health);
+		auto &mana = entity->getComponent(Mana);
+		auto &name = entity->getComponent(Name);
+		auto &hud = entity->getComponent(PlayerHUD);
+		auto &exp = entity->getComponent(Experience);
+		auto &deck = entity->getComponent(Deck);
 		std::vector<std::string> textures;
 
 		for (auto &card : deck.tree.getUnlockedCards(exp.level))

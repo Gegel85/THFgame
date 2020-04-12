@@ -461,12 +461,12 @@ namespace TouhouFanGame
 
 	Vector2u &Map::_getPlayerSize()
 	{
-		return this->getPlayer()->getComponent("Position").to<ECS::Components::PositionComponent>().size;
+		return this->getPlayer()->getComponent(Position).size;
 	}
 
 	Vector2f &Map::_getPlayerPosition()
 	{
-		return this->getPlayer()->getComponent("Position").to<ECS::Components::PositionComponent>().position;
+		return this->getPlayer()->getComponent(Position).position;
 	}
 
 	void Map::setBordersSolid(bool linksDisabled)

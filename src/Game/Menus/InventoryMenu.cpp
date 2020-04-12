@@ -25,7 +25,7 @@ namespace TouhouFanGame
 	void InventoryMenu::render()
 	{
 		auto player = this->_map.getPlayer();
-		auto &inventory = player->getComponent("Inventory").to<ECS::Components::InventoryComponent>();
+		auto &inventory = player->getComponent(Inventory);
 		auto camera = this->_screen.getCameraCenter();
 		auto screenSize = this->_screen.getSize();
 
@@ -73,7 +73,7 @@ namespace TouhouFanGame
 	void InventoryMenu::handleEvent(const TouhouFanGame::Input::Event &event)
 	{
 		auto player = this->_map.getPlayer();
-		auto &inventory = player->getComponent("Inventory").to<ECS::Components::InventoryComponent>();
+		auto &inventory = player->getComponent(Inventory);
 
 		if (event.type == Input::Event::EVENT_TRIGGERED) {
 			switch (event.action) {

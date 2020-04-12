@@ -18,10 +18,10 @@ namespace TouhouFanGame::ECS::Systems
 
 	void DeckSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &deck = entity->getComponent("Deck").to<Components::DeckComponent>();
-		auto &mana = entity->getComponent("Mana").to<Components::ManaComponent>();
-		auto &exp = entity->getComponent("Experience").to<Components::ExperienceComponent>();
-		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
+		auto &deck = entity->getComponent(Deck);
+		auto &mana = entity->getComponent(Mana);
+		auto &exp = entity->getComponent(Experience);
+		auto &shoot = entity->getComponent(Shoot);
 
 		deck.selectedCard %= deck.tree.getUnlockedCards(exp.level).size();
 		deck.tree.updateCards();

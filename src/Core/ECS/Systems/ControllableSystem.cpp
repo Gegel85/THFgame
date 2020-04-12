@@ -23,11 +23,11 @@ namespace TouhouFanGame::ECS::Systems
 
 	void ControllableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &co = entity->getComponent("Controllable").to<Components::ControllableComponent>();
-		auto &mov = entity->getComponent("Movable").to<Components::MovableComponent>();
-		auto &dis = entity->getComponent("Displayable").to<Components::DisplayableComponent>();
-		auto &shoot = entity->getComponent("Shoot").to<Components::ShootComponent>();
-		auto &deck = entity->getComponent("Deck").to<Components::DeckComponent>();
+		auto &co = entity->getComponent(Controllable);
+		auto &mov = entity->getComponent(Movable);
+		auto &dis = entity->getComponent(Displayable);
+		auto &shoot = entity->getComponent(Shoot);
+		auto &deck = entity->getComponent(Deck);
 
 		shoot.shooting = false;
 		deck.used = false;
@@ -37,7 +37,7 @@ namespace TouhouFanGame::ECS::Systems
 			return;
 		}
 
-		auto &col = entity->getComponent("Collision").to<Components::CollisionComponent>();
+		auto &col = entity->getComponent(Collision);
 		bool sprinting = false;
 		bool moving = false;
 
@@ -55,7 +55,7 @@ namespace TouhouFanGame::ECS::Systems
 			case Input::INTERACT:
 				for (auto &ent : col.collided)
 					if (ent.first->hasComponent("Interact"))
-						ent.first->getComponent("Interact").to<Components::InteractComponent>().interactedWith = entity;
+						ent.first->getComponent(Interact).interactedWith = entity;
 				break;
 			case Input::SPRINT:
 				sprinting = true;

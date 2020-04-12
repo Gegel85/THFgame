@@ -16,7 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 
 	void HealthSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &health = entity->getComponent("Health").to<Components::HealthComponent>();
+		auto &health = entity->getComponent(Health);
 
 		health.health = std::min(health.health, health.maxHealth);
 	}

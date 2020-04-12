@@ -51,10 +51,10 @@ namespace TouhouFanGame::ECS::Quadtree
 	bool ICollider::collideWithEntity(const std::shared_ptr<Entity> &entity) const
 	{
 		if (entity->hasComponent("Collision")) {
-			auto &col = entity->getComponent("Collision").to<Components::CollisionComponent>();
+			auto &col = entity->getComponent(Collision);
 			return this->getCollisionLayer(*col.collider) > 0;
 		} else {
-			auto &col = entity->getComponent("Collider").to<Components::ColliderComponent>();
+			auto &col = entity->getComponent(Collider);
 			return this->getCollisionLayer(col.colliders) > 0;
 		}
 	}

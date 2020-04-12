@@ -44,7 +44,7 @@ namespace TouhouFanGame
 			default:
 				break;
 			case Input::SWAP_CARD:
-				auto &deck = this->_game.state.map.getPlayer()->getComponent("Deck").to<ECS::Components::DeckComponent>();
+				auto &deck = this->_game.state.map.getPlayer()->getComponent(Deck);
 
 				deck.selectedCard++;
 			}

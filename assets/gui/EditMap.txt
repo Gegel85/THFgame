@@ -36,14 +36,6 @@ Renderer.2 {
 }
 
 Renderer.3 {
-    backgroundcolor = transparent;
-    bordercolor = #3C3C3C;
-    borders = (0, 0, 0, 0);
-    textcolor = #3C3C3C;
-    texturebackground = None;
-}
-
-Renderer.4 {
     backgroundcolor = #F5F5F5;
     backgroundcolordisabled = #E6E6E6;
     backgroundcolorhover = white;
@@ -65,26 +57,35 @@ Renderer.4 {
     texturehover = None;
 }
 
+Renderer.4 {
+    backgroundcolor = transparent;
+    bordercolor = #3C3C3C;
+    borders = (0, 0, 0, 0);
+    textcolor = #3C3C3C;
+    texturebackground = None;
+}
+
 Label.Widget1 {
     AutoSize = true;
-    Position = (30, 20);
+    Position = (10, 10);
     ScrollbarPolicy = Never;
     Size = (40.2, 18);
     Text = Width;
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 Button.BtnCancel {
-    Position = (324, 170);
-    Size = (61, 22);
+    Position = (274, 118);
+    Size = (101, 32);
     Text = Cancel;
     TextSize = 13;
     renderer = &1;
 }
 
 Button.BtnLoad {
-    Position = ((btncancel.left - 15) - width, 170);
+    Position = (274, 68);
+    Size = (101, 42);
     Text = OK;
     TextSize = 13;
     renderer = &1;
@@ -92,64 +93,64 @@ Button.BtnLoad {
 
 Label.Label1 {
     AutoSize = true;
-    Position = (30, 50);
+    Position = (10, 40);
     ScrollbarPolicy = Never;
     Size = (44.2, 18);
     Text = Heigth;
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 EditBox.MapWidth {
     InputValidator = "[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (100, 18);
-    Size = (110, 22);
+    Position = (80, 8);
+    Size = (50, 22);
     Text = 32;
     TextSize = 13;
-    renderer = &4;
+    renderer = &3;
 }
 
 EditBox.MapHeight {
     InputValidator = "[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (100, 48);
-    Size = (110, 22);
+    Position = (80, 38);
+    Size = (50, 22);
     Text = 32;
     TextSize = 13;
-    renderer = &4;
+    renderer = &3;
 }
 
 Label.Label2 {
     AutoSize = true;
-    Position = (30, 80);
+    Position = (10, 70);
     ScrollbarPolicy = Never;
     Size = (54.2, 18);
     Text = "Tile size";
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 EditBox.TileSize {
     InputValidator = "[1-9]\\d{0,1}|[1-2]\\d{2}|2[0-4]\\d|25[0-5]";
-    Position = (100, 78);
-    Size = (110, 22);
+    Position = (80, 68);
+    Size = (50, 22);
     Text = 16;
-    TextSize = 13;
-    renderer = &4;
-}
-
-Label.Label3 {
-    AutoSize = true;
-    Position = (220, 20);
-    ScrollbarPolicy = Never;
-    Size = (79.2, 18);
-    Text = "Solid border";
     TextSize = 13;
     renderer = &3;
 }
 
+Label.Label3 {
+    AutoSize = true;
+    Position = (140, 70);
+    ScrollbarPolicy = Never;
+    Size = (79.2, 18);
+    Text = "Solid border";
+    TextSize = 13;
+    renderer = &4;
+}
+
 CheckBox.SolidBorder {
     Checked = true;
-    Position = (320, 20);
+    Position = (230, 70);
     Size = (18, 18);
     TextSize = 13;
 
@@ -182,12 +183,12 @@ CheckBox.SolidBorder {
 
 Label.Label4 {
     AutoSize = true;
-    Position = (220, 50);
+    Position = (140, 10);
     ScrollbarPolicy = Never;
     Size = (58.2, 18);
     Text = "Tile map";
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 ComboBox.TileMap {
@@ -195,20 +196,20 @@ ComboBox.TileMap {
     ExpandDirection = Down;
     ItemsToDisplay = 0;
     MaximumItems = 0;
-    Position = (290, 48);
-    Size = (95, 22);
+    Position = (210, 8);
+    Size = (165, 22);
     TextSize = 13;
     renderer = &2;
 }
 
 Label.Label5 {
     AutoSize = true;
-    Position = (220, 80);
+    Position = (140, 40);
     ScrollbarPolicy = Never;
     Size = (38.2, 18);
     Text = Music;
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 ComboBox.Music {
@@ -216,84 +217,84 @@ ComboBox.Music {
     ExpandDirection = Down;
     ItemsToDisplay = 0;
     MaximumItems = 0;
-    Position = (290, 78);
-    Size = (95, 22);
+    Position = (210, 38);
+    Size = (165, 22);
     TextSize = 13;
     renderer = &2;
 }
 
 Label.Label6 {
     AutoSize = true;
-    Position = (30, 110);
+    Position = (10, 100);
     ScrollbarPolicy = Never;
     Size = (45.2, 18);
     Text = "Up link";
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 Label.Label7 {
     AutoSize = true;
-    Position = (30, 140);
+    Position = (10, 130);
     ScrollbarPolicy = Never;
     Size = (65.2, 18);
     Text = "Down link";
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 Label.Label8 {
     AutoSize = true;
-    Position = (220, 110);
+    Position = (140, 100);
     ScrollbarPolicy = Never;
     Size = (53.2, 18);
     Text = "Left link";
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 Label.Label9 {
     AutoSize = true;
-    Position = (220, 140);
+    Position = (140, 130);
     ScrollbarPolicy = Never;
     Size = (61.2, 18);
     Text = "Right link";
     TextSize = 13;
-    renderer = &3;
+    renderer = &4;
 }
 
 EditBox.UpLink {
     InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (100, 108);
-    Size = (110, 22);
+    Position = (80, 98);
+    Size = (50, 22);
     Text = 0;
     TextSize = 13;
-    renderer = &4;
+    renderer = &3;
 }
 
 EditBox.DownLink {
     InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (100, 138);
-    Size = (110, 22);
+    Position = (80, 128);
+    Size = (50, 22);
     Text = 0;
     TextSize = 13;
-    renderer = &4;
+    renderer = &3;
 }
 
 EditBox.LeftLink {
     InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (290, 108);
-    Size = (95, 22);
+    Position = (210, 128);
+    Size = (55, 22);
     Text = 0;
     TextSize = 13;
-    renderer = &4;
+    renderer = &3;
 }
 
 EditBox.RightLink {
     InputValidator = "0|[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d\\d\\d|65[0-4]\\d\\d|655[0-2]\\d|6553[0-5]";
-    Position = (290, 138);
-    Size = (95, 22);
+    Position = (210, 98);
+    Size = (55, 22);
     Text = 0;
     TextSize = 13;
-    renderer = &4;
+    renderer = &3;
 }

@@ -3,6 +3,7 @@
 //
 
 #include <TGUI/TGUI.hpp>
+#include <iostream>
 #include "MapEditor.hpp"
 #include "../Core/Loading/Loader.hpp"
 #include "Menus/MainMenu.hpp"
@@ -63,9 +64,9 @@ namespace TouhouFanGame
 		});
 
 		win->setTitle("Change map settings");
-		win->setSize(400, 200);
 		win->loadWidgetsFromFile("assets/gui/EditMap.txt");
 		win->setFocused(true);
+		win->setSize("BtnCancel.x + BtnCancel.w + Widget1.x", "BtnCancel.y + BtnCancel.h + Widget1.y");
 
 		auto width = win->get<tgui::EditBox>("MapWidth");
 		auto height = win->get<tgui::EditBox>("MapHeight");
@@ -690,8 +691,16 @@ namespace TouhouFanGame
 			this->_game.resources.screen->clear();
 
 			while (this->_game.resources.screen->pollEvent(event)) {
-				if (this->_gui->handleEvent(event))
+				if (this->_gui->handleEvent(event)) {
+					if (event.type == sf::Event::MouseMoved) {
+						if (this->_posLabels.x)
+							this->_posLabels.x->setText("X: "+ std::to_string(static_cast<int>(event.mouseMove.x)));
+						if (this->_posLabels.y)
+							this->_posLabels.y->setText("Y: "+ std::to_string(static_cast<int>(event.mouseMove.y)));
+					}
 					continue;
+				}
+
 				switch (event.type) {
 				case sf::Event::Closed:
 					this->_game.resources.screen->close();

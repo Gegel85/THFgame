@@ -220,29 +220,37 @@ namespace TouhouFanGame
 
 		auto &pos = this->_getPlayerPosition();
 		auto size = this->_getPlayerSize();
+		auto setPos = [&pos, this]{
+			for (auto &entity : this->_core.getEntityByName("Ally"))
+				entity.lock()->getComponent(Position).position = pos;
+		};
 
 		if (pos.x < size.x / -2.) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->loadMap(this->_links[Input::LEFT]);
 			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
+			setPos();
 			this->_savePlayer();
 
 		} else if (pos.y < size.y / -2.) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->loadMap(this->_links[Input::UP]);
 			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
+			setPos();
 			this->_savePlayer();
 
 		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->loadMap(this->_links[Input::RIGHT]);
 			pos.x = size.x / -2.;
+			setPos();
 			this->_savePlayer();
 
 		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
 			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
 			this->loadMap(this->_links[Input::DOWN]);
 			pos.y = size.y / -2.;
+			setPos();
 			this->_savePlayer();
 		}
 
@@ -253,13 +261,19 @@ namespace TouhouFanGame
 			) {
 				this->loadMap(trigger.mapId);
 				pos = Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
+				setPos();
 			}
 	}
 
 	void Map::reset()
 	{
 		try {
-			this->_core.clear({this->getPlayer()->getID()});
+			std::vector<unsigned> whitelist{this->getPlayer()->getID()};
+
+			for (auto &entity : this->_core.getEntityByName("Ally"))
+				whitelist.push_back(entity.lock()->getID());
+
+			this->_core.clear(whitelist);
 		} catch (CorruptedMapException &) {
 			this->_core.clear();
 		}

@@ -1,3 +1,6 @@
 {
-    "TestPlayer": "entity_prefabs/TestPlayer.entity"
+    "TestPlayer": "entity_prefabs/TestPlayer.entity",
+    "FlandrePlayer": "entity_prefabs/FlandrePlayer.entity",
+    "CirnoBoss": "entity_prefabs/CirnoBoss.entity",
+    "CirnoAlly": "entity_prefabs/CirnoAlly.entity"
 }

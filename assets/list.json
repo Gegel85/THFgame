@@ -22,6 +22,7 @@
 		"tilemap1": "tilemaps/tilemap1.png",
 		"testEntity": "entities/test.png",
 		"flandreEntity": "entities/flandre.png",
+		"cirnoEntity": "entities/cirno.png",
 		"heal_potion": "items/heal_potion.png",
 		"mana_potion": "items/mana_potion.png",
 		"dialog_box": "dialogs/dialog_box.png",

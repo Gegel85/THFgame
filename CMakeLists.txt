@@ -13,6 +13,7 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Release)
 		if (WIN32)
 			add_link_options(-mwindows)
 		endif (WIN32)
+		add_link_options(-rdynamic)
 	endif (CMAKE_COMPILER_IS_GNUCC)
 endif ()
 if (WIN32)
@@ -236,6 +237,19 @@ set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_S
 
 #_____________________________________________________________
 
+add_library(
+	allyDodge MODULE
+	src/AIScripts/allyDodge.cpp
+)
+
+target_link_libraries(
+	allyDodge
+	THFgame-core
+)
+set_target_properties(allyDodge PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/ais" PREFIX "")
+
+#_____________________________________________________________
+
 add_executable(
 	THFgame
 	${GAME_ICON}
@@ -256,4 +270,5 @@ target_link_libraries(
 add_dependencies(
 	THFgame
 	test_attack
+	allyDodge
 )

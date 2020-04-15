@@ -18,6 +18,8 @@ namespace TouhouFanGame
 	{
 		unsigned neededLevel;
 		unsigned manaCost;
+		unsigned baseCooldown;
+		unsigned cooldown = 0;
 		std::string name;
 		std::string texture;
 		std::string description;

@@ -12,6 +12,7 @@ namespace TouhouFanGame
 	Card::Card(const TouhouFanGame::Card &card) :
 		neededLevel(card.neededLevel),
 		manaCost(card.manaCost),
+		baseCooldown(card.baseCooldown),
 		name(card.name),
 		texture(card.texture),
 		description(card.description),
@@ -23,6 +24,7 @@ namespace TouhouFanGame
 	Card::Card(nlohmann::json value) :
 		neededLevel(value["level"]),
 		manaCost(value["cost"]),
+		baseCooldown(value["cooldown"]),
 		name(value["name"]),
 		texture(value["texture"]),
 		description(value["description"]),
@@ -41,6 +43,7 @@ namespace TouhouFanGame
 		this->texture = card.texture;
 		this->description = card.description;
 		this->handlerPath = card.handlerPath;
+		this->baseCooldown = card.baseCooldown;
 		return *this;
 	}
 
@@ -100,6 +103,8 @@ namespace TouhouFanGame
 	{
 		std::for_each(this->_cards.begin(), this->_cards.end(), [](Card &card){
 			Utils::callExternalModule<void>(*card.handler, "update");
+			if (card.cooldown)
+				card.cooldown--;
 		});
 	}
 }

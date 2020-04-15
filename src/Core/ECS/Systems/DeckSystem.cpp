@@ -28,11 +28,10 @@ namespace TouhouFanGame::ECS::Systems
 
 		auto &card = deck.tree.getCard(deck.selectedCard);
 
-		if (
-			deck.used &&
-			card.manaCost <= mana.mana &&
-			!Utils::callExternalModule<int>(*card.handler, "spellCard" + std::to_string(deck.selectedCard), *entity, this->_core, shoot.resources, shoot.map)
-		)
+		if (deck.used && card.manaCost <= mana.mana && !card.cooldown) {
+			Utils::callExternalModule<void>(*card.handler, "spellCard" + std::to_string(deck.selectedCard), *entity, this->_core, shoot.resources, shoot.map);
 			mana.mana -= card.manaCost;
+			card.cooldown = card.baseCooldown;
+		}
 	}
 }

@@ -9,7 +9,7 @@
 
 extern "C"
 {
-	std::vector<TouhouFanGame::Input::Action> getAIActions(TouhouFanGame::ECS::Core &, TouhouFanGame::Map &) {
+	std::vector<TouhouFanGame::Input::Action> getAIActions(void *, TouhouFanGame::ECS::Core &, TouhouFanGame::Map &) {
 		return {};
 	}
 }

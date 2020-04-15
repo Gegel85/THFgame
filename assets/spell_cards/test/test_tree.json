@@ -4,6 +4,7 @@
         "name": "Test spell card 1",
         "texture": "test_spell_card1",
         "cost": 1,
+	"cooldown": 10,
         "description": "The first spell card used to test",
         "handler": "battle_scripts/test_attack"
     },
@@ -12,6 +13,7 @@
         "name": "Test spell card 2",
         "texture": "test_spell_card2",
         "cost": 5,
+	"cooldown": 100,
         "description": "The second spell card used to test",
         "handler": "battle_scripts/test_attack"
     },
@@ -20,6 +22,7 @@
         "name": "Test spell card 3",
         "texture": "test_spell_card3",
         "cost": 10,
+	"cooldown": 1000,
         "description": "The third spell card used to test",
         "handler": "battle_scripts/test_attack"
     }

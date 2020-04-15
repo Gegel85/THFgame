@@ -16,9 +16,7 @@
 #include "../Core/ECS/Components/ColliderComponent.hpp"
 #include "../Core/ECS/Quadtree/RectangleCollider.hpp"
 
-std::vector<unsigned int> timer{
-	0, 0, 0, 0
-};
+#define TIMER_SIZE 4
 
 TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGame::Resources &resources, TouhouFanGame::Vector2f pos, double dir)
 {
@@ -32,14 +30,7 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 	m->speed = 10;
 	m->angleDir = dir;
 	p->angle = dir + M_PI_2;
-	/*p->position = {
-		static_cast<float>(map.getPixelSize().x),
-		pos.y
-	};
-	m->speed = 10;
-	m->angleDir = M_PI;
-	d->spriteAngle = M_PI_2;
-	d->animation = TouhouFanGame::Rendering::ATTACKING;*/
+	d->animation = TouhouFanGame::Rendering::ATTACKING;
 
 	return new TouhouFanGame::ECS::Entity(0, "PlayerProjectile", std::vector<TouhouFanGame::ECS::Component *>{
 		m,
@@ -52,20 +43,12 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 
 extern "C"
 {
-	void update()
+	void update(void *)
 	{
-		for (size_t i = 0; i < timer.size(); i++)
-			if (timer[i] != 0)
-				timer[i]--;
 	}
 
-	int spellCard0(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned spellCard0(void *, TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
-		if (timer[1] != 0)
-			return timer[1];
-
-		timer[1] = 100;
-
 		auto &pos = entity.getComponent(Position);
 
 		for (int i = 0; i < 16; i++) {
@@ -79,13 +62,8 @@ extern "C"
 		return 0;
 	}
 
-	int spellCard1(TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned spellCard1(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
-		if (timer[2] != 0)
-			return timer[2];
-
-		timer[2] = 1000;
-
 		for (size_t i = 0; i < map.getPixelSize().y - 16; i += 4)
 			core.registerEntity(makeProjectile(map, resources, {
 				static_cast<float>(map.getPixelSize().x - 16),
@@ -109,23 +87,31 @@ extern "C"
 		return 0;
 	}
 
-	int spellCard2(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned spellCard2(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
-		if (timer[3] != 0)
-			return timer[3];
+		auto *p = new TouhouFanGame::ECS::Components::PositionComponent(map.getPixelSize());
+		auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
+		auto *d = new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json");
+		auto *o = new TouhouFanGame::ECS::Components::OOBDieComponent(map);
+		auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 12, 12, 0)});
 
-		timer[3] = 10;
+		p->position = {-static_cast<float>(p->size.x), 0};
+		m->speed = 1;
+		m->angleDir = 0;
+		d->animation = TouhouFanGame::Rendering::ATTACKING;
 
+		core.registerEntity(new TouhouFanGame::ECS::Entity(0, "PlayerProjectile", std::vector<TouhouFanGame::ECS::Component *>{
+			m,
+			d,
+			p,
+			o,
+			c
+		}, false));
 		return 0;
 	}
 
-	int attackDefault(TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned attackDefault(void *, TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
 	{
-		if (timer[0] != 0)
-			return timer[0];
-
-		timer[0] = 10;
-
 		auto &pos = entity.getComponent(Position);
 		auto &mov = entity.getComponent(Movable);
 		auto angle = mov.angleDir;

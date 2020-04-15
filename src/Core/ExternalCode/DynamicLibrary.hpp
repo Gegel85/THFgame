@@ -34,15 +34,16 @@ namespace TouhouFanGame
 	class DynamicLibrary : public ExternalModule {
 	private:
 		HMODULE _handler;
+		void *_userdata = nullptr;
 
 	public:
 		template<typename resultType, typename ...argsTypes>
 		resultType call(const std::string &procName, argsTypes &...args) {
-			auto func = reinterpret_cast<resultType (*)(argsTypes &...)>(dlsym(this->_handler, procName.c_str()));
+			auto func = reinterpret_cast<resultType (*)(void *, argsTypes &...)>(dlsym(this->_handler, procName.c_str()));
 
 			if (!func)
 				throw ProcedureNotFoundException("Error when trying to fetch " + procName + ": " + Utils::getLastError());
-			return func(args...);
+			return func(this->_userdata, args...);
 		}
 
 		DynamicLibrary(const std::string &path);

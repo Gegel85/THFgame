@@ -24,6 +24,10 @@ namespace TouhouFanGame
 		Vector2<T>(T x, T y)
 			: x(x), y(y) {}
 
+		template <typename T2>
+		Vector2<T>(Vector2<T2> v)
+			: x(v.x), y(v.y) {}
+
 		Vector2<T>(sf::Vector2<T> v)
 			: x(v.x), y(v.y) {}
 

@@ -18,8 +18,11 @@ namespace TouhouFanGame::ECS::Systems
 	{
 		auto &shoot = entity->getComponent(Shoot);
 
-		if (shoot.shooting)
+		if (shoot.shooting && shoot.cooldown == 0) {
 			Utils::callExternalModule<void>(*shoot.handler, "attackDefault", *entity, this->_core, shoot.resources, shoot.map);
+			shoot.cooldown = shoot.startCooldown;
+		} else if (shoot.cooldown)
+			shoot.cooldown--;
 		Utils::callExternalModule<void>(*shoot.handler, "update");
 	}
 }

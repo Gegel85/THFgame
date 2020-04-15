@@ -34,7 +34,7 @@ namespace TouhouFanGame::ECS::Components
 		map(map),
 		resources(resources)
 	{
-		stream >> this->_handlerPath;
+		stream >> this->startCooldown >> this->_handlerPath;
 		this->handler.reset(ExternalModuleFactory::build(this->_handlerPath));
 	}
 
@@ -46,6 +46,6 @@ namespace TouhouFanGame::ECS::Components
 
 	void ShootComponent::serialize(std::ostream &stream) const
 	{
-		stream << this->_handlerPath;
+		stream << this->startCooldown << " " << this->_handlerPath;
 	}
 }

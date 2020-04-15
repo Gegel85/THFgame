@@ -24,12 +24,11 @@ namespace TouhouFanGame::ECS::Components
 
 	public:
 		std::unique_ptr<ExternalModule> handler;
-
 		Map &map;
-
 		bool shooting = false;
-
 		Resources &resources;
+		unsigned startCooldown;
+		unsigned cooldown = 0;
 
 		void setHandlerPath(const std::string &path);
 

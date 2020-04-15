@@ -225,7 +225,7 @@ target_link_libraries(
 
 add_library(
 	test_attack MODULE
-	src/BattleScripts/test_attack.cpp
+	src/AttackScripts/test_attack.cpp
 )
 
 target_link_libraries(

@@ -20,7 +20,8 @@ namespace TouhouFanGame::ECS
 	}
 
 	Entity::Entity(unsigned id) :
-		_id(id)
+		_id(id),
+		_name("Basic Entity")
 	{
 	}
 

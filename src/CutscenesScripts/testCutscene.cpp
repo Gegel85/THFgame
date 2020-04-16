@@ -4,6 +4,7 @@
 
 
 #include "../Core/Resources/Game.hpp"
+#include "../Core/ECS/Components/PositionComponent.hpp"
 
 extern "C"
 {
@@ -23,12 +24,14 @@ extern "C"
 
 	bool isConditionCompleted(void *, TouhouFanGame::ECS::Entity &me, TouhouFanGame::Game &game)
 	{
-		return false;
+		return true;
 	}
 
 	void start(void *, TouhouFanGame::ECS::Entity &me, TouhouFanGame::Game &game)
 	{
+		auto entity = game.state.map.getECSCore().makeEntity("TestAlly").lock();
 
+		entity->getComponent(Position).position = game.state.map.getPlayer()->getComponent(Position).position;
 	}
 
 	void update(void *)

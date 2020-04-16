@@ -15,6 +15,7 @@
 namespace TouhouFanGame
 {
 	struct Game;
+	class MapEditor;
 }
 
 namespace TouhouFanGame::ECS
@@ -36,10 +37,11 @@ namespace TouhouFanGame::ECS
 		//! @brief The name of the Entity.
 		std::string _name;
 
-		//! @brief All the Components the Entity.
+		//! @brief All the Components the Entity has.
 		std::vector<std::unique_ptr<Component>> _components;
 
 		friend Core;
+		friend MapEditor;
 
 	public:
 		Entity(unsigned id);

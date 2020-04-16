@@ -259,7 +259,6 @@ namespace TouhouFanGame
 		});
 		menuBar->connectMenuItem({"New", "Entity"}, [this]{
 			this->_showNewEntityBox();
-			this->_showAllEntities(false);
 		});
 		menuBar->connectMenuItem({"New", "Teleporter"}, [this]{
 			this->_showNewTeleporterBox(this->_map._tpTriggers.emplace_back());
@@ -287,6 +286,7 @@ namespace TouhouFanGame
 			this->_showEntityProperties(
 				this->_map._core.makeEntity(box->getSelectedItem()).lock()
 			);
+			this->_showAllEntities(false);
 			window->close();
 		});
 		cancelButton->connect("Pressed", [window]{
@@ -324,7 +324,7 @@ namespace TouhouFanGame
 		window->loadWidgetsFromFile("assets/gui/windows/entity.txt");
 
 		auto panel = window->get<tgui::ScrollablePanel>("ScrollablePanel1");
-		auto name = panel->get<tgui::Label>("EntityName");
+		auto name = panel->get<tgui::EditBox>("EntityName");
 		auto componentBox = panel->get<tgui::ComboBox>("ComponentName");
 		auto deleteButton = panel->get<tgui::Button>("Delete");
 		auto newButton = panel->get<tgui::Button>("New");
@@ -333,6 +333,10 @@ namespace TouhouFanGame
 		unsigned pos = 0;
 
 		name->setText(entity->getName());
+		name->connect("TextChanged", [this, &entity, name]{
+			entity->_name = name->getText();
+			this->_showAllEntities(false);
+		});
 		window->setSize({350, 250});
 		panel->setSize({350, 250});
 		window->setTitle("Entity " + std::to_string(entity->getID()));

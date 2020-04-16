@@ -30,6 +30,6 @@ namespace TouhouFanGame::ECS::Components
 
 	void CutsceneComponent::serialize(std::ostream &stream) const
 	{
-		stream << this->_modulePath << this->triggered;
+		stream << this->_modulePath << " " << this->triggered;
 	}
 }

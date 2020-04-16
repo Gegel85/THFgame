@@ -20,14 +20,6 @@ Renderer.1 {
     texturehover = None;
 }
 
-Renderer.2 {
-    backgroundcolor = transparent;
-    bordercolor = #3C3C3C;
-    borders = (0, 0, 0, 0);
-    textcolor = #3C3C3C;
-    texturebackground = None;
-}
-
 ScrollablePanel.ScrollablePanel1 {
     ContentSize = (0, 0);
     Size = (300, 150);
@@ -62,15 +54,6 @@ ScrollablePanel.ScrollablePanel1 {
         renderer = &1;
     }
 
-    Label.EntityName {
-        AutoSize = true;
-        Position = (10, 10);
-        ScrollbarPolicy = Never;
-        Size = (3.2, 18);
-        TextSize = 13;
-        renderer = &2;
-    }
-
     ComboBox.ComponentName {
         ChangeItemOnScroll = true;
         ExpandDirection = Down;
@@ -101,6 +84,42 @@ ScrollablePanel.ScrollablePanel1 {
         ScrollbarPolicy = Never;
         Size = (37.2, componentname.h);
         TextSize = 13;
-        renderer = &2;
+
+        Renderer {
+            backgroundcolor = transparent;
+            bordercolor = #3C3C3C;
+            borders = (0, 0, 0, 0);
+            textcolor = #3C3C3C;
+            texturebackground = None;
+        }
+    }
+
+    EditBox.EntityName {
+        InputValidator = "..*";
+        Position = (10, 10);
+        Size = (280, 22);
+        TextSize = 13;
+
+        Renderer {
+            backgroundcolor = transparent;
+            backgroundcolordisabled = transparent;
+            backgroundcolorhover = white;
+            bordercolor = transparent;
+            bordercolordisabled = transparent;
+            bordercolorhover = black;
+            borders = (0, 0, 0, 0);
+            caretcolor = black;
+            caretwidth = 1;
+            defaulttextcolor = #A0A0A0;
+            padding = (0, 0, 0, 0);
+            selectedtextbackgroundcolor = #006EFF;
+            selectedtextcolor = white;
+            textcolor = #3C3C3C;
+            textcolordisabled = #7D7D7D;
+            texture = None;
+            texturedisabled = None;
+            texturefocused = None;
+            texturehover = None;
+        }
     }
 }

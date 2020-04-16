@@ -144,6 +144,7 @@ namespace TouhouFanGame
 		std::filesystem::create_directories("saves");
 		std::ofstream stream{"saves/map_player.sav"};
 
+		//TODO: Save allies
 		if (stream.fail()) {
 			logger.error("Couldn't save map to saves/map_player.sav: " + std::string(strerror(errno)));
 			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));

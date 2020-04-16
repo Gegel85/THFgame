@@ -1,5 +1,7 @@
 {
     "TestPlayer": "entity_prefabs/TestPlayer.entity",
+    "TestBoss": "entity_prefabs/TestBoss.entity",
+    "TestAlly": "entity_prefabs/TestAlly.entity",
     "FlandrePlayer": "entity_prefabs/FlandrePlayer.entity",
     "CirnoBoss": "entity_prefabs/CirnoBoss.entity",
     "CirnoAlly": "entity_prefabs/CirnoAlly.entity"

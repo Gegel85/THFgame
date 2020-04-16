@@ -19,7 +19,7 @@ namespace TouhouFanGame::ECS::Systems
 
 	public:
 		//! @param core The Core the System is in.
-		ControllableSystem(Core &core, const std::string &&name = "Controllabe");
+		ControllableSystem(Core &core, const std::string &&name = "Controllable");
 		void updateEntity(const std::shared_ptr<Entity> &entity) override;
 	};
 }

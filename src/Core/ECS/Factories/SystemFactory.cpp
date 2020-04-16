@@ -18,6 +18,8 @@
 #include "../Systems/OobDieSystem.hpp"
 #include "../Systems/ExperienceSystem.hpp"
 #include "../Systems/DeckSystem.hpp"
+#include "../Systems/AiSystem.hpp"
+#include "../Systems/CutsceneSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -39,6 +41,8 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::OOBDieSystem(core); },
 		[](Core &core){ return new Systems::ExperienceSystem(core); },
 		[](Core &core){ return new Systems::DeckSystem(core); },
+		[](Core &core){ return new Systems::AISystem(core); },
+		[](Core &core){ return new Systems::CutsceneSystem(core); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 

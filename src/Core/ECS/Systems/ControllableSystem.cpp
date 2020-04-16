@@ -16,14 +16,18 @@
 
 namespace TouhouFanGame::ECS::Systems
 {
-	ControllableSystem::ControllableSystem(TouhouFanGame::ECS::Core &core) :
-		System(core, "Controllable", {"Movable", "Position", "Displayable", "Collision", "Deck"})
+	ControllableSystem::ControllableSystem(TouhouFanGame::ECS::Core &core, const std::string &&name) :
+		System(core, static_cast<const std::string &&>(name), {"Movable", "Position", "Displayable", "Collision", "Deck"})
 	{
 	}
 
 	void ControllableSystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		auto &co = entity->getComponent(Controllable);
+		this->_updateEntity(entity, entity->getComponent(Controllable));
+	}
+
+	void ControllableSystem::_updateEntity(const std::shared_ptr<Entity> &entity, Components::ControllableComponent &co)
+	{
 		auto &mov = entity->getComponent(Movable);
 		auto &dis = entity->getComponent(Displayable);
 		auto &shoot = entity->getComponent(Shoot);
@@ -43,32 +47,32 @@ namespace TouhouFanGame::ECS::Systems
 
 		for (auto &action : co.input.getActions()) {
 			switch (action) {
-			case Input::UP:
-			case Input::RIGHT:
-			case Input::DOWN:
-			case Input::LEFT:
-				moving = true;
-				break;
-			case Input::ATTACK:
-				shoot.shooting = true;
-				break;
-			case Input::INTERACT:
-				for (auto &ent : col.collided)
-					if (ent.first->hasComponent("Interact"))
-						ent.first->getComponent(Interact).interactedWith = entity;
-				break;
-			case Input::SPRINT:
-				sprinting = true;
-				break;
-			case Input::USE_CARD:
-				deck.used = true;
-				break;
-			case Input::SWAP_CARD:
-			case Input::DIALOG:
-			case Input::INVENTORY:
-			case Input::PAUSE:
-			case Input::NB_OF_ACTION:
-				break;
+				case Input::UP:
+				case Input::RIGHT:
+				case Input::DOWN:
+				case Input::LEFT:
+					moving = true;
+					break;
+				case Input::ATTACK:
+					shoot.shooting = true;
+					break;
+				case Input::INTERACT:
+					for (auto &ent : col.collided)
+						if (ent.first->hasComponent("Interact"))
+							ent.first->getComponent(Interact).interactedWith = entity;
+					break;
+				case Input::SPRINT:
+					sprinting = true;
+					break;
+				case Input::USE_CARD:
+					deck.used = true;
+					break;
+				case Input::SWAP_CARD:
+				case Input::DIALOG:
+				case Input::INVENTORY:
+				case Input::PAUSE:
+				case Input::NB_OF_ACTION:
+					break;
 			}
 		}
 

@@ -7,14 +7,14 @@
 namespace TouhouFanGame::ECS::Components
 {
 	AIComponent::AIComponent(std::istream &stream, Map &map, ECS::Core &core) :
-		ControllableComponent(this->_ai, stream),
+		ControllableComponent("AI", this->_ai, stream),
 		_ai(map, core)
 	{
 		this->_ai.unserialize(stream);
 	}
 
 	AIComponent::AIComponent(const std::string &modulePath, float regularSpeed, float sprintSpeed, Map &map, ECS::Core &core) :
-		ControllableComponent(this->_ai, regularSpeed, sprintSpeed),
+		ControllableComponent("AI", this->_ai, regularSpeed, sprintSpeed),
 		_ai(modulePath, map, core)
 	{
 

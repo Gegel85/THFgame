@@ -165,7 +165,7 @@ add_library(
 	src/Core/Utils/BaseObject.hpp
 	src/Core/ExternalCode/ExternalModuleFactory.cpp
 	src/Core/ExternalCode/ExternalModuleFactory.hpp
-	src/Core/ECS/Components/AiComponent.cpp src/Core/ECS/Components/AiComponent.hpp src/Core/Input/AiController.cpp src/Core/Input/AiController.hpp)
+	src/Core/ECS/Components/AiComponent.cpp src/Core/ECS/Components/AiComponent.hpp src/Core/Input/AiController.cpp src/Core/Input/AiController.hpp src/Core/ECS/Components/CutsceneComponent.cpp src/Core/ECS/Components/CutsceneComponent.hpp src/Core/ECS/Systems/AiSystem.cpp src/Core/ECS/Systems/AiSystem.hpp src/Core/ECS/Systems/CutsceneSystem.cpp src/Core/ECS/Systems/CutsceneSystem.hpp)
 
 if (WIN32)
 	target_link_libraries(
@@ -222,6 +222,21 @@ target_link_libraries(
 	tgui
 )
 
+add_dependencies(
+	map_editor
+
+	#Attack scripts
+	test_attack
+
+	#AI Scripts
+	allyDodge
+
+	#Cutscene scripts
+	testCutscene
+)
+
+#_____________________________________________________________
+#|                       Attack scripts                      |
 #_____________________________________________________________
 
 add_library(
@@ -236,6 +251,8 @@ target_link_libraries(
 set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
 
 #_____________________________________________________________
+#|                         AI scripts                        |
+#_____________________________________________________________
 
 add_library(
 	allyDodge MODULE
@@ -247,6 +264,21 @@ target_link_libraries(
 	THFgame-core
 )
 set_target_properties(allyDodge PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/ais" PREFIX "")
+
+#_____________________________________________________________
+#|                      Cutscenes scripts                     |
+#_____________________________________________________________
+
+add_library(
+	testCutscene MODULE
+	src/CutscenesScripts/testCutscene.cpp
+)
+
+target_link_libraries(
+	testCutscene
+	THFgame-core
+)
+set_target_properties(testCutscene PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/cutscenes" PREFIX "")
 
 #_____________________________________________________________
 
@@ -269,6 +301,13 @@ target_link_libraries(
 
 add_dependencies(
 	THFgame
+
+	#Attack scripts
 	test_attack
+
+	#AI Scripts
 	allyDodge
+
+	#Cutscene scripts
+	testCutscene
 )

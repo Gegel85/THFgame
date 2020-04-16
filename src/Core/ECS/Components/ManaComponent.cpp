@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "ManaComponent.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
@@ -14,6 +15,8 @@ namespace TouhouFanGame::ECS::Components
 		Component("Mana")
 	{
 		stream >> this->mana >> this->maxMana;
+		if (stream.fail())
+			throw InvalidSerializedString("Invalid ManaComponent");
 	}
 
 	ManaComponent::ManaComponent(float maxMana) :

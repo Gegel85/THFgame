@@ -7,6 +7,22 @@
 
 namespace TouhouFanGame::ECS::Components
 {
+	ControllableComponent::ControllableComponent(const std::string &name, Input &input, std::istream &stream) :
+		Component(name),
+		input(input)
+	{
+		stream >> regularSpeed >> sprintSpeed;
+		if (stream.fail())
+			throw InvalidSerializedString("Invalid ControllableComponent");
+	}
+
+	ControllableComponent::ControllableComponent(const std::string &name, Input &input, float regularSpeed, float sprintSpeed) :
+		Component(name),
+		input(input),
+		regularSpeed(regularSpeed),
+		sprintSpeed(sprintSpeed)
+	{}
+
 	ControllableComponent::ControllableComponent(TouhouFanGame::Input &input, std::istream &stream) :
 		Component("Controllable"),
 		input(input)

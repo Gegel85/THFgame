@@ -13,6 +13,10 @@ namespace TouhouFanGame::ECS::Components
 {
 	//! @brief Given to Entity that can be controlled.
 	class ControllableComponent : public Component {
+	protected:
+		ControllableComponent(const std::string &name, Input &input, float regularSpeed, float sprintSpeed);
+		ControllableComponent(const std::string &name, Input &input, std::istream &stream);
+
 	public:
 		//! @brief The Input device controlling this Entity.
 		Input &input;

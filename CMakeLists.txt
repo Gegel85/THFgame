@@ -165,7 +165,7 @@ add_library(
 	src/Core/Utils/BaseObject.hpp
 	src/Core/ExternalCode/ExternalModuleFactory.cpp
 	src/Core/ExternalCode/ExternalModuleFactory.hpp
-)
+	src/Core/ECS/Components/AiComponent.cpp src/Core/ECS/Components/AiComponent.hpp src/Core/Input/AiController.cpp src/Core/Input/AiController.hpp)
 
 if (WIN32)
 	target_link_libraries(

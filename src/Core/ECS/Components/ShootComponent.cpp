@@ -10,6 +10,7 @@
 #include "../../ExternalCode/DynamicLibrary.hpp"
 #include "../../Resources/Resources.hpp"
 #include "../../ExternalCode/ExternalModuleFactory.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {
@@ -35,6 +36,8 @@ namespace TouhouFanGame::ECS::Components
 		resources(resources)
 	{
 		stream >> this->startCooldown >> this->_handlerPath;
+		if (stream.fail())
+			throw InvalidSerializedString("Invalid ShootComponent");
 		this->handler.reset(ExternalModuleFactory::build(this->_handlerPath));
 	}
 

@@ -150,6 +150,8 @@ namespace TouhouFanGame
 			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
 		}
 		stream << *this->getPlayer() << " " << this->_id;
+		for (auto &ally : this->_core.getEntityByName("Ally"))
+			stream << std::endl << *ally.lock();
 		stream.close();
 	}
 
@@ -207,9 +209,17 @@ namespace TouhouFanGame
 		}
 
 		std::shared_ptr<ECS::Entity> player = this->_core.registerEntity(std::make_shared<ECS::Entity>(0)).lock();
+		auto id = 1;
 
 		player->unserialize(this->_game, stream);
 		stream >> this->_id;
+
+		while (!stream.eof()) {
+			std::shared_ptr<ECS::Entity> ally = this->_core.registerEntity(std::make_shared<ECS::Entity>(id++)).lock();
+
+			ally->unserialize(this->_game, stream);
+		}
+
 		stream.close();
 		player->setSerializable(false);
 		this->loadMap(this->_id);

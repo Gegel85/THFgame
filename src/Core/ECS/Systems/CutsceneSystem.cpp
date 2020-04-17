@@ -21,12 +21,12 @@ namespace TouhouFanGame::ECS::Systems
 		if (cut.triggered)
 			return;
 
-		if (cut.isProgress)
+		if (cut.isProgress) {
 			Utils::callExternalModule<void>(*cut.handler, "update");
-		else if (Utils::callExternalModule<bool>(*cut.handler, "isConditionCompleted", *entity, cut.game)) {
+			cut.triggered = Utils::callExternalModule<bool>(*cut.handler, "isCompleted");
+		} else if (Utils::callExternalModule<bool>(*cut.handler, "isConditionCompleted", *entity, cut.game)) {
 			Utils::callExternalModule<void>(*cut.handler, "start", *entity, cut.game);
 			cut.isProgress = true;
 		}
-		cut.handler;
 	}
 }

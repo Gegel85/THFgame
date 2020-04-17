@@ -144,7 +144,6 @@ namespace TouhouFanGame
 		std::filesystem::create_directories("saves");
 		std::ofstream stream{"saves/map_player.sav"};
 
-		//TODO: Save allies
 		if (stream.fail()) {
 			logger.error("Couldn't save map to saves/map_player.sav: " + std::string(strerror(errno)));
 			throw MapSavingFailureException("saves/map_player.sav: " + std::string(strerror(errno)));
@@ -218,6 +217,7 @@ namespace TouhouFanGame
 			std::shared_ptr<ECS::Entity> ally = this->_core.registerEntity(std::make_shared<ECS::Entity>(id++)).lock();
 
 			ally->unserialize(this->_game, stream);
+			ally->setSerializable(false);
 		}
 
 		stream.close();
@@ -229,6 +229,7 @@ namespace TouhouFanGame
 	{
 		this->_core.update();
 
+		const std::string name = "saves/map_" + std::to_string(this->_id) + ".sav";
 		auto &pos = this->_getPlayerPosition();
 		auto size = this->_getPlayerSize();
 		auto setPos = [&pos, this]{
@@ -237,29 +238,33 @@ namespace TouhouFanGame
 		};
 
 		if (pos.x < size.x / -2.) {
-			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
+			this->_serialize(name + ".tmp");
 			this->loadMap(this->_links[Input::LEFT]);
+			Utils::rename(name + ".tmp", name);
 			pos.x = this->_size.x * this->_tileSize - size.x / 2.;
 			setPos();
 			this->_savePlayer();
 
 		} else if (pos.y < size.y / -2.) {
-			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
+			this->_serialize(name + ".tmp");
 			this->loadMap(this->_links[Input::UP]);
+			Utils::rename(name + ".tmp", name);
 			pos.y = this->_size.y * this->_tileSize - size.y / 2.;
 			setPos();
 			this->_savePlayer();
 
 		} else if (pos.x + size.x / 2. > this->_size.x * this->_tileSize) {
-			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
+			this->_serialize(name + ".tmp");
 			this->loadMap(this->_links[Input::RIGHT]);
+			Utils::rename(name + ".tmp", name);
 			pos.x = size.x / -2.;
 			setPos();
 			this->_savePlayer();
 
 		} else if (pos.y + size.y / 2. > this->_size.y * this->_tileSize) {
-			this->_serialize("saves/map_" + std::to_string(this->_id) + ".sav");
+			this->_serialize(name + ".tmp");
 			this->loadMap(this->_links[Input::DOWN]);
+			Utils::rename(name + ".tmp", name);
 			pos.y = size.y / -2.;
 			setPos();
 			this->_savePlayer();

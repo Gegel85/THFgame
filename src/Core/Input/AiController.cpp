@@ -3,6 +3,8 @@
 //
 
 #include "AiController.hpp"
+
+#include <utility>
 #include "../ExternalCode/ExternalModuleFactory.hpp"
 #include "../Utils/Utils.hpp"
 
@@ -51,7 +53,7 @@ namespace TouhouFanGame::Inputs
 
 	std::vector<Input::Action> AIController::getActions()
 	{
-		auto res = Utils::callExternalModule<AIResponse>(*this->_handler, "getAIActions", this->_core, this->_map);
+		auto res = Utils::callExternalModule<AIResponse>(*this->_handler, "getAIActions", *this->_me.lock(), this->_core, this->_map);
 
 		for (auto && action : this->_lastActions)
 			action = false;
@@ -82,5 +84,10 @@ namespace TouhouFanGame::Inputs
 	std::string AIController::getEnumControlString(Input::Action)
 	{
 		return "AI";
+	}
+
+	void AIController::setMe(std::weak_ptr<ECS::Entity> me)
+	{
+		this->_me = std::move(me);
 	}
 }

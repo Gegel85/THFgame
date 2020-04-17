@@ -24,18 +24,41 @@ include_directories(nlohmann)
 
 add_library(
 	THFgame-core SHARED
+
+	#Data Types
+	src/Core/DataType/Rect.hpp
+	src/Core/Dialogs/DialogMgr.cpp
+	src/Core/Dialogs/DialogMgr.hpp
+
+	#ECS Components
 	src/Core/ECS/Component.cpp
 	src/Core/ECS/Component.hpp
+	src/Core/ECS/Components/AiComponent.cpp
+	src/Core/ECS/Components/AiComponent.hpp
 	src/Core/ECS/Components/BasicSerializeComponent.cpp
 	src/Core/ECS/Components/BasicSerializeComponent.hpp
 	src/Core/ECS/Components/BlockedByTerrainComponent.cpp
 	src/Core/ECS/Components/BlockedByTerrainComponent.hpp
+	src/Core/ECS/Components/ColliderComponent.cpp
+	src/Core/ECS/Components/ColliderComponent.hpp
+	src/Core/ECS/Components/CollisionComponent.cpp
+	src/Core/ECS/Components/CollisionComponent.hpp
 	src/Core/ECS/Components/ControllableComponent.cpp
 	src/Core/ECS/Components/ControllableComponent.hpp
+	src/Core/ECS/Components/CutsceneComponent.cpp
+	src/Core/ECS/Components/CutsceneComponent.hpp
+	src/Core/ECS/Components/DeckComponent.cpp
+	src/Core/ECS/Components/DeckComponent.hpp
+	src/Core/ECS/Components/DialogComponent.cpp
+	src/Core/ECS/Components/DialogComponent.hpp
 	src/Core/ECS/Components/DisplayableComponent.cpp
 	src/Core/ECS/Components/DisplayableComponent.hpp
+	src/Core/ECS/Components/ExperienceComponent.cpp
+	src/Core/ECS/Components/ExperienceComponent.hpp
 	src/Core/ECS/Components/HealthComponent.cpp
 	src/Core/ECS/Components/HealthComponent.hpp
+	src/Core/ECS/Components/InteractComponent.cpp
+	src/Core/ECS/Components/InteractComponent.hpp
 	src/Core/ECS/Components/InventoryComponent.cpp
 	src/Core/ECS/Components/InventoryComponent.hpp
 	src/Core/ECS/Components/ManaComponent.cpp
@@ -44,64 +67,121 @@ add_library(
 	src/Core/ECS/Components/MovableComponent.hpp
 	src/Core/ECS/Components/NameComponent.cpp
 	src/Core/ECS/Components/NameComponent.hpp
+	src/Core/ECS/Components/OobDieComponent.cpp
+	src/Core/ECS/Components/OobDieComponent.hpp
 	src/Core/ECS/Components/PlayerHudComponent.cpp
 	src/Core/ECS/Components/PlayerHudComponent.hpp
 	src/Core/ECS/Components/PositionComponent.cpp
 	src/Core/ECS/Components/PositionComponent.hpp
+	src/Core/ECS/Components/ShootComponent.cpp
+	src/Core/ECS/Components/ShootComponent.hpp
+
+	#ECS Core
 	src/Core/ECS/Core.cpp
 	src/Core/ECS/Core.hpp
 	src/Core/ECS/Entity.cpp
 	src/Core/ECS/Entity.hpp
 	src/Core/ECS/Exceptions.hpp
+
+	#ECS Factories
 	src/Core/ECS/Factories/ComponentFactory.cpp
 	src/Core/ECS/Factories/ComponentFactory.hpp
 	src/Core/ECS/Factories/EntityFactory.cpp
 	src/Core/ECS/Factories/EntityFactory.hpp
 	src/Core/ECS/Factories/SystemFactory.cpp
 	src/Core/ECS/Factories/SystemFactory.hpp
+
+	#ECS Quadtree
+	src/Core/ECS/Quadtree/CircleCollider.cpp
+	src/Core/ECS/Quadtree/CircleCollider.hpp
+	src/Core/ECS/Quadtree/ICollider.cpp
+	src/Core/ECS/Quadtree/ICollider.hpp
+	src/Core/ECS/Quadtree/Quadtree.cpp
+	src/Core/ECS/Quadtree/Quadtree.hpp
+	src/Core/ECS/Quadtree/RectangleCollider.cpp
+	src/Core/ECS/Quadtree/RectangleCollider.hpp
+
+	#ECS Systems
 	src/Core/ECS/System.cpp
 	src/Core/ECS/System.hpp
+	src/Core/ECS/Systems/AiSystem.cpp
+	src/Core/ECS/Systems/AiSystem.hpp
 	src/Core/ECS/Systems/BlockedByTerrainSystem.cpp
 	src/Core/ECS/Systems/BlockedByTerrainSystem.hpp
+	src/Core/ECS/Systems/CollisionSystem.cpp
+	src/Core/ECS/Systems/CollisionSystem.hpp
 	src/Core/ECS/Systems/ControllableSystem.cpp
 	src/Core/ECS/Systems/ControllableSystem.hpp
+	src/Core/ECS/Systems/CutsceneSystem.cpp
+	src/Core/ECS/Systems/CutsceneSystem.hpp
+	src/Core/ECS/Systems/DeckSystem.cpp
+	src/Core/ECS/Systems/DeckSystem.hpp
+	src/Core/ECS/Systems/DialogSystem.cpp
+	src/Core/ECS/Systems/DialogSystem.hpp
 	src/Core/ECS/Systems/DisplayableSystem.cpp
 	src/Core/ECS/Systems/DisplayableSystem.hpp
+	src/Core/ECS/Systems/ExperienceSystem.cpp
+	src/Core/ECS/Systems/ExperienceSystem.hpp
 	src/Core/ECS/Systems/HealthSystem.cpp
 	src/Core/ECS/Systems/HealthSystem.hpp
 	src/Core/ECS/Systems/ManaSystem.cpp
 	src/Core/ECS/Systems/ManaSystem.hpp
 	src/Core/ECS/Systems/MovableSystem.cpp
 	src/Core/ECS/Systems/MovableSystem.hpp
+	src/Core/ECS/Systems/OobDieSystem.cpp
+	src/Core/ECS/Systems/OobDieSystem.hpp
 	src/Core/ECS/Systems/PlayerHudSystem.cpp
 	src/Core/ECS/Systems/PlayerHudSystem.hpp
+	src/Core/ECS/Systems/ShootSystem.cpp
+	src/Core/ECS/Systems/ShootSystem.hpp
 	src/Core/ECS/Systems/UselessSystem.cpp
 	src/Core/ECS/Systems/UselessSystem.hpp
+
+	#Exceptions
 	src/Core/Exceptions.cpp
 	src/Core/Exceptions.hpp
-	src/Core/Resources/Game.hpp
+
+	#External modules
+	src/Core/ExternalCode/DynamicLibrary.cpp
+	src/Core/ExternalCode/DynamicLibrary.hpp
+	src/Core/ExternalCode/ExternalModule.hpp
+	src/Core/ExternalCode/ExternalModuleFactory.cpp
+	src/Core/ExternalCode/ExternalModuleFactory.hpp
+	src/Core/ExternalCode/LuaCode.cpp
+	src/Core/ExternalCode/LuaCode.hpp
+
+	#Inputs
+	src/Core/Input/AiController.cpp
+	src/Core/Input/AiController.hpp
 	src/Core/Input/Input.cpp
 	src/Core/Input/Input.hpp
+	src/Core/Input/SFMLJoypad.cpp
+	src/Core/Input/SFMLJoypad.hpp
 	src/Core/Input/SFMLKeyboard.cpp
 	src/Core/Input/SFMLKeyboard.hpp
+
+	#Inventory
 	src/Core/Inventory/ClassicItem.cpp
 	src/Core/Inventory/ClassicItem.hpp
 	src/Core/Inventory/Item.cpp
 	src/Core/Inventory/Item.hpp
 	src/Core/Inventory/ItemFactory.cpp
 	src/Core/Inventory/ItemFactory.hpp
+
+	#Loading
+	src/Core/Loading/CardTree.cpp
+	src/Core/Loading/CardTree.hpp
 	src/Core/Loading/Loader.cpp
 	src/Core/Loading/Loader.hpp
-	src/Core/Resources/Logger.cpp
-	src/Core/Resources/Logger.hpp
-	src/Core/Resources/Map.cpp
-	src/Core/Resources/Map.hpp
+
+	#Menus
 	src/Core/Menus/Exceptions.hpp
 	src/Core/Menus/Menu.cpp
 	src/Core/Menus/Menu.hpp
 	src/Core/Menus/MenuMgr.cpp
 	src/Core/Menus/MenuMgr.hpp
-	src/Core/Utils/NotCopyable.hpp
+
+	#Rendering
 	src/Core/Rendering/Entity.cpp
 	src/Core/Rendering/Entity.hpp
 	src/Core/Rendering/Exceptions.hpp
@@ -109,63 +189,23 @@ add_library(
 	src/Core/Rendering/Hud.hpp
 	src/Core/Rendering/Screen.cpp
 	src/Core/Rendering/Screen.hpp
+
+	#Resources
+	src/Core/Resources/Game.cpp
+	src/Core/Resources/Game.hpp
+	src/Core/Resources/Logger.cpp
+	src/Core/Resources/Logger.hpp
+	src/Core/Resources/Map.cpp
+	src/Core/Resources/Map.hpp
 	src/Core/Resources/Resources.cpp
 	src/Core/Resources/Resources.hpp
+
+	#Utils
+	src/Core/Utils/BaseObject.hpp
+	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
-	src/Core/Dialogs/DialogMgr.cpp
-	src/Core/Dialogs/DialogMgr.hpp
-	src/Core/ECS/Components/InteractComponent.cpp
-	src/Core/ECS/Components/InteractComponent.hpp
-	src/Core/ECS/Components/CollisionComponent.cpp
-	src/Core/ECS/Components/CollisionComponent.hpp
-	src/Core/ECS/Systems/CollisionSystem.cpp
-	src/Core/ECS/Systems/CollisionSystem.hpp
-	src/Core/ECS/Components/ColliderComponent.cpp
-	src/Core/ECS/Components/ColliderComponent.hpp
-	src/Core/ECS/Components/DialogComponent.cpp
-	src/Core/ECS/Components/DialogComponent.hpp
-	src/Core/ECS/Systems/DialogSystem.cpp
-	src/Core/ECS/Systems/DialogSystem.hpp
-	src/Core/ECS/Components/ShootComponent.cpp
-	src/Core/ECS/Components/ShootComponent.hpp
-	src/Core/ExternalCode/ExternalModule.hpp
-	src/Core/ExternalCode/DynamicLibrary.cpp
-	src/Core/ExternalCode/DynamicLibrary.hpp
-	src/Core/Resources/Game.cpp
-	src/Core/ECS/Systems/ShootSystem.cpp
-	src/Core/ECS/Systems/ShootSystem.hpp
-	src/Core/ECS/Components/OobDieComponent.cpp
-	src/Core/ECS/Components/OobDieComponent.hpp
-	src/Core/ECS/Systems/OobDieSystem.cpp
-	src/Core/ECS/Systems/OobDieSystem.hpp
-	src/Core/ECS/Quadtree/Quadtree.cpp
-	src/Core/ECS/Quadtree/Quadtree.hpp
-	src/Core/DataType/Rect.hpp
-	src/Core/ECS/Quadtree/CircleCollider.cpp
-	src/Core/ECS/Quadtree/CircleCollider.hpp
-	src/Core/ECS/Quadtree/RectangleCollider.cpp
-	src/Core/ECS/Quadtree/RectangleCollider.hpp
-	src/Core/ECS/Quadtree/ICollider.hpp
-	src/Core/ECS/Quadtree/ICollider.cpp
-	src/Core/Input/SFMLJoypad.cpp
-	src/Core/Input/SFMLJoypad.hpp
-	src/Core/ECS/Components/ExperienceComponent.cpp
-	src/Core/ECS/Components/ExperienceComponent.hpp
-	src/Core/ECS/Systems/ExperienceSystem.cpp
-	src/Core/ECS/Systems/ExperienceSystem.hpp
-	src/Core/Loading/CardTree.cpp
-	src/Core/Loading/CardTree.hpp
-	src/Core/ECS/Components/DeckComponent.cpp
-	src/Core/ECS/Components/DeckComponent.hpp
-	src/Core/ECS/Systems/DeckSystem.cpp
-	src/Core/ECS/Systems/DeckSystem.hpp
-	src/Core/ExternalCode/LuaCode.cpp
-	src/Core/ExternalCode/LuaCode.hpp
-	src/Core/Utils/BaseObject.hpp
-	src/Core/ExternalCode/ExternalModuleFactory.cpp
-	src/Core/ExternalCode/ExternalModuleFactory.hpp
-	src/Core/ECS/Components/AiComponent.cpp src/Core/ECS/Components/AiComponent.hpp src/Core/Input/AiController.cpp src/Core/Input/AiController.hpp src/Core/ECS/Components/CutsceneComponent.cpp src/Core/ECS/Components/CutsceneComponent.hpp src/Core/ECS/Systems/AiSystem.cpp src/Core/ECS/Systems/AiSystem.hpp src/Core/ECS/Systems/CutsceneSystem.cpp src/Core/ECS/Systems/CutsceneSystem.hpp)
+)
 
 if (WIN32)
 	target_link_libraries(
@@ -185,6 +225,7 @@ else (WIN32)
 		sfml-graphics
 		sfml-audio
 		dl
+		stdc++fs
 	)
 endif (WIN32)
 
@@ -201,43 +242,9 @@ target_link_libraries(
 
 #_____________________________________________________________
 
-add_executable(
-	map_editor
-	${MAP_EDITOR_ICON}
-	src/MapEditor/main.cpp
-	src/MapEditor/MapEditor.cpp
-	src/MapEditor/MapEditor.hpp
-	src/MapEditor/Menus/MainMenu.cpp
-	src/MapEditor/Menus/MainMenu.hpp
-	src/MapEditor/GuiUtils.cpp
-	src/MapEditor/GuiUtils.hpp
-	src/MapEditor/ComponentGui.cpp
-	src/MapEditor/ComponentGui.hpp
-	src/Core/DataType/Vector.hpp
-)
-
-target_link_libraries(
-	map_editor
-	THFgame-core
-	tgui
-)
-
-add_dependencies(
-	map_editor
-
-	#Attack scripts
-	test_attack
-
-	#AI Scripts
-	allyDodge
-
-	#Cutscene scripts
-	testCutscene
-)
-
-#_____________________________________________________________
+#-------------------------------------------------------------
 #|                       Attack scripts                      |
-#_____________________________________________________________
+#-------------------------------------------------------------
 
 add_library(
 	test_attack MODULE
@@ -250,9 +257,9 @@ target_link_libraries(
 )
 set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
 
-#_____________________________________________________________
+#-------------------------------------------------------------
 #|                         AI scripts                        |
-#_____________________________________________________________
+#-------------------------------------------------------------
 
 add_library(
 	allyDodge MODULE
@@ -265,9 +272,9 @@ target_link_libraries(
 )
 set_target_properties(allyDodge PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/ais" PREFIX "")
 
-#_____________________________________________________________
-#|                      Cutscenes scripts                     |
-#_____________________________________________________________
+#-------------------------------------------------------------
+#|                     Cutscenes scripts                     |
+#-------------------------------------------------------------
 
 add_library(
 	testCutscene MODULE
@@ -301,6 +308,42 @@ target_link_libraries(
 
 add_dependencies(
 	THFgame
+
+	#Attack scripts
+	test_attack
+
+	#AI Scripts
+	allyDodge
+
+	#Cutscene scripts
+	testCutscene
+)
+
+#_____________________________________________________________
+
+add_executable(
+	map_editor
+	${MAP_EDITOR_ICON}
+	src/MapEditor/main.cpp
+	src/MapEditor/MapEditor.cpp
+	src/MapEditor/MapEditor.hpp
+	src/MapEditor/Menus/MainMenu.cpp
+	src/MapEditor/Menus/MainMenu.hpp
+	src/MapEditor/GuiUtils.cpp
+	src/MapEditor/GuiUtils.hpp
+	src/MapEditor/ComponentGui.cpp
+	src/MapEditor/ComponentGui.hpp
+	src/Core/DataType/Vector.hpp
+)
+
+target_link_libraries(
+	map_editor
+	THFgame-core
+	tgui
+)
+
+add_dependencies(
+	map_editor
 
 	#Attack scripts
 	test_attack

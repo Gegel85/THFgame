@@ -193,11 +193,17 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief A function had no choice but to dereference a null pointer.
 	class InvalidStateException : public BaseException {
 	public:
 		explicit InvalidStateException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
+
+	class FileNotFoundException : public BaseException {
+	public:
+		explicit FileNotFoundException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg) + ": file not found")
 		{};
 	};
 }

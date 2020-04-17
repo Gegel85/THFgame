@@ -17,6 +17,7 @@ namespace TouhouFanGame::Inputs
 	private:
 		Map &_map;
 		ECS::Core &_core;
+		std::weak_ptr<ECS::Entity> _me;
 		std::string _modulePath;
 		float _lastAngle = 0;
 		std::vector<bool> _lastActions;
@@ -32,6 +33,7 @@ namespace TouhouFanGame::Inputs
 		AIController(const std::string &modulePath, Map &map, ECS::Core &core);
 		bool changeKeyFor(Action action) override;
 		void cancelChangeKey() override;
+		void setMe(std::weak_ptr<ECS::Entity> me);
 		std::optional<Event> pollEvent() override;
 		bool actionPressed(Action action) const override;
 		void handleEvent(sf::Event event) override;

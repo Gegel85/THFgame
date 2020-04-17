@@ -84,6 +84,8 @@ namespace TouhouFanGame::Utils
 			return module.to<LuaCode>().call<resultType>(procName, args...);
 		return module.to<DynamicLibrary>().call<resultType>(procName, args...);
 	}
+
+	void rename(const std::string &oldName, const std::string &newName);
 }
 
 #endif //THFGAME_UTILS_HPP

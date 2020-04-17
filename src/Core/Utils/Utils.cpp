@@ -14,6 +14,8 @@
 #define ICON_ERROR_PATH "assets/box/error.png"
 #else
 #include <io.h>
+#include <filesystem>
+
 #endif
 
 #include "Utils.hpp"
@@ -145,5 +147,14 @@ namespace TouhouFanGame::Utils
 	double max(double v1, double args...)
 	{
 		return std::fmax(v1, max(args));
+	}
+
+	void rename(const std::string &oldName, const std::string &newName)
+	{
+		if (!std::filesystem::exists(oldName))
+			throw FileNotFoundException(std::move(oldName));
+		if (std::filesystem::exists(newName))
+			std::filesystem::remove(newName);
+		std::filesystem::rename(oldName, newName);
 	}
 }

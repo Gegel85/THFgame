@@ -15,6 +15,9 @@ namespace TouhouFanGame::ECS::Systems
 
 	void AISystem::updateEntity(const std::shared_ptr<Entity> &entity)
 	{
-		this->_updateEntity(entity, entity->getComponent(AI));
+		auto &ai = entity->getComponent(AI);
+
+		ai.ai.setMe(entity);
+		this->_updateEntity(entity, ai);
 	}
 }

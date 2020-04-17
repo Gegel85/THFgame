@@ -12,10 +12,9 @@
 namespace TouhouFanGame::ECS::Components
 {
 	class AIComponent  : public ControllableComponent {
-	private:
-		Inputs::AIController _ai;
-
 	public:
+		Inputs::AIController ai;
+
 		//! @brief Unserializer constructor.
 		AIComponent(std::istream &stream, Map &map, ECS::Core &core);
 		AIComponent(const std::string &modulePath, float regularSpeed, float sprintSpeed, Map &map, ECS::Core &core);

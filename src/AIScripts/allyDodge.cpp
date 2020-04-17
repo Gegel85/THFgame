@@ -13,7 +13,7 @@ extern "C"
 	TouhouFanGame::Inputs::AIController::AIResponse getAIActions(void *, TouhouFanGame::ECS::Core &, TouhouFanGame::Map &) {
 		return {
 			0,
-			{}
+			{TouhouFanGame::Input::UP}
 		};
 	}
 }

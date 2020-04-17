@@ -25,4 +25,9 @@ namespace TouhouFanGame::ECS::Components
 		stream << " ";
 		this->ai.serialize(stream);
 	}
+
+	void AIComponent::setControllerModulePath(const std::string &path)
+	{
+		this->ai.changeModule(path);
+	}
 }

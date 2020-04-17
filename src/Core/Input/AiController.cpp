@@ -90,4 +90,15 @@ namespace TouhouFanGame::Inputs
 	{
 		this->_me = std::move(me);
 	}
+
+	void AIController::changeModule(const std::string &path)
+	{
+		this->_handler.reset(ExternalModuleFactory::build(path));
+		this->_modulePath = path;
+	}
+
+	std::string AIController::getModulePath() const
+	{
+		return this->_modulePath;
+	}
 }

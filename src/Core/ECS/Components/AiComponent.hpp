@@ -19,6 +19,7 @@ namespace TouhouFanGame::ECS::Components
 		AIComponent(std::istream &stream, Map &map, ECS::Core &core);
 		AIComponent(const std::string &modulePath, float regularSpeed, float sprintSpeed, Map &map, ECS::Core &core);
 		~AIComponent() override = default;
+		void setControllerModulePath(const std::string &path);
 		void serialize(std::ostream &) const override;
 	};
 }

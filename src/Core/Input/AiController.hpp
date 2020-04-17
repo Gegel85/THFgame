@@ -34,6 +34,8 @@ namespace TouhouFanGame::Inputs
 		bool changeKeyFor(Action action) override;
 		void cancelChangeKey() override;
 		void setMe(std::weak_ptr<ECS::Entity> me);
+		void changeModule(const std::string &path);
+		std::string getModulePath() const;
 		std::optional<Event> pollEvent() override;
 		bool actionPressed(Action action) const override;
 		void handleEvent(sf::Event event) override;

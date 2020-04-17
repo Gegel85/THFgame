@@ -30,6 +30,8 @@ namespace TouhouFanGame::ECS::Components
 		//! @brief Unserializer constructor.
 		DeckComponent(std::istream &stream);
 		DeckComponent(const std::string &path);
+		void setTreePath(const std::string &path);
+		std::string getTreePath() const;
 		~DeckComponent() override = default;
 		void serialize(std::ostream &) const override;
 	};

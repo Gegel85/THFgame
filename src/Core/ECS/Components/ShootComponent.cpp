@@ -51,4 +51,9 @@ namespace TouhouFanGame::ECS::Components
 	{
 		stream << this->startCooldown << " " << this->_handlerPath;
 	}
+
+	std::string ShootComponent::getHandlerPath() const
+	{
+		return this->_handlerPath;
+	}
 }

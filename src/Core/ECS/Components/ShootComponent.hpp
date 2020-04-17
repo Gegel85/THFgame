@@ -31,6 +31,7 @@ namespace TouhouFanGame::ECS::Components
 		unsigned cooldown = 0;
 
 		void setHandlerPath(const std::string &path);
+		std::string getHandlerPath() const;
 
 		//! @brief Unserializer constructor.
 		ShootComponent(std::istream &stream, Map &map, Resources &resources);

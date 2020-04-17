@@ -17,6 +17,10 @@
 #include "../Core/ECS/Components/DialogComponent.hpp"
 #include "../Core/ECS/Components/CollisionComponent.hpp"
 #include "../Core/ECS/Components/ColliderComponent.hpp"
+#include "../Core/ECS/Components/CutsceneComponent.hpp"
+#include "../Core/ECS/Components/AiComponent.hpp"
+#include "../Core/ECS/Components/ShootComponent.hpp"
+#include "../Core/ECS/Components/DeckComponent.hpp"
 
 namespace TouhouFanGame
 {
@@ -31,7 +35,11 @@ namespace TouhouFanGame
 		{"Inventory",        [](Game &game, ECS::Component &component){ return InventoryGui(game, component);    }},
 		{"Dialog",           [](Game &game, ECS::Component &component){ return DialogGui(game, component);       }},
 		{"Collider",         [](Game &game, ECS::Component &component){ return ColliderGui(game, component);     }},
-		{"Collision",         [](Game &game, ECS::Component &component){ return CollisionGui(game, component);     }},
+		{"Collision",        [](Game &game, ECS::Component &component){ return CollisionGui(game, component);    }},
+		{"Cutscene",         [](Game &game, ECS::Component &component){ return CutsceneGui(game, component);     }},
+		{"Deck",             [](Game &game, ECS::Component &component){ return DeckGui(game, component);         }},
+		{"AI",               [](Game &game, ECS::Component &component){ return AIGui(game, component);           }},
+		{"Shoot",            [](Game &game, ECS::Component &component){ return ShootGui(game, component);        }},
 	};
 
 	tgui::Panel::Ptr ComponentGui::CollisionGui(Game &game, ECS::Component &component)
@@ -49,7 +57,7 @@ namespace TouhouFanGame
 
 		return EmptyGui(game, component);
 	}
-	
+
 	tgui::Panel::Ptr ComponentGui::MovableGui(Game &, ECS::Component &component)
 	{
 		auto &movable = component.to<ECS::Components::MovableComponent>();
@@ -90,7 +98,7 @@ namespace TouhouFanGame
 		panel->add(dirEditBox);
 		return panel;
 	}
-	
+
 	tgui::Panel::Ptr ComponentGui::PositionGui(Game &, ECS::Component &component)
 	{
 		auto &position = component.to<ECS::Components::PositionComponent>();
@@ -177,7 +185,7 @@ namespace TouhouFanGame
 		panel->add(angleBox);
 		return panel;
 	}
-	
+
 	tgui::Panel::Ptr ComponentGui::ControllableGui(Game &, ECS::Component &component)
 	{
 		auto &controllable = component.to<ECS::Components::ControllableComponent>();
@@ -219,7 +227,7 @@ namespace TouhouFanGame
 		panel->add(sprintEditBox);
 		return panel;
 	}
-	
+
 	tgui::Panel::Ptr ComponentGui::DisplayableGui(Game &, ECS::Component &component)
 	{
 		auto &displayable = component.to<ECS::Components::DisplayableComponent>();
@@ -244,7 +252,7 @@ namespace TouhouFanGame
 		panel->add(speedEditBox);
 		return panel;
 	}
-	
+
 	tgui::Panel::Ptr ComponentGui::ManaGui(Game &, ECS::Component &component)
 	{
 		auto &manaComp = component.to<ECS::Components::ManaComponent>();
@@ -357,7 +365,7 @@ namespace TouhouFanGame
 	tgui::Panel::Ptr ComponentGui::DialogGui(TouhouFanGame::Game &, TouhouFanGame::ECS::Component &component)
 	{
 		auto &dialog = component.to<ECS::Components::DialogComponent>();
-		auto panel = tgui::Panel::create({300, 70});
+		auto panel = tgui::ScrollablePanel::create({300, 70});
 		auto render = tgui::RendererData::create({
 			{"backgroundcolor", "transparent"}
 		});
@@ -450,7 +458,163 @@ namespace TouhouFanGame
 		panel->add(itemsEditBox);
 		return panel;
 	}
-	
+
+	tgui::Panel::Ptr ComponentGui::CutsceneGui(Game &, ECS::Component &component)
+	{
+		auto &cutscene = component.to<ECS::Components::CutsceneComponent>();
+		auto panel = tgui::ScrollablePanel::create({300, 70});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Module path", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			160,
+			speedLabel->getSize().y,
+			cutscene.getModulePath()
+		);
+		auto errorLabel = makeLabel("", 0, speedLabel->getSize().y);
+
+		try {
+			cutscene.setModulePath(cutscene.getModulePath());
+			errorLabel->setText("");
+		} catch (std::exception &e) {
+			errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+		}
+		errorLabel->getRenderer()->setTextColor("red");
+		speedEditBox->connect("TextChanged", [&cutscene, speedEditBox, errorLabel]{
+			try {
+				cutscene.setModulePath(speedEditBox->getText());
+				errorLabel->setText("");
+			} catch (std::exception &e) {
+				errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+			}
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		panel->add(errorLabel);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::AIGui(Game &, ECS::Component &component)
+	{
+		auto &ai = component.to<ECS::Components::AIComponent>();
+		auto panel = tgui::ScrollablePanel::create({300, 70});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Module path", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			160,
+			speedLabel->getSize().y,
+			ai.ai.getModulePath()
+		);
+		auto errorLabel = makeLabel("", 0, speedLabel->getSize().y);
+
+		try {
+			ai.ai.changeModule(ai.ai.getModulePath());
+			errorLabel->setText("");
+		} catch (std::exception &e) {
+			errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+		}
+		errorLabel->getRenderer()->setTextColor("red");
+		speedEditBox->connect("TextChanged", [&ai, speedEditBox, errorLabel]{
+			try {
+				ai.ai.changeModule(speedEditBox->getText());
+				errorLabel->setText("");
+			} catch (std::exception &e) {
+				errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+			}
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		panel->add(errorLabel);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::ShootGui(Game &, ECS::Component &component)
+	{
+		auto &shoot = component.to<ECS::Components::ShootComponent>();
+		auto panel = tgui::ScrollablePanel::create({300, 70});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Module path", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			160,
+			speedLabel->getSize().y,
+			shoot.getHandlerPath()
+		);
+		auto errorLabel = makeLabel("", 0, speedLabel->getSize().y);
+
+		try {
+			shoot.setHandlerPath(shoot.getHandlerPath());
+			errorLabel->setText("");
+		} catch (std::exception &e) {
+			errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+		}
+		errorLabel->getRenderer()->setTextColor("red");
+		speedEditBox->connect("TextChanged", [&shoot, speedEditBox, errorLabel]{
+			try {
+				shoot.setHandlerPath(speedEditBox->getText());
+				errorLabel->setText("");
+			} catch (std::exception &e) {
+				errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+			}
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		panel->add(errorLabel);
+		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::DeckGui(Game &, ECS::Component &component)
+	{
+		auto &deck = component.to<ECS::Components::DeckComponent>();
+		auto panel = tgui::ScrollablePanel::create({300, 70});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto speedLabel = makeLabel("Tree path", 0, 0);
+		auto speedEditBox = makeTypeBox(
+			speedLabel->getSize().x,
+			0,
+			160,
+			speedLabel->getSize().y,
+			deck.getTreePath()
+		);
+		auto errorLabel = makeLabel("", 0, speedLabel->getSize().y);
+
+		try {
+			deck.setTreePath(deck.getTreePath());
+			errorLabel->setText("");
+		} catch (std::exception &e) {
+			errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+		}
+		errorLabel->getRenderer()->setTextColor("red");
+		speedEditBox->connect("TextChanged", [&deck, speedEditBox, errorLabel]{
+			try {
+				deck.setTreePath(speedEditBox->getText());
+				errorLabel->setText("");
+			} catch (std::exception &e) {
+				errorLabel->setText(getLastExceptionName() + "\n" + e.what());
+			}
+		});
+		panel->setRenderer(render);
+		panel->add(speedLabel);
+		panel->add(speedEditBox);
+		panel->add(errorLabel);
+		return panel;
+	}
+
 	tgui::Panel::Ptr ComponentGui::build(Game &game, TouhouFanGame::ECS::Component &component)
 	{
 		try {

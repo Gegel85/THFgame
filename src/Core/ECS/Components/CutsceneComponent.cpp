@@ -32,4 +32,15 @@ namespace TouhouFanGame::ECS::Components
 	{
 		stream << this->_modulePath << " " << this->triggered;
 	}
+
+	void CutsceneComponent::setModulePath(const std::string &path)
+	{
+		this->handler.reset(ExternalModuleFactory::build(path));
+		this->_modulePath = path;
+	}
+
+	std::string CutsceneComponent::getModulePath() const
+	{
+		return this->_modulePath;
+	}
 }

@@ -27,4 +27,15 @@ namespace TouhouFanGame::ECS::Components
 	{
 		stream << this->_treePath;
 	}
+
+	void DeckComponent::setTreePath(const std::string &path)
+	{
+		this->tree = CardTree(path);
+		this->_treePath = path;
+	}
+
+	std::string DeckComponent::getTreePath() const
+	{
+		return this->_treePath;
+	}
 }

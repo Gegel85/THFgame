@@ -30,6 +30,8 @@ namespace TouhouFanGame::ECS::Components
 		CutsceneComponent(Game &game, std::istream &stream);
 		CutsceneComponent(Game &game, const std::string &modulePath);
 		~CutsceneComponent() override = default;
+		void setModulePath(const std::string &path);
+		std::string getModulePath() const;
 		void serialize(std::ostream &) const override;
 	};
 }

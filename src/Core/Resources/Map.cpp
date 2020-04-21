@@ -275,8 +275,11 @@ namespace TouhouFanGame
 				pos.x < trigger.location.x + this->_tileSize && trigger.location.x < size.x + pos.x &&
 				pos.y < trigger.location.y + this->_tileSize && trigger.location.y < size.y + pos.y
 			) {
+				this->_serialize(name + ".tmp");
 				this->loadMap(trigger.mapId);
+				Utils::rename(name + ".tmp", name);
 				pos = Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
+				this->_savePlayer();
 				setPos();
 			}
 	}

@@ -33,6 +33,7 @@ namespace TouhouFanGame
 		static tgui::Panel::Ptr DeckGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr CutsceneGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr AIGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr ExperienceGui(Game &, ECS::Component &);
 
 	public:
 		static tgui::Panel::Ptr build(Game &, ECS::Component &component);

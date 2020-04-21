@@ -12,7 +12,7 @@ namespace TouhouFanGame::ECS::Components
 {
 	class ExperienceComponent : public Component {
 	public:
-		float exp = 0;
+		unsigned exp = 0;
 		unsigned level = 0;
 
 		ExperienceComponent();

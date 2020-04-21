@@ -21,6 +21,7 @@
 #include "../Core/ECS/Components/AiComponent.hpp"
 #include "../Core/ECS/Components/ShootComponent.hpp"
 #include "../Core/ECS/Components/DeckComponent.hpp"
+#include "../Core/ECS/Components/ExperienceComponent.hpp"
 
 namespace TouhouFanGame
 {
@@ -40,6 +41,7 @@ namespace TouhouFanGame
 		{"Deck",             [](Game &game, ECS::Component &component){ return DeckGui(game, component);         }},
 		{"AI",               [](Game &game, ECS::Component &component){ return AIGui(game, component);           }},
 		{"Shoot",            [](Game &game, ECS::Component &component){ return ShootGui(game, component);        }},
+		{"Experience",          [](Game &game, ECS::Component &component){ return ExperienceGui(game, component);        }},
 	};
 
 	tgui::Panel::Ptr ComponentGui::CollisionGui(Game &game, ECS::Component &component)
@@ -302,7 +304,7 @@ namespace TouhouFanGame
 		auto render = tgui::RendererData::create({
 			{"backgroundcolor", "transparent"}
 		});
-		auto maxHealthLabel = makeLabel("Max mana", 0, 0);
+		auto maxHealthLabel = makeLabel("Max health", 0, 0);
 		auto maxHealthEditBox = makeTypeBox(
 			maxHealthLabel->getSize().x,
 			0,
@@ -311,7 +313,7 @@ namespace TouhouFanGame
 			Utils::floatToString(healthComp.maxHealth),
 			"[+-]?[0-9]*\\.?[0-9]*"
 		);
-		auto healthLabel = makeLabel("Current mana", maxHealthEditBox->getSize().x + maxHealthEditBox->getPosition().x + 10, 0);
+		auto healthLabel = makeLabel("Current health", maxHealthEditBox->getSize().x + maxHealthEditBox->getPosition().x + 10, 0);
 		auto healthEditBox = makeTypeBox(
 			healthLabel->getSize().x + healthLabel->getPosition().x,
 			0,
@@ -622,5 +624,47 @@ namespace TouhouFanGame
 		} catch (std::out_of_range &) {
 			return EmptyGui(game, component);
 		}
+	}
+
+	tgui::Panel::Ptr ComponentGui::ExperienceGui(Game &, ECS::Component &component)
+	{
+		auto &xpComp = component.to<ECS::Components::ExperienceComponent>();
+		auto panel = tgui::Panel::create({300, 30});
+		auto render = tgui::RendererData::create({
+			{"backgroundcolor", "transparent"}
+		});
+		auto currentLevelLabel = makeLabel("Level", 0, 0);
+		auto currentLevelEditBox = makeTypeBox(
+			currentLevelLabel->getSize().x,
+			0,
+			60,
+			currentLevelLabel->getSize().y,
+			std::to_string(xpComp.level),
+			"[0-9]+"
+		);
+		auto xpLabel = makeLabel("Experience", currentLevelEditBox->getSize().x + currentLevelEditBox->getPosition().x + 10, 0);
+		auto xpEditBox = makeTypeBox(
+			xpLabel->getSize().x + xpLabel->getPosition().x,
+			0,
+			60,
+			currentLevelLabel->getSize().y,
+			std::to_string(xpComp.exp),
+			"[0-9]+"
+		);
+
+		currentLevelEditBox->connect("TextChanged", [&xpComp, currentLevelEditBox]{
+			if (!currentLevelEditBox->getText().isEmpty())
+				xpComp.level = std::stol(currentLevelEditBox->getText().toAnsiString());
+		});
+		xpEditBox->connect("TextChanged", [&xpComp, xpEditBox]{
+			if (!xpEditBox->getText().isEmpty())
+				xpComp.exp = std::stol(xpEditBox->getText().toAnsiString());
+		});
+		panel->setRenderer(render);
+		panel->add(currentLevelLabel);
+		panel->add(currentLevelEditBox);
+		panel->add(xpLabel);
+		panel->add(xpEditBox);
+		return panel;
 	}
 }

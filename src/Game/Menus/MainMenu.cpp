@@ -21,8 +21,6 @@ namespace TouhouFanGame
 	{
 		if (isActive) {
 			this->_resources.stopMusic();
-			this->_hud.setDispPlayerHUD(false);
-			this->_hud.setDispBossHUD(false);
 			this->_resources.playMusic("menu");
 		} else {
 			this->_map.reset();

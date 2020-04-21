@@ -22,8 +22,12 @@ namespace TouhouFanGame::ECS::Systems
 		auto &mana = entity->getComponent(Mana);
 		auto &exp = entity->getComponent(Experience);
 		auto &shoot = entity->getComponent(Shoot);
+		auto &cards = deck.tree.getUnlockedCards(exp.level);
 
-		deck.selectedCard %= deck.tree.getUnlockedCards(exp.level).size();
+		if (cards.empty())
+			return;
+
+		deck.selectedCard %= cards.size();
 		deck.tree.updateCards();
 
 		auto &card = deck.tree.getCard(deck.selectedCard);

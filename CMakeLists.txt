@@ -205,7 +205,7 @@ add_library(
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
-)
+	src/Core/ECS/Components/BossHudComponent.cpp src/Core/ECS/Components/BossHudComponent.hpp src/Core/ECS/Systems/BossHudSystem.cpp src/Core/ECS/Systems/BossHudSystem.hpp)
 
 if (WIN32)
 	target_link_libraries(

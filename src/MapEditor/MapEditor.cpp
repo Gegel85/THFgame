@@ -283,8 +283,11 @@ namespace TouhouFanGame
 			box->addItem(val);
 		box->setSelectedItem("Entity");
 		okButton->connect("Pressed", [this, box, window]{
+			auto entity = this->_map._core.makeEntity(box->getSelectedItem()).lock();
+
+			entity->setSerializable(true);
 			this->_showEntityProperties(
-				this->_map._core.makeEntity(box->getSelectedItem()).lock()
+				entity
 			);
 			this->_showAllEntities(false);
 			window->close();
@@ -333,7 +336,7 @@ namespace TouhouFanGame
 		unsigned pos = 0;
 
 		name->setText(entity->getName());
-		name->connect("TextChanged", [this, &entity, name]{
+		name->connect("TextChanged", [this, entity, name]{
 			entity->_name = name->getText();
 			this->_showAllEntities(false);
 		});

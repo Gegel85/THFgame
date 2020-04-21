@@ -30,8 +30,6 @@ namespace TouhouFanGame
 			return;
 
 		this->_screen.setCameraCenter({0, 0});
-		this->_hud.setDispPlayerHUD(true);
-		this->_hud.setDispBossHUD(false);
 	}
 
 	void InGameMenu::handleEvent(const Input::Event &event)

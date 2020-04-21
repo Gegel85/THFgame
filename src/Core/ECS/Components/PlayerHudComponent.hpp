@@ -18,7 +18,7 @@ namespace TouhouFanGame::ECS::Components
 		Rendering::HUD &hud;
 
 		PlayerHUDComponent(Rendering::HUD &hud);
-		~PlayerHUDComponent() override = default;
+		~PlayerHUDComponent() override;
 	};
 }
 

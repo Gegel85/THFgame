@@ -9,5 +9,12 @@ namespace TouhouFanGame::ECS::Components
 	PlayerHUDComponent::PlayerHUDComponent(TouhouFanGame::Rendering::HUD &hud) :
 		BasicSerializeComponent("PlayerHUD"),
 		hud(hud)
-	{}
+	{
+		hud.setDispPlayerHUD(true);
+	}
+
+	PlayerHUDComponent::~PlayerHUDComponent()
+	{
+		hud.setDispPlayerHUD(false);
+	}
 }

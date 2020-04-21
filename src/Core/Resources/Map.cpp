@@ -92,6 +92,9 @@ namespace TouhouFanGame
 
 	void Map::loadMap(unsigned short id)
 	{
+		if (this->_id == id && !this->_path.empty())
+			return;
+
 		try {
 			this->_unserialize("saves/map_" + std::to_string(id) + ".sav");
 			this->_id = id;

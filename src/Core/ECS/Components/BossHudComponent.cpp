@@ -10,7 +10,6 @@ namespace TouhouFanGame::ECS::Components
 		BasicSerializeComponent("BossHUD"),
 		hud(hud)
 	{
-		hud.setDispBossHUD(true);
 	}
 
 	BossHUDComponent::~BossHUDComponent()

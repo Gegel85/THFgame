@@ -41,7 +41,7 @@ namespace TouhouFanGame
 		{"Deck",             [](Game &game, ECS::Component &component){ return DeckGui(game, component);         }},
 		{"AI",               [](Game &game, ECS::Component &component){ return AIGui(game, component);           }},
 		{"Shoot",            [](Game &game, ECS::Component &component){ return ShootGui(game, component);        }},
-		{"Experience",          [](Game &game, ECS::Component &component){ return ExperienceGui(game, component);        }},
+		{"Experience",       [](Game &game, ECS::Component &component){ return ExperienceGui(game, component);        }},
 	};
 
 	tgui::Panel::Ptr ComponentGui::CollisionGui(Game &game, ECS::Component &component)
@@ -617,15 +617,6 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::build(Game &game, TouhouFanGame::ECS::Component &component)
-	{
-		try {
-			return _builders.at(component.getName())(game, component);
-		} catch (std::out_of_range &) {
-			return EmptyGui(game, component);
-		}
-	}
-
 	tgui::Panel::Ptr ComponentGui::ExperienceGui(Game &, ECS::Component &component)
 	{
 		auto &xpComp = component.to<ECS::Components::ExperienceComponent>();
@@ -666,5 +657,14 @@ namespace TouhouFanGame
 		panel->add(xpLabel);
 		panel->add(xpEditBox);
 		return panel;
+	}
+
+	tgui::Panel::Ptr ComponentGui::build(Game &game, TouhouFanGame::ECS::Component &component)
+	{
+		try {
+			return _builders.at(component.getName())(game, component);
+		} catch (std::out_of_range &) {
+			return EmptyGui(game, component);
+		}
 	}
 }

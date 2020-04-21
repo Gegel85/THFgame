@@ -29,6 +29,7 @@ namespace TouhouFanGame::ECS::Systems
 
 		for (auto &card : deck.tree.getUnlockedCards(exp.level))
 			textures.push_back(card.texture);
+		hud.hud.setDispPlayerHUD(true);
 		hud.hud.setPlayerName(name.name);
 		hud.hud.setPlayerLife(health.health * 100 / health.maxHealth);
 		hud.hud.setPlayerMana(mana.mana * 100 / mana.maxMana);

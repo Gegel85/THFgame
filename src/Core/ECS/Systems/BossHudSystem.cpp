@@ -19,6 +19,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto &name = entity->getComponent(Name);
 		auto &hud = entity->getComponent(BossHUD);
 
+		hud.hud.setDispBossHUD(true);
 		hud.hud.setBossName(name.name);
 		hud.hud.setBossLife(health.health * 100 / health.maxHealth);
 	}

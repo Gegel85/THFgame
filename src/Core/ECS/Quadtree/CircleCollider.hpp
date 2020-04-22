@@ -17,6 +17,9 @@ namespace TouhouFanGame::ECS::Quadtree
 		Vector2f center;
 	public:
 		bool collideWith(const CircleCollider &col) const override;
+
+		bool collideWith(const ICollider &colliders) const override;
+
 		bool collideWith(const RectangleCollider &col) const override;
 		int getCollisionLayer(const ICollider &colliders) const override;
 		int getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const override;

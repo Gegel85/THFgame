@@ -88,4 +88,9 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		this->rect = FloatRect(pos.position, pos.size, pos.angle);
 	}
+
+	bool RectangleCollider::collideWith(const ICollider &colliders) const
+	{
+		return colliders.collideWith(*this);
+	}
 }

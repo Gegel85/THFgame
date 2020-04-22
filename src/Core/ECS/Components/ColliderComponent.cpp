@@ -3,6 +3,7 @@
 //
 
 #include "ColliderComponent.hpp"
+#include "../Exceptions.hpp"
 #include <algorithm>
 
 namespace TouhouFanGame::ECS::Components
@@ -19,12 +20,21 @@ namespace TouhouFanGame::ECS::Components
 
 	void ColliderComponent::serialize(std::ostream &stream) const
 	{
-
+		stream << this->colliders.size();
+		for (auto &elem : this->colliders)
+			stream << " " << *elem;
 	}
 
 	ColliderComponent::ColliderComponent(std::istream &istream)
 		: Component("Collider")
 	{
+		unsigned len = 0;
 
+		istream >> len;
+		if (istream.fail())
+			throw InvalidSerializedString("Invalid ColliderComponent");
+		this->colliders.resize(len);
+		while (len--)
+			istream >> this->colliders[len];
 	}
 }

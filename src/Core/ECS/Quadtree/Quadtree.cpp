@@ -31,17 +31,19 @@ namespace TouhouFanGame::ECS::Quadtree
 		for (int i = 0; i < 4; i++) {
 			float width = this->_quadCollider.rect.pt2.distance(this->_quadCollider.rect.pt1) / 2;
 			float height = this->_quadCollider.rect.pt1.distance(this->_quadCollider.rect.pt3) / 2;
-			Quadtree child(this->_entityCount,
-						   this->_quadCollider.rect.pt1.x,
-						   this->_quadCollider.rect.pt1.y,
-						   width,
-						   height
-						   );
+			Quadtree child(
+				this->_entityCount,
+				this->_quadCollider.rect.pt1.x,
+				this->_quadCollider.rect.pt1.y,
+				width,
+				height
+			);
 
 			if (i % 2 == 1) {
 				child._quadCollider.rect.pt1.x += width;
 				child._quadCollider.rect.pt3.x += width;
-			} if (i > 1) {
+			}
+			if (i > 1) {
 				child._quadCollider.rect.pt1.y += height;
 				child._quadCollider.rect.pt2.y += height;
 			}
@@ -94,10 +96,10 @@ namespace TouhouFanGame::ECS::Quadtree
 		return ret;
 	}
 
-    void Quadtree::reset()
-    {
+	void Quadtree::reset()
+	{
 //		std::cout << "Quadtree content: " << std::endl;
-//        for (auto &ent : this->_entities)
+//		for (auto &ent : this->_entities)
 //			std::cout << "\t" << ent->getName() << " " << ent->hasComponent("Collision") << " " << ent->getComponent("Position") << std::endl;
 //		std::cout << std::endl;
 
@@ -105,5 +107,5 @@ namespace TouhouFanGame::ECS::Quadtree
 			for (auto &child : this->_children)
 				child.reset();
 		this->_entities.clear();
-    }
+	}
 }

@@ -59,4 +59,9 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		this->center = pos.position + (pos.size / 2);
 	}
+
+	bool CircleCollider::collideWith(const ICollider &colliders) const
+	{
+		return colliders.collideWith(*this);
+	}
 }

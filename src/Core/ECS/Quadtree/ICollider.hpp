@@ -16,6 +16,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		virtual bool collideWithEntity(const std::shared_ptr<Entity> &entity) const;
 		virtual bool collideWith(const class CircleCollider &col) const = 0;
 		virtual bool collideWith(const class RectangleCollider &col) const = 0;
+		virtual bool collideWith(const ICollider &colliders) const = 0;
 		virtual int getCollisionLayer(const ICollider &colliders) const = 0;
 		virtual int getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const = 0;
 		virtual float getSize() const = 0;

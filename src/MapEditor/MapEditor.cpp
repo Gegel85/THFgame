@@ -345,7 +345,7 @@ namespace TouhouFanGame
 		window->setTitle("Entity " + std::to_string(entity->getID()));
 
 		for (auto &componentName : entity->getComponentsNames()) {
-			auto pan = ComponentGui::build(this->_game, entity->_getComponent(componentName));
+			auto pan = ComponentGui::build(this->_game, *entity, entity->_getComponent(componentName));
 			auto label = makeLabel(componentName, 10, basePos + pos);
 			auto button = tgui::Button::create("X");
 

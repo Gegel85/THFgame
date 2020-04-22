@@ -128,4 +128,12 @@ namespace TouhouFanGame
 
 		return window;
 	}
+
+	tgui::Panel::Ptr getColliderPanel(ECS::Quadtree::ICollider &collider, ECS::Entity &entity)
+	{
+		auto panel = tgui::Panel::create();
+
+		//collider.
+		return panel;
+	}
 }

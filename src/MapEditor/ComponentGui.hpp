@@ -15,10 +15,10 @@ namespace TouhouFanGame
 {
 	class ComponentGui {
 	private:
-		static std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Component &)>> _builders;
+		static std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Entity &, ECS::Component &)>> _builders;
 
 		static tgui::Panel::Ptr MovableGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr PositionGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr PositionGui(Game &, ECS::Entity &, ECS::Component &);
 		static tgui::Panel::Ptr ControllableGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr DisplayableGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr ManaGui(Game &, ECS::Component &);
@@ -27,8 +27,8 @@ namespace TouhouFanGame
 		static tgui::Panel::Ptr EmptyGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr InventoryGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr DialogGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr ColliderGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr CollisionGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr ColliderGui(Game &, ECS::Entity &, ECS::Component &);
+		static tgui::Panel::Ptr CollisionGui(Game &, ECS::Entity &, ECS::Component &);
 		static tgui::Panel::Ptr ShootGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr DeckGui(Game &, ECS::Component &);
 		static tgui::Panel::Ptr CutsceneGui(Game &, ECS::Component &);
@@ -36,7 +36,7 @@ namespace TouhouFanGame
 		static tgui::Panel::Ptr ExperienceGui(Game &, ECS::Component &);
 
 	public:
-		static tgui::Panel::Ptr build(Game &, ECS::Component &component);
+		static tgui::Panel::Ptr build(Game &, ECS::Entity &entity, ECS::Component &component);
 	};
 }
 

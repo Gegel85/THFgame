@@ -39,6 +39,8 @@ add_library(
 	src/Core/ECS/Components/BasicSerializeComponent.hpp
 	src/Core/ECS/Components/BlockedByTerrainComponent.cpp
 	src/Core/ECS/Components/BlockedByTerrainComponent.hpp
+	src/Core/ECS/Components/BossHudComponent.cpp
+	src/Core/ECS/Components/BossHudComponent.hpp
 	src/Core/ECS/Components/ColliderComponent.cpp
 	src/Core/ECS/Components/ColliderComponent.hpp
 	src/Core/ECS/Components/CollisionComponent.cpp
@@ -108,6 +110,8 @@ add_library(
 	src/Core/ECS/Systems/AiSystem.hpp
 	src/Core/ECS/Systems/BlockedByTerrainSystem.cpp
 	src/Core/ECS/Systems/BlockedByTerrainSystem.hpp
+	src/Core/ECS/Systems/BossHudSystem.cpp
+	src/Core/ECS/Systems/BossHudSystem.hpp
 	src/Core/ECS/Systems/CollisionSystem.cpp
 	src/Core/ECS/Systems/CollisionSystem.hpp
 	src/Core/ECS/Systems/ControllableSystem.cpp
@@ -205,7 +209,7 @@ add_library(
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
-	src/Core/ECS/Components/BossHudComponent.cpp src/Core/ECS/Components/BossHudComponent.hpp src/Core/ECS/Systems/BossHudSystem.cpp src/Core/ECS/Systems/BossHudSystem.hpp)
+)
 
 if (WIN32)
 	target_link_libraries(

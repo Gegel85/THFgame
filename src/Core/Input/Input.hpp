@@ -5,6 +5,7 @@
 #ifndef THFGAME_INPUT_HPP
 #define THFGAME_INPUT_HPP
 
+#include <optional>
 #include <vector>
 #include <string>
 #include <SFML/Window/Event.hpp>

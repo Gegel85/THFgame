@@ -10,15 +10,24 @@
 
 namespace TouhouFanGame::ECS::Quadtree
 {
-	RectangleCollider::RectangleCollider(float x, float y, float w, float h, float angle)
-			: rect(x, y, w, h, angle)
-	{}
+	RectangleCollider::RectangleCollider(std::istream &stream) :
+		ICollider("Rectangle", stream),
+		rect(this->_offset, (this->_center - this->_offset) * 2, this->_angle)
+	{
+	}
 
-	RectangleCollider::RectangleCollider(FloatRect rect)
-		: rect(rect)
-	{}
+	RectangleCollider::RectangleCollider(float x, float y, float w, float h, float angle) :
+		ICollider("Rectangle", Vector2f{x, y}, Vector2u(w, h), angle),
+		rect(x, y, w, h, angle)
+	{
+	}
 
-	bool RectangleCollider::collideWith(const CircleCollider &col) const
+	bool RectangleCollider::collideWith(const class CircleCollider &col) const
+	{
+		throw NotImplementedException("Collision between circles and Rectangles are not implemented");
+	}
+
+	bool RectangleCollider::collideWith(const ICollider &col) const
 	{
 		return col.collideWith(*this);
 	}
@@ -26,9 +35,9 @@ namespace TouhouFanGame::ECS::Quadtree
 	bool RectangleCollider::collideWith(const RectangleCollider &col) const
 	{
 		return this->rect.pt1.x < col.rect.pt2.x &&
-			this->rect.pt1.y < col.rect.pt3.y &&
-			this->rect.pt2.x > col.rect.pt1.x &&
-			this->rect.pt3.y > col.rect.pt2.y;
+		       this->rect.pt1.y < col.rect.pt3.y &&
+		       this->rect.pt2.x > col.rect.pt1.x &&
+		       this->rect.pt3.y > col.rect.pt2.y;
 		//		std::vector<Vector2f> axes;
 //
 //		axes.push_back(Vector2f(this->rect.pt1.x, this->rect.pt2.x - this->rect.pt1.x).normalize());
@@ -55,42 +64,36 @@ namespace TouhouFanGame::ECS::Quadtree
 //		return true;
 	}
 
-	int RectangleCollider::getCollisionLayer(const ICollider &collider) const
+	void RectangleCollider::_serialize(std::ostream &) const
 	{
-		if (collider.collideWith(*this))
-			return 0;
-		return -1;
 	}
 
-	int RectangleCollider::getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const
+	void RectangleCollider::draw(Rendering::Screen &screen) const
 	{
-		int layer = 0;
+		auto pos = this->_offset + this->_origin;
+		auto size = (this->_center - this->_offset) * 2;
 
-		for (auto &collider : colliders) {
-			if (collider->collideWith(*this))
-				return layer;
-			layer++;
-		}
-		return -1;
+		screen.fillColor({0xFF, 0x00, 0x00, 0x20});
+		screen.draw({
+			static_cast<int>(pos.x),
+			static_cast<int>(pos.y),
+			static_cast<int>(size.x),
+			static_cast<int>(size.y)
+		});
 	}
 
-	float RectangleCollider::getSize() const
+	bool RectangleCollider::operator>(const ICollider &collider) const
 	{
-		return 0;
+		return !(collider > *this);
 	}
 
-	void RectangleCollider::serialize(std::ostream &stream) const
+	bool RectangleCollider::operator>(const class CircleCollider &collider) const
 	{
-		stream << "1 " << this->rect;
+		return false;
 	}
 
-	void RectangleCollider::setOrigin(const Components::PositionComponent &pos)
+	bool RectangleCollider::operator>(const class RectangleCollider &collider) const
 	{
-		this->rect = FloatRect(pos.position, pos.size, pos.angle);
-	}
-
-	bool RectangleCollider::collideWith(const ICollider &colliders) const
-	{
-		return colliders.collideWith(*this);
+		return false;
 	}
 }

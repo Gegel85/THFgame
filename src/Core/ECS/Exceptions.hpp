@@ -73,6 +73,14 @@ namespace TouhouFanGame::ECS
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};
+
+	//! @brief The Collider specified had an invalid shape
+	class InvalidColliderException : public BaseException {
+	public:
+		explicit InvalidColliderException(const std::string &&msg) :
+			BaseException(static_cast<const std::string &&>(msg))
+		{};
+	};
 }
 
 

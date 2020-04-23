@@ -10,7 +10,6 @@
 #include "BasicSerializeComponent.hpp"
 #include "../Entity.hpp"
 #include "../Quadtree/ICollider.hpp"
-#include "../Quadtree/Quadtree.hpp"
 
 namespace TouhouFanGame::ECS::Components
 {

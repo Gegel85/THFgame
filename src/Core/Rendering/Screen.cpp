@@ -18,6 +18,7 @@ namespace TouhouFanGame::Rendering
 		this->setFramerateLimit(60);
 		this->_text.setOutlineThickness(0);
 		this->_rect.setOutlineThickness(0);
+		this->_circle.setOutlineThickness(0);
 	}
 
 	Screen::~Screen()
@@ -41,6 +42,7 @@ namespace TouhouFanGame::Rendering
 		this->_rect.setFillColor(color);
 		this->_text.setFillColor(color);
 		this->_sprite.setColor(color);
+		this->_circle.setFillColor(color);
 	}
 
 	void	Screen::setFont(const sf::Font &font)
@@ -58,6 +60,13 @@ namespace TouhouFanGame::Rendering
 		this->_rect.setPosition(Vector2f(rect.left, rect.top));
 		this->_rect.setSize(Vector2f(rect.width, rect.height));
 		sf::RenderWindow::draw(this->_rect);
+	}
+
+	void Screen::draw(float radius, Vector2f pos)
+	{
+		this->_circle.setPosition(Vector2f(pos.x, pos.y));
+		this->_circle.setRadius(radius);
+		sf::RenderWindow::draw(this->_circle);
 	}
 
 	void	Screen::draw(const std::string &str, Vector2f pos)

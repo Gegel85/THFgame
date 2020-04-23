@@ -13,9 +13,7 @@ namespace TouhouFanGame::ECS::Components
 	{
 		for (auto col : colliders)
 			this->colliders.emplace_back(col);
-		std::sort(this->colliders.begin(), this->colliders.end(), [](const std::unique_ptr<Quadtree::ICollider> &a, const std::unique_ptr<Quadtree::ICollider> &b) {
-			return a->getSize() > b->getSize();
-		});
+		std::sort(this->colliders.begin(), this->colliders.end());
 	}
 
 	void ColliderComponent::serialize(std::ostream &stream) const

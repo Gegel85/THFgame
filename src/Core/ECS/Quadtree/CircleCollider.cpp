@@ -8,60 +8,60 @@
 
 namespace TouhouFanGame::ECS::Quadtree
 {
-	CircleCollider::CircleCollider(float x, float y, float size)
-			: size(size), center(x, y)
-	{}
-
-	bool CircleCollider::collideWith(const CircleCollider &col) const
+	CircleCollider::CircleCollider(float x, float y, float radius) :
+		ICollider("Circle", {x, y}, Vector2f{radius, radius}),
+		radius(radius)
 	{
-		return this->center.distance(col.center) <= this->size + col.size;
 	}
 
-	bool CircleCollider::collideWith(const RectangleCollider &col) const
+	CircleCollider::CircleCollider(std::istream &stream) :
+		ICollider("Circle", stream)
+	{
+		stream >> this->radius;
+	}
+
+	bool CircleCollider::collideWith(const class CircleCollider &col) const
+	{
+		return col.getCenter().distance(this->getCenter()) < this->radius + col.radius;
+	}
+
+	bool CircleCollider::collideWith(const class RectangleCollider &col) const
 	{
 //		float x = std::abs(this->center.x - col.rect.pt1.x);
 //		float y = std::abs(this->center.y - col.rect.pt1.x);
 //
 //		return x <= this->size + col.rect.w && y <= this->size + col.rect.h;
-		return true;
+		return col.collideWith(*this);
 	}
 
-	int CircleCollider::getCollisionLayer(const ICollider &collider) const
+	bool CircleCollider::collideWith(const ICollider &col) const
 	{
-		if (collider.collideWith(*this))
-			return 0;
-		return -1;
+		return col.collideWith(*this);
 	}
 
-	int CircleCollider::getCollisionLayer(const std::vector<std::unique_ptr<ICollider>> &colliders) const
+	void CircleCollider::_serialize(std::ostream &stream) const
 	{
-		int layer = 0;
-
-		for (auto &collider : colliders) {
-			if (collider->collideWith(*this))
-				return layer;
-			layer++;
-		}
-		return -1;
+		stream << this->radius;
 	}
 
-	float CircleCollider::getSize() const
+	void CircleCollider::draw(Rendering::Screen &screen) const
 	{
-		return 0;
+		screen.fillColor({0xFF, 0x00, 0x00, 0x20});
+		screen.draw(this->radius, this->_origin + this->_offset);
 	}
 
-	void CircleCollider::serialize(std::ostream &stream) const
+	bool CircleCollider::operator>(const ICollider &collider) const
 	{
-        stream << "0 " << this->center << " " << this->size;
+		return !(collider > *this);
 	}
 
-	void CircleCollider::setOrigin(const Components::PositionComponent &pos)
+	bool CircleCollider::operator>(const class CircleCollider &collider) const
 	{
-		this->center = pos.position + (pos.size / 2);
+		return false;
 	}
 
-	bool CircleCollider::collideWith(const ICollider &colliders) const
+	bool CircleCollider::operator>(const class RectangleCollider &collider) const
 	{
-		return colliders.collideWith(*this);
+		return false;
 	}
 }

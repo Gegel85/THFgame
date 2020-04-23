@@ -98,8 +98,8 @@ add_library(
 	src/Core/ECS/Quadtree/CircleCollider.hpp
 	src/Core/ECS/Quadtree/ICollider.cpp
 	src/Core/ECS/Quadtree/ICollider.hpp
-	src/Core/ECS/Quadtree/Quadtree.cpp
-	src/Core/ECS/Quadtree/Quadtree.hpp
+	#src/Core/ECS/Quadtree/Quadtree.cpp
+	#src/Core/ECS/Quadtree/Quadtree.hpp
 	src/Core/ECS/Quadtree/RectangleCollider.cpp
 	src/Core/ECS/Quadtree/RectangleCollider.hpp
 
@@ -209,7 +209,7 @@ add_library(
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
-)
+	src/Core/ECS/Quadtree/ColliderFactory.cpp src/Core/ECS/Quadtree/ColliderFactory.hpp)
 
 if (WIN32)
 	target_link_libraries(

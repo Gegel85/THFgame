@@ -29,6 +29,9 @@ namespace TouhouFanGame::Rendering
 		//! @brief Resource used to render rectangles.
 		sf::RectangleShape _rect;
 
+		//! @brief Resource used to draw circles
+		sf::CircleShape _circle;
+
 		//! @brief Resource used to render text.
 		sf::Text _text;
 
@@ -93,6 +96,10 @@ namespace TouhouFanGame::Rendering
 		//! @brief Draw a rectangle on the screen
 		//! @param rect The position and size of the rectangle (relative to the camera)
 		void	draw(sf::IntRect rect);
+
+		//! @brief Draw a circle on the screen
+		//! @param rect The position and size of the rectangle (relative to the camera)
+		void	draw(float radius, Vector2f pos);
 
 		//! @brief Draw some text on the screen
 		//! @param str The string to draw

@@ -5,6 +5,7 @@
 ** ComponentFactory.cpp
 */
 
+#include "../Quadtree/RectangleCollider.hpp"
 #include "../../Resources/Game.hpp"
 #include "ComponentFactory.hpp"
 #include "../Components/PositionComponent.hpp"

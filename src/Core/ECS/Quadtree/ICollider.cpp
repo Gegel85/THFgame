@@ -15,6 +15,7 @@
 
 std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::ECS::Quadtree::ICollider &collider)
 {
+	stream << collider.getName() << " ";
 	collider.serialize(stream);
 	return stream;
 }
@@ -33,7 +34,7 @@ namespace TouhouFanGame::ECS::Quadtree
 	ICollider::ICollider(const std::string &&name, std::istream &stream) :
 		_name(name)
 	{
-
+		stream >> this->_origin >> this->_center >> this->_angle >> this->_offset;
 	}
 
 	ICollider::ICollider(const std::string &&name, Vector2f offset, Vector2u size, float angle, Vector2f origin) :

@@ -46,7 +46,6 @@ namespace TouhouFanGame::ECS::Quadtree
 
 		void serialize(std::ostream &stream) const;
 		virtual void draw(Rendering::Screen &screen) const = 0;
-		//static std::unique_ptr<ICollider> deserialize(std::istream &stream);
 
 		virtual bool operator>(const ICollider &) const = 0;
 		virtual bool operator>(const class CircleCollider &) const = 0;

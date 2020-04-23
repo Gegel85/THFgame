@@ -165,4 +165,12 @@ std::ostream &operator<<(std::ostream &s, const TouhouFanGame::Vector2<T> &v)
 	return s;
 }
 
+template<typename T>
+std::istream &operator>>(std::istream &s, TouhouFanGame::Vector2<T> &v)
+{
+	s >> v.x >> v.y;
+	return s;
+}
+
+
 #endif //THFGAME_VECTOR_HPP

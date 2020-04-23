@@ -5,7 +5,7 @@
 #include "../Core/ECS/Core.hpp"
 #include "../Core/Resources/Map.hpp"
 #include "../Core/Input/AiController.hpp"
-#include "../Core/ECS/Components/AIComponent.hpp"
+#include "../Core/ECS/Components/AiComponent.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
 
 using AIResponse = TouhouFanGame::Inputs::AIController::AIResponse;

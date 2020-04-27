@@ -5,6 +5,7 @@
 #include <iostream>
 #include "CollisionSystem.hpp"
 #include "../Core.hpp"
+#include "../Components/DisplayableComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
 #include "../../Resources/Game.hpp"
 #include "../Components/ColliderComponent.hpp"
@@ -12,8 +13,8 @@
 namespace TouhouFanGame::ECS::Systems
 {
 	CollisionSystem::CollisionSystem(TouhouFanGame::ECS::Core &core) :
-		System(core, "Collision", {"Position"})/*,
-		_quadtree(25,
+		System(core, "Collision", {"Position"})//,
+		/*_quadtree(25,
 			0,
 			0,
 			core.getGame().state.map.getSize().x,
@@ -53,6 +54,7 @@ namespace TouhouFanGame::ECS::Systems
 
 		collision.collided.clear();
 		collision.collider->setOrigin(entity->getComponent(Position).position);
+
 		for (auto &ent : this->_core.getEntityByComponent("Collider")) {
 			auto ptr = ent.lock();
 			auto &collider = ptr->getComponent(Collider);

@@ -16,15 +16,8 @@ namespace TouhouFanGame::ECS::Components
 		std::sort(this->colliders.begin(), this->colliders.end());
 	}
 
-	void ColliderComponent::serialize(std::ostream &stream) const
-	{
-		stream << this->colliders.size();
-		for (auto &elem : this->colliders)
-			stream << " " << *elem;
-	}
-
-	ColliderComponent::ColliderComponent(std::istream &istream)
-		: Component("Collider")
+	ColliderComponent::ColliderComponent(std::istream &istream) :
+		Component("Collider")
 	{
 		unsigned len = 0;
 
@@ -34,5 +27,12 @@ namespace TouhouFanGame::ECS::Components
 		this->colliders.resize(len);
 		while (len--)
 			istream >> this->colliders[len];
+	}
+
+	void ColliderComponent::serialize(std::ostream &stream) const
+	{
+		stream << this->colliders.size();
+		for (auto &elem : this->colliders)
+			stream << " " << *elem;
 	}
 }

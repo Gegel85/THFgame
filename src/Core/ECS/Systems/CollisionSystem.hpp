@@ -7,6 +7,7 @@
 
 
 #include "../System.hpp"
+#include "../../Rendering/Screen.hpp"
 //#include "../Quadtree/Quadtree.hpp"
 
 namespace TouhouFanGame::ECS::Systems
@@ -15,6 +16,7 @@ namespace TouhouFanGame::ECS::Systems
 	class CollisionSystem : public System {
 	private:
 		//Quadtree::Quadtree _quadtree;
+
 	public:
 		//! @param core The Core the System is in.
 		explicit CollisionSystem(Core &core);

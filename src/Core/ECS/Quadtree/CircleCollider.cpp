@@ -46,7 +46,6 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	void CircleCollider::draw(Rendering::Screen &screen) const
 	{
-		screen.fillColor({0xFF, 0x00, 0x00, 0x20});
 		screen.draw(this->radius, this->_origin + this->_offset);
 	}
 

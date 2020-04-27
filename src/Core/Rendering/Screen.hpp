@@ -65,7 +65,7 @@ namespace TouhouFanGame::Rendering
 		void	setTitle(const std::string &);
 
 		//! @brief Change the global fill color of everything rendered.
-		void    fillColor(const sf::Color &color = sf::Color(255, 255, 255, 255));
+		void    fillColor(const sf::Color &color = sf::Color{0xFF, 0xFF, 0xFF, 0xFF});
 
 		//! @brief Change the font
 		void	setFont(const sf::Font &font);

@@ -21,36 +21,37 @@
 #include "../Systems/AiSystem.hpp"
 #include "../Systems/CutsceneSystem.hpp"
 #include "../Systems/BossHudSystem.hpp"
+#include "../../Resources/Game.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
-	const std::vector<std::function<System *(Core &)>> SystemFactory::_builders{
-		[](Core &core){ return new Systems::DisplayableSystem(core); },
-		[](Core &core){ return new Systems::ControllableSystem(core); },
-		[](Core &core){ return new Systems::MovableSystem(core); },
-		[](Core &core){ return new Systems::BlockedByTerrainSystem(core); },
-		[](Core &core){ return new Systems::HealthSystem(core); },
-		[](Core &core){ return new Systems::ManaSystem(core); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Position"); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Name"); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Inventory"); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Interact", {"Collider"}); },
-		[](Core &core){ return new Systems::PlayerHUDSystem(core); },
-		[](Core &core){ return new Systems::CollisionSystem(core); },
-		[](Core &core){ return new Systems::DialogSystem(core); },
-		[](Core &core){ return new Systems::ShootSystem(core); },
-		[](Core &core){ return new Systems::OOBDieSystem(core); },
-		[](Core &core){ return new Systems::ExperienceSystem(core); },
-		[](Core &core){ return new Systems::DeckSystem(core); },
-		[](Core &core){ return new Systems::AISystem(core); },
-		[](Core &core){ return new Systems::CutsceneSystem(core); },
-		[](Core &core){ return new Systems::BossHUDSystem(core); },
-		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
+	const std::vector<std::function<System *(Game &, Core &)>> SystemFactory::_builders{
+		[](Game &    , Core &core){ return new Systems::DisplayableSystem(core); },
+		[](Game &    , Core &core){ return new Systems::ControllableSystem(core); },
+		[](Game &    , Core &core){ return new Systems::MovableSystem(core); },
+		[](Game &    , Core &core){ return new Systems::BlockedByTerrainSystem(core); },
+		[](Game &    , Core &core){ return new Systems::HealthSystem(core); },
+		[](Game &    , Core &core){ return new Systems::ManaSystem(core); },
+		[](Game &    , Core &core){ return new Systems::UselessSystem(core, "Position"); },
+		[](Game &    , Core &core){ return new Systems::UselessSystem(core, "Name"); },
+		[](Game &    , Core &core){ return new Systems::UselessSystem(core, "Inventory"); },
+		[](Game &    , Core &core){ return new Systems::UselessSystem(core, "Interact", {"Collider"}); },
+		[](Game &    , Core &core){ return new Systems::PlayerHUDSystem(core); },
+		[](Game &    , Core &core){ return new Systems::CollisionSystem(core); },
+		[](Game &    , Core &core){ return new Systems::DialogSystem(core); },
+		[](Game &    , Core &core){ return new Systems::ShootSystem(core); },
+		[](Game &    , Core &core){ return new Systems::OOBDieSystem(core); },
+		[](Game &    , Core &core){ return new Systems::ExperienceSystem(core); },
+		[](Game &    , Core &core){ return new Systems::DeckSystem(core); },
+		[](Game &    , Core &core){ return new Systems::AISystem(core); },
+		[](Game &    , Core &core){ return new Systems::CutsceneSystem(core); },
+		[](Game &    , Core &core){ return new Systems::BossHUDSystem(core); },
+		[](Game &    , Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 
-	void SystemFactory::buildAll(TouhouFanGame::ECS::Core &core, std::vector<std::unique_ptr<System>> &buffer)
+	void SystemFactory::buildAll(Game &game, Core &core, std::vector<std::unique_ptr<System>> &buffer)
 	{
-		for (auto &fc : _builders)
-			buffer.emplace_back(fc(core));
+		for (auto &fc : SystemFactory::_builders)
+			buffer.emplace_back(fc(game, core));
 	}
 }

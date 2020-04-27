@@ -18,9 +18,9 @@ namespace TouhouFanGame::ECS::Components
 		std::unique_ptr<Quadtree::ICollider> collider;
 		std::vector<std::pair<std::shared_ptr<ECS::Entity>, unsigned>> collided;
 
-		void serialize(std::ostream &stream) const override;
 		explicit CollisionComponent(std::istream &istream);
 		explicit CollisionComponent(Quadtree::ICollider *colliders);
+		void serialize(std::ostream &stream) const override;
 		~CollisionComponent() override = default;
 	};
 }

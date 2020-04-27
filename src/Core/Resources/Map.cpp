@@ -9,6 +9,8 @@
 #include "Game.hpp"
 #include "../Exceptions.hpp"
 #include "../ECS/Components/PositionComponent.hpp"
+#include "../ECS/Components/ColliderComponent.hpp"
+#include "../ECS/Components/CollisionComponent.hpp"
 #include "../Utils/Utils.hpp"
 
 namespace TouhouFanGame
@@ -448,6 +450,19 @@ namespace TouhouFanGame
 				);
 			}
 		}
+
+#ifdef _DEBUG
+		this->_game.resources.screen->fillColor({0xFF, 0x00, 0x00, 0x80});
+		for (auto &entity : this->_core.getEntityByComponent("Collision"))
+			entity.lock()->getComponent(Collision).collider->draw(*this->_game.resources.screen);
+
+		this->_game.resources.screen->fillColor({0x00, 0xFF, 0x00, 0x80});
+		for (auto &entity : this->_core.getEntityByComponent("Collider"))
+			for (auto &collider : entity.lock()->getComponent(Collider).colliders)
+				collider->draw(*this->_game.resources.screen);
+
+		this->_game.resources.screen->fillColor();
+#endif
 
 		this->_cameraUpdated = false;
 		this->_game.resources.screen->renderEntities();

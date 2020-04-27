@@ -73,7 +73,6 @@ namespace TouhouFanGame::ECS::Quadtree
 		auto pos = this->_offset + this->_origin;
 		auto size = (this->_center - this->_offset) * 2;
 
-		screen.fillColor({0xFF, 0x00, 0x00, 0x20});
 		screen.draw({
 			static_cast<int>(pos.x),
 			static_cast<int>(pos.y),

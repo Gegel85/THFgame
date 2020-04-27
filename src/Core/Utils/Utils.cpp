@@ -4,11 +4,11 @@
 
 
 #include <algorithm>
+#include <filesystem>
 #ifndef _WIN32
 #include <vector>
 #include <sys/stat.h>
 #include <SFML/Graphics.hpp>
-#include <filesystem>
 #include "../Resources/Game.hpp"
 
 #define mkdir(path) mkdir(path, 0755)

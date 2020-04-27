@@ -32,7 +32,7 @@ namespace TouhouFanGame::ECS::Quadtree
 		const std::string &getName() const;
 
 		void link(const Components::PositionComponent &pos);
-		void setOrigin(const Vector2f &origin);
+		virtual void setOrigin(const Vector2f &origin);
 		virtual void setOffset(const Vector2f &offset);
 		virtual void setRotation(float angle);
 

@@ -28,6 +28,25 @@ namespace TouhouFanGame {
 		Rect(Vector2<T> pos, Vector2<T2> size, float angle)
 			: Rect(pos.x, pos.y, size.x, size.y, angle) {}
 
+		template <typename T2>
+		Rect<T> operator+(const Vector2<T2> &dir) const
+		{
+			Rect<T> result = *this;
+
+			result += dir;
+			return result;
+		}
+
+		template <typename T2>
+		Rect<T> &operator+=(const Vector2<T2> dir)
+		{
+			this->pt1 += dir;
+			this->pt2 += dir;
+			this->pt3 += dir;
+			this->pt4 += dir;
+			return *this;
+		}
+
 		~Rect() override = default;
 	};
 

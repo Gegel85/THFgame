@@ -12,13 +12,13 @@ namespace TouhouFanGame::ECS::Quadtree
 {
 	RectangleCollider::RectangleCollider(std::istream &stream) :
 		ICollider("Rectangle", stream),
-		rect(this->_offset, (this->_center - this->_offset) * 2, this->_angle)
+		_rect(this->_offset, (this->_center - this->_offset) * 2, this->_angle)
 	{
 	}
 
 	RectangleCollider::RectangleCollider(float x, float y, float w, float h, float angle) :
 		ICollider("Rectangle", Vector2f{x, y}, Vector2u(w, h), angle),
-		rect(x, y, w, h, angle)
+		_rect(x, y, w, h, angle)
 	{
 	}
 
@@ -34,10 +34,13 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	bool RectangleCollider::collideWith(const RectangleCollider &col) const
 	{
-		return this->rect.pt1.x < col.rect.pt2.x &&
-		       this->rect.pt1.y < col.rect.pt3.y &&
-		       this->rect.pt2.x > col.rect.pt1.x &&
-		       this->rect.pt3.y > col.rect.pt2.y;
+		FloatRect myBox = this->getRect();
+		FloatRect otherBox = col.getRect();
+
+		return myBox.pt1.x < otherBox.pt2.x &&
+		       myBox.pt1.y < otherBox.pt3.y &&
+		       myBox.pt2.x > otherBox.pt1.x &&
+		       myBox.pt3.y > otherBox.pt2.y;
 		//		std::vector<Vector2f> axes;
 //
 //		axes.push_back(Vector2f(this->rect.pt1.x, this->rect.pt2.x - this->rect.pt1.x).normalize());
@@ -94,5 +97,10 @@ namespace TouhouFanGame::ECS::Quadtree
 	bool RectangleCollider::operator>(const class RectangleCollider &collider) const
 	{
 		return false;
+	}
+
+	FloatRect RectangleCollider::getRect() const
+	{
+		return this->_rect + this->_origin;
 	}
 }

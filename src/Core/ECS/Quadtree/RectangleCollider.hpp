@@ -14,14 +14,14 @@ namespace TouhouFanGame::ECS::Quadtree
 	class RectangleCollider : public ICollider {
 	protected:
 		void _serialize(std::ostream &stream) const override;
+		FloatRect _rect;
 
 	public:
-		FloatRect rect;
-
 		bool collideWith(const struct CircleCollider &col) const override;
 		bool collideWith(const class RectangleCollider &col) const override;
 		bool collideWith(const ICollider &col) const override;
 
+		FloatRect getRect() const;
 		void draw(Rendering::Screen &screen) const override;
 
 		RectangleCollider(std::istream &stream);

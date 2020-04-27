@@ -14,7 +14,7 @@ namespace TouhouFanGame::ECS
 	Core::Core(Game &game) :
 		_game(game)
 	{
-		Factory::SystemFactory::buildAll(game, *this, this->_systems);
+		Factory::SystemFactory::buildAll(*this, this->_systems);
 	}
 
 	std::weak_ptr<Entity> Core::makeEntity(const std::string &typeName)

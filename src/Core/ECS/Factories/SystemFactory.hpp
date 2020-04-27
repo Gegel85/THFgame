@@ -16,11 +16,11 @@ namespace TouhouFanGame::ECS::Factory
 	class SystemFactory {
 	private:
 		//! @brief All the System that can be built.
-		const static std::vector<std::function<System *(Game &, Core &)>> _builders;
+		const static std::vector<std::function<System *(Core &)>> _builders;
 
 	public:
 		//! @brief Builds one instance of each System.
-		static void buildAll(Game &game, Core &core, std::vector<std::unique_ptr<System>> &buffer);
+		static void buildAll(Core &core, std::vector<std::unique_ptr<System>> &buffer);
 	};
 }
 

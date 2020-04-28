@@ -23,6 +23,7 @@
 #include "../Core/ECS/Components/ShootComponent.hpp"
 #include "../Core/ECS/Components/DeckComponent.hpp"
 #include "../Core/ECS/Components/ExperienceComponent.hpp"
+#include "../Core/ECS/Quadtree/ColliderFactory.hpp"
 
 namespace TouhouFanGame
 {
@@ -55,8 +56,21 @@ namespace TouhouFanGame
 	tgui::Panel::Ptr ComponentGui::ColliderGui(ECS::Entity &entity, ECS::Component &component)
 	{
 		auto &col = component.to<ECS::Components::ColliderComponent>();
+		auto pos = 10;
+		auto panel = tgui::ScrollablePanel::create({300, 100});
 
-		return EmptyGui();
+		if (col.colliders.empty())
+			col.colliders.emplace_back(ECS::Quadtree::ColliderFactory::build("Rectangle"));
+
+		for (auto &collider : col.colliders) {
+			auto newPanel = ColliderGui::makePanel(entity, collider);
+
+			//TODO: Add a way to add/delete colliders
+			newPanel->setPosition({0, pos});
+			pos += newPanel->getSize().y;
+			panel->add(newPanel);
+		}
+		return panel;
 	}
 
 	tgui::Panel::Ptr ComponentGui::MovableGui(ECS::Component &component)

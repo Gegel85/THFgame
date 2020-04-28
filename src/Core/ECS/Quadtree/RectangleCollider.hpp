@@ -17,22 +17,17 @@ namespace TouhouFanGame::ECS::Quadtree
 		FloatRect _rect;
 
 	public:
-		bool collideWith(const struct CircleCollider &col) const override;
+		bool collideWith(const class CircleCollider &col) const override;
 		bool collideWith(const class RectangleCollider &col) const override;
 		bool collideWith(const ICollider &col) const override;
 
 		FloatRect getRect() const;
 		void draw(Rendering::Screen &screen) const override;
+		Vector2<unsigned> getSize() const;
+		void setSize(Vector2<unsigned> size);
 
 		RectangleCollider(std::istream &stream);
 		RectangleCollider(float x, float y, float w, float h, float angle);
-		explicit RectangleCollider(FloatRect rect);
-
-		bool operator>(const ICollider &collider) const override;
-
-		bool operator>(const struct CircleCollider &collider) const override;
-
-		bool operator>(const class RectangleCollider &collider) const override;
 	};
 }
 

@@ -99,9 +99,9 @@ namespace TouhouFanGame::ECS::Quadtree
 		this->_serialize(stream);
 	}
 
-	const Vector2f &ICollider::getOrigin() const
+	const Vector2f &ICollider::getOffset() const
 	{
-		return this->_origin;
+		return this->_offset;
 	}
 
 	const Vector2f &ICollider::getCenter() const
@@ -140,5 +140,10 @@ namespace TouhouFanGame::ECS::Quadtree
 			else
 				layer++;
 		return -1;
+	}
+
+	float ICollider::getRotation() const
+	{
+		return this->_angle;
 	}
 }

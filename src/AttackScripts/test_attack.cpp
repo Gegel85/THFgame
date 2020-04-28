@@ -24,7 +24,7 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 	auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
 	auto *d = new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json");
 	auto *o = new TouhouFanGame::ECS::Components::OOBDieComponent(map);
-	auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(pos.x, pos.y, 12, 12, 0)});
+	auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
 
 	p->position = pos;
 	m->speed = 10;

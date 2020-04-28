@@ -22,7 +22,7 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 	}
 
-	bool RectangleCollider::collideWith(const class CircleCollider &col) const
+	bool RectangleCollider::collideWith(const CircleCollider &col) const
 	{
 		throw NotImplementedException("Collision between circles and Rectangles are not implemented");
 	}
@@ -84,23 +84,19 @@ namespace TouhouFanGame::ECS::Quadtree
 		});
 	}
 
-	bool RectangleCollider::operator>(const ICollider &collider) const
-	{
-		return !(collider > *this);
-	}
-
-	bool RectangleCollider::operator>(const class CircleCollider &collider) const
-	{
-		return false;
-	}
-
-	bool RectangleCollider::operator>(const class RectangleCollider &collider) const
-	{
-		return false;
-	}
-
 	FloatRect RectangleCollider::getRect() const
 	{
 		return this->_rect + this->_origin;
+	}
+
+	void RectangleCollider::setSize(Vector2<unsigned> size)
+	{
+		this->_center = this->_offset + size / 2.;
+		this->_rect = FloatRect(this->_offset, size, this->_angle);
+	}
+
+	Vector2<unsigned> RectangleCollider::getSize() const
+	{
+		return (this->_center - this->_offset) * 2;
 	}
 }

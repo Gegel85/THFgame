@@ -338,7 +338,7 @@ add_executable(
 	src/MapEditor/ComponentGui.cpp
 	src/MapEditor/ComponentGui.hpp
 	src/Core/DataType/Vector.hpp
-)
+	src/MapEditor/ColliderGui.cpp src/MapEditor/ColliderGui.hpp)
 
 target_link_libraries(
 	map_editor

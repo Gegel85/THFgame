@@ -110,9 +110,9 @@ namespace TouhouFanGame
 		}
 
 		template<typename T2>
-		Vector2<T> operator/(T2 b) const
+		auto operator/(T2 b) const
 		{
-			return Vector2<T>(this->x / b, this->y / b);
+			return Vector2<decltype(this->x / b)>(this->x / b, this->y / b);
 		}
 
 		template<typename T2>

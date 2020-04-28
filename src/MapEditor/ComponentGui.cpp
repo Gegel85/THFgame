@@ -4,6 +4,7 @@
 
 #include "ComponentGui.hpp"
 #include "GuiUtils.hpp"
+#include "ColliderGui.hpp"
 #include "../Core/ECS/Components/MovableComponent.hpp"
 #include "../Core/ECS/Components/PositionComponent.hpp"
 #include "../Core/Utils/Utils.hpp"
@@ -26,39 +27,39 @@
 namespace TouhouFanGame
 {
 	std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Entity &entity, ECS::Component &component)>> ComponentGui::_builders{
-		{"Movable",          [](Game &game, ECS::Entity &      , ECS::Component &component){ return MovableGui(game, component);          }},
-		{"Position",         [](Game &game, ECS::Entity &entity, ECS::Component &component){ return PositionGui(game, entity, component); }},
-		{"Controllable",     [](Game &game, ECS::Entity &      , ECS::Component &component){ return ControllableGui(game, component);     }},
-		{"Displayable",      [](Game &game, ECS::Entity &      , ECS::Component &component){ return DisplayableGui(game, component);      }},
-		{"Mana",             [](Game &game, ECS::Entity &      , ECS::Component &component){ return ManaGui(game, component);             }},
-		{"Health",           [](Game &game, ECS::Entity &      , ECS::Component &component){ return HealthGui(game, component);           }},
-		{"Name",             [](Game &game, ECS::Entity &      , ECS::Component &component){ return NameGui(game, component);             }},
+		{"Movable",          [](Game &    , ECS::Entity &      , ECS::Component &component){ return MovableGui(component);          }},
+		{"Position",         [](Game &    , ECS::Entity &entity, ECS::Component &component){ return PositionGui(entity, component); }},
+		{"Controllable",     [](Game &    , ECS::Entity &      , ECS::Component &component){ return ControllableGui(component);     }},
+		{"Displayable",      [](Game &    , ECS::Entity &      , ECS::Component &component){ return DisplayableGui(component);      }},
+		{"Mana",             [](Game &    , ECS::Entity &      , ECS::Component &component){ return ManaGui(component);             }},
+		{"Health",           [](Game &    , ECS::Entity &      , ECS::Component &component){ return HealthGui(component);           }},
+		{"Name",             [](Game &    , ECS::Entity &      , ECS::Component &component){ return NameGui(component);             }},
 		{"Inventory",        [](Game &game, ECS::Entity &      , ECS::Component &component){ return InventoryGui(game, component);        }},
-		{"Dialog",           [](Game &game, ECS::Entity &      , ECS::Component &component){ return DialogGui(game, component);           }},
-		{"Collider",         [](Game &game, ECS::Entity &entity, ECS::Component &component){ return ColliderGui(game, entity, component); }},
-		{"Collision",        [](Game &game, ECS::Entity &entity, ECS::Component &component){ return CollisionGui(game, entity, component);}},
-		{"Cutscene",         [](Game &game, ECS::Entity &      , ECS::Component &component){ return CutsceneGui(game, component);         }},
-		{"Deck",             [](Game &game, ECS::Entity &      , ECS::Component &component){ return DeckGui(game, component);             }},
-		{"AI",               [](Game &game, ECS::Entity &      , ECS::Component &component){ return AIGui(game, component);               }},
-		{"Shoot",            [](Game &game, ECS::Entity &      , ECS::Component &component){ return ShootGui(game, component);            }},
-		{"Experience",       [](Game &game, ECS::Entity &      , ECS::Component &component){ return ExperienceGui(game, component);       }},
+		{"Dialog",           [](Game &    , ECS::Entity &      , ECS::Component &component){ return DialogGui(component);           }},
+		{"Collider",         [](Game &    , ECS::Entity &entity, ECS::Component &component){ return ColliderGui(entity, component);         }},
+		{"Collision",        [](Game &    , ECS::Entity &entity, ECS::Component &component){ return CollisionGui(entity, component);        }},
+		{"Cutscene",         [](Game &    , ECS::Entity &      , ECS::Component &component){ return CutsceneGui(component);         }},
+		{"Deck",             [](Game &    , ECS::Entity &      , ECS::Component &component){ return DeckGui(component);             }},
+		{"AI",               [](Game &    , ECS::Entity &      , ECS::Component &component){ return AIGui(component);               }},
+		{"Shoot",            [](Game &    , ECS::Entity &      , ECS::Component &component){ return ShootGui(component);            }},
+		{"Experience",       [](Game &    , ECS::Entity &      , ECS::Component &component){ return ExperienceGui(component);       }},
 	};
 
-	tgui::Panel::Ptr ComponentGui::CollisionGui(Game &game, ECS::Entity &entity, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::CollisionGui(ECS::Entity &entity, ECS::Component &component)
 	{
 		auto &col = component.to<ECS::Components::CollisionComponent>();
 
-		return EmptyGui(game, component);
+		return ColliderGui::makePanel(entity, col.collider);
 	}
 
-	tgui::Panel::Ptr ComponentGui::ColliderGui(Game &game, ECS::Entity &entity, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ColliderGui(ECS::Entity &entity, ECS::Component &component)
 	{
 		auto &col = component.to<ECS::Components::ColliderComponent>();
 
-		return EmptyGui(game, component);
+		return EmptyGui();
 	}
 
-	tgui::Panel::Ptr ComponentGui::MovableGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::MovableGui(ECS::Component &component)
 	{
 		auto &movable = component.to<ECS::Components::MovableComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -99,8 +100,10 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::PositionGui(Game &, ECS::Entity &entity, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::PositionGui(ECS::Entity &entity, ECS::Component &component)
 	{
+		auto *collision = entity.hasComponent("Collision") ? &entity.getComponent(Collision) : nullptr;
+		auto *collider = entity.hasComponent("Collider") ? &entity.getComponent(Collider) : nullptr;
 		auto &position = component.to<ECS::Components::PositionComponent>();
 		auto panel = tgui::Panel::create({300, 70});
 		auto render = tgui::RendererData::create({
@@ -152,13 +155,25 @@ namespace TouhouFanGame
 			"[+-]?[0-9]*\\.?[0-9]*"
 		);
 
-		xEditBox->connect("TextChanged", [&position, xEditBox]{
-			if (!xEditBox->getText().isEmpty())
+		xEditBox->connect("TextChanged", [&position, xEditBox, collision, collider]{
+			if (!xEditBox->getText().isEmpty()) {
 				position.position.x = std::stof(xEditBox->getText().toAnsiString());
+				if (collision)
+					collision->collider->setOrigin(position.position);
+				if (collider)
+					for (auto &col : collider->colliders)
+						col->setOrigin(position.position);
+			}
 		});
-		yEditBox->connect("TextChanged", [&position, yEditBox]{
-			if (!yEditBox->getText().isEmpty())
+		yEditBox->connect("TextChanged", [&position, yEditBox, collision, collider]{
+			if (!yEditBox->getText().isEmpty()) {
 				position.position.y = std::stof(yEditBox->getText().toAnsiString());
+				if (collision)
+					collision->collider->setOrigin(position.position);
+				if (collider)
+					for (auto &col : collider->colliders)
+						col->setOrigin(position.position);
+			}
 		});
 		xSizeEditBox->connect("TextChanged", [&position, xSizeEditBox]{
 			if (!xSizeEditBox->getText().isEmpty())
@@ -186,7 +201,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::ControllableGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ControllableGui(ECS::Component &component)
 	{
 		auto &controllable = component.to<ECS::Components::ControllableComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -228,7 +243,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::DisplayableGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::DisplayableGui(ECS::Component &component)
 	{
 		auto &displayable = component.to<ECS::Components::DisplayableComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -253,7 +268,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::ManaGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ManaGui(ECS::Component &component)
 	{
 		auto &manaComp = component.to<ECS::Components::ManaComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -295,7 +310,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::HealthGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::HealthGui(ECS::Component &component)
 	{
 		auto &healthComp = component.to<ECS::Components::HealthComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -337,7 +352,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::NameGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::NameGui(ECS::Component &component)
 	{
 		auto &name = component.to<ECS::Components::NameComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -362,7 +377,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::DialogGui(TouhouFanGame::Game &, TouhouFanGame::ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::DialogGui(ECS::Component &component)
 	{
 		auto &dialog = component.to<ECS::Components::DialogComponent>();
 		auto panel = tgui::ScrollablePanel::create({300, 70});
@@ -401,7 +416,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::EmptyGui(Game &, ECS::Component &)
+	tgui::Panel::Ptr ComponentGui::EmptyGui()
 	{
 		return tgui::Panel::create({0, 0});
 	}
@@ -459,7 +474,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::CutsceneGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::CutsceneGui(ECS::Component &component)
 	{
 		auto &cutscene = component.to<ECS::Components::CutsceneComponent>();
 		auto panel = tgui::ScrollablePanel::create({300, 70});
@@ -498,7 +513,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::AIGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::AIGui(ECS::Component &component)
 	{
 		auto &ai = component.to<ECS::Components::AIComponent>();
 		auto panel = tgui::ScrollablePanel::create({300, 70});
@@ -537,7 +552,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::ShootGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ShootGui(ECS::Component &component)
 	{
 		auto &shoot = component.to<ECS::Components::ShootComponent>();
 		auto panel = tgui::ScrollablePanel::create({300, 70});
@@ -576,7 +591,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::DeckGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::DeckGui(ECS::Component &component)
 	{
 		auto &deck = component.to<ECS::Components::DeckComponent>();
 		auto panel = tgui::ScrollablePanel::create({300, 70});
@@ -615,7 +630,7 @@ namespace TouhouFanGame
 		return panel;
 	}
 
-	tgui::Panel::Ptr ComponentGui::ExperienceGui(Game &, ECS::Component &component)
+	tgui::Panel::Ptr ComponentGui::ExperienceGui(ECS::Component &component)
 	{
 		auto &xpComp = component.to<ECS::Components::ExperienceComponent>();
 		auto panel = tgui::Panel::create({300, 30});
@@ -662,7 +677,7 @@ namespace TouhouFanGame
 		try {
 			return _builders.at(component.getName())(game, entity, component);
 		} catch (std::out_of_range &) {
-			return EmptyGui(game, component);
+			return EmptyGui();
 		}
 	}
 }

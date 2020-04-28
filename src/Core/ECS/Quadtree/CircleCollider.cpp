@@ -2,14 +2,13 @@
 // Created by anonymus-raccoon on 1/15/20.
 //
 
-#include <cmath>
 #include "CircleCollider.hpp"
-#include "../Components/ColliderComponent.hpp"
+#include "../Exceptions.hpp"
 
 namespace TouhouFanGame::ECS::Quadtree
 {
 	CircleCollider::CircleCollider(float x, float y, float radius) :
-		ICollider("Circle", {x, y}, Vector2f{radius, radius}),
+		ICollider("Circle", {x - radius, y - radius}, Vector2f{radius, radius}),
 		radius(radius)
 	{
 	}
@@ -17,7 +16,12 @@ namespace TouhouFanGame::ECS::Quadtree
 	CircleCollider::CircleCollider(std::istream &stream) :
 		ICollider("Circle", stream)
 	{
-		stream >> this->radius;
+		this->radius = this->_center.x - this->_offset.x;
+
+		if (this->radius != this->_center.y - this->_offset.y)
+			throw InvalidSerializedString("The center is not in the center of the circle.");
+		if (this->radius < 0)
+			throw InvalidSerializedString("The radius is invalid");
 	}
 
 	bool CircleCollider::collideWith(const class CircleCollider &col) const
@@ -41,7 +45,6 @@ namespace TouhouFanGame::ECS::Quadtree
 
 	void CircleCollider::_serialize(std::ostream &stream) const
 	{
-		stream << this->radius;
 	}
 
 	void CircleCollider::draw(Rendering::Screen &screen) const
@@ -49,18 +52,12 @@ namespace TouhouFanGame::ECS::Quadtree
 		screen.draw(this->radius, this->_origin + this->_offset);
 	}
 
-	bool CircleCollider::operator>(const ICollider &collider) const
+	void CircleCollider::setRadius(float radius)
 	{
-		return !(collider > *this);
-	}
-
-	bool CircleCollider::operator>(const class CircleCollider &collider) const
-	{
-		return false;
-	}
-
-	bool CircleCollider::operator>(const class RectangleCollider &collider) const
-	{
-		return false;
+		this->radius = radius;
+		this->_offset = {
+			this->_center.x - radius,
+			this->_center.y - radius,
+		};
 	}
 }

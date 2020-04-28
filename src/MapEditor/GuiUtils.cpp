@@ -116,6 +116,7 @@ namespace TouhouFanGame
 
 		const bool tabUsageEnabled = gui.isTabKeyUsageEnabled();
 		auto closeWindow = [&gui, window, panel, tabUsageEnabled, closeHandle]{
+			window->removeAllWidgets();
 			gui.remove(window);
 			gui.remove(panel);
 			gui.setTabKeyUsageEnabled(tabUsageEnabled);

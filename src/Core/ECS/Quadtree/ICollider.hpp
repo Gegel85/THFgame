@@ -27,9 +27,10 @@ namespace TouhouFanGame::ECS::Quadtree
 		virtual void _serialize(std::ostream &stream) const = 0;
 
 	public:
-		const Vector2f &getOrigin() const;
+		const Vector2f &getOffset() const;
 		const Vector2f &getCenter() const;
 		const std::string &getName() const;
+		float getRotation() const;
 
 		void link(const Components::PositionComponent &pos);
 		virtual void setOrigin(const Vector2f &origin);
@@ -46,10 +47,6 @@ namespace TouhouFanGame::ECS::Quadtree
 
 		void serialize(std::ostream &stream) const;
 		virtual void draw(Rendering::Screen &screen) const = 0;
-
-		virtual bool operator>(const ICollider &) const = 0;
-		virtual bool operator>(const class CircleCollider &) const = 0;
-		virtual bool operator>(const class RectangleCollider &) const = 0;
 	};
 }
 

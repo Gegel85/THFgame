@@ -336,10 +336,10 @@ namespace TouhouFanGame
 		unsigned pos = 0;
 
 		name->setText(entity->getName());
-		name->connect("TextChanged", [this, entity, name]{
+		/*name->connect("TextChanged", [this, entity, name]{
 			entity->_name = name->getText();
 			this->_showAllEntities(false);
-		});
+		});*/
 		window->setSize({350, 250});
 		panel->setSize({350, 250});
 		window->setTitle("Entity " + std::to_string(entity->getID()));

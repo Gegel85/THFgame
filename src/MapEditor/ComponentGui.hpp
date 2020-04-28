@@ -17,23 +17,23 @@ namespace TouhouFanGame
 	private:
 		static std::map<std::string, std::function<tgui::Panel::Ptr(Game &, ECS::Entity &, ECS::Component &)>> _builders;
 
-		static tgui::Panel::Ptr MovableGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr PositionGui(Game &, ECS::Entity &, ECS::Component &);
-		static tgui::Panel::Ptr ControllableGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr DisplayableGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr ManaGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr HealthGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr NameGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr EmptyGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr MovableGui(ECS::Component &);
+		static tgui::Panel::Ptr PositionGui(ECS::Entity &, ECS::Component &);
+		static tgui::Panel::Ptr ControllableGui(ECS::Component &);
+		static tgui::Panel::Ptr DisplayableGui(ECS::Component &);
+		static tgui::Panel::Ptr ManaGui(ECS::Component &);
+		static tgui::Panel::Ptr HealthGui(ECS::Component &);
+		static tgui::Panel::Ptr NameGui(ECS::Component &);
+		static tgui::Panel::Ptr EmptyGui();
 		static tgui::Panel::Ptr InventoryGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr DialogGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr ColliderGui(Game &, ECS::Entity &, ECS::Component &);
-		static tgui::Panel::Ptr CollisionGui(Game &, ECS::Entity &, ECS::Component &);
-		static tgui::Panel::Ptr ShootGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr DeckGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr CutsceneGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr AIGui(Game &, ECS::Component &);
-		static tgui::Panel::Ptr ExperienceGui(Game &, ECS::Component &);
+		static tgui::Panel::Ptr DialogGui(ECS::Component &);
+		static tgui::Panel::Ptr ColliderGui(ECS::Entity &entity, ECS::Component &);
+		static tgui::Panel::Ptr CollisionGui(ECS::Entity &entity, ECS::Component &);
+		static tgui::Panel::Ptr ShootGui(ECS::Component &);
+		static tgui::Panel::Ptr DeckGui(ECS::Component &);
+		static tgui::Panel::Ptr CutsceneGui(ECS::Component &);
+		static tgui::Panel::Ptr AIGui(ECS::Component &);
+		static tgui::Panel::Ptr ExperienceGui(ECS::Component &);
 
 	public:
 		static tgui::Panel::Ptr build(Game &, ECS::Entity &entity, ECS::Component &component);

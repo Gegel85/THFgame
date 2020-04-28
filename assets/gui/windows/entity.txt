@@ -56,7 +56,7 @@ ScrollablePanel.ScrollablePanel1 {
 
     ComboBox.ComponentName {
         ChangeItemOnScroll = true;
-        ExpandDirection = Down;
+        ExpandDirection = Automatic;
         ItemsToDisplay = 0;
         MaximumItems = 0;
         Position = (10, 70);

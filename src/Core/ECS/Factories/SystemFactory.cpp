@@ -22,6 +22,7 @@
 #include "../Systems/CutsceneSystem.hpp"
 #include "../Systems/BossHudSystem.hpp"
 #include "../../Resources/Game.hpp"
+#include "../Systems/ProjectileSystem.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -46,6 +47,7 @@ namespace TouhouFanGame::ECS::Factory
 		[](Core &core){ return new Systems::AISystem(core); },
 		[](Core &core){ return new Systems::CutsceneSystem(core); },
 		[](Core &core){ return new Systems::BossHUDSystem(core); },
+		[](Core &core){ return new Systems::ProjectileSystem(core); },
 		[](Core &core){ return new Systems::UselessSystem(core, "Collider", {"Position"}); },
 	};
 

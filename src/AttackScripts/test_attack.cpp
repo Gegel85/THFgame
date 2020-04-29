@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include "../Core/Resources/Game.hpp"
 #include "../Core/Utils/BaseObject.hpp"
 #include "../Core/ECS/Entity.hpp"
 #include "../Core/Resources/Resources.hpp"
@@ -15,16 +16,23 @@
 #include "../Core/ECS/Components/OobDieComponent.hpp"
 #include "../Core/ECS/Components/ColliderComponent.hpp"
 #include "../Core/ECS/Quadtree/RectangleCollider.hpp"
+#include "../Core/ECS/Components/ProjectileComponent.hpp"
+#include "../Core/ECS/Components/CollisionComponent.hpp"
 
 #define TIMER_SIZE 4
 
-TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGame::Resources &resources, TouhouFanGame::Vector2f pos, double dir)
+using Entity = TouhouFanGame::ECS::Entity;
+using namespace TouhouFanGame::ECS::Components;
+
+Entity *makeProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, double dir, const std::vector<std::string> &&targets = {"Boss", "Enemy"})
 {
-	auto *p = new TouhouFanGame::ECS::Components::PositionComponent({12, 12});
-	auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
-	auto *d = new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json");
-	auto *o = new TouhouFanGame::ECS::Components::OOBDieComponent(map);
-	auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
+	auto *p = new PositionComponent({12, 12});
+	auto *m = new MovableComponent();
+	auto *d = new DisplayableComponent(game.resources, "assets/entities/test.json");
+	auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 10, {}, static_cast<const std::vector<std::string> &&>(targets));
+	auto *o = new OOBDieComponent(game.state.map);
+	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
+	auto *c = new CollisionComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0));
 
 	p->position = pos;
 	m->speed = 10;
@@ -37,7 +45,8 @@ TouhouFanGame::ECS::Entity *makeProjectile(TouhouFanGame::Map &map, TouhouFanGam
 		d,
 		p,
 		o,
-		c
+		c,
+		proj
 	}, false);
 }
 
@@ -47,14 +56,14 @@ extern "C"
 	{
 	}
 
-	unsigned spellCard0(void *, TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned spellCard0(void *, Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
 	{
 		auto &pos = entity.getComponent(Position);
 
 		for (int i = 0; i < 16; i++) {
 			auto angle = i * M_PI_4 / 2;
 
-			core.registerEntity(makeProjectile(map, resources, {
+			core.registerEntity(makeProjectile(game, {
 				static_cast<float>(pos.position.x + std::cos(angle) * 32 + pos.size.x / 2.),
 				static_cast<float>(pos.position.y + std::sin(angle) * 32 + pos.size.y / 2.),
 			}, angle));
@@ -62,38 +71,39 @@ extern "C"
 		return 0;
 	}
 
-	unsigned spellCard1(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned spellCard1(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
 	{
-		for (size_t i = 0; i < map.getPixelSize().y - 16; i += 4)
-			core.registerEntity(makeProjectile(map, resources, {
-				static_cast<float>(map.getPixelSize().x - 16),
+		for (size_t i = 0; i < game.state.map.getPixelSize().y - 16; i += 4)
+			core.registerEntity(makeProjectile(game, {
+				static_cast<float>(game.state.map.getPixelSize().x - 16),
 				static_cast<float>(i)
-			}, M_PI));
-		for (size_t i = 0; i < map.getPixelSize().y - 16; i += 4)
-			core.registerEntity(makeProjectile(map, resources, {
+			}, M_PI, {"BossProjectiles"}));
+		for (size_t i = 0; i < game.state.map.getPixelSize().y - 16; i += 4)
+			core.registerEntity(makeProjectile(game, {
 				0,
 				static_cast<float>(i)
-			}, 0));
-		for (size_t i = 0; i < map.getPixelSize().x - 16; i += 4)
-			core.registerEntity(makeProjectile(map, resources, {
+			}, 0, {"BossProjectiles"}));
+		for (size_t i = 0; i < game.state.map.getPixelSize().x - 16; i += 4)
+			core.registerEntity(makeProjectile(game, {
 				static_cast<float>(i),
 				0,
-			}, M_PI_2));
-		for (size_t i = 0; i < map.getPixelSize().x - 16; i += 4)
-			core.registerEntity(makeProjectile(map, resources, {
+			}, M_PI_2, {"BossProjectiles"}));
+		for (size_t i = 0; i < game.state.map.getPixelSize().x - 16; i += 4)
+			core.registerEntity(makeProjectile(game, {
 				static_cast<float>(i),
-				static_cast<float>(map.getPixelSize().y - 16),
-			}, -M_PI_2));
+				static_cast<float>(game.state.map.getPixelSize().y - 16),
+			}, -M_PI_2, {"BossProjectiles"}));
 		return 0;
 	}
 
-	unsigned spellCard2(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned spellCard2(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
 	{
-		auto *p = new TouhouFanGame::ECS::Components::PositionComponent(map.getPixelSize());
-		auto *m = new TouhouFanGame::ECS::Components::MovableComponent();
-		auto *d = new TouhouFanGame::ECS::Components::DisplayableComponent(resources, "assets/entities/test.json");
-		auto *o = new TouhouFanGame::ECS::Components::OOBDieComponent(map);
-		auto *c = new TouhouFanGame::ECS::Components::ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 12, 12, 0)});
+		auto *p = new PositionComponent(game.state.map.getPixelSize());
+		auto *m = new MovableComponent();
+		auto *d = new DisplayableComponent(game.resources, "assets/entities/test.json");
+		auto *o = new OOBDieComponent(game.state.map);
+		auto *c = new CollisionComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, game.state.map.getPixelSize().x, game.state.map.getPixelSize().y, 0));
+		auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 60, {});
 
 		p->position = {-static_cast<float>(p->size.x), 0};
 		m->speed = 1;
@@ -105,12 +115,13 @@ extern "C"
 			d,
 			p,
 			o,
-			c
+			c,
+			proj
 		}, false));
 		return 0;
 	}
 
-	unsigned attackDefault(void *, TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Resources &resources, TouhouFanGame::Map &map)
+	unsigned attackDefault(void *, TouhouFanGame::ECS::Entity &entity, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
 	{
 		auto &pos = entity.getComponent(Position);
 		auto &mov = entity.getComponent(Movable);
@@ -127,11 +138,11 @@ extern "C"
 			sin(angle + M_PI_2),
 		};
 
-		core.registerEntity(makeProjectile(map, resources, {
+		core.registerEntity(makeProjectile(game, {
 			static_cast<float>(pos.position.x + pos.size.x / 2 + vec.x * 6 - 6),
 			static_cast<float>(pos.position.y + pos.size.y / 2 + vec.y * 6 - 6),
 		}, angle));
-		core.registerEntity(makeProjectile(map, resources, {
+		core.registerEntity(makeProjectile(game, {
 			static_cast<float>(pos.position.x + pos.size.x / 2 - vec.x * 6 - 6),
 			static_cast<float>(pos.position.y + pos.size.y / 2 - vec.y * 6 - 6),
 		}, angle));

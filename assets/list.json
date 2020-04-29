@@ -17,7 +17,9 @@
 			"description": "SA Stage 4 Satori's Theme: Satori Maiden ~ 3rd Eye"
 		}
 	},
-	"sfx": {},
+	"sfx": {
+		"bullet_spawn": "sfx/bullet_spawn.ogg"
+	},
 	"sprites": {
 		"tilemap1": "tilemaps/tilemap1.png",
 		"testEntity": "entities/test.png",

@@ -24,9 +24,8 @@ namespace TouhouFanGame::ECS::Components
 
 	public:
 		std::unique_ptr<ExternalModule> handler;
-		Map &map;
 		bool shooting = false;
-		Resources &resources;
+		Game &game;
 		unsigned startCooldown;
 		unsigned cooldown = 0;
 
@@ -34,9 +33,9 @@ namespace TouhouFanGame::ECS::Components
 		std::string getHandlerPath() const;
 
 		//! @brief Unserializer constructor.
-		ShootComponent(std::istream &stream, Map &map, Resources &resources);
-		ShootComponent(Resources &resources, Map &map);
-		ShootComponent(Resources &resources, Map &map, const std::string &handlePath);
+		ShootComponent(std::istream &stream, Game &game);
+		ShootComponent(Game &game);
+		ShootComponent(Game &game, const std::string &handlePath);
 		~ShootComponent() override = default;
 		void serialize(std::ostream &) const override;
 	};

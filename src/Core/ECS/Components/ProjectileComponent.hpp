@@ -25,8 +25,8 @@ namespace TouhouFanGame::ECS::Components
 		std::unique_ptr<ExternalModule> effect;
 
 		//! @brief Unserializer constructor.
-		ProjectileComponent(std::istream &stream);
-		ProjectileComponent(const std::string &modulePath, unsigned damages = 0,const std::weak_ptr<Entity> &entity = {}, const std::vector<std::string> &&targets = {});
+		ProjectileComponent(Game &game, std::istream &stream);
+		ProjectileComponent(Game &game, std::string modulePath, unsigned damages = 0,std::weak_ptr<Entity> entity = {}, const std::vector<std::string> &&targets = {});
 		~ProjectileComponent() override;
 		void serialize(std::ostream &) const override;
 	};

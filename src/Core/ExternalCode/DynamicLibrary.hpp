@@ -43,7 +43,11 @@ namespace TouhouFanGame
 
 			if (!func)
 				throw ProcedureNotFoundException("Error when trying to fetch " + procName + ": " + Utils::getLastError());
-			return func(this->_userdata, args...);
+			try {
+				return func(this->_userdata, args...);
+			} catch (std::exception &e) {
+				throw ProcedureErrorException("An unhandled exception occurred in procedure \"" + procName + "\":\n" + getLastExceptionName() + ": " + e.what());
+			}
 		}
 
 		DynamicLibrary(const std::string &path);

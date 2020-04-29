@@ -22,12 +22,12 @@ extern "C"
 		free(data);
 	}
 
-	bool isConditionCompleted(void *, TouhouFanGame::ECS::Entity &me, TouhouFanGame::Game &game)
+	bool isConditionCompleted(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::Game &)
 	{
 		return true;
 	}
 
-	void start(void *, TouhouFanGame::ECS::Entity &me, TouhouFanGame::Game &game)
+	void start(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::Game &game)
 	{
 		auto entity = game.state.map.getECSCore().makeEntity("TestAlly").lock();
 

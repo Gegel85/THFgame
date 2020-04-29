@@ -51,12 +51,12 @@ namespace TouhouFanGame::ECS::Factory
 		{"Dialog",           [](Game &    , std::istream &stream){ return new Components::DialogComponent(stream); }},
 		{"Experience",       [](Game &    , std::istream &stream){ return new Components::ExperienceComponent(stream); }},
 		{"Deck",             [](Game &    , std::istream &stream){ return new Components::DeckComponent(stream); }},
-		{"Shoot",            [](Game &game, std::istream &stream){ return new Components::ShootComponent(stream, game.state.map, game.resources); }},
+		{"Shoot",            [](Game &game, std::istream &stream){ return new Components::ShootComponent(stream, game); }},
 		{"OOBDie",           [](Game &game, std::istream &      ){ return new Components::OOBDieComponent(game.state.map); }},
 		{"AI",               [](Game &game, std::istream &stream){ return new Components::AIComponent(stream, game.state.map, game.state.map.getECSCore()); }},
 		{"Cutscene",         [](Game &game, std::istream &stream){ return new Components::CutsceneComponent(game, stream); }},
 		{"BossHUD",          [](Game &game, std::istream &      ){ return new Components::BossHUDComponent(game.state.hud); }},
-		{"Projectile",       [](Game &    , std::istream &stream){ return new Components::ProjectileComponent(stream); }}
+		{"Projectile",       [](Game &game, std::istream &stream){ return new Components::ProjectileComponent(game, stream); }}
 	};
 	const std::map<std::string, std::function<Component *(Game &)>> ComponentFactory::_basicBuilders{
 		{"Movable",          [](Game &    ){ return new Components::MovableComponent(); }},
@@ -75,12 +75,12 @@ namespace TouhouFanGame::ECS::Factory
 		{"Dialog",           [](Game &    ){ return new Components::DialogComponent(); }},
 		{"Experience",       [](Game &    ){ return new Components::ExperienceComponent(); }},
 		{"Deck",             [](Game &    ){ return new Components::DeckComponent("assets/spell_cards/test/test_tree.json"); }},
-		{"Shoot",            [](Game &game){ return new Components::ShootComponent(game.resources, game.state.map); }},
+		{"Shoot",            [](Game &game){ return new Components::ShootComponent(game); }},
 		{"OOBDie",           [](Game &game){ return new Components::OOBDieComponent(game.state.map); }},
 		{"AI",               [](Game &game){ return new Components::AIComponent("assets/ais/allyDodge", 2, 4, game.state.map, game.state.map.getECSCore()); }},
 		{"Cutscene",         [](Game &game){ return new Components::CutsceneComponent(game, "assets/cutscenes/testCutscene"); }},
 		{"BossHUD",          [](Game &game){ return new Components::BossHUDComponent(game.state.hud); }},
-		{"Projectile",       [](Game &game){ return new Components::ProjectileComponent("assets/projectiles/testProjectile"); }}
+		{"Projectile",       [](Game &game){ return new Components::ProjectileComponent(game, "assets/projectiles/testProjectile"); }}
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

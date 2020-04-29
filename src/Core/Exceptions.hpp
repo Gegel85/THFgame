@@ -185,14 +185,6 @@ namespace TouhouFanGame
 		{};
 	};
 
-	//! @brief A function had no choice but to dereference a null pointer.
-	class NullPointerException : public BaseException {
-	public:
-		explicit NullPointerException() :
-			BaseException("NullPointerException")
-		{};
-	};
-
 	class InvalidStateException : public BaseException {
 	public:
 		explicit InvalidStateException(const std::string &&msg) :

@@ -14,26 +14,23 @@
 
 namespace TouhouFanGame::ECS::Components
 {
-	ShootComponent::ShootComponent(Resources &resources, Map &map) :
+	ShootComponent::ShootComponent(Game &game) :
 		Component("Shoot"),
-		map(map),
-		resources(resources)
+		game(game)
 	{
 	}
 
-	ShootComponent::ShootComponent(Resources &resources, Map &map, const std::string &handlePath) :
+	ShootComponent::ShootComponent(Game &game, const std::string &handlePath) :
 		Component("Shoot"),
 		handler(ExternalModuleFactory::build(handlePath)),
-		map(map),
-		resources(resources)
+		game(game)
 	{
 		this->_handlerPath = handlePath;
 	}
 
-	ShootComponent::ShootComponent(std::istream &stream, Map &map, Resources &resources) :
+	ShootComponent::ShootComponent(std::istream &stream, Game &game) :
 		Component("Shoot"),
-		map(map),
-		resources(resources)
+		game(game)
 	{
 		stream >> this->startCooldown >> this->_handlerPath;
 		if (stream.fail())

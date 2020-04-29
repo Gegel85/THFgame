@@ -60,10 +60,8 @@ namespace TouhouFanGame::ECS::Systems
 			auto &collider = ptr->getComponent(Collider);
 			auto layer = collision.collider->getCollisionLayer(collider.colliders);
 
-			if (layer >= 0) {
+			if (layer >= 0)
 				collision.collided.emplace_back(ptr, layer);
-				std::cout << entity << " collide with " << ptr << std::endl;
-			}
 		}
 		/*collision.collided = this->_quadtree.checkCollisions(*collision.collider);
 		if (!collision.collided.empty()) {

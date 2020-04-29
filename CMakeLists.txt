@@ -209,7 +209,7 @@ add_library(
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
-	src/Core/ECS/Quadtree/ColliderFactory.cpp src/Core/ECS/Quadtree/ColliderFactory.hpp)
+	src/Core/ECS/Quadtree/ColliderFactory.cpp src/Core/ECS/Quadtree/ColliderFactory.hpp src/Core/ECS/Components/ProjectileComponent.cpp src/Core/ECS/Components/ProjectileComponent.hpp src/Core/ECS/Systems/ProjectileSystem.cpp src/Core/ECS/Systems/ProjectileSystem.hpp)
 
 if (WIN32)
 	target_link_libraries(
@@ -291,7 +291,26 @@ target_link_libraries(
 )
 set_target_properties(testCutscene PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/cutscenes" PREFIX "")
 
+#-------------------------------------------------------------
+#|                    Projectiles scripts                    |
+#-------------------------------------------------------------
+
+add_library(
+	testProjectile MODULE
+	src/ProjectileScripts/testProjectile.cpp
+)
+
+target_link_libraries(
+	testProjectile
+	THFgame-core
+)
+set_target_properties(testProjectile PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/projectiles" PREFIX "")
+
 #_____________________________________________________________
+
+#-------------------------------------------------------------
+#|                            Game                           |
+#-------------------------------------------------------------
 
 add_executable(
 	THFgame
@@ -321,9 +340,16 @@ add_dependencies(
 
 	#Cutscene scripts
 	testCutscene
+
+	#Projectiles scripts
+	testProjectile
 )
 
 #_____________________________________________________________
+
+#-------------------------------------------------------------
+#|                         Map editor                        |
+#-------------------------------------------------------------
 
 add_executable(
 	map_editor
@@ -338,7 +364,9 @@ add_executable(
 	src/MapEditor/ComponentGui.cpp
 	src/MapEditor/ComponentGui.hpp
 	src/Core/DataType/Vector.hpp
-	src/MapEditor/ColliderGui.cpp src/MapEditor/ColliderGui.hpp)
+	src/MapEditor/ColliderGui.cpp
+	src/MapEditor/ColliderGui.hpp
+)
 
 target_link_libraries(
 	map_editor
@@ -357,4 +385,7 @@ add_dependencies(
 
 	#Cutscene scripts
 	testCutscene
+
+	#Projectiles scripts
+	testProjectile
 )

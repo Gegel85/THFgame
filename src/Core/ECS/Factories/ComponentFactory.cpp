@@ -30,6 +30,7 @@
 #include "../Components/AiComponent.hpp"
 #include "../Components/CutsceneComponent.hpp"
 #include "../Components/BossHudComponent.hpp"
+#include "../Components/ProjectileComponent.hpp"
 
 namespace TouhouFanGame::ECS::Factory
 {
@@ -54,7 +55,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"OOBDie",           [](Game &game, std::istream &      ){ return new Components::OOBDieComponent(game.state.map); }},
 		{"AI",               [](Game &game, std::istream &stream){ return new Components::AIComponent(stream, game.state.map, game.state.map.getECSCore()); }},
 		{"Cutscene",         [](Game &game, std::istream &stream){ return new Components::CutsceneComponent(game, stream); }},
-		{"BossHUD",          [](Game &game, std::istream &      ){ return new Components::BossHUDComponent(game.state.hud); }}
+		{"BossHUD",          [](Game &game, std::istream &      ){ return new Components::BossHUDComponent(game.state.hud); }},
+		{"Projectile",       [](Game &    , std::istream &stream){ return new Components::ProjectileComponent(stream); }}
 	};
 	const std::map<std::string, std::function<Component *(Game &)>> ComponentFactory::_basicBuilders{
 		{"Movable",          [](Game &    ){ return new Components::MovableComponent(); }},
@@ -77,7 +79,8 @@ namespace TouhouFanGame::ECS::Factory
 		{"OOBDie",           [](Game &game){ return new Components::OOBDieComponent(game.state.map); }},
 		{"AI",               [](Game &game){ return new Components::AIComponent("assets/ais/allyDodge", 2, 4, game.state.map, game.state.map.getECSCore()); }},
 		{"Cutscene",         [](Game &game){ return new Components::CutsceneComponent(game, "assets/cutscenes/testCutscene"); }},
-		{"BossHUD",          [](Game &game){ return new Components::BossHUDComponent(game.state.hud); }}
+		{"BossHUD",          [](Game &game){ return new Components::BossHUDComponent(game.state.hud); }},
+		{"Projectile",       [](Game &game){ return new Components::ProjectileComponent("assets/projectiles/testProjectile"); }}
 	};
 
 	Component *ComponentFactory::build(Game &game, const std::string &name, std::istream &stream)

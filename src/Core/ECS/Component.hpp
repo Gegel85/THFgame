@@ -37,12 +37,17 @@ namespace TouhouFanGame::ECS
 		//! If it isn't, it will cast it anyway and won't report any error.
 		type &to()
 		{
+#ifdef _DEBUG
 			return dynamic_cast<type &>(*this);
+#else
+			return reinterpret_cast<type &>(*this);
+#endif
 		}
 	};
 }
 
 std::ostream &test(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
-std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
+std::ostream &operator<<(std::ostream &stream, const TouhouFanGame::ECS::Component &component);
+
 
 #endif //THFGAME_COMPONENT_HPP

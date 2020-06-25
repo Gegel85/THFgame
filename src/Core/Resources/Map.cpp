@@ -275,7 +275,7 @@ namespace TouhouFanGame
 			this->_savePlayer();
 		}
 
-		for (auto &trigger : this->_tpTriggers)
+		for (auto trigger : this->_tpTriggers)
 			if (
 				pos.x < trigger.location.x + this->_tileSize && trigger.location.x < size.x + pos.x &&
 				pos.y < trigger.location.y + this->_tileSize && trigger.location.y < size.y + pos.y
@@ -286,6 +286,7 @@ namespace TouhouFanGame
 				pos = Vector2f(trigger.mapSpawn.x, trigger.mapSpawn.y);
 				this->_savePlayer();
 				setPos();
+				break;
 			}
 	}
 

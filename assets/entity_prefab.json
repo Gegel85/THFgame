@@ -4,5 +4,6 @@
     "TestAlly": "entity_prefabs/TestAlly.entity",
     "FlandrePlayer": "entity_prefabs/FlandrePlayer.entity",
     "CirnoBoss": "entity_prefabs/CirnoBoss.entity",
-    "CirnoAlly": "entity_prefabs/CirnoAlly.entity"
+    "CirnoAlly": "entity_prefabs/CirnoAlly.entity",
+    "YumemiBoss": "entity_prefabs/YumemiBoss.entity"
 }

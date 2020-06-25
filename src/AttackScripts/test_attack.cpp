@@ -29,7 +29,7 @@ Entity *makeProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, d
 	auto *p = new PositionComponent({12, 12});
 	auto *m = new MovableComponent();
 	auto *d = new DisplayableComponent(game.resources, "assets/entities/test.json");
-	auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 10, {}, static_cast<const std::vector<std::string> &&>(targets));
+	auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 10, -1, {}, static_cast<const std::vector<std::string> &&>(targets));
 	auto *o = new OOBDieComponent(game.state.map);
 	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
 	auto *c = new CollisionComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0));

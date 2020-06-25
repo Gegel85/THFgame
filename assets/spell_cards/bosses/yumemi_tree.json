@@ -1,0 +1,29 @@
+[
+    {
+        "level": 0,
+        "name": "Synthetic Arcane \"Solomon's Barrage\"",
+        "texture": "testEntity",
+        "cost": 0,
+        "cooldown": 0,
+        "description": "",
+        "handler": "battle_scripts/yumemi_attack"
+    },
+    {
+        "level": 0,
+        "name": "Attack 2",
+        "texture": "testEntity",
+        "cost": 0,
+        "cooldown": 0,
+        "description": "",
+        "handler": "battle_scripts/test_attack"
+    },
+    {
+        "level": 0,
+        "name": "Attack 3",
+        "texture": "testEntity",
+        "cost": 0,
+        "cooldown": 0,
+        "description": "",
+        "handler": "battle_scripts/test_attack"
+    }
+]

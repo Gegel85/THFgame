@@ -79,9 +79,9 @@ namespace TouhouFanGame::ECS
 			);
 	}
 
-	void Core::registerEntity(TouhouFanGame::ECS::Entity *entity)
+	std::weak_ptr<Entity> Core::registerEntity(TouhouFanGame::ECS::Entity *entity)
 	{
-		this->registerEntity(std::shared_ptr<Entity>(entity));
+		return this->registerEntity(std::shared_ptr<Entity>(entity));
 	}
 
 	void Core::deleteEntity(const std::shared_ptr<Entity> &entity)

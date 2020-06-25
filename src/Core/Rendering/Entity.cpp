@@ -29,19 +29,25 @@ namespace TouhouFanGame::Rendering
 			unsigned counter = 0;
 
 			stream >> value;
+			this->ignoreDirections = value["noDir"].is_boolean() && value["noDir"].get<bool>();
+			this->noIdleAnimation = value["noIdleAnim"].is_boolean() && value["noIdleAnim"].get<bool>();
 			this->texture = value["texture"];
 			this->tileSize = {value["tileSize"]["x"], value["tileSize"]["y"]};
 			for (auto &val : value["animations"]) {
-				if (val == 0)
-					throw InvalidAnimationConfigException("");
+				//if (val == 0)
+				//	throw InvalidAnimationConfigException("An animation cannot have a size of 0");
 				this->animations.push_back(val);
 			}
+			if (this->ignoreDirections)
+				this->ignoreDirections = true;
 			for (auto &val : value["delays"])
 				this->delays.push_back(val);
 			for (int i : this->animations)
 				for (int j = 0; j < 4; j++) {
 					this->animationStart.emplace_back(counter);
 					counter += i;
+					if (this->ignoreDirections)
+						break;
 				}
 			this->animationStart.emplace_back(counter);
 			this->textureSize = resources.textures.at(this->texture).getSize();
@@ -120,7 +126,7 @@ namespace TouhouFanGame::Rendering
 	void Entity::render(Rendering::Screen &screen)
 	{
 		unsigned char	dir = (this->_animation != DEAD) * this->_dir;
-		unsigned char	animation = this->_animation * 4 + dir;
+		unsigned char	animation = this->_configs.ignoreDirections ? this->_animation : this->_animation * 4 + dir;
 		Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
 
 		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));
@@ -158,7 +164,7 @@ namespace TouhouFanGame::Rendering
 
 	void Entity::update()
 	{
-		if (!this->_idleDelay) {
+		if (!this->_idleDelay && !this->_configs.noIdleAnimation) {
 			std::uniform_int_distribution distribution{0, 59};
 			std::uniform_int_distribution distribution2{0, 1};
 
@@ -174,20 +180,21 @@ namespace TouhouFanGame::Rendering
 		if (!this->_delay) {
 			this->_delay = this->_configs.delays[this->_animation];
 			switch (this->_animation) {
-				case IDLEANIM1:
-				case IDLEANIM2:
-					if (this->_animationState + 1 == this->_configs.animations[this->_animation])
-						this->_animation = IDLE;
-					break;
-				case DEAD:
-				case HIT:
-					if (this->_animationState + 2 == this->_configs.animations[this->_animation])
-						this->_delay = -1;
-					break;
-				default:
-					break;
+			case IDLEANIM1:
+			case IDLEANIM2:
+				if (this->_animationState + 1 == this->_configs.animations[this->_animation])
+					this->_animation = IDLE;
+				break;
+			case DEAD:
+			case HIT:
+				if (this->_animationState + 2 == this->_configs.animations[this->_animation])
+					this->_delay = -1;
+				break;
+			default:
+				break;
 			}
-			this->_animationState = (this->_animationState + 1) % this->_configs.animations[this->_animation];
+			if (this->_configs.animations[this->_animation])
+				this->_animationState = (this->_animationState + 1) % this->_configs.animations[this->_animation];
 		} else
 			this->_delay--;
 	}

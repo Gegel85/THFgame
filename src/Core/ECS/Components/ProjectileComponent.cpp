@@ -11,16 +11,17 @@ namespace TouhouFanGame::ECS::Components
 	ProjectileComponent::ProjectileComponent(Game &game, std::istream &stream) :
 		Component("Projectile")
 	{
-		stream >> this->_modulePath >> this->damages;
+		stream >> this->_modulePath >> this->damages >> this->lifeTime;
 
 		this->effect.reset(ExternalModuleFactory::build(this->_modulePath));
 		Utils::callExternalModule<void>(*this->effect, "onLoad", *this, game, stream);
 	}
 
-	ProjectileComponent::ProjectileComponent(Game &game, std::string modulePath, unsigned damages, std::weak_ptr<Entity> entity, const std::vector<std::string> &&targets) :
+	ProjectileComponent::ProjectileComponent(Game &game, std::string modulePath, unsigned damages, unsigned lifeTime, std::weak_ptr<Entity> entity, const std::vector<std::string> &&targets) :
 		Component("Projectile"),
 		_modulePath(std::move(modulePath)),
 		damages(damages),
+		lifeTime(lifeTime),
 		owner(std::move(entity)),
 		targets(targets),
 		effect(ExternalModuleFactory::build(this->_modulePath))
@@ -36,6 +37,6 @@ namespace TouhouFanGame::ECS::Components
 	void ProjectileComponent::serialize(std::ostream &stream) const
 	{
 		Utils::callExternalModule<void>(*this->effect, "onSave", *this, stream);
-		stream << this->_modulePath << " " << damages;
+		stream << this->_modulePath << " " << damages << " " << this->lifeTime;
 	}
 }

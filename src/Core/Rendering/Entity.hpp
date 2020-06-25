@@ -72,6 +72,9 @@ namespace TouhouFanGame::Rendering
 
 			//! @brief The time to wait before switching to the next tile of this animation.
 			std::vector<unsigned>	delays;
+
+			bool ignoreDirections;
+			bool noIdleAnimation;
 		};
 
 		//! @brief The resources this Entity can use.

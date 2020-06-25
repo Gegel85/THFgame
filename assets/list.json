@@ -15,6 +15,10 @@
 		"satori_maiden": {
 			"path": "musics/satori_maiden_3rd_eye.ogg",
 			"description": "SA Stage 4 Satori's Theme: Satori Maiden ~ 3rd Eye"
+		},
+		"strawberry_crisis": {
+			"path": "musics/strawberry_crisis.ogg",
+			"description": "Yumemi Okazaki's theme: Strawberry Crisis!!"
 		}
 	},
 	"sfx": {
@@ -24,6 +28,8 @@
 		"tilemap1": "tilemaps/tilemap1.png",
 		"testEntity": "entities/test.png",
 		"flandreEntity": "entities/flandre.png",
+		"crossEntity": "entities/projectiles/cross.png",
+		"starEntity": "entities/projectiles/star.png",
 		"cirnoEntity": "entities/cirno.png",
 		"heal_potion": "items/heal_potion.png",
 		"mana_potion": "items/mana_potion.png",

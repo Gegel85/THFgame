@@ -66,7 +66,7 @@ namespace TouhouFanGame::ECS
 		//! @brief Registers an Entity in the Core. Will change the Entity ID if the ID is already taken.
 		//! @param entity The Entity to register.
 		//! @note The Entity must have been built using new and will be deleted by the Core.
-		void registerEntity(Entity *entity);
+		std::weak_ptr<Entity> registerEntity(Entity *entity);
 
 		//! @brief Get and Entity using it's ID.
 		//! @param id The ID of the Entity to fetch.

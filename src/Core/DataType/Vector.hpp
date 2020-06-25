@@ -33,6 +33,15 @@ namespace TouhouFanGame
 
 		~Vector2() override = default;
 
+		template<typename T2>
+		Vector2<T2> to()
+		{
+			return {
+				static_cast<T2>(this->x),
+				static_cast<T2>(this->y)
+			};
+		}
+
 		template <typename T2>
 		operator sf::Vector2<T2>()
 		{

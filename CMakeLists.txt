@@ -13,7 +13,6 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Release)
 		if (WIN32)
 			add_link_options(-mwindows)
 		endif (WIN32)
-		add_link_options(-rdynamic)
 	endif (CMAKE_COMPILER_IS_GNUCC)
 endif ()
 if (WIN32)
@@ -75,6 +74,8 @@ add_library(
 	src/Core/ECS/Components/PlayerHudComponent.hpp
 	src/Core/ECS/Components/PositionComponent.cpp
 	src/Core/ECS/Components/PositionComponent.hpp
+	src/Core/ECS/Components/ProjectileComponent.cpp
+	src/Core/ECS/Components/ProjectileComponent.hpp
 	src/Core/ECS/Components/ShootComponent.cpp
 	src/Core/ECS/Components/ShootComponent.hpp
 
@@ -100,6 +101,8 @@ add_library(
 	src/Core/ECS/Quadtree/ICollider.hpp
 	#src/Core/ECS/Quadtree/Quadtree.cpp
 	#src/Core/ECS/Quadtree/Quadtree.hpp
+	src/Core/ECS/Quadtree/ColliderFactory.cpp
+	src/Core/ECS/Quadtree/ColliderFactory.hpp
 	src/Core/ECS/Quadtree/RectangleCollider.cpp
 	src/Core/ECS/Quadtree/RectangleCollider.hpp
 
@@ -136,6 +139,8 @@ add_library(
 	src/Core/ECS/Systems/OobDieSystem.hpp
 	src/Core/ECS/Systems/PlayerHudSystem.cpp
 	src/Core/ECS/Systems/PlayerHudSystem.hpp
+	src/Core/ECS/Systems/ProjectileSystem.cpp
+	src/Core/ECS/Systems/ProjectileSystem.hpp
 	src/Core/ECS/Systems/ShootSystem.cpp
 	src/Core/ECS/Systems/ShootSystem.hpp
 	src/Core/ECS/Systems/UselessSystem.cpp
@@ -209,7 +214,7 @@ add_library(
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
-	src/Core/ECS/Quadtree/ColliderFactory.cpp src/Core/ECS/Quadtree/ColliderFactory.hpp src/Core/ECS/Components/ProjectileComponent.cpp src/Core/ECS/Components/ProjectileComponent.hpp src/Core/ECS/Systems/ProjectileSystem.cpp src/Core/ECS/Systems/ProjectileSystem.hpp)
+)
 
 if (WIN32)
 	target_link_libraries(
@@ -237,7 +242,24 @@ endif (WIN32)
 
 add_library(
 	LuaLibrary SHARED
-	src/Lua/LuaState.cpp src/Lua/LuaState.hpp src/Lua/Exceptions.hpp src/Lua/Exceptions.cpp src/Lua/LuaStack.cpp src/Lua/LuaStack.hpp src/Lua/Values/LuaValue.hpp src/Lua/Values/LuaValue.cpp src/Lua/Values/LuaNoValue.cpp src/Lua/Values/LuaNoValue.hpp src/Lua/Values/LuaType.hpp src/Lua/Values/LuaNil.cpp src/Lua/Values/LuaNil.hpp src/Lua/Values/LuaNumber.cpp src/Lua/Values/LuaNumber.hpp src/Lua/Values/LuaString.cpp src/Lua/Values/LuaString.hpp)
+	src/Lua/LuaState.cpp
+	src/Lua/LuaState.hpp
+	src/Lua/Exceptions.hpp
+	src/Lua/Exceptions.cpp
+	src/Lua/LuaStack.cpp
+	src/Lua/LuaStack.hpp
+	src/Lua/Values/LuaValue.hpp
+	src/Lua/Values/LuaValue.cpp
+	src/Lua/Values/LuaNoValue.cpp
+	src/Lua/Values/LuaNoValue.hpp
+	src/Lua/Values/LuaType.hpp
+	src/Lua/Values/LuaNil.cpp
+	src/Lua/Values/LuaNil.hpp
+	src/Lua/Values/LuaNumber.cpp
+	src/Lua/Values/LuaNumber.hpp
+	src/Lua/Values/LuaString.cpp
+	src/Lua/Values/LuaString.hpp
+)
 
 target_link_libraries(
 	LuaLibrary
@@ -245,6 +267,24 @@ target_link_libraries(
 )
 
 #_____________________________________________________________
+set(
+	EXTERNAL_MODULES
+
+	#Attack scripts
+	test_attack
+	yumemi_attack
+
+	#AI Scripts
+	allyDodge
+	yumemiBoss
+
+	#Cutscene scripts
+	testCutscene
+
+	#Projectiles scripts
+	testProjectile
+	yumemiCross
+)
 
 #-------------------------------------------------------------
 #|                       Attack scripts                      |
@@ -261,6 +301,18 @@ target_link_libraries(
 )
 set_target_properties(test_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
 
+
+add_library(
+	yumemi_attack MODULE
+	src/AttackScripts/yumemiAttack.cpp
+)
+
+target_link_libraries(
+	yumemi_attack
+	THFgame-core
+)
+set_target_properties(yumemi_attack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/battle_scripts" PREFIX "")
+
 #-------------------------------------------------------------
 #|                         AI scripts                        |
 #-------------------------------------------------------------
@@ -275,6 +327,19 @@ target_link_libraries(
 	THFgame-core
 )
 set_target_properties(allyDodge PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/ais" PREFIX "")
+
+
+
+add_library(
+	yumemiBoss MODULE
+	src/AIScripts/yumemiBoss.cpp
+)
+
+target_link_libraries(
+	allyDodge
+	THFgame-core
+)
+set_target_properties(yumemiBoss PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/ais" PREFIX "")
 
 #-------------------------------------------------------------
 #|                     Cutscenes scripts                     |
@@ -306,6 +371,18 @@ target_link_libraries(
 )
 set_target_properties(testProjectile PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/projectiles" PREFIX "")
 
+
+add_library(
+	yumemiCross MODULE
+	src/ProjectileScripts/yumemiCross.cpp
+)
+
+target_link_libraries(
+	yumemiCross
+	THFgame-core
+)
+set_target_properties(yumemiCross PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/projectiles" PREFIX "")
+
 #_____________________________________________________________
 
 #-------------------------------------------------------------
@@ -331,18 +408,7 @@ target_link_libraries(
 
 add_dependencies(
 	THFgame
-
-	#Attack scripts
-	test_attack
-
-	#AI Scripts
-	allyDodge
-
-	#Cutscene scripts
-	testCutscene
-
-	#Projectiles scripts
-	testProjectile
+	${EXTERNAL_MODULES}
 )
 
 #_____________________________________________________________
@@ -376,16 +442,5 @@ target_link_libraries(
 
 add_dependencies(
 	map_editor
-
-	#Attack scripts
-	test_attack
-
-	#AI Scripts
-	allyDodge
-
-	#Cutscene scripts
-	testCutscene
-
-	#Projectiles scripts
-	testProjectile
+	${EXTERNAL_MODULES}
 )

@@ -1,0 +1,29 @@
+{
+	"texture": "starEntity",
+	"animations": [
+		4,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0
+	],
+	"tileSize": {
+		"x": 16,
+		"y": 16
+	},
+	"delays": [
+		4,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0
+	],
+	"noDir": true,
+	"noIdleAnim": true
+}

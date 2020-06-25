@@ -19,6 +19,7 @@ namespace TouhouFanGame
 		handlerPath(card.handlerPath),
 		handler(std::make_unique<DynamicLibrary>("assets/" + this->handlerPath + DLL_EXTENSION))
 	{
+
 	}
 
 	Card::Card(nlohmann::json value) :
@@ -67,6 +68,17 @@ namespace TouhouFanGame
 		std::sort(this->_cards.begin(), this->_cards.end(), [](Card &c1, Card &c2){
 			return c1.neededLevel < c2.neededLevel;
 		});
+
+		this->_unlockedCards = std::vector<Card>(
+			this->_cards.begin(),
+			std::find_if(
+				this->_cards.begin(),
+				this->_cards.end(),
+				[](Card &card){
+					return 0 < card.neededLevel;
+				}
+			)
+		);
 	}
 
 	Card &CardTree::getCard(unsigned index)

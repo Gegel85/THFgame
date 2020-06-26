@@ -83,7 +83,7 @@ void handleSpellCard0(State *state)
 		if (
 			pos.x >= state->state.card0.mapSizeX ||
 			pos.y >= state->state.card0.mapSizeY
-			)
+		)
 			continue;
 
 		state->isCardActivated = true;
@@ -95,7 +95,7 @@ void handleSpellCard0(State *state)
 		);
 	}
 
-	state->timer = 20;
+	state->timer = 13;
 	state->state.card0.pos += 1;
 }
 

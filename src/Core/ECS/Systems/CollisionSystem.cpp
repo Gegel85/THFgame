@@ -53,15 +53,19 @@ namespace TouhouFanGame::ECS::Systems
 		auto &collision = entity->getComponent(Collision);
 
 		collision.collided.clear();
-		collision.collider->setOrigin(entity->getComponent(Position).position);
+		for (auto &collider : collision.colliders)
+			collider->setOrigin(entity->getComponent(Position).position);
 
 		for (auto &ent : this->_core.getEntityByComponent("Collider")) {
 			auto ptr = ent.lock();
 			auto &collider = ptr->getComponent(Collider);
-			auto layer = collision.collider->getCollisionLayer(collider.colliders);
 
-			if (layer >= 0)
-				collision.collided.emplace_back(ptr, layer);
+			for (unsigned i = 0; i < collision.colliders.size(); i++) {
+				auto layer = collision.colliders[i]->getCollisionLayer(collider.colliders);
+
+				if (layer >= 0)
+					collision.collided.emplace_back(ptr, std::pair<unsigned, unsigned>(layer, i));
+			}
 		}
 		/*collision.collided = this->_quadtree.checkCollisions(*collision.collider);
 		if (!collision.collided.empty()) {

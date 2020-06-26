@@ -77,7 +77,7 @@ namespace TouhouFanGame::ECS::Quadtree
 	{
 		if (entity->hasComponent("Collision")) {
 			auto &col = entity->getComponent(Collision);
-			return this->collideWith(*col.collider);
+			return this->getCollisionLayer(col.colliders) >= 0;
 		} else {
 			auto &col = entity->getComponent(Collider);
 			return this->getCollisionLayer(col.colliders) >= 0;

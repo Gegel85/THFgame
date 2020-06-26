@@ -31,8 +31,8 @@ Entity *makeProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, d
 	auto *d = new DisplayableComponent(game.resources, "assets/entities/test.json");
 	auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 10, -1, {}, static_cast<const std::vector<std::string> &&>(targets));
 	auto *o = new OOBDieComponent(game.state.map);
-	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
-	auto *c = new CollisionComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0));
+	//auto *c = new ColliderComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
+	auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
 
 	p->position = pos;
 	m->speed = 10;
@@ -102,7 +102,7 @@ extern "C"
 		auto *m = new MovableComponent();
 		auto *d = new DisplayableComponent(game.resources, "assets/entities/test.json");
 		auto *o = new OOBDieComponent(game.state.map);
-		auto *c = new CollisionComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, game.state.map.getPixelSize().x, game.state.map.getPixelSize().y, 0));
+		auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, game.state.map.getPixelSize().x, game.state.map.getPixelSize().y, 0)});
 		auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 60, {});
 
 		p->position = {-static_cast<float>(p->size.x), 0};

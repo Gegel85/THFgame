@@ -452,10 +452,14 @@ namespace TouhouFanGame
 			}
 		}
 
+		this->_cameraUpdated = false;
+		this->_game.resources.screen->renderEntities();
+
 #ifdef _DEBUG
-		this->_game.resources.screen->fillColor({0xFF, 0x00, 0x00, 0x80});
+		this->_game.resources.screen->fillColor({0x00, 0x00, 0xFF, 0x80});
 		for (auto &entity : this->_core.getEntityByComponent("Collision"))
-			entity.lock()->getComponent(Collision).collider->draw(*this->_game.resources.screen);
+			for (auto &collider : entity.lock()->getComponent(Collision).colliders)
+				collider->draw(*this->_game.resources.screen);
 
 		this->_game.resources.screen->fillColor({0x00, 0xFF, 0x00, 0x80});
 		for (auto &entity : this->_core.getEntityByComponent("Collider"))
@@ -464,9 +468,6 @@ namespace TouhouFanGame
 
 		this->_game.resources.screen->fillColor();
 #endif
-
-		this->_cameraUpdated = false;
-		this->_game.resources.screen->renderEntities();
 	}
 
 	void Map::updateCameraPosition(Vector2f focusPoint)

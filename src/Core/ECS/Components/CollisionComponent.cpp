@@ -12,19 +12,31 @@
 
 namespace TouhouFanGame::ECS::Components
 {
-	CollisionComponent::CollisionComponent(Quadtree::ICollider *collider) :
-		Component("Collision"),
-		collider(collider)
-	{}
+	CollisionComponent::CollisionComponent(const std::vector<Quadtree::ICollider *> &colliders) :
+		Component("Collision")
+	{
+		for (auto col : colliders)
+			this->colliders.emplace_back(col);
+		std::sort(this->colliders.begin(), this->colliders.end());
+	}
 
 	CollisionComponent::CollisionComponent(std::istream &stream) :
 		Component("Collision")
 	{
-		stream >> this->collider;
+		unsigned len = 0;
+
+		stream >> len;
+		if (stream.fail())
+			throw InvalidSerializedString("Invalid ColliderComponent");
+		this->colliders.resize(len);
+		while (len--)
+			stream >> this->colliders[len];
 	}
 
 	void CollisionComponent::serialize(std::ostream &stream) const
 	{
-		stream << *this->collider;
+		stream << this->colliders.size();
+		for (auto &elem : this->colliders)
+			stream << " " << *elem;
 	}
 }

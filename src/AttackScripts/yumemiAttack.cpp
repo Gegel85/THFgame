@@ -33,7 +33,34 @@ Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f p
 	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/crossProjectile.json");
 	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiCross", 10, LIFETIME, {}, static_cast<const std::vector<std::string> &&>(targets));
 	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
-	auto *c = new CollisionComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0));
+	auto *c = new CollisionComponent({
+		new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0),
+		new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0)
+	});
+
+	p->position = pos;
+	m->speed = 0;
+	m->angleDir = 0;
+	p->angle = 0;
+	d->animation = TouhouFanGame::Rendering::IDLE;
+
+	return new TouhouFanGame::ECS::Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{
+		m,
+		d,
+		p,
+		c,
+		proj
+	}, false);
+}
+
+Entity *makeStarProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, const std::vector<std::string> &&targets = {"Player", "Ally"})
+{
+	auto *p = new PositionComponent({XSIZE, YSIZE});
+	auto *m = new MovableComponent();
+	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/starProjectile.json");
+	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiCross", 10, LIFETIME, {}, static_cast<const std::vector<std::string> &&>(targets));
+	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
+	auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0)});
 
 	p->position = pos;
 	m->speed = 0;
@@ -56,6 +83,7 @@ struct SolomonsBarrageState {
 	int yOff;
 	int mapSizeX;
 	int mapSizeY;
+	unsigned part;
 };
 
 union SpellCardState {
@@ -71,7 +99,7 @@ struct State {
 	SpellCardState state;
 };
 
-void handleSpellCard0(State *state)
+void handleSpellCard0Part0(State *state)
 {
 	state->isCardActivated = false;
 	for (int i = 0; i <= state->state.card0.pos; i++) {
@@ -83,7 +111,7 @@ void handleSpellCard0(State *state)
 		if (
 			pos.x >= state->state.card0.mapSizeX ||
 			pos.y >= state->state.card0.mapSizeY
-		)
+			)
 			continue;
 
 		state->isCardActivated = true;
@@ -97,6 +125,28 @@ void handleSpellCard0(State *state)
 
 	state->timer = 13;
 	state->state.card0.pos += 1;
+
+	if (!state->isCardActivated)
+		state->state.card0.part = 1;
+}
+
+
+void handleSpellCard0Part1(State *state)
+{
+
+}
+
+void handleSpellCard0(State *state)
+{
+	switch (state->state.card0.part) {
+	case 0:
+		return handleSpellCard0Part0(state);
+	case 1:
+		return handleSpellCard0Part1(state);
+	default:
+		state->isCardActivated = false;
+		return;
+	}
 }
 
 extern "C"
@@ -140,6 +190,7 @@ extern "C"
 		state->cardActivated = 0;
 		state->isCardActivated = true;
 		state->state.card0.pos = 0;
+		state->state.card0.part = 0;
 		state->state.card0.mapSizeX = size.x;
 		state->state.card0.mapSizeY = size.y;
 		state->state.card0.xOff = (XSIZE - (state->state.card0.mapSizeX % XSIZE)) % XSIZE / -2;

@@ -49,8 +49,21 @@ namespace TouhouFanGame
 	tgui::Panel::Ptr ComponentGui::CollisionGui(ECS::Entity &entity, ECS::Component &component)
 	{
 		auto &col = component.to<ECS::Components::CollisionComponent>();
+		auto pos = 10;
+		auto panel = tgui::ScrollablePanel::create({300, 100});
 
-		return ColliderGui::makePanel(entity, col.collider);
+		if (col.colliders.empty())
+			col.colliders.emplace_back(ECS::Quadtree::ColliderFactory::build("Rectangle"));
+
+		for (auto &collider : col.colliders) {
+			auto newPanel = ColliderGui::makePanel(entity, collider);
+
+			//TODO: Add a way to add/delete colliders
+			newPanel->setPosition({0, pos});
+			pos += newPanel->getSize().y;
+			panel->add(newPanel);
+		}
+		return panel;
 	}
 
 	tgui::Panel::Ptr ComponentGui::ColliderGui(ECS::Entity &entity, ECS::Component &component)
@@ -173,7 +186,8 @@ namespace TouhouFanGame
 			if (!xEditBox->getText().isEmpty()) {
 				position.position.x = std::stof(xEditBox->getText().toAnsiString());
 				if (collision)
-					collision->collider->setOrigin(position.position);
+					for (auto &col : collision->colliders)
+						col->setOrigin(position.position);
 				if (collider)
 					for (auto &col : collider->colliders)
 						col->setOrigin(position.position);
@@ -183,7 +197,8 @@ namespace TouhouFanGame
 			if (!yEditBox->getText().isEmpty()) {
 				position.position.y = std::stof(yEditBox->getText().toAnsiString());
 				if (collision)
-					collision->collider->setOrigin(position.position);
+					for (auto &col : collision->colliders)
+						col->setOrigin(position.position);
 				if (collider)
 					for (auto &col : collider->colliders)
 						col->setOrigin(position.position);

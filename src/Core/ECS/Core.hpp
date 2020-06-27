@@ -123,6 +123,8 @@ namespace TouhouFanGame::ECS
 		//! @brief Returns the factory this Core is using.
 		const Factory::EntityFactory &getFactory() const;
 
+		void reserveNewSpace(size_t newSpace);
+
 		//! @brief Deletes all the Entity in the Core besides any Entity
 		//! with an ID contained in the whitelist.
 		//! @param whitelist A list of Entity's ID to leave in the Core.

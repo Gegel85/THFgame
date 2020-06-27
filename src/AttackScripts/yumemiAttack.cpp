@@ -143,6 +143,7 @@ void handleSpellCard0Part1(State *state)
 	const auto &posP = posCompP.position + posCompP.size / 2;
 	double angle = posM.angle(posP);
 
+	state->core->reserveNewSpace(8 * (state->state.card0.pos + 1));
 	for (int j = 0; j < 8; j++) {
 		float c = cos(angle);
 		float s = sin(angle);

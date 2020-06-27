@@ -246,6 +246,13 @@ namespace TouhouFanGame::ECS
 	{
 		return this->_factory;
 	}
+
+	void Core::reserveNewSpace(size_t newSpace)
+	{
+		this->_entities.reserve(this->_entities.size() + newSpace);
+		for (auto &vec : this->_entitiesByComponent)
+			vec.second.reserve(vec.second.size() + newSpace);
+	}
 }
 
 std::ostream	&operator<<(std::ostream &stream, const TouhouFanGame::ECS::Core &core)

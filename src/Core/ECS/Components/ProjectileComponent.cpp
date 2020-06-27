@@ -17,12 +17,12 @@ namespace TouhouFanGame::ECS::Components
 		Utils::callExternalModule<void>(*this->effect, "onLoad", *this, game, stream);
 	}
 
-	ProjectileComponent::ProjectileComponent(Game &game, std::string modulePath, unsigned damages, unsigned lifeTime, std::weak_ptr<Entity> entity, const std::vector<std::string> &&targets) :
+	ProjectileComponent::ProjectileComponent(Game &game, std::string modulePath, unsigned damages, unsigned lifeTime, Entity *entity, const std::vector<std::string> &&targets) :
 		Component("Projectile"),
 		_modulePath(std::move(modulePath)),
 		damages(damages),
 		lifeTime(lifeTime),
-		owner(std::move(entity)),
+		owner(entity),
 		targets(targets),
 		effect(ExternalModuleFactory::build(this->_modulePath))
 	{

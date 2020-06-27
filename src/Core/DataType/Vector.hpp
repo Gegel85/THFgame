@@ -137,7 +137,7 @@ namespace TouhouFanGame
 
 		double angle(const Vector2<T> &o) const
 		{
-			return (std::atan(std::abs(o.y - this->y) / std::abs(o.x - this->x)));
+			return (std::atan2(o.y - this->y, o.x - this->x));
 		}
 
 		Vector2<T> normalize()
@@ -159,6 +159,25 @@ namespace TouhouFanGame
 		Vector2<T> projection(const Vector2<T> &point) const
 		{
 			return (point * this) / std::pow(this->magnitude(), 2) * this;
+		}
+
+		Vector2<float> rotate(float angle, const Vector2<T> &center) const noexcept
+		{
+			if (angle == 0.f)
+				return Vector2<double>(
+					this->x,
+					this->y
+				);
+
+			float c = cos(angle);
+			float s = sin(angle);
+
+			Vector2<float> result{
+				c * (static_cast<float>(x) - center.x) - s * (static_cast<float>(y) - center.y) + center.x,
+				s * (static_cast<float>(x) - center.x) + c * (static_cast<float>(y) - center.y) + center.y
+			};
+
+			return result;
 		}
 	};
 

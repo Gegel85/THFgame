@@ -32,7 +32,6 @@ Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f p
 	auto *m = new MovableComponent();
 	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/crossProjectile.json");
 	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiCross", 10, LIFETIME, {}, static_cast<const std::vector<std::string> &&>(targets));
-	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
 	auto *c = new CollisionComponent({
 		new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0),
 		new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0)
@@ -53,19 +52,19 @@ Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f p
 	}, false);
 }
 
-Entity *makeStarProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, const std::vector<std::string> &&targets = {"Player", "Ally"})
+Entity *makeStarProjectile(TouhouFanGame::ECS::Entity *me, TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, float angle, float speed, const std::vector<std::string> &&targets = {"Player", "Ally"})
 {
-	auto *p = new PositionComponent({XSIZE, YSIZE});
+	auto *p = new PositionComponent({16, 16});
 	auto *m = new MovableComponent();
 	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/starProjectile.json");
-	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiCross", 10, LIFETIME, {}, static_cast<const std::vector<std::string> &&>(targets));
-	//auto *c = new ColliderComponent(new TouhouFanGame::ECS::Quadtree::RectangleCollider(4, 4, 4, 4, 0)});
-	auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0)});
+	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiStar", 10, -1, me, static_cast<const std::vector<std::string> &&>(targets));
+	auto *o = new OOBDieComponent(game.state.map);
+	auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(6, 6, 4, 4, 0)});
 
 	p->position = pos;
-	m->speed = 0;
-	m->angleDir = 0;
-	p->angle = 0;
+	m->speed = speed;
+	m->angleDir = angle;
+	p->angle = angle + M_PI_2;
 	d->animation = TouhouFanGame::Rendering::IDLE;
 
 	return new TouhouFanGame::ECS::Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{
@@ -73,6 +72,7 @@ Entity *makeStarProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f po
 		d,
 		p,
 		c,
+		o,
 		proj
 	}, false);
 }
@@ -94,6 +94,7 @@ struct State {
 	unsigned timer;
 	TouhouFanGame::Game *game;
 	TouhouFanGame::ECS::Core *core;
+	TouhouFanGame::ECS::Entity *me;
 	bool isCardActivated;
 	unsigned cardActivated;
 	SpellCardState state;
@@ -101,7 +102,8 @@ struct State {
 
 void handleSpellCard0Part0(State *state)
 {
-	state->isCardActivated = false;
+	bool finished = true;
+
 	for (int i = 0; i <= state->state.card0.pos; i++) {
 		TouhouFanGame::Vector2f pos(
 			state->state.card0.xOff + i * XSIZE,
@@ -111,10 +113,10 @@ void handleSpellCard0Part0(State *state)
 		if (
 			pos.x >= state->state.card0.mapSizeX ||
 			pos.y >= state->state.card0.mapSizeY
-			)
+		)
 			continue;
 
-		state->isCardActivated = true;
+		finished = false;
 		state->core->registerEntity(
 			makeCrossProjectile(
 				*state->game,
@@ -126,14 +128,54 @@ void handleSpellCard0Part0(State *state)
 	state->timer = 13;
 	state->state.card0.pos += 1;
 
-	if (!state->isCardActivated)
+	if (finished) {
 		state->state.card0.part = 1;
+		state->timer = 120;
+		state->state.card0.pos = 0;
+	}
 }
-
 
 void handleSpellCard0Part1(State *state)
 {
+	const auto &posCompM = state->me->getComponent(Position);
+	const auto &posCompP = state->game->state.map.getPlayer()->getComponent(Position);
+	const auto &posM = posCompM.position + posCompM.size / 2;
+	const auto &posP = posCompP.position + posCompP.size / 2;
+	double angle = posM.angle(posP);
 
+	for (int j = 0; j < 8; j++) {
+		float c = cos(angle);
+		float s = sin(angle);
+
+		for (int i = 0; i <= state->state.card0.pos; i++) {
+			auto added = (i - state->state.card0.pos / 2.f) * 6;
+			TouhouFanGame::Vector2f pos(posM.x, posM.y + added);
+			TouhouFanGame::Vector2<float> rotatedPos{
+				c * (static_cast<float>(pos.x) - posM.x) - s * (static_cast<float>(pos.y) - posM.y) + posM.x,
+				s * (static_cast<float>(pos.x) - posM.x) + c * (static_cast<float>(pos.y) - posM.y) + posM.y
+			};
+
+			state->core->registerEntity(
+				makeStarProjectile(
+					state->me,
+					*state->game,
+					rotatedPos,
+					angle,
+					5
+				)
+			);
+		}
+		angle += M_PI_4;
+	}
+
+	state->game->resources.playSound("bullet_spawn");
+	state->timer = 3;
+	state->state.card0.pos += 1;
+
+	if (state->state.card0.pos > 4) {
+		state->state.card0.pos = 0;
+		state->timer = 60;
+	}
 }
 
 void handleSpellCard0(State *state)
@@ -181,10 +223,11 @@ extern "C"
 		}
 	}
 
-	unsigned spellCard0(State *state, Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
+	unsigned spellCard0(State *state, Entity &me, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
 	{
 		auto size = game.state.map.getPixelSize().to<int>();
 
+		state->me = &me;
 		state->game = &game;
 		state->core = &core;
 		state->cardActivated = 0;

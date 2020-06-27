@@ -284,6 +284,7 @@ set(
 	#Projectiles scripts
 	testProjectile
 	yumemiCross
+	yumemiStar
 )
 
 #-------------------------------------------------------------
@@ -382,6 +383,18 @@ target_link_libraries(
 	THFgame-core
 )
 set_target_properties(yumemiCross PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/projectiles" PREFIX "")
+
+
+add_library(
+	yumemiStar MODULE
+	src/ProjectileScripts/yumemiStar.cpp
+)
+
+target_link_libraries(
+	yumemiStar
+	THFgame-core
+)
+set_target_properties(yumemiStar PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/assets/projectiles" PREFIX "")
 
 #_____________________________________________________________
 

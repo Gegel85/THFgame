@@ -39,7 +39,7 @@ extern "C"
 
 	void onHit(ProjectileState *data, ProjectileComponent &proj, Entity &me, Entity &other, unsigned)
 	{
-		if (&*proj.owner.lock() == &other)
+		if (proj.owner == &other)
 			return;
 
 		if (std::find(data->entities.begin(), data->entities.end(), &other) != data->entities.end())

@@ -91,7 +91,7 @@ extern "C"
 
 	void onHit(ProjectileState *, ProjectileComponent &proj, Entity &, Entity &other, unsigned)
 	{
-		if (&*proj.owner.lock() == &other)
+		if (proj.owner == &other)
 			return;
 
 		if (other.hasComponent("Health"))

@@ -46,7 +46,7 @@ extern "C"
 			return;
 
 		if (other.hasComponent("Health"))
-			other.getComponent(Health).health -= proj.damages;
+			other.getComponent(Health).takeDamages(proj.damages);
 
 		data->entities.push_back(&other);
 

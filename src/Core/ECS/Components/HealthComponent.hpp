@@ -22,9 +22,16 @@ namespace TouhouFanGame::ECS::Components
 		//! @brief The current health of this Entity.
 		float health;
 
+		unsigned baseInvulnerability;
+
+		//! @brief Invulnerability frames
+		unsigned invulnerability;
+
+		void takeDamages(unsigned damages);
+
 		//! @brief Unserializer constructor.
 		HealthComponent(std::istream &stream);
-		HealthComponent(float maxHealth);
+		HealthComponent(float maxHealth, unsigned baseInvulnerability);
 		~HealthComponent() override = default;
 		void serialize(std::ostream &) const override;
 	};

@@ -24,7 +24,6 @@ using namespace TouhouFanGame::ECS::Components;
 #define DELETE_MILESTONE(lifetime) (RETRACT_MILESTONE(lifetime) + EXPAND_TIME * 7)
 
 struct ProjectileState {
-	std::vector<Entity *> entities;
 	Game *game;
 	unsigned lifeTime;
 };
@@ -54,7 +53,7 @@ extern "C"
 {
 	ProjectileState *makeUserData()
 	{
-		auto *data = new ProjectileState{{}, nullptr, 0};
+		auto *data = new ProjectileState{nullptr, 0};
 
 		return data;
 	}
@@ -90,16 +89,13 @@ extern "C"
 			disp.animation = TouhouFanGame::Rendering::IDLE;
 	}
 
-	void onHit(ProjectileState *data, ProjectileComponent &proj, Entity &, Entity &other, unsigned)
+	void onHit(ProjectileState *, ProjectileComponent &proj, Entity &, Entity &other, unsigned)
 	{
 		if (&*proj.owner.lock() == &other)
 			return;
 
-		if (std::find(data->entities.begin(), data->entities.end(), &other) != data->entities.end())
-			return;
-
 		if (other.hasComponent("Health"))
-			other.getComponent(Health).health -= proj.damages;
+			other.getComponent(Health).takeDamages(proj.damages);
 	}
 
 	void onCreate(ProjectileState *data, ProjectileComponent &, Game &game)
@@ -112,17 +108,13 @@ extern "C"
 
 	}
 
-	void onLoad(ProjectileState *data, ProjectileComponent &, Game &game, std::istream &stream)
+	void onLoad(ProjectileState *data, ProjectileComponent &, Game &game, std::istream &)
 	{
-		unsigned len;
-
-		stream >> len;
-		data->entities.resize(len);
 		data->game = &game;
 	}
 
-	void onSave(ProjectileState *data, ProjectileComponent &, std::ostream &stream)
+	void onSave(ProjectileState *, ProjectileComponent &, std::ostream &)
 	{
-		stream << data->entities.size();
+
 	}
 }

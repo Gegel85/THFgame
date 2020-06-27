@@ -65,7 +65,7 @@ namespace TouhouFanGame::ECS::Factory
 		{"Displayable",      [](Game &game){ return new Components::DisplayableComponent(game.resources, "assets/entities/test.json"); }},
 		{"BlockedByTerrain", [](Game &game){ return new Components::BlockedByTerrainComponent(game.state.map); }},
 		{"Mana",             [](Game &    ){ return new Components::ManaComponent(20); }},
-		{"Health",           [](Game &    ){ return new Components::HealthComponent(20); }},
+		{"Health",           [](Game &    ){ return new Components::HealthComponent(20, 60); }},
 		{"Name",             [](Game &    ){ return new Components::NameComponent(""); }},
 		{"PlayerHUD",        [](Game &game){ return new Components::PlayerHUDComponent(game.state.hud); }},
 		{"Inventory",        [](Game &    ){ return new Components::InventoryComponent(16); }},

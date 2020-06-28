@@ -85,6 +85,7 @@ struct SolomonsBarrageState {
 	int mapSizeX;
 	int mapSizeY;
 	unsigned part;
+	unsigned timeLeft;
 };
 
 union SpellCardState {
@@ -241,17 +242,28 @@ void handleSpellCard0(State *state)
 {
 	switch (state->state.card0.part) {
 	case 0:
-		return handleSpellCard0Part0(state);
+		handleSpellCard0Part0(state);
+		break;
 	case 1:
-		return handleSpellCard0Part1(state);
+		handleSpellCard0Part1(state);
+		break;
 	case 2:
-		return handleSpellCard0Part2(state);
+		handleSpellCard0Part2(state);
+		break;
 	case 3:
-		return handleSpellCard0Part3(state);
+		handleSpellCard0Part3(state);
+		break;
 	default:
 		state->isCardActivated = false;
+		break;
+	}
+
+	if (state->state.card0.timeLeft <= state->timer + 1) {
+		state->isCardActivated = false;
+		state->timer = 0;
 		return;
 	}
+	state->state.card0.timeLeft -= state->timer + 1;
 }
 
 extern "C"
@@ -297,6 +309,7 @@ extern "C"
 		state->isCardActivated = true;
 		state->state.card0.pos = 0;
 		state->state.card0.part = 0;
+		state->state.card0.timeLeft = 2700;
 		state->state.card0.mapSizeX = size.x;
 		state->state.card0.mapSizeY = size.y;
 		state->state.card0.xOff = (XSIZE - (state->state.card0.mapSizeX % XSIZE)) % XSIZE / -2;

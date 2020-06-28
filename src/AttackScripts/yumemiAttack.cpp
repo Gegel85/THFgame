@@ -153,8 +153,8 @@ void handleSpellCard0Part1(State *state)
 			auto added = (i - state->state.card0.pos / 2.f) * 6;
 			TouhouFanGame::Vector2f pos(posM.x, posM.y + added);
 			TouhouFanGame::Vector2<float> rotatedPos{
-				c * (static_cast<float>(pos.x) - posM.x) - s * (static_cast<float>(pos.y) - posM.y) + posM.x,
-				s * (static_cast<float>(pos.x) - posM.x) + c * (static_cast<float>(pos.y) - posM.y) + posM.y
+				c * (pos.x - posM.x) - s * (pos.y - posM.y) + posM.x,
+				s * (pos.x - posM.x) + c * (pos.y - posM.y) + posM.y
 			};
 
 			state->core->registerEntity(
@@ -202,14 +202,39 @@ void handleSpellCard0Part2(State *state)
 		);
 	}
 
-	state->state.card0.pos = 0;
 	state->timer = 60;
 	state->state.card0.part = state->game->resources.random() % 3 + 1;
 }
 
 void handleSpellCard0Part3(State *state)
 {
-	state->state.card0.part = state->game->resources.random() % 3 + 1;
+	const auto &posCompM = state->me->getComponent(Position);
+	const auto &posM = posCompM.position + posCompM.size / 2 - STAR_PROJ_SIZE / 2;
+
+	if (!state->state.card0.pos)
+		state->state.card0.pos = state->game->resources.random() % 20 + 5;
+
+	state->game->resources.playSound("bullet_spawn");
+	for (int i = 0; i < 30; i++) {
+		state->core->registerEntity(
+			makeStarProjectile(
+				state->me,
+				*state->game,
+				posM,
+				(i * 12) * M_PI / 180 + state->state.card0.pos % 2 * M_PI / 24,
+				3
+			)
+		);
+	}
+
+	state->timer = 15;
+	state->state.card0.pos--;
+
+	if (!state->state.card0.pos) {
+		state->state.card0.pos = 0;
+		state->timer = 60;
+		state->state.card0.part = state->game->resources.random() % 3 + 1;
+	}
 }
 
 void handleSpellCard0(State *state)

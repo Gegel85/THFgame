@@ -60,6 +60,7 @@ extern "C"
 	{
 		auto &pos = entity.getComponent(Position);
 
+		game.resources.playSound("bullet_spawn");
 		for (int i = 0; i < 16; i++) {
 			auto angle = i * M_PI_4 / 2;
 
@@ -73,6 +74,7 @@ extern "C"
 
 	unsigned spellCard1(void *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
 	{
+		game.resources.playSound("bullet_spawn");
 		for (size_t i = 0; i < game.state.map.getPixelSize().y - 16; i += 4)
 			core.registerEntity(makeProjectile(game, {
 				static_cast<float>(game.state.map.getPixelSize().x - 16),
@@ -105,6 +107,7 @@ extern "C"
 		auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, game.state.map.getPixelSize().x, game.state.map.getPixelSize().y, 0)});
 		auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 60, {});
 
+		game.resources.playSound("bullet_spawn");
 		p->position = {-static_cast<float>(p->size.x), 0};
 		m->speed = 1;
 		m->angleDir = 0;
@@ -138,6 +141,7 @@ extern "C"
 			sin(angle + M_PI_2),
 		};
 
+		game.resources.playSound("bullet_spawn");
 		core.registerEntity(makeProjectile(game, {
 			static_cast<float>(pos.position.x + pos.size.x / 2 + vec.x * 6 - 6),
 			static_cast<float>(pos.position.y + pos.size.y / 2 + vec.y * 6 - 6),

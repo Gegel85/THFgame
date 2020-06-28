@@ -22,6 +22,7 @@
 #define XSIZE 96
 #define YSIZE 128
 #define LIFETIME 2700
+#define STAR_PROJ_SIZE TouhouFanGame::Vector2u{16, 16}
 
 using Entity = TouhouFanGame::ECS::Entity;
 using namespace TouhouFanGame::ECS::Components;
@@ -54,10 +55,10 @@ Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f p
 
 Entity *makeStarProjectile(TouhouFanGame::ECS::Entity *me, TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, float angle, float speed, const std::vector<std::string> &&targets = {"Player", "Ally"})
 {
-	auto *p = new PositionComponent({16, 16});
+	auto *p = new PositionComponent(STAR_PROJ_SIZE);
 	auto *m = new MovableComponent();
 	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/starProjectile.json");
-	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiStar", 10, -1, me, static_cast<const std::vector<std::string> &&>(targets));
+	auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 10, -1, me, static_cast<const std::vector<std::string> &&>(targets));
 	auto *o = new OOBDieComponent(game.state.map);
 	auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(6, 6, 4, 4, 0)});
 
@@ -138,9 +139,9 @@ void handleSpellCard0Part0(State *state)
 void handleSpellCard0Part1(State *state)
 {
 	const auto &posCompM = state->me->getComponent(Position);
+	const auto &posM = posCompM.position + posCompM.size / 2 - STAR_PROJ_SIZE / 2;
 	const auto &posCompP = state->game->state.map.getPlayer()->getComponent(Position);
-	const auto &posM = posCompM.position + posCompM.size / 2;
-	const auto &posP = posCompP.position + posCompP.size / 2;
+	const auto &posP = posCompP.position + posCompP.size / 2 - STAR_PROJ_SIZE / 2;
 	double angle = posM.angle(posP);
 
 	state->core->reserveNewSpace(8 * (state->state.card0.pos + 1));
@@ -176,7 +177,39 @@ void handleSpellCard0Part1(State *state)
 	if (state->state.card0.pos > 4) {
 		state->state.card0.pos = 0;
 		state->timer = 60;
+		state->state.card0.part = state->game->resources.random() % 3 + 1;
 	}
+}
+
+void handleSpellCard0Part2(State *state)
+{
+	const auto &posCompM = state->me->getComponent(Position);
+	const auto &posM = posCompM.position + posCompM.size / 2 - STAR_PROJ_SIZE / 2;
+	const auto &posCompP = state->game->state.map.getPlayer()->getComponent(Position);
+	const auto &posP = posCompP.position + posCompP.size / 2 - STAR_PROJ_SIZE / 2;
+	double angle = posM.angle(posP);
+
+	state->game->resources.playSound("bullet_spawn");
+	for (int i = 0; i < 90; i++) {
+		state->core->registerEntity(
+			makeStarProjectile(
+				state->me,
+				*state->game,
+				posM,
+				angle + (i * 4) * M_PI / 180,
+				(i % 5 + 10) / 4.f
+			)
+		);
+	}
+
+	state->state.card0.pos = 0;
+	state->timer = 60;
+	state->state.card0.part = state->game->resources.random() % 3 + 1;
+}
+
+void handleSpellCard0Part3(State *state)
+{
+	state->state.card0.part = state->game->resources.random() % 3 + 1;
 }
 
 void handleSpellCard0(State *state)
@@ -186,6 +219,10 @@ void handleSpellCard0(State *state)
 		return handleSpellCard0Part0(state);
 	case 1:
 		return handleSpellCard0Part1(state);
+	case 2:
+		return handleSpellCard0Part2(state);
+	case 3:
+		return handleSpellCard0Part3(state);
 	default:
 		state->isCardActivated = false;
 		return;

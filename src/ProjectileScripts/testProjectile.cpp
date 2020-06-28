@@ -57,7 +57,6 @@ extern "C"
 	void onCreate(ProjectileState *data, ProjectileComponent &, Game &game)
 	{
 		data->game = &game;
-		data->game->resources.playSound("bullet_spawn");
 	}
 
 	void onDelete(ProjectileState *, ProjectileComponent &)

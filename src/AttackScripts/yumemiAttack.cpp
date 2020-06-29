@@ -65,7 +65,7 @@ Entity *makeStarProjectile(TouhouFanGame::ECS::Entity *me, TouhouFanGame::Game &
 	p->position = pos;
 	m->speed = speed;
 	m->angleDir = angle;
-	p->angle = angle + M_PI_2;
+	p->angle = 0;
 	d->animation = TouhouFanGame::Rendering::IDLE;
 
 	return new TouhouFanGame::ECS::Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{

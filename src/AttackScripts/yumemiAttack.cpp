@@ -22,20 +22,35 @@
 #define XSIZE 96
 #define YSIZE 128
 #define LIFETIME 2700
-#define STAR_PROJ_SIZE TouhouFanGame::Vector2u{16, 16}
+#define STAR_PROJ_SIZE Vector2u{16, 16}
 
+using Game = TouhouFanGame::Game;
+using Core = TouhouFanGame::ECS::Core;
+using Vector2u = TouhouFanGame::Vector2u;
+using Vector2f = TouhouFanGame::Vector2f;
 using Entity = TouhouFanGame::ECS::Entity;
+using RectangleCollider = TouhouFanGame::ECS::Quadtree::RectangleCollider;
 using namespace TouhouFanGame::ECS::Components;
 
-Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, const std::vector<std::string> &&targets = {"Player", "Ally"})
+Entity *makeCrossProjectile(Game &game, const Vector2f &pos, const std::vector<std::string> &&targets = {"Player", "Ally"})
 {
 	auto *p = new PositionComponent({XSIZE, YSIZE});
 	auto *m = new MovableComponent();
-	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/crossProjectile.json");
-	auto *proj = new ProjectileComponent(game, "assets/projectiles/yumemiCross", 10, LIFETIME, {}, static_cast<const std::vector<std::string> &&>(targets));
+	auto *d = new DisplayableComponent(
+		game.resources,
+		"assets/entities/projectiles/crossProjectile.json"
+	);
+	auto *proj = new ProjectileComponent(
+		game,
+		"assets/projectiles/yumemiCross",
+		10,
+		LIFETIME,
+		{},
+		static_cast<const std::vector<std::string> &&>(targets)
+	);
 	auto *c = new CollisionComponent({
-		new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0),
-		new TouhouFanGame::ECS::Quadtree::RectangleCollider(0, 0, 0, 0, 0)
+		new RectangleCollider(0, 0, 0, 0, 0),
+		new RectangleCollider(0, 0, 0, 0, 0)
 	});
 
 	p->position = pos;
@@ -44,7 +59,7 @@ Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f p
 	p->angle = 0;
 	d->animation = TouhouFanGame::Rendering::IDLE;
 
-	return new TouhouFanGame::ECS::Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{
+	return new Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{
 		m,
 		d,
 		p,
@@ -53,14 +68,26 @@ Entity *makeCrossProjectile(TouhouFanGame::Game &game, TouhouFanGame::Vector2f p
 	}, false);
 }
 
-Entity *makeStarProjectile(TouhouFanGame::ECS::Entity *me, TouhouFanGame::Game &game, TouhouFanGame::Vector2f pos, float angle, float speed, const std::vector<std::string> &&targets = {"Player", "Ally"})
+Entity *makeStarProjectile(Entity *me, Game &game, const Vector2f &pos, float angle, float speed, const std::vector<std::string> &&targets = {"Player", "Ally"})
 {
 	auto *p = new PositionComponent(STAR_PROJ_SIZE);
 	auto *m = new MovableComponent();
-	auto *d = new DisplayableComponent(game.resources, "assets/entities/projectiles/starProjectile.json");
-	auto *proj = new ProjectileComponent(game, "assets/projectiles/testProjectile", 10, -1, me, static_cast<const std::vector<std::string> &&>(targets));
+	auto *d = new DisplayableComponent(
+		game.resources,
+		"assets/entities/projectiles/starProjectile.json"
+	);
+	auto *proj = new ProjectileComponent(
+		game,
+		"assets/projectiles/testProjectile",
+		10,
+		-1,
+		me,
+		static_cast<const std::vector<std::string> &&>(targets)
+	);
 	auto *o = new OOBDieComponent(game.state.map);
-	auto *c = new CollisionComponent({new TouhouFanGame::ECS::Quadtree::RectangleCollider(6, 6, 4, 4, 0)});
+	auto *c = new CollisionComponent({
+		new RectangleCollider(6, 6, 4, 4, 0)
+	});
 
 	p->position = pos;
 	m->speed = speed;
@@ -68,7 +95,7 @@ Entity *makeStarProjectile(TouhouFanGame::ECS::Entity *me, TouhouFanGame::Game &
 	p->angle = 0;
 	d->animation = TouhouFanGame::Rendering::IDLE;
 
-	return new TouhouFanGame::ECS::Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{
+	return new Entity(0, "BossProjectile", std::vector<TouhouFanGame::ECS::Component *>{
 		m,
 		d,
 		p,
@@ -94,9 +121,9 @@ union SpellCardState {
 
 struct State {
 	unsigned timer;
-	TouhouFanGame::Game *game;
-	TouhouFanGame::ECS::Core *core;
-	TouhouFanGame::ECS::Entity *me;
+	Game *game;
+	Core *core;
+	Entity *me;
 	bool isCardActivated;
 	unsigned cardActivated;
 	SpellCardState state;
@@ -107,7 +134,7 @@ void handleSpellCard0Part0(State *state)
 	bool finished = true;
 
 	for (int i = 0; i <= state->state.card0.pos; i++) {
-		TouhouFanGame::Vector2f pos(
+		Vector2f pos(
 			state->state.card0.xOff + i * XSIZE,
 			state->state.card0.yOff + (state->state.card0.pos - i) * YSIZE
 		);
@@ -152,8 +179,8 @@ void handleSpellCard0Part1(State *state)
 
 		for (int i = 0; i <= state->state.card0.pos; i++) {
 			auto added = (i - state->state.card0.pos / 2.f) * 6;
-			TouhouFanGame::Vector2f pos(posM.x, posM.y + added);
-			TouhouFanGame::Vector2<float> rotatedPos{
+			Vector2f pos(posM.x, posM.y + added);
+			Vector2f rotatedPos{
 				c * (pos.x - posM.x) - s * (pos.y - posM.y) + posM.x,
 				s * (pos.x - posM.x) + c * (pos.y - posM.y) + posM.y
 			};
@@ -298,7 +325,7 @@ extern "C"
 		}
 	}
 
-	unsigned spellCard0(State *state, Entity &me, TouhouFanGame::ECS::Core &core, TouhouFanGame::Game &game)
+	unsigned spellCard0(State *state, Entity &me, Core &core, Game &game)
 	{
 		auto size = game.state.map.getPixelSize().to<int>();
 
@@ -317,17 +344,17 @@ extern "C"
 		return 0;
 	}
 
-	unsigned spellCard1(State *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &, TouhouFanGame::Game &)
+	unsigned spellCard1(State *, Entity &, Core &, Game &)
 	{
 		return 0;
 	}
 
-	unsigned spellCard2(State *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &, TouhouFanGame::Game &)
+	unsigned spellCard2(State *, Entity &, Core &, Game &)
 	{
 		return 0;
 	}
 
-	unsigned attackDefault(State *, TouhouFanGame::ECS::Entity &, TouhouFanGame::ECS::Core &, TouhouFanGame::Game &)
+	unsigned attackDefault(State *, Entity &, Core &, Game &)
 	{
 		return 0;
 	}

@@ -6,6 +6,7 @@
 #define THFGAME_MAP_HPP
 
 
+#include <iostream>
 #include <SFML/Audio.hpp>
 #include "../ECS/Core.hpp"
 #include "../Utils/NotCopyable.hpp"

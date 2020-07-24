@@ -2,6 +2,7 @@
 // Created by Gegel85 on 26/09/2019.
 //
 
+#include <iostream>
 #include "PositionComponent.hpp"
 #include "../Exceptions.hpp"
 

@@ -69,10 +69,11 @@ namespace TouhouFanGame::Rendering
 		sf::RenderWindow::draw(this->_circle);
 	}
 
-	void	Screen::draw(const std::string &str, Vector2f pos)
+	void	Screen::draw(const std::string &str, Vector2f pos, unsigned style)
 	{
 		this->_text.setPosition(pos);
 		this->_text.setString(str);
+		this->_text.setStyle(style);
 		sf::RenderWindow::draw(this->_text);
 	}
 

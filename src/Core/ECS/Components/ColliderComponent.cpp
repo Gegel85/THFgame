@@ -2,9 +2,10 @@
 // Created by Gegel85 on 05/01/2020.
 //
 
+#include <iostream>
+#include <algorithm>
 #include "ColliderComponent.hpp"
 #include "../Exceptions.hpp"
-#include <algorithm>
 
 namespace TouhouFanGame::ECS::Components
 {

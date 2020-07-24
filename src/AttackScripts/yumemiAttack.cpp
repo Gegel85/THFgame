@@ -170,7 +170,7 @@ void handleSpellCard0Part1(State *state)
 	const auto &posM = posCompM.position + posCompM.size / 2 - STAR_PROJ_SIZE / 2;
 	const auto &posCompP = state->game->state.map.getPlayer()->getComponent(Position);
 	const auto &posP = posCompP.position + posCompP.size / 2 - STAR_PROJ_SIZE / 2;
-	double angle = posM.angle(posP);
+	double angle = posM.angle(posP) - M_PI_4 * 2;
 
 	state->core->reserveNewSpace(8 * (state->state.card0.pos + 1));
 	for (int j = 0; j < 8; j++) {
@@ -195,7 +195,7 @@ void handleSpellCard0Part1(State *state)
 				)
 			);
 		}
-		angle += M_PI_4;
+		angle += M_PI_4 / 2;
 	}
 
 	state->game->resources.playSound("bullet_spawn");

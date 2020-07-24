@@ -19,5 +19,7 @@ namespace TouhouFanGame::ECS::Systems
 		auto &health = entity->getComponent(Health);
 
 		health.health = std::max(0.f, std::min(health.health, health.maxHealth));
+		if (health.invulnerability)
+			health.invulnerability--;
 	}
 }

@@ -104,7 +104,7 @@ namespace TouhouFanGame::Rendering
 		//! @brief Draw some text on the screen
 		//! @param str The string to draw
 		//! @param pos The position on the screen (relative to the camera)
-		void	draw(const std::string &str, Vector2f pos);
+		void	draw(const std::string &str, Vector2f pos, unsigned style = sf::Text::Regular);
 
 		//! @brief Draw a sprite on the screen
 		//! @param sprite The sprite to use

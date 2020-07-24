@@ -27,7 +27,7 @@ namespace TouhouFanGame::Rendering
 
 	void HUD::setBossName(const std::string &bossName)
 	{
-		this->_bossName = bossName + ": ";
+		this->_bossName = bossName;
 	}
 
 	void HUD::setPlayerName(const std::string &playerName)
@@ -224,29 +224,29 @@ namespace TouhouFanGame::Rendering
 			static_cast<int>(camera.x - screenSize.x / 2.),
 			static_cast<int>(camera.y - screenSize.y / 2.),
 			static_cast<int>(screenSize.x),
-			10
+			22
 		});
 
-		screen.fillColor(sf::Color{255, 255, 255});
+		screen.fillColor(sf::Color{0xFF, 0xD7, 0x00});
 		screen.draw(this->_bossName, {
 			camera.x - screenSize.x / 2.f,
-			camera.y - screenSize.y / 2.f - 3,
+			camera.y - screenSize.y / 2.f + 9,
 		});
 
 		screen.fillColor(sf::Color{120, 120, 120, 120});
 		screen.draw(sf::IntRect{
-			static_cast<int>(camera.x - screenSize.x / 2. + 1 + screen.getTextWidth(this->_bossName)),
+			static_cast<int>(camera.x - screenSize.x / 2. + 1),
 			static_cast<int>(camera.y - screenSize.y / 2. + 1),
-			static_cast<int>(screenSize.x - 2 - screen.getTextWidth(this->_bossName)),
-			5
+			static_cast<int>(screenSize.x - 2),
+			8
 		});
 
 		screen.fillColor(sf::Color{255, 0, 0, 120});
 		screen.draw(sf::IntRect{
-			static_cast<int>(camera.x - screenSize.x / 2. + 2 + screen.getTextWidth(this->_bossName)),
+			static_cast<int>(camera.x - screenSize.x / 2. + 2),
 			static_cast<int>(camera.y - screenSize.y / 2. + 2),
-			static_cast<int>(this->_bossLife * (screenSize.x - 4 - screen.getTextWidth(this->_bossName)) / 100),
-			3
+			static_cast<int>(this->_bossLife * (screenSize.x - 4) / 100),
+			6
 		});
 	}
 

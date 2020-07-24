@@ -22,7 +22,8 @@
 		}
 	},
 	"sfx": {
-		"bullet_spawn": "sfx/bullet_spawn.ogg"
+		"bullet_spawn": "sfx/bullet_spawn.ogg",
+		"take_damage": "sfx/take_damage.ogg"
 	},
 	"sprites": {
 		"tilemap1": "tilemaps/tilemap1.png",

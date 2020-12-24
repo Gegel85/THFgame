@@ -11,7 +11,7 @@
 
 namespace TouhouFanGame
 {
-	class Resources;
+	struct Resources;
 }
 
 namespace TouhouFanGame::Rendering

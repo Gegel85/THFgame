@@ -7,19 +7,16 @@
 
 namespace TouhouFanGame
 {
-	unsigned char Resources::playSound(const std::string &id)
+	unsigned char Resources::playSound(const std::string &id) const
 	{
-		static unsigned char lastSound = 127;
-
-		lastSound = (lastSound + 1) % 128;
-
+		this->_lastPlayedSound = (this->_lastPlayedSound + 1) % this->sounds.size();
 		try {
-			this->sounds[lastSound].setBuffer(this->soundBuffers.at(id));
-			this->sounds[lastSound].play();
+			this->sounds[this->_lastPlayedSound].setBuffer(this->soundBuffers.at(id));
+			this->sounds[this->_lastPlayedSound].play();
 		} catch (std::out_of_range &e) {
 			logger.error("Cannot play sound " + id);
 		}
-		return lastSound;
+		return this->_lastPlayedSound;
 	}
 
 	void Resources::playMusic(const std::string &id)

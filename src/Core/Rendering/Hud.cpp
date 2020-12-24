@@ -10,6 +10,11 @@
 
 namespace TouhouFanGame::Rendering
 {
+	HUD::HUD(std::map<std::string, sf::Texture> &textures) :
+		_textures(textures)
+	{
+	}
+
 	void HUD::setBossLife(float bossLife)
 	{
 		this->_bossLife = bossLife;
@@ -218,7 +223,7 @@ namespace TouhouFanGame::Rendering
 		auto camera = screen.getCameraCenter();
 		auto screenSize = screen.getSize();
 
-		screen.fillColor(sf::Color{0, 0, 0});
+		screen.fillColor(sf::Color::Black);
 		screen.textSize(10);
 		screen.draw(sf::IntRect{
 			static_cast<int>(camera.x - screenSize.x / 2.),
@@ -229,24 +234,48 @@ namespace TouhouFanGame::Rendering
 
 		screen.fillColor(sf::Color{0xFF, 0xD7, 0x00});
 		screen.draw(this->_bossName, {
-			camera.x - screenSize.x / 2.f,
+			camera.x - screenSize.x / 2.f + 30,
 			camera.y - screenSize.y / 2.f + 9,
 		});
 
 		screen.fillColor(sf::Color{120, 120, 120, 120});
 		screen.draw(sf::IntRect{
-			static_cast<int>(camera.x - screenSize.x / 2. + 1),
+			static_cast<int>(camera.x - screenSize.x / 2. + 31),
 			static_cast<int>(camera.y - screenSize.y / 2. + 1),
-			static_cast<int>(screenSize.x - 2),
+			static_cast<int>(screenSize.x - 62),
 			8
 		});
 
 		screen.fillColor(sf::Color{255, 0, 0, 120});
 		screen.draw(sf::IntRect{
-			static_cast<int>(camera.x - screenSize.x / 2. + 2),
+			static_cast<int>(camera.x - screenSize.x / 2. + 32),
 			static_cast<int>(camera.y - screenSize.y / 2. + 2),
-			static_cast<int>(this->_bossLife * (screenSize.x - 4) / 100),
+			static_cast<int>(this->_bossLife * (screenSize.x - 64) / 100),
 			6
+		});
+
+		screen.textSize(20);
+		screen.fillColor(sf::Color::White);
+		screen.draw(std::to_string(this->_bossHpBars), {
+			camera.x - screenSize.x / 2.f + (this->_bossHpBars >= 10 ? 2 : 17 ),
+			camera.y - screenSize.y / 2.f - 2,
+		});
+
+		if (this->_displayedTime < 30)
+			screen.fillColor(sf::Color(
+				255,
+				(this->_displayedTime - 10) * 255 / 20,
+				std::max((this->_displayedTime - 20) * 255 / 10, 0)
+			));
+		else if (this->_displayedTime < 10)
+			screen.fillColor(sf::Color(
+				this->_displayedTime * 130 / 10 + 125,
+				0,
+				0
+			));
+		screen.draw(std::to_string(this->_displayedTime), {
+			camera.x + screenSize.x / 2.f - 25,
+			camera.y - screenSize.y / 2.f - 2,
 		});
 	}
 
@@ -331,8 +360,13 @@ namespace TouhouFanGame::Rendering
 		this->_selectedCard = selectedCard;
 	}
 
-	HUD::HUD(std::map<std::string, sf::Texture> &textures) :
-		_textures(textures)
+	void HUD::setDisplayedTime(unsigned char displayedTime)
 	{
+		this->_displayedTime = std::min<unsigned char>(displayedTime, 99);
+	}
+
+	void HUD::setBossHpBars(unsigned char bossHpBars)
+	{
+		this->_bossHpBars = bossHpBars;
 	}
 }

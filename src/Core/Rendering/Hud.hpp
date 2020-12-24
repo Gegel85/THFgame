@@ -32,6 +32,12 @@ namespace TouhouFanGame::Rendering
 		//! @brief The current boss life %.
 		float _bossLife = 0;
 
+		//! @brief The number of health bars the boss has.
+		unsigned char _bossHpBars = 9;
+
+		//! @brief The timer displayed.
+		unsigned char _displayedTime = 49;
+
 		//! @brief The current player life %.
 		float _playerLife = 0;
 
@@ -118,6 +124,10 @@ namespace TouhouFanGame::Rendering
 		//! @brief Set the current exp level of the player.
 		//! @param exp The % of exp the player has until level up.
 		void setExpLevel(float exp);
+
+		void setBossHpBars(unsigned char bossHpBars);
+
+		void setDisplayedTime(unsigned char displayedTime);
 
 		//! @brief Changes the current level of the player.
 		//! @param level The new level.

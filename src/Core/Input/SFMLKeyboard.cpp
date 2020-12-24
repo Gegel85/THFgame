@@ -3,7 +3,7 @@
 //
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include "SFMLKeyboard.hpp"
 

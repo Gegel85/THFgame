@@ -11,10 +11,17 @@
 #include "../Rendering/Screen.hpp"
 #include "../Inventory/Item.hpp"
 
+#define MAX_PLAYING_SFX 128
+
 namespace TouhouFanGame
 {
 	//! @brief The main Resources needed by the game
 	struct Resources : public BaseObject {
+	private:
+		//! @brief The ID of the last played sound
+		mutable unsigned _lastPlayedSound = 0;
+
+	public:
 		//! @brief The icon of the screen
 		sf::Image icon;
 
@@ -34,7 +41,7 @@ namespace TouhouFanGame
 		std::map<std::string, sf::SoundBuffer> soundBuffers;
 
 		//! @brief The sound objects used to play sfx
-		sf::Sound sounds[128];
+		mutable std::array<sf::Sound, MAX_PLAYING_SFX> sounds;
 
 		//! @brief The items JSON file loaded.
 		std::vector<std::shared_ptr<Item>> items;
@@ -45,7 +52,7 @@ namespace TouhouFanGame
 		//! @brief Plays a sound effect
 		//! @param id The id of the sound effect to play
 		//! @return The sound index assigned to this sfx
-		unsigned char playSound(const std::string &id);
+		unsigned char playSound(const std::string &id) const;
 
 		//! @brief Plays a music
 		//! @param id The id of the music to play

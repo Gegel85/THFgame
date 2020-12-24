@@ -66,7 +66,7 @@ namespace TouhouFanGame
 				logger.debug("Loading value " + value.value().dump() + " at key " + value.key());
 				try {
 					data.at(value.key());
-					logger.warn("A sound is already loaded with key " + value.key());
+					logger.warn("A " + dataName + " is already loaded with key " + value.key());
 				} catch (std::out_of_range &) {}
 
 				if (!loadFile(settings, data[value.key()], value.value()))

@@ -18,7 +18,14 @@
 namespace TouhouFanGame
 {
 	//! @brief The global logger
-	Logger logger{"./latest.log", Logger::LOG_DEBUG};
+	Logger logger{
+		"./latest.log",
+		#ifdef _DEBUG
+		Logger::LOG_DEBUG
+		#else
+		Logger::LOG_INFO
+		#endif
+	};
 
 	void	setup(Game &game)
 	{

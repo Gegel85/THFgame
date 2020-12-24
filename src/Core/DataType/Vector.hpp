@@ -127,7 +127,7 @@ namespace TouhouFanGame
 		template<typename T2>
 		double distance(const Vector2<T2> &o) const
 		{
-			return std::sqrt(std::pow(this->x - o.x, 2) + std::pow(this->y - o.y, 2));
+			return (*this - o).magnitude();
 		}
 
 		double magnitude() const

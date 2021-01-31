@@ -37,7 +37,7 @@ namespace TouhouFanGame::ECS::Components
 	void DisplayableComponent::setConfigs(const std::string &path)
 	{
 		this->_configPath = path;
-		this->renderEntity.setConfigs(this->_resources, path);
+		this->renderEntity.setConfigs(path);
 	}
 
 	void DisplayableComponent::serialize(std::ostream &stream) const

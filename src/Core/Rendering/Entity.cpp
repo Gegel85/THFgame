@@ -89,9 +89,9 @@ namespace TouhouFanGame::Rendering
 	{
 	}
 
-	void Entity::setConfigs(Resources &resources, const std::string &path)
+	void Entity::setConfigs(const std::string &path)
 	{
-		this->_configs.loadFile(resources, path);
+		this->_configs.loadFile(this->_resources, path);
 	}
 
 	void Entity::setAnimation(Animation newAnimation, bool forceReset)

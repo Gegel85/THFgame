@@ -145,7 +145,7 @@ namespace TouhouFanGame::Rendering
 		void update();
 
 		//! @brief Loads a new config file to replace the old configs.
-		void setConfigs(Resources &resources, const std::string &path);
+		void setConfigs(const std::string &path);
 	};
 }
 

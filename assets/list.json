@@ -41,5 +41,35 @@
 		"test_spell_card2": "spell_cards/test/test_spell_card2.png",
 		"test_spell_card3": "spell_cards/test/test_spell_card3.png"
 	},
+	"textures": {
+		"erato-101.jpg" : "tmp_assets/erato-101.jpg",
+		"sp_luk-bump.JPG" : "tmp_assets/sp_luk-bump.JPG",
+		"vrata_ko.JPG" : "tmp_assets/vrata_ko.JPG",
+		"01_S_kap.JPG" : "tmp_assets/01_S_kap.JPG",
+		"vrata_kr.JPG" : "tmp_assets/vrata_kr.JPG",
+		"01_S_ba.JPG" : "tmp_assets/01_S_ba.JPG",
+		"reljef-bump.jpg" : "tmp_assets/reljef-bump.jpg",
+		"01_STUB.JPG" : "tmp_assets/01_STUB.JPG",
+		"reljef.JPG" : "tmp_assets/reljef.JPG",
+		"x01_st.JPG" : "tmp_assets/x01_st.JPG",
+		"x01_st-bump.jpg" : "tmp_assets/x01_st-bump.jpg",
+		"01_STUB-bump.jpg" : "tmp_assets/01_STUB-bump.jpg",
+		"prozor1.JPG" : "tmp_assets/prozor1.JPG",
+		"KAMEN-bump.jpg" : "tmp_assets/KAMEN-bump.jpg",
+		"01_St_kp.JPG" : "tmp_assets/01_St_kp.JPG",
+		"KAMEN.JPG" : "tmp_assets/KAMEN.JPG",
+		"vokselia_spawn.png" : "tmp_assets/vokselia_spawn.png",
+		"01_St_kp-bump.jpg" : "tmp_assets/01_St_kp-bump.jpg",
+		"KAMEN-stup.JPG" : "tmp_assets/KAMEN-stup.JPG",
+		"sp_luk.JPG" : "tmp_assets/sp_luk.JPG",
+		"01_S_kap-bump.jpg" : "tmp_assets/01_S_kap-bump.jpg",
+		"00_skap.JPG" : "tmp_assets/00_skap.JPG"
+	},
+	"meshes": {
+		"conferenceRoom": "tmp_assets/conference.obj",
+		"vokseliaSpawn": "tmp_assets/vokselia_spawn.obj",
+		"sponza": "tmp_assets/sponza.obj",
+		"erato": "tmp_assets/erato-1.obj"
+	},
 	"icon": "icon.png"
 }

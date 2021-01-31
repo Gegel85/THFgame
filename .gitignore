@@ -41,3 +41,6 @@ cmake-build-*
 build
 *.map.backup
 *.asprite
+
+#Temporary assets
+tmp_assets

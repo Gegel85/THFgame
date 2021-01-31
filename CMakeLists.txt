@@ -3,10 +3,37 @@ project(THFgame)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/pkgs)
+find_package(glm REQUIRED)
+find_package(Glfw REQUIRED)
+find_package(Glew REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(Assimp REQUIRED)
+find_package(SFML REQUIRED)
+find_package(TGUI REQUIRED)
+include_directories(${glm_INCLUDE_DIRS} ${Glfw_INCLUDE_DIRS} ${Glew_INCLUDE_DIRS} ${Assimp_INCLUDE_DIRS} ${SFML_INCLUDE_DIRS} ${TGUI_INCLUDE_DIRS})
+
+message("-- Glew library is ${Glew_LIBRARIES}")
+message("-- Glew include directory is ${Glew_INCLUDE_DIRS}")
+message("-- Glfw library is ${Glfw_LIBRARIES}")
+message("-- Glfw include directory is ${Glfw_INCLUDE_DIRS}")
+message("-- OpenGL library is ${OpenGL_LIBRARIES}")
+message("-- Assimp library is ${Assimp_LIBRARIES}")
+message("-- Assimp include directory is ${Assimp_INCLUDE_DIRS}")
+message("-- SFML Graphics library is ${SFML_GRAPHICS_LIBRARY}")
+message("-- SFML Audio library is ${SFML_AUDIO_LIBRARY}")
+message("-- SFML Network library is ${SFML_NETWORK_LIBRARY}")
+message("-- SFML System library is ${SFML_SYSTEM_LIBRARY}")
+message("-- SFML Window library is ${SFML_WINDOW_LIBRARY}")
+message("-- SFML include directory is ${SFML_INCLUDE_DIRS}")
+message("-- TGUI library is ${TGUI_LIBRARIES}")
+message("-- TGUI include directory is ${TGUI_INCLUDE_DIRS}")
+
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	if (CMAKE_COMPILER_IS_GNUCC)
-		add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
+		add_compile_options(-Wall -Wextra -W -g)
 	endif (CMAKE_COMPILER_IS_GNUCC)
+	add_compile_definitions(PRIVATE _DEBUG=1)
 endif ()
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Release)
 	if (CMAKE_COMPILER_IS_GNUCC)
@@ -220,19 +247,19 @@ if (WIN32)
 	target_link_libraries(
 		THFgame-core
 		LuaLibrary
-		sfml-window
-		sfml-system
-		sfml-graphics
-		sfml-audio
+		${SFML_GRAPHICS_LIBRARY}
+		${SFML_AUDIO_LIBRARY}
+		${SFML_SYSTEM_LIBRARY}
+		${SFML_WINDOW_LIBRARY}
 	)
 else (WIN32)
 	target_link_libraries(
 		THFgame-core
 		LuaLibrary
-		sfml-window
-		sfml-system
-		sfml-graphics
-		sfml-audio
+		${SFML_GRAPHICS_LIBRARY}
+		${SFML_AUDIO_LIBRARY}
+		${SFML_SYSTEM_LIBRARY}
+		${SFML_WINDOW_LIBRARY}
 		dl
 		stdc++fs
 	)
@@ -450,7 +477,7 @@ add_executable(
 target_link_libraries(
 	map_editor
 	THFgame-core
-	tgui
+	${TGUI_LIBRARIES}
 )
 
 add_dependencies(

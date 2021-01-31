@@ -121,8 +121,10 @@ namespace TouhouFanGame::Rendering
 
 	void Screen::renderEntities()
 	{
+		this->pushGLStates();
 		for (auto &entity : this->_entities)
 			entity->render(*this);
+		this->popGLStates();
 	}
 
 	void Screen::deleteEntities()

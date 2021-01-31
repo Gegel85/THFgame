@@ -5,13 +5,18 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/pkgs)
 find_package(glm REQUIRED)
+find_package(Glew REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Assimp REQUIRED)
 find_package(SFML REQUIRED)
 find_package(TGUI REQUIRED)
-include_directories(${glm_INCLUDE_DIRS} ${Assimp_INCLUDE_DIRS} ${SFML_INCLUDE_DIRS} ${TGUI_INCLUDE_DIRS})
+include_directories(${Glew_INCLUDE_DIRS} ${Glfw_INCLUDE_DIRS} ${glm_INCLUDE_DIRS} ${Assimp_INCLUDE_DIRS} ${SFML_INCLUDE_DIRS} ${TGUI_INCLUDE_DIRS})
 
 message("-- glm include directory is ${glm_INCLUDE_DIRS}")
+message("-- Glew library is ${Glew_LIBRARIES}")
+message("-- Glew include directory is ${Glew_INCLUDE_DIRS}")
+message("-- Glfw library is ${Glfw_LIBRARIES}")
+message("-- Glfw include directory is ${Glfw_INCLUDE_DIRS}")
 message("-- OpenGL library is ${OpenGL_LIBRARIES}")
 message("-- Assimp library is ${Assimp_LIBRARIES}")
 message("-- Assimp include directory is ${Assimp_INCLUDE_DIRS}")
@@ -218,6 +223,9 @@ add_library(
 	src/Core/Rendering/Exceptions.hpp
 	src/Core/Rendering/Hud.cpp
 	src/Core/Rendering/Hud.hpp
+	src/Core/Rendering/Loader.hpp
+	src/Core/Rendering/MeshObject.cpp
+	src/Core/Rendering/MeshObject.hpp
 	src/Core/Rendering/Screen.cpp
 	src/Core/Rendering/Screen.hpp
 
@@ -233,6 +241,8 @@ add_library(
 
 	#Utils
 	src/Core/Utils/BaseObject.hpp
+	src/Core/Utils/GlmUtils.cpp
+	src/Core/Utils/GlmUtils.hpp
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
@@ -246,7 +256,9 @@ if (WIN32)
 		${SFML_AUDIO_LIBRARY}
 		${SFML_SYSTEM_LIBRARY}
 		${SFML_WINDOW_LIBRARY}
-		${OpenGL_LIBRARY}
+		${Glew_LIBRARIES}
+		${OpenGL_LIBRARIES}
+		${Assimp_LIBRARIES}
 	)
 else (WIN32)
 	target_link_libraries(
@@ -256,7 +268,9 @@ else (WIN32)
 		${SFML_AUDIO_LIBRARY}
 		${SFML_SYSTEM_LIBRARY}
 		${SFML_WINDOW_LIBRARY}
-		${OpenGL_LIBRARY}
+		${Glew_LIBRARIES}
+		${OpenGL_LIBRARIES}
+		${Assimp_LIBRARIES}
 		dl
 		stdc++fs
 	)

@@ -116,17 +116,17 @@ namespace TouhouFanGame::Inputs
 
 	SFMLKeyboard::SFMLKeyboard(sf::RenderWindow *window) :
 		_keys{
-			sf::Keyboard::Z,
+			sf::Keyboard::W,
 			sf::Keyboard::D,
 			sf::Keyboard::S,
-			sf::Keyboard::Q,
+			sf::Keyboard::A,
 			sf::Keyboard::LShift,
 			sf::Keyboard::Space,
 			sf::Keyboard::F,
 			sf::Keyboard::E,
 			sf::Keyboard::Escape,
 			sf::Keyboard::Enter,
-			sf::Keyboard::A,
+			sf::Keyboard::Q,
 			sf::Keyboard::X,
 		},
 		_window(window),

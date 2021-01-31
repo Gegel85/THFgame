@@ -198,6 +198,17 @@ namespace TouhouFanGame
 			BaseException(static_cast<const std::string &&>(msg) + ": file not found")
 		{};
 	};
+
+	class AssimpImportErrorException : public BaseException {
+	public:
+		explicit AssimpImportErrorException(const std::string &&err) : BaseException("AssimpImportError: " + err) {};
+	};
+
+	class InvalidMeshFileException : public BaseException {
+	public:
+		explicit InvalidMeshFileException(const std::string &&err) : BaseException("InvalidMeshFile: " + err) {};
+	};
+
 }
 
 std::string getLastExceptionName();

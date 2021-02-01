@@ -19,7 +19,7 @@ namespace TouhouFanGame
 		//! @param buffer Buffer to load the file in.
 		//! @param path Path to the file.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path);
+		static bool loadFile(Settings &settings, sf::SoundBuffer &buffer, nlohmann::json &path);
 
 		//! @brief Load a music file.
 		//! @param settings The settings of the game.
@@ -32,7 +32,13 @@ namespace TouhouFanGame
 		//! @param texture Buffer to load the file in.
 		//! @param path Path to the file.
 		//! @return Whether the file could be loaded or not.
-		static bool loadFile(Settings &, sf::Texture &texture, nlohmann::json &path);
+		static bool loadFile(Settings &settings, sf::Texture &texture, nlohmann::json &path);
+
+		//! @brief Load a texture file.
+		//! @param texture Buffer to load the file in.
+		//! @param path Path to the file.
+		//! @return Whether the file could be loaded or not.
+		static bool loadFile(Settings &settings, sf::Image &texture, nlohmann::json &path);
 
 		//! @brief Load items.
 		//! @param game Game state and resources.
@@ -50,12 +56,12 @@ namespace TouhouFanGame
 		//! @param game Game state and resources.
 		static void loadAssets(Game &game);
 
-		template<typename dataType>
 		//! @brief Load assets from a json array.
 		//! @param settings The settings to pass to the loader.
 		//! @param dataName The name of the data that are currently loaded.
 		//! @param paths Array of json paths.
 		//! @param data Map of buffers to load the files in.
+		template<typename dataType>
 		static void loadAssetsFromJson(Settings &settings, const std::string &dataName, nlohmann::json &paths, std::map<std::string, dataType> &data)
 		{
 			if (paths.is_null())
@@ -73,6 +79,8 @@ namespace TouhouFanGame
 					logger.error("Cannot load element " + value.value().dump());
 			}
 		}
+
+		static void loadAssetsFromJson(Game &game, const std::string &dataName, nlohmann::json &paths, std::map<std::string, Rendering::MeshObject> &data);
 	};
 }
 

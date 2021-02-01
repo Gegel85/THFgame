@@ -209,6 +209,11 @@ namespace TouhouFanGame
 		explicit InvalidMeshFileException(const std::string &&err) : BaseException("InvalidMeshFile: " + err) {};
 	};
 
+	class InitFailedException : public BaseException {
+	public:
+		explicit InitFailedException(const std::string &&fct, int code) : BaseException("InitFailedException: " + fct + " failed with exit code " + std::to_string(code)) {};
+	};
+
 }
 
 std::string getLastExceptionName();

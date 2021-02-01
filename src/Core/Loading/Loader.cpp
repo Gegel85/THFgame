@@ -12,6 +12,16 @@
 
 namespace TouhouFanGame
 {
+	bool Loader::loadFile(Settings &, sf::Image &buffer, nlohmann::json &path)
+	{
+		return buffer.loadFromFile("assets/" + path.get<std::string>());
+	}
+
+	bool Loader::loadFile(Settings &, sf::Texture &buffer, nlohmann::json &path)
+	{
+		return buffer.loadFromFile("assets/" + path.get<std::string>());
+	}
+
 	bool Loader::loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path)
 	{
 		return buffer.loadFromFile("assets/" + path.get<std::string>());
@@ -31,11 +41,6 @@ namespace TouhouFanGame
 
 		music.first.setVolume(settings.musicVolume);
 		return result;
-	}
-
-	bool Loader::loadFile(Settings &, sf::Texture &texture, nlohmann::json &path)
-	{
-		return texture.loadFromFile("assets/" + path.get<std::string>());
 	}
 
 	void Loader::saveSettings(TouhouFanGame::Settings &settings)
@@ -88,6 +93,14 @@ namespace TouhouFanGame
 	{
 		std::ifstream stream{"assets/list.json"};
 		nlohmann::json data;
+		GLenum err = glewInit();
+
+		if (err != GLEW_OK)
+		{
+			//Problem: glewInit failed, something is seriously wrong.
+			std::cerr << "glewInit failed, aborting." << std::endl;
+			throw InitFailedException("glewInit()", err);
+		}
 
 		loadSettings(game);
 
@@ -125,12 +138,41 @@ namespace TouhouFanGame
 			logger.debug("Loading sprites");
 			loadAssetsFromJson(game.state.settings, "Sprites", data["sprites"], game.resources.textures);
 
+			logger.debug("Loading textures");
+			loadAssetsFromJson(game.state.settings, "Textures", data["textures"], game.resources.modelTextures);
+
+			logger.debug("Loading models");
+			loadAssetsFromJson(game, "Models", data["meshes"], game.resources.models);
+
 			logger.debug("Loading items json");
 			loadItems(game);
 		} catch (nlohmann::detail::parse_error &e) {
 			throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
 		} catch (nlohmann::detail::type_error &e) {
 			throw CorruptedAssetsListException("The JSON values are invalid: " + std::string(e.what()));
+		}
+	}
+
+	void Loader::loadAssetsFromJson(Game &game, const std::string &dataName, nlohmann::json &paths, std::map<std::string, Rendering::MeshObject> &data)
+	{
+		if (paths.is_null())
+			logger.warn("No " + dataName + " is marked for loading");
+
+		logger.debug("Loading " + std::to_string(paths.size()) + " " + dataName);
+		for (auto &value : paths.items()) {
+			logger.debug("Loading value " + value.value().dump() + " at key " + value.key());
+			try {
+				data.at(value.key());
+				logger.error("A " + dataName + " is already loaded with key " + value.key());
+				return;
+			} catch (std::out_of_range &) {}
+
+			try {
+				data.try_emplace(value.key(), game.resources.modelTextures, "assets/" + std::string(value.value()));
+			} catch (std::exception &e) {
+				logger.error("Cannot load element " + value.value().dump());
+				logger.error(getLastExceptionName() + ": " + e.what());
+			}
 		}
 	}
 }

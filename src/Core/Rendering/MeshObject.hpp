@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include <SFML/Graphics/Image.hpp>
+#include <glm/glm.hpp>
 #include "Loader.hpp"
 
 namespace TouhouFanGame::Rendering

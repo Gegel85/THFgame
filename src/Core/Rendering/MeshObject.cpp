@@ -9,6 +9,7 @@
 #include "../Utils/GlmUtils.hpp"
 #include "../Exceptions.hpp"
 #include "Loader.hpp"
+#include "../Resources/Game.hpp"
 
 namespace TouhouFanGame::Rendering
 {
@@ -47,6 +48,7 @@ namespace TouhouFanGame::Rendering
 
 	MeshObject::MeshObject(const std::map<std::string, sf::Image> &textures, const std::string &path)
 	{
+		logger.debug("Loading mesh file " + path);
 		Assimp::Importer importer;
 		std::string dir = path.substr(0, path.find_last_of('/'));
 		const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -61,18 +63,22 @@ namespace TouhouFanGame::Rendering
 
 	void MeshObject::_consumeNodes(const std::map<std::string, sf::Image> &textures, size_t nbNodes, aiNode ** const nodes, const aiScene *scene, const std::string &dir)
 	{
-		for (size_t i = 0; i < nbNodes; i++)
+		for (size_t i = 0; i < nbNodes; i++) {
+			logger.debug("Loading child meshes " + std::to_string(i));
 			this->_consumeNode(textures, nodes[i], scene, dir);
+		}
 	}
 
 	void MeshObject::_consumeNode(const std::map<std::string, sf::Image> &textures, const aiNode *node, const aiScene *scene, const std::string &dir)
 	{
 		auto transform = node->mTransformation;
 
+		logger.debug("Loading more meshes...");
 		for (size_t i = 0; i < node->mNumMeshes; i++) {
 			Mesh::MeshInfo info;
 			const auto *mesh = scene->mMeshes[node->mMeshes[i]];
 
+			logger.debug("Loading mesh " + std::to_string(i));
 			info.elements = nullptr;
 			info.elemsSize = 0;
 			if (!mesh->HasNormals())
@@ -81,6 +87,7 @@ namespace TouhouFanGame::Rendering
 			info.vertices.reserve(mesh->mNumVertices);
 			info.normals.reserve(mesh->mNumVertices);
 			info.textureCoords.reserve(mesh->mNumVertices);
+			logger.debug("Loading vertices...");
 			for (size_t j = 0; j < mesh->mNumVertices; j++) {
 				info.vertices.push_back(toGlmVec3(transform * mesh->mVertices[j]));
 				info.normals.push_back(toGlmVec3(transform * mesh->mNormals[j]));
@@ -90,15 +97,20 @@ namespace TouhouFanGame::Rendering
 					info.textureCoords.emplace_back(0, 0);
 			}
 
+			logger.debug("Loading indexes...");
+			for (size_t j = 0; j < mesh->mNumFaces; j++)
+				info.elemsSize += mesh->mFaces[j].mNumIndices * sizeof(*mesh->mFaces[j].mIndices);
+
+			info.elements = static_cast<unsigned int *>(malloc(info.elemsSize));
+			auto ptr = info.elements;
 			for (size_t j = 0; j < mesh->mNumFaces; j++) {
-				auto arrayEnd = info.elemsSize;
 				auto dataSize = mesh->mFaces[j].mNumIndices * sizeof(*mesh->mFaces[j].mIndices);
 
-				info.elemsSize += dataSize;
-				info.elements = static_cast<unsigned int *>(realloc(info.elements, info.elemsSize));
-				std::memcpy(info.elements + arrayEnd / sizeof(*info.elements), mesh->mFaces[j].mIndices, dataSize);
+				std::memcpy(ptr, mesh->mFaces[j].mIndices, dataSize);
+				ptr += mesh->mFaces[j].mNumIndices;
 			}
 
+			logger.debug("Loading material...");
 			auto *mat = scene->mMaterials[mesh->mMaterialIndex];
 			aiString str;
 
@@ -115,6 +127,7 @@ namespace TouhouFanGame::Rendering
 			if (mat->Get(AI_MATKEY_SHININESS, &info.mat.shininess, nullptr))
 				info.mat.shininess = 50;
 			info.texturePath = dir + "/" + str.C_Str();
+			logger.debug("Making mesh object...");
 			this->_meshes.emplace_back(textures, info);
 			free(info.elements);
 		}
@@ -223,7 +236,7 @@ namespace TouhouFanGame::Rendering
 
 	void Mesh::setTexture(const sf::Color &color)
 	{
-		this->setTexture(reinterpret_cast<const unsigned char *>(&color), 1, 1, true);
+		this->setTexture(reinterpret_cast<const unsigned char *>(&color), 1, 1, true, false);
 	}
 
 	void Mesh::setTexture(const unsigned char *pixels, unsigned width, unsigned height, bool isColor, bool hasAlpha)

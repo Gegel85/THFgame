@@ -50,7 +50,7 @@ namespace TouhouFanGame::Rendering
 		this->_text.setFont(font);
 	}
 
-	void	Screen::textSize(const size_t &size)
+	void	Screen::textSize(size_t size)
 	{
 		this->_text.setCharacterSize(size);
 	}

@@ -15,6 +15,13 @@ namespace TouhouFanGame
 	//! @brief Resources loading and initializations routine
 	class Loader {
 	public:
+		struct LoaderStatus {
+			unsigned step = 0;
+			std::string stepName;
+			std::pair<unsigned, unsigned> miniStep{0, 0};
+			std::string miniStepName;
+		};
+
 		//! @brief Load a sound effect file.
 		//! @param buffer Buffer to load the file in.
 		//! @param path Path to the file.
@@ -62,13 +69,21 @@ namespace TouhouFanGame
 		//! @param paths Array of json paths.
 		//! @param data Map of buffers to load the files in.
 		template<typename dataType>
-		static void loadAssetsFromJson(Settings &settings, const std::string &dataName, nlohmann::json &paths, std::map<std::string, dataType> &data)
+		static void loadAssetsFromJson(LoaderStatus &status, Settings &settings, const std::string &dataName, nlohmann::json &paths, std::map<std::string, dataType> &data)
 		{
 			if (paths.is_null())
 				logger.warn("No " + dataName + " is marked for loading");
 
+			status.miniStep.second = paths.size();
+			status.miniStep.first = 0;
+			status.stepName = "Loading " + dataName;
 			logger.debug("Loading " + std::to_string(paths.size()) + " " + dataName);
 			for (auto &value : paths.items()) {
+				status.miniStep.first++;
+				if (std::is_same<dataType, std::pair<sf::Music, std::string>>::value)
+					status.miniStepName = value.value()["path"];
+				else
+					status.miniStepName = value.value();
 				logger.debug("Loading value " + value.value().dump() + " at key " + value.key());
 				try {
 					data.at(value.key());
@@ -78,9 +93,10 @@ namespace TouhouFanGame
 				if (!loadFile(settings, data[value.key()], value.value()))
 					logger.error("Cannot load element " + value.value().dump());
 			}
+			status.step++;
 		}
 
-		static void loadAssetsFromJson(Game &game, const std::string &dataName, nlohmann::json &paths, std::map<std::string, Rendering::MeshObject> &data);
+		static void loadAssetsFromJson(LoaderStatus &status, Game &game, const std::string &dataName, nlohmann::json &paths, std::map<std::string, Rendering::MeshObject> &data);
 	};
 }
 

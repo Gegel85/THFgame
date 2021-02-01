@@ -71,7 +71,7 @@ namespace TouhouFanGame::Rendering
 		void	setFont(const sf::Font &font);
 
 		//! @brief Change the text size
-		void	textSize(const size_t &size);
+		void	textSize(size_t size);
 
 		//! @brief Adds an entity on the screen
 		//! @param configFile The path the a JSON file describing the entity

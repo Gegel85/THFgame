@@ -8,7 +8,6 @@
 #include "MeshObject.hpp"
 #include "../Utils/GlmUtils.hpp"
 #include "../Exceptions.hpp"
-#include "Loader.hpp"
 #include "../Resources/Game.hpp"
 
 namespace TouhouFanGame::Rendering

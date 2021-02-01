@@ -14,7 +14,7 @@
 #include <map>
 #include <SFML/Graphics/Image.hpp>
 #include <glm/glm.hpp>
-#include "Loader.hpp"
+#include "ShaderLoader.hpp"
 
 namespace TouhouFanGame::Rendering
 {

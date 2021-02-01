@@ -223,11 +223,11 @@ add_library(
 	src/Core/Rendering/Exceptions.hpp
 	src/Core/Rendering/Hud.cpp
 	src/Core/Rendering/Hud.hpp
-	src/Core/Rendering/Loader.hpp
 	src/Core/Rendering/MeshObject.cpp
 	src/Core/Rendering/MeshObject.hpp
 	src/Core/Rendering/Screen.cpp
 	src/Core/Rendering/Screen.hpp
+	src/Core/Rendering/ShaderLoader.hpp
 
 	#Resources
 	src/Core/Resources/Game.cpp

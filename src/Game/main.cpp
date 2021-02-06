@@ -44,7 +44,7 @@ namespace TouhouFanGame
 
 		game.state.menuMgr.changeMenu("main_menu");
 		while (game.resources.screen->isOpen()) {
-			game.resources.screen->clear();
+			//game.resources.screen->clear();
 
 			while (game.resources.screen->pollEvent(event))
 				if (event.type == sf::Event::Closed)

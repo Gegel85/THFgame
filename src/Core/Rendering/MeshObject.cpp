@@ -27,10 +27,10 @@ namespace TouhouFanGame::Rendering
 		for (auto &mesh : this->_meshes) {
 			auto mat = mesh.getMaterialInfo();
 
-			glUniform3fv(shaderProgram.uniform("Kd"), 1, glm::value_ptr(mat.Kd));
-			glUniform3fv(shaderProgram.uniform("Ks"), 1, glm::value_ptr(mat.Ks));
-			glUniform3fv(shaderProgram.uniform("Ka"), 1, glm::value_ptr(mat.Ka));
-			glUniform1f(shaderProgram.uniform("shininess"), mat.shininess);
+			//glUniform3fv(shaderProgram.uniform("Kd"), 1, glm::value_ptr(mat.Kd));
+			//glUniform3fv(shaderProgram.uniform("Ks"), 1, glm::value_ptr(mat.Ks));
+			//glUniform3fv(shaderProgram.uniform("Ka"), 1, glm::value_ptr(mat.Ka));
+			//glUniform1f(shaderProgram.uniform("shininess"), mat.shininess);
 			mesh.draw(shaderProgram);
 		}
 	}

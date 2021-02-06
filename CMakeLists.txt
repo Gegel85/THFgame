@@ -228,6 +228,8 @@ add_library(
 	src/Core/Rendering/Screen.cpp
 	src/Core/Rendering/Screen.hpp
 	src/Core/Rendering/ShaderLoader.hpp
+	src/Core/Rendering/Viewer.cpp
+	src/Core/Rendering/Viewer.hpp
 
 	#Resources
 	src/Core/Resources/Game.cpp

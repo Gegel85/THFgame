@@ -433,6 +433,7 @@ namespace TouhouFanGame
 		size.x = ceil(size.x / static_cast<float>(this->_tileSize));
 		size.y = ceil(size.y / static_cast<float>(this->_tileSize));
 
+		this->_game.resources.screen->pushGLStates();
 		for (unsigned y = pos.y < 0 ? 0 : pos.y; y < pos.y + size.y && y < this->_size.y; y++) {
 			for (unsigned x = pos.x < 0 ? 0 : pos.x; x < pos.x + size.x && x < this->_size.x; x++) {
 				this->_game.resources.screen->draw(
@@ -451,11 +452,13 @@ namespace TouhouFanGame
 				);
 			}
 		}
+		this->_game.resources.screen->popGLStates();
 
 		this->_cameraUpdated = false;
 		this->_game.resources.screen->renderEntities();
 
 #ifdef _DEBUG
+		this->_game.resources.screen->pushGLStates();
 		this->_game.resources.screen->fillColor({0x00, 0x00, 0xFF, 0x80});
 		for (auto &entity : this->_core.getEntityByComponent("Collision"))
 			for (auto &collider : entity.lock()->getComponent(Collision).colliders)
@@ -467,6 +470,7 @@ namespace TouhouFanGame
 				collider->draw(*this->_game.resources.screen);
 
 		this->_game.resources.screen->fillColor();
+		this->_game.resources.screen->popGLStates();
 #endif
 	}
 

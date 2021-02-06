@@ -314,6 +314,7 @@ namespace TouhouFanGame::Rendering
 
 	void HUD::draw(TouhouFanGame::Game &game)
 	{
+		game.resources.screen->pushGLStates();
 		if (this->_dispPlayer)
 			this->_renderPlayerHUD(*game.resources.screen);
 
@@ -328,6 +329,7 @@ namespace TouhouFanGame::Rendering
 			this->_dialog->render(game);
 			this->_dialog->update(game);
 		}
+		game.resources.screen->popGLStates();
 	}
 
 	void HUD::setDispBossHUD(bool dispBoss)

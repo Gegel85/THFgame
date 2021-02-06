@@ -156,6 +156,8 @@ namespace TouhouFanGame
 		//We do this because on MinGW std::random_device always produce the same output
 		//(also we don't need the most unpredictable seed)
 		game.resources.random.seed(time(nullptr));
+		if (game.resources.screen)
+			game.resources.screen->setShaders("assets/shaders/basic.vert", "assets/shaders/basic.frag");
 
 		thread = std::thread(loadingFct);
 

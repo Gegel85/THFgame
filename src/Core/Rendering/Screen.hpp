@@ -8,11 +8,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
+#include "MeshObject.hpp"
+#include "Viewer.hpp"
 
 namespace TouhouFanGame::Rendering
 {
 	//! @brief Represents the screen
-	class Screen : public sf::RenderWindow {
+	class Screen : public sf::RenderWindow, public Viewer {
 	private:
 		//! @brief The Resources the Screen is in.
 		Resources &_resources;
@@ -46,6 +48,9 @@ namespace TouhouFanGame::Rendering
 
 		//! @brief The current fps.
 		double _fps;
+
+		//! @brief The current shader
+		std::unique_ptr<ShaderProgram> _shader;
 
 	public:
 		//! @brief Constructor.
@@ -131,6 +136,8 @@ namespace TouhouFanGame::Rendering
 		//! @brief Gets the width in pixels a text would be.
 		//! @return The width of the text.
 		float getTextWidth(const std::string &text);
+
+		void setShaders(const std::string &vertexShader, const std::string &fragmentShader);
 	};
 }
 

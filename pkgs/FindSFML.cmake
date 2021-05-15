@@ -18,9 +18,9 @@ IF (NOT SFML_INCLUDE_DIRS OR NOT SFML_LIBRARIES)
         ELSEIF (MINGW) # Windows
                 SET(CMAKE_FIND_LIBRARY_PREFIXES ";lib")
                 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll.a;.dll;.a;.lib")
-        ELSE (MSVC)    # Linux
+        ELSE (MSVC)    # Linux and MacOS
                 SET(CMAKE_FIND_LIBRARY_PREFIXES "lib")
-                SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so;.a")
+                SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so;.dylib;.a")
         ENDIF(MSVC)
 
         FIND_LIBRARY(SFML_GRAPHICS_LIBRARY

@@ -15,7 +15,7 @@ IF (NOT TGUI_INCLUDE_DIRS OR NOT TGUI_LIBRARIES)
                 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll.a;.dll;.a;.lib")
         ELSE (MSVC)    # Linux
                 SET(CMAKE_FIND_LIBRARY_PREFIXES "lib")
-                SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so;.a")
+                SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so;,dylib;.a")
         ENDIF(MSVC)
 
         FIND_LIBRARY(TGUI_LIBRARIES

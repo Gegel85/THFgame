@@ -32,6 +32,7 @@ namespace TouhouFanGame
 		logger.debug("Opening main window");
 		game.resources.screen.reset(new Rendering::Screen{game.resources, "THFgame"});
 
+		game.resources.screen->pushGLStates();
 		game.state.menuMgr.addMenu<MainMenu>("main_menu", game.state.map, game.resources, game.state.hud);
 		game.state.menuMgr.addMenu<InGameMenu>("in_game", game, game.state.map, game.state.hud, *game.resources.screen);
 		game.state.menuMgr.addMenu<InventoryMenu>("inventory", game, game.state.map, game.state.hud, *game.resources.screen, game.resources.textures);
@@ -44,7 +45,7 @@ namespace TouhouFanGame
 
 		game.state.menuMgr.changeMenu("main_menu");
 		while (game.resources.screen->isOpen()) {
-			//game.resources.screen->clear();
+			game.resources.screen->clear();
 
 			while (game.resources.screen->pollEvent(event))
 				if (event.type == sf::Event::Closed)

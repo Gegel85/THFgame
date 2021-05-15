@@ -158,6 +158,7 @@ namespace TouhouFanGame
 		game.resources.random.seed(time(nullptr));
 		if (game.resources.screen)
 			game.resources.screen->setShaders("assets/shaders/basic.vert", "assets/shaders/basic.frag");
+			//game.resources.screen->setShaders("assets/shaders/simple.vert", "assets/shaders/simple.frag");
 
 		thread = std::thread(loadingFct);
 

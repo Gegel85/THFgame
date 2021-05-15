@@ -9,6 +9,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "../Resources/Game.hpp"
 #include "Screen.hpp"
+#include "../Utils/GlmUtils.hpp"
 
 static const glm::vec3 DEFAULT_VIEW_POINT = { 5, 5, 5 };
 static const glm::vec3 DEFAULT_VIEW_CENTER = { 0, 0, 0 };
@@ -268,14 +269,13 @@ namespace TouhouFanGame::Rendering
 				{0.0f, 1.0f},
 			};
 
-			for (int i = 0; i < vertices.size(); i += 3) {
+			for (unsigned i = 0; i < vertices.size(); i += 3) {
 				glm::vec3 computed = computeNormal(vertices[i], vertices[i + 1], vertices[i + 2]);
 
 				normals.push_back(computed);
 				normals.push_back(computed);
 				normals.push_back(computed);
 			}
-
 
 			//Create VAOs
 			glGenVertexArrays(1, &y._vaoHandle);
@@ -342,15 +342,16 @@ namespace TouhouFanGame::Rendering
 			value = 0;
 		}
 
-		screen.setActive();
+		screen.setActive(true);
+		static glm::vec3 f{0, 0, 0};
 		glm::vec3 eye = screen.getViewPoint();
 		glm::vec3 look = screen.getViewCenter();
 		glm::vec3 up = screen.getUpVector();
 
 		screen.rotate(0.001, 0.001);
-		screen.zoom(-0.001);
-		glm::mat4 view = lookAt(eye, look, up);
-		glm::mat4 projection = perspective(45.f, 1.0f * screen.getView().getSize().x / screen.getView().getSize().y, 0.001, 1000);
+		//screen.zoom(-0.001);
+		glm::mat4 view = glm::lookAt(eye, look, up);
+		glm::mat4 projection = glm::perspective(45.f, 1.0f * screen.getView().getSize().x / screen.getView().getSize().y, 0.001f, 1000.f);
 
 		prog.use();
 		glEnable(GL_DEPTH_TEST);
@@ -392,9 +393,9 @@ namespace TouhouFanGame::Rendering
 
 	void Screen::renderEntities()
 	{
-		//this->popGLStates();
+		this->popGLStates();
 		tmp(this->_resources, *this, *this->_shader);
-		//this->pushGLStates();
+		this->pushGLStates();
 		//for (auto &entity : this->_entities)
 		//	entity->render(*this);
 	}

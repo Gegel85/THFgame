@@ -93,7 +93,6 @@ namespace TouhouFanGame
 	void Loader::loadAssets(Game &game)
 	{
 		std::ifstream stream{"assets/list.json"};
-		GLenum err = glewInit();
 		LoaderStatus status;
 		std::thread thread;
 		auto loadingFct = [&stream, &game, &status]{
@@ -129,12 +128,6 @@ namespace TouhouFanGame
 				logger.debug("Loading sprites");
 				loadAssetsFromJson(status, game.state.settings, "Sprites", data["sprites"], game.resources.textures);
 
-				logger.debug("Loading textures");
-				loadAssetsFromJson(status, game.state.settings, "Textures", data["textures"], game.resources.modelTextures);
-
-				logger.debug("Loading models");
-				loadAssetsFromJson(status, game, "Models", data["meshes"], game.resources.models);
-
 				logger.debug("Loading items json");
 				loadItems(game);
 			} catch (nlohmann::detail::parse_error &e) {
@@ -143,13 +136,6 @@ namespace TouhouFanGame
 				throw CorruptedAssetsListException("The JSON values are invalid: " + std::string(e.what()));
 			}
 		};
-
-		if (err != GLEW_OK)
-		{
-			//Problem: glewInit failed, something is seriously wrong.
-			std::cerr << "glewInit failed, aborting." << std::endl;
-			throw InitFailedException("glewInit()", err);
-		}
 
 		loadSettings(game);
 
@@ -223,34 +209,5 @@ namespace TouhouFanGame
 		}
 		if (thread.joinable())
 			thread.join();
-	}
-
-	void Loader::loadAssetsFromJson(LoaderStatus &status, Game &game, const std::string &dataName, nlohmann::json &paths, std::map<std::string, Rendering::MeshObject> &data)
-	{
-		if (paths.is_null())
-			logger.warn("No " + dataName + " is marked for loading");
-
-		status.miniStep.second = paths.size();
-		status.miniStep.first = 0;
-		status.stepName = "Loading " + dataName;
-		logger.debug("Loading " + std::to_string(paths.size()) + " " + dataName);
-		for (auto &value : paths.items()) {
-			status.miniStep.first++;
-			status.miniStepName = value.value();
-			logger.debug("Loading value " + value.value().dump() + " at key " + value.key());
-			try {
-				data.at(value.key());
-				logger.error("A " + dataName + " is already loaded with key " + value.key());
-				return;
-			} catch (std::out_of_range &) {}
-
-			try {
-				data.try_emplace(value.key(), game.resources.modelTextures, "assets/" + std::string(value.value()));
-			} catch (std::exception &e) {
-				logger.error("Cannot load element " + value.value().dump());
-				logger.error(getLastExceptionName() + ": " + e.what());
-			}
-		}
-		status.step++;
 	}
 }

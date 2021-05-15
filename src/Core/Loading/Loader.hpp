@@ -95,8 +95,6 @@ namespace TouhouFanGame
 			}
 			status.step++;
 		}
-
-		static void loadAssetsFromJson(LoaderStatus &status, Game &game, const std::string &dataName, nlohmann::json &paths, std::map<std::string, Rendering::MeshObject> &data);
 	};
 }
 

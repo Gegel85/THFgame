@@ -10,7 +10,6 @@
 #include <json.hpp>
 #include "../Rendering/Screen.hpp"
 #include "../Inventory/Item.hpp"
-#include "../Rendering/MeshObject.hpp"
 
 #define MAX_PLAYING_SFX 128
 
@@ -34,12 +33,6 @@ namespace TouhouFanGame
 
 		//! @brief The loaded musics
 		std::map<std::string, std::pair<sf::Music, std::string>> musics;
-
-		//! @brief The loaded models textures
-		std::map<std::string, sf::Image> modelTextures;
-
-		//! @brief The loaded models
-		std::map<std::string, Rendering::MeshObject> models;
 
 		//! @brief The loaded sprites
 		std::map<std::string, sf::Texture> textures;

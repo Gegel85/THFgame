@@ -52,9 +52,9 @@ ELSE ()
         SET(LUA_FOUND FALSE)
 ENDIF ()
 
-IF (LUA_FIND_REQUIRED AND NOT LUA_FOUND)
+IF (Lua_FIND_REQUIRED AND NOT LUA_FOUND)
         MESSAGE(FATAL_ERROR
                 "  LUA not found.\n"
                 "      Fill CMake variable LUA_DIR to the provided directory.\n"
                 )
-ENDIF (LUA_FIND_REQUIRED AND NOT LUA_FOUND)
+ENDIF (Lua_FIND_REQUIRED AND NOT LUA_FOUND)

@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <ctime>
 #include <cstring>
+#include <sstream>
 #include "Logger.hpp"
 
 namespace TouhouFanGame

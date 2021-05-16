@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iomanip>
+#include <sstream>
 #include <cmath>
 #include "../DataType/Vector.hpp"
 #include "../ExternalCode/LuaCode.hpp"

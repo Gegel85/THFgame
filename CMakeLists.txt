@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/pkgs)
 find_package(SFML REQUIRED)
 find_package(TGUI REQUIRED)
+find_package(Lua REQUIRED)
 include_directories(${SFML_INCLUDE_DIRS} ${TGUI_INCLUDE_DIRS})
 
 message("-- SFML Graphics library is ${SFML_GRAPHICS_LIBRARY}")
@@ -16,6 +17,8 @@ message("-- SFML Window library is ${SFML_WINDOW_LIBRARY}")
 message("-- SFML include directory is ${SFML_INCLUDE_DIRS}")
 message("-- TGUI library is ${TGUI_LIBRARIES}")
 message("-- TGUI include directory is ${TGUI_INCLUDE_DIRS}")
+message("-- Lua library is ${LUA_LIBRARIES}")
+message("-- Lua include directory is ${LUA_INCLUDE_DIRS}")
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	if (CMAKE_COMPILER_IS_GNUCC)
@@ -34,7 +37,7 @@ if (WIN32)
 	set(ICON icon.rc)
 endif (WIN32)
 
-include_directories(nlohmann)
+include_directories(nlohmann ${SFML_INCLUDE_DIRS} ${TGUI_INCLUDE_DIRS} ${LUA_INCLUDE_DIRS})
 
 add_library(
 	THFgame-core SHARED
@@ -226,8 +229,6 @@ add_library(
 
 	#Utils
 	src/Core/Utils/BaseObject.hpp
-	src/Core/Utils/GlmUtils.cpp
-	src/Core/Utils/GlmUtils.hpp
 	src/Core/Utils/NotCopyable.hpp
 	src/Core/Utils/Utils.cpp
 	src/Core/Utils/Utils.hpp
@@ -280,7 +281,7 @@ add_library(
 
 target_link_libraries(
 	LuaLibrary
-	lua
+	${LUA_LIBRARIES}
 )
 
 #_____________________________________________________________

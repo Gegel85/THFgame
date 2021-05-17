@@ -92,11 +92,11 @@ IF (NOT SFML_INCLUDE_DIRS OR NOT SFML_GRAPHICS_LIBRARY OR NOT SFML_AUDIO_LIBRARY
                 NAMES
                 SFML/Graphics.hpp
                 PATHS
+                ${SFML_DIR}/include/             # SFML root directory (if provided)
+                ${SFML_DIR}                      # SFML root directory (if provided)
                 /usr/include/                    # Default Fedora28 system include path
                 /usr/local/include/              # Default Fedora28 local include path
                 ${CMAKE_MODULE_PATH}/include/    # Expected to contain the path to this file for Windows10
-                ${SFML_DIR}/include/             # SFML root directory (if provided)
-                ${SFML_DIR}                      # SFML root directory (if provided)
         )
 ENDIF (NOT SFML_INCLUDE_DIRS OR NOT SFML_GRAPHICS_LIBRARY OR NOT SFML_AUDIO_LIBRARY OR NOT SFML_NETWORK_LIBRARY OR NOT SFML_SYSTEM_LIBRARY OR NOT SFML_WINDOW_LIBRARY)
 

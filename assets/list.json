@@ -70,6 +70,5 @@
 		"vokseliaSpawn": "tmp_assets/vokselia_spawn.obj",
 		"sponza": "tmp_assets/sponza.obj",
 		"erato": "tmp_assets/erato-1.obj"
-	},
-	"icon": "icon.png"
+	}
 }

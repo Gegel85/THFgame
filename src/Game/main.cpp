@@ -60,12 +60,11 @@ namespace TouhouFanGame
 
 	void	run()
 	{
-		Game game;
-		//TODO: Add proper font loading.
-
 		#ifndef _DEBUG
 		try {
 		#endif
+			Game game;
+			//TODO: Add proper font loading.
 
 			logger.info("Setting up...");
 			setup(game);

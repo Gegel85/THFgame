@@ -90,12 +90,73 @@ namespace TouhouFanGame
 			game.resources.items.emplace_back(ItemFactory::buildItem(i, objs[i]["type"].is_null() ? "Classic" : objs[i]["type"], objs[i]));
 	}
 
+	static void updateLoadingWindow(Game &game, Loader::LoaderStatus &status)
+	{
+		auto &size = game.resources.screen->getView().getSize();
+		auto corner = game.resources.screen->getView().getCenter();
+
+		corner.x -= size.x / 2;
+		corner.y -= size.y / 2;
+
+		game.resources.screen->clear();
+		game.resources.screen->textSize(20);
+		game.resources.screen->fillColor({200, 200, 200, 255});
+		game.resources.screen->draw(status.stepName, {
+			corner.x + size.x / 2 - game.resources.screen->getTextWidth(status.stepName) / 2,
+			corner.y + size.y - 160
+		});
+		game.resources.screen->draw(status.miniStepName, {
+			corner.x + size.x / 2 - game.resources.screen->getTextWidth(status.miniStepName) / 2,
+			corner.y + size.y - 80
+		});
+		game.resources.screen->draw({
+			static_cast<int>(corner.x + 10),
+			static_cast<int>(corner.y + size.y - 130),
+			static_cast<int>(size.x - 20),
+			40
+		});
+		game.resources.screen->draw({
+			static_cast<int>(corner.x + 10),
+			static_cast<int>(corner.y + size.y - 50),
+			static_cast<int>(size.x - 20),
+			40
+		});
+		game.resources.screen->fillColor(sf::Color::Black);
+		game.resources.screen->draw({
+			static_cast<int>(corner.x + 15),
+			static_cast<int>(corner.y + size.y - 125),
+			static_cast<int>(size.x - 30),
+			30
+		});
+		game.resources.screen->draw({
+			static_cast<int>(corner.x + 15),
+			static_cast<int>(corner.y + size.y - 45),
+			static_cast<int>(size.x - 30),
+			30
+		});
+		game.resources.screen->fillColor(sf::Color::Green);
+		game.resources.screen->draw({
+			static_cast<int>(corner.x + 15),
+			static_cast<int>(corner.y + size.y - 125),
+			static_cast<int>((size.x - 30) * status.step / 3.f),
+			30
+		});
+		game.resources.screen->fillColor(sf::Color::Blue);
+		game.resources.screen->draw({
+			static_cast<int>(corner.x + 15),
+			static_cast<int>(corner.y + size.y - 45),
+			static_cast<int>((size.x - 30) * status.miniStep.first / status.miniStep.second),
+			30
+		});
+		game.resources.screen->display();
+	}
+
 	void Loader::loadAssets(Game &game)
 	{
-		std::ifstream stream{"assets/list.json"};
 		LoaderStatus status;
 		std::thread thread;
-		auto loadingFct = [&stream, &game, &status]{
+		auto loadingFct = [&game, &status]{
+			std::ifstream stream{"assets/list.json"};
 			nlohmann::json data;
 
 			logger.debug("Opening file assets/list.json");
@@ -108,7 +169,7 @@ namespace TouhouFanGame
 				stream.close();
 
 				logger.debug("Loading icon");
-				if (data["icon"].is_null())
+				if (!data.contains("icon"))
 					logger.warn("No Icon is marked for loading");
 				else if (!game.resources.icon.loadFromFile("assets/" + data["icon"].get<std::string>()))
 					logger.error("Cannot load file assets/" + data["icon"].get<std::string>());
@@ -119,17 +180,23 @@ namespace TouhouFanGame
 						game.resources.icon.getPixelsPtr()
 					);
 
+				updateLoadingWindow(game, status);
+
 				logger.debug("Loading musics");
 				loadAssetsFromJson(status, game.state.settings, "Musics", data["musics"], game.resources.musics);
+				updateLoadingWindow(game, status);
 
 				logger.debug("Loading sfx");
 				loadAssetsFromJson(status, game.state.settings, "Sound effects", data["sfx"], game.resources.soundBuffers);
+				updateLoadingWindow(game, status);
 
 				logger.debug("Loading sprites");
 				loadAssetsFromJson(status, game.state.settings, "Sprites", data["sprites"], game.resources.textures);
+				updateLoadingWindow(game, status);
 
 				logger.debug("Loading items json");
 				loadItems(game);
+				updateLoadingWindow(game, status);
 			} catch (nlohmann::detail::parse_error &e) {
 				throw CorruptedAssetsListException("The JSON file has an invalid format: " + std::string(e.what()));
 			} catch (nlohmann::detail::type_error &e) {
@@ -143,69 +210,15 @@ namespace TouhouFanGame
 		//(also we don't need the most unpredictable seed)
 		game.resources.random.seed(time(nullptr));
 
-		thread = std::thread(loadingFct);
+		//thread = std::thread(loadingFct);
+		loadingFct();
 
-		while (status.step < 5) {
-			if (game.resources.screen) {
-				auto &size = game.resources.screen->getView().getSize();
-				auto corner = game.resources.screen->getView().getCenter();
-				
-				corner.x -= size.x / 2;
-				corner.y -= size.y / 2;
-
-				game.resources.screen->clear();
-				game.resources.screen->textSize(20);
-				game.resources.screen->fillColor({200, 200, 200, 255});
-				game.resources.screen->draw(status.stepName, {
-					corner.x + size.x / 2 - game.resources.screen->getTextWidth(status.stepName) / 2,
-					corner.y + size.y - 160
-				});
-				game.resources.screen->draw(status.miniStepName, {
-					corner.x + size.x / 2 - game.resources.screen->getTextWidth(status.miniStepName) / 2,
-					corner.y + size.y - 80
-				});
-				game.resources.screen->draw({
-					static_cast<int>(corner.x + 10),
-					static_cast<int>(corner.y + size.y - 130),
-					static_cast<int>(size.x - 20),
-					40
-				});
-				game.resources.screen->draw({
-					static_cast<int>(corner.x + 10),
-					static_cast<int>(corner.y + size.y - 50),
-					static_cast<int>(size.x - 20),
-					40
-				});
-				game.resources.screen->fillColor(sf::Color::Black);
-				game.resources.screen->draw({
-					static_cast<int>(corner.x + 15),
-					static_cast<int>(corner.y + size.y - 125),
-					static_cast<int>(size.x - 30),
-					30
-				});
-				game.resources.screen->draw({
-					static_cast<int>(corner.x + 15),
-					static_cast<int>(corner.y + size.y - 45),
-					static_cast<int>(size.x - 30),
-					30
-				});
-				game.resources.screen->fillColor(sf::Color::Green);
-				game.resources.screen->draw({
-					static_cast<int>(corner.x + 15),
-					static_cast<int>(corner.y + size.y - 125),
-					static_cast<int>((size.x - 30) * status.step / 5.f),
-					30
-				});
-				game.resources.screen->fillColor(sf::Color::Blue);
-				game.resources.screen->draw({
-					static_cast<int>(corner.x + 15),
-					static_cast<int>(corner.y + size.y - 45),
-					static_cast<int>((size.x - 30) * status.miniStep.first / status.miniStep.second),
-					30
-				});
-				game.resources.screen->display();
-			} else
+		while (status.step < 3) {
+			if (game.resources.screen)
+				updateLoadingWindow(game, status);
+			else
 				std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			printf("%i %i %i %s %s\n", status.step, status.miniStep.first, status.miniStep.second, status.stepName.c_str(), status.miniStepName.c_str());
 		}
 		if (thread.joinable())
 			thread.join();

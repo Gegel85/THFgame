@@ -26,7 +26,7 @@ namespace TouhouFanGame::ECS::Factory
 		std::ifstream stream{path};
 
 		if (stream.fail())
-			throw InvalidPrefabException(this->_builders.at(path) + ": " + strerror(errno));
+			throw InvalidPrefabException(path + ": " + strerror(errno));
 
 		try {
 			nlohmann::json j;

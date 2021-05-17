@@ -35,11 +35,11 @@ IF (NOT TGUI_INCLUDE_DIRS OR NOT TGUI_LIBRARIES)
                 NAMES
                 TGUI/TGUI.hpp
                 PATHS
+                ${TGUI_DIR}/include/             # TGUI root directory (if provided)
+                ${TGUI_DIR}                      # TGUI root directory (if provided)
                 /usr/include/                    # Default Fedora28 system include path
                 /usr/local/include/              # Default Fedora28 local include path
                 ${CMAKE_MODULE_PATH}/include/    # Expected to contain the path to this file for Windows10
-                ${TGUI_DIR}/include/             # TGUI root directory (if provided)
-                ${TGUI_DIR}                      # TGUI root directory (if provided)
         )
 ENDIF (NOT TGUI_INCLUDE_DIRS OR NOT TGUI_LIBRARIES)
 

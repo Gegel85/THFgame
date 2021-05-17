@@ -38,16 +38,16 @@ IF (NOT LUA_INCLUDE_DIRS OR NOT LUA_LIBRARIES)
                 NAMES
                 lua.hpp
                 PATHS
+                ${LUA_DIR}/include/lua            # Lua root directory (if provided)
+                ${LUA_DIR}/lua                    # Lua root directory (if provided)
+                ${LUA_DIR}/include/               # Lua root directory (if provided)
+                ${LUA_DIR}                        # Lua root directory (if provided)
                 /usr/include/                     # Default Fedora28 system include path
                 /usr/local/include/               # Default Fedora28 local include path
                 /usr/include/lua                  # Default Fedora28 system include path
                 /usr/local/include/lua            # Default Fedora28 local include path
                 ${CMAKE_MODULE_PATH}/include/lua  # Expected to contain the path to this file for Windows10
                 ${CMAKE_MODULE_PATH}/include/     # Expected to contain the path to this file for Windows10
-                ${LUA_DIR}/include/lua            # Lua root directory (if provided)
-                ${LUA_DIR}/lua                    # Lua root directory (if provided)
-                ${LUA_DIR}/include/               # Lua root directory (if provided)
-                ${LUA_DIR}                        # Lua root directory (if provided)
         )
 ENDIF (NOT LUA_INCLUDE_DIRS OR NOT LUA_LIBRARIES)
 

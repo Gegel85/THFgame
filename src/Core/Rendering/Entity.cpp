@@ -77,6 +77,10 @@ namespace TouhouFanGame::Rendering
 
 	Vector2u Entity::Config::getPositionFromAnimationIndex(unsigned index)
 	{
+		if (this->textureSize.x == 0)
+			//Let's not divide by 0, shall we ?
+			return {0, 0};
+
 		return {
 			(this->tileSize.x * index) % this->textureSize.x,
 			(this->tileSize.x * index) / this->textureSize.x * this->tileSize.y,

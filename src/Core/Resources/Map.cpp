@@ -433,24 +433,28 @@ namespace TouhouFanGame
 		size.x = ceil(size.x / static_cast<float>(this->_tileSize));
 		size.y = ceil(size.y / static_cast<float>(this->_tileSize));
 
-		for (unsigned y = pos.y < 0 ? 0 : pos.y; y < pos.y + size.y && y < this->_size.y; y++) {
-			for (unsigned x = pos.x < 0 ? 0 : pos.x; x < pos.x + size.x && x < this->_size.x; x++) {
-				this->_game.resources.screen->draw(
-					this->_game.resources.textures.at(this->_tileMap),
-					{
-						static_cast<float>(x * this->_tileSize),
-						static_cast<float>(y * this->_tileSize)
-					},
-					{0, 0},
-					{
-						static_cast<int>((this->_objects[x + y * this->_size.x] & 0x7F) * this->_tileSize),
-						0,
-						static_cast<int>(this->_tileSize),
-						static_cast<int>(this->_tileSize)
-					}
-				);
+		auto &texture = this->_game.resources.textures.at(this->_tileMap);
+		auto textureSize = texture.getSize();
+
+		if (textureSize.x != 0)
+			for (unsigned y = pos.y < 0 ? 0 : pos.y; y < pos.y + size.y && y < this->_size.y; y++) {
+				for (unsigned x = pos.x < 0 ? 0 : pos.x; x < pos.x + size.x && x < this->_size.x; x++) {
+					this->_game.resources.screen->draw(
+						texture,
+						{
+							static_cast<float>(x * this->_tileSize),
+							static_cast<float>(y * this->_tileSize)
+						},
+						{0, 0},
+						{
+							static_cast<int>((this->_objects[x + y * this->_size.x] & 0x7F) * this->_tileSize % textureSize.x),
+							static_cast<int>((this->_objects[x + y * this->_size.x] & 0x7F) * this->_tileSize / textureSize.x) * this->_tileSize,
+							static_cast<int>(this->_tileSize),
+							static_cast<int>(this->_tileSize)
+						}
+					);
+				}
 			}
-		}
 
 		this->_cameraUpdated = false;
 		this->_game.resources.screen->renderEntities();
